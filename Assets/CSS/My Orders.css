@@ -1,0 +1,19 @@
+.my-order-container-main-box {
+    display: flex;
+    justify-content: space-between;
+}
+
+.order-data-container {
+    width: 80vw;
+}
+
+
+@media (max-width:860px) {
+    .hide-item-small-screen {
+        display: none;
+    }
+    .order-data-container {
+        width: 100vw;
+    }
+}
+

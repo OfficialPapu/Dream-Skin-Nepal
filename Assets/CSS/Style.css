@@ -1,0 +1,129 @@
+
+html,
+body {
+    overflow-x: hidden;
+}
+
+.color {
+    color: #FF007F;
+}
+
+.product-heading {
+    color: #ff4da6;
+    position: relative;
+    display: inline-block;
+    cursor: default;
+}
+
+.recommanded .product-heading,
+.review .product-heading {
+    margin: 0 20px;
+
+}
+
+
+.whatsapp {
+    position: fixed;
+    right: 5%;
+    bottom: 10%;
+    z-index: 10;
+    transition: transform 0.3s ease-in-out;
+    transform: scale(0);
+}
+.show-whatsapp {
+    transform: scale(1);
+}
+
+.whatsapp a img {
+ height: 70px;
+ }
+@media (max-width: 1030px) {
+.whatsapp {
+    right: 5%;
+    bottom: 13%;
+    }
+}
+
+  @media (max-width: 500px) {
+    .whatsapp a img {
+    height: 60px;
+}
+}
+
+.fridaysales {
+    margin-top: 20px;
+}
+
+.product-heading::after {
+    content: '';
+    position: absolute;
+    height: 3px;
+    width: 70%;
+    left: 0;
+    bottom: -5px;
+    background-color: #00ADEF;
+    transition: .3s;
+}
+
+.product-heading:hover::after {
+    width: 90%;
+}
+
+
+::-webkit-scrollbar {
+    width: 4px;
+}
+
+::-webkit-scrollbar-track {
+    background-color: whitesmoke;
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: #e5f0f9;
+    border-radius: 10px;
+}
+
+body.active {
+    overflow: hidden;
+}
+
+.Companyinfo {
+    border-bottom: .5px solid #00ADEF;
+}
+
+@media (max-width:400px) {
+    .product-heading {
+        font-size: 1.4rem;
+        margin-left: 10px;
+    }
+}
+
+.view-more-box {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 20px;
+}
+
+.view-more-box .view-more {
+    border-radius: 8px;
+}
+
+.view-more a {
+    color: #ff4da6;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: bold;
+
+}
+
+.view-more a i {
+    font-size: 2rem;
+}
+
+@media (max-width:600px) {
+    .view-more-box {
+        padding: 0 10px;
+    }
+}

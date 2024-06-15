@@ -1,0 +1,111 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap');
+
+.coupon-list * {
+    margin: 0;
+    padding: 0;
+    font-family: "Inter", sans-serif;
+    text-decoration: none;
+    list-style: none;
+    outline: none;
+}
+
+body {
+    overflow: hidden;
+    background-color: #e5f0f9;
+    margin-top: 80px;
+}
+
+.coupon-list .coupon-list-headig {
+    font-size: 20px;
+    padding: 20px;
+    font-weight: bold;
+}
+
+.coupon-list table {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+.coupon-list th,
+.coupon-list td {
+    padding: 10px;
+    text-align: left;
+}
+
+.coupon-list tr {
+    background-color: transparent;
+}
+
+.coupon-list th {
+    color: black;
+}
+
+.coupon-list .container {
+    margin: 0 auto;
+    max-width: 1000px;
+    background-color: white;
+    padding: 0 30px 30px 30px;
+    border-radius: 8px;
+}
+
+.coupon-list body,
+.coupon-list th,
+.coupon-list td {
+    font-size: 16px;
+}
+
+.delete-coupon-code i {
+    font-size: 1.5rem;
+}
+
+.delete-coupon-code {
+    color: #de3a4a;
+    cursor: pointer;
+}
+
+@media only screen and (max-width: 768px) {
+    .coupon-list table {
+        width: 100%;
+    }
+
+    .coupon-list .container {
+        padding: 0;
+    }
+
+    .coupon-list table {
+        font-size: 14px;
+    }
+
+    .coupon-list .start-date {
+        display: none;
+    }
+}
+
+@media (max-width: 626px) {
+
+    .coupon-list th,
+    .coupon-list td {
+        font-size: 12px;
+    }
+}
+
+@media (max-width:464px) {
+
+    .coupon-list th,
+    .coupon-list td {
+        padding: 7px 4px;
+    }
+
+    .delete-coupon-code i {
+        font-size: 1.3rem;
+    }
+}
+
+@media (max-width:385px) {
+
+    .coupon-list th,
+    .coupon-list td {
+        font-size: 10px;
+    }
+
+}

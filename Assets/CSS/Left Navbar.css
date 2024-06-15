@@ -1,0 +1,160 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito+Sans:opsz,wght@6..12,500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Nunito+Sans:opsz,wght@6..12,500;6..12,700&family=Poppins&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    font-family: 'Nunito Sans', sans-serif;
+    box-sizing: border-box;
+    outline: none;
+    text-decoration: none;
+}
+
+.account-side-bar ul a {
+    color: black;
+}
+.account-side-bar ul a i{
+    color: #00ADEF;
+}
+
+.account-side-bar {
+    width: 300px;
+    height: 100vh;
+    background-color: white;
+    border-radius: 0 20px 20px 0;
+    overflow-x: hidden;
+}
+
+@media (min-width:860px) {
+    .account-side-bar {
+        border-right: 1px solid #FF007F;
+        border-radius:0;
+    }
+}
+
+.side-bar {
+    margin: 20px 0 6rem 0;
+}
+
+.side-bar-title {
+    padding: 1px 20px;
+    font-size: 1.2rem;
+    font-weight: bold;
+    color:#FF007F;
+}
+
+.side-bar-account-section,
+.side-bar-account-setting-section,
+.side-bar-order-section {
+    display: flex;
+    justify-content: start;
+    align-items: center;
+}
+
+.side-bar-account-section li i,
+.side-bar-account-setting-section li i,
+.side-bar-order-section li i {
+    font-size: 1.4rem;
+    line-height: 22px;
+    margin: 0 10px;
+}
+
+.side-bar-account-section ul li a,
+.side-bar-order-section ul li a,
+.side-bar-account-setting-section ul li a {
+    font-size: 1rem;
+    height: 40px;
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    width: 300px;
+    border-radius: 8px;
+    transition: .3s;
+}
+
+.my-account,
+.order,
+.account-setting {
+    margin: 0 0 30px 0;
+}
+
+.side-bar-account-section ul a:hover,
+.side-bar-order-section ul a:hover,
+.side-bar-account-setting-section ul a:hover {
+    background-color: #FF007F;
+}
+
+.side-bar-account-section ul li:hover a,
+.side-bar-order-section ul li:hover a,
+.side-bar-account-setting-section ul li:hover a {
+    color: white;
+}
+
+.side-bar-account-section ul li:hover i,
+.side-bar-order-section ul li:hover i,
+.side-bar-account-setting-section ul li:hover i {
+    color: white;
+}
+
+@media (max-width:360px) {
+
+    .account-side-bar {
+        width: 100vw;
+        border-radius: 0px;
+        margin-bottom: 1rem !important;
+    }
+}
+
+@media (max-width:860px) {
+
+    .side-bar-account-section ul li a,
+    .side-bar-order-section ul li a,
+    .side-bar-account-setting-section ul li a {
+        width: 100vw;
+    }
+
+    .account-side-bar {
+        width: 100vw;
+        background: white;
+        height: 100vh;
+        border-radius: 0px;
+        box-shadow: 0 0 0 !important;
+    }
+
+    .user-info-box {
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+        align-items: center;
+        margin: 20px 0;
+    }
+
+    .user-info-name {
+        font-size: 1.3rem;
+        width: 100vw;
+        text-align: center;
+    }
+
+    .side-bar-account-title {
+        font-size: 2rem;
+        margin: 10px 0;
+    }
+
+    .user-info-box img {
+        width: 150px;
+        height: 150px;
+        border-radius: 50%;
+    }
+
+    .hor-line {
+        height: 1px;
+        width: 80vw;
+    }
+}
+
+@media (min-width:861px) {
+    .hide-item-in-desktop {
+        display: none;
+    }
+}

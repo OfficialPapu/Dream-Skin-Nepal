@@ -1,0 +1,112 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito+Sans:opsz,wght@6..12,500&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    text-decoration: none;
+    font-family: 'Nunito Sans', sans-serif;
+    outline: none;
+    list-style: none;
+}
+
+.image-search-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+}
+
+.image-search-main-box {
+    overflow: hidden;
+    width: 40vw;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    border: 1px solid black;
+    padding: 50px;
+    border-radius: 20px;
+}
+
+.image-search-box input,
+.image-search-box button,
+.edit-image-postion .edit-image-btn button,
+.edit-image-postion .edit-position input {
+    border: 1px solid gray;
+    border-radius: 8px;
+    padding: 10px;
+    margin: 10px 0;
+    width: 35vw;
+    font-size: 1.01rem;
+}
+
+.image-search-box button,
+.edit-image-postion .edit-image-btn button {
+    border: none;
+    border-radius: 8px;
+    padding: 10px 50px;
+    background-color: #00ADEF;
+    color: white;
+    font-size: 1rem;
+    cursor: pointer;
+}
+
+.image-container {
+    position: relative;
+}
+
+.image-container img {
+    object-fit: cover;
+    border-radius: 10px;
+    width: 200px;
+    height: 200px;
+    border: 1px solid #00ADEF;
+}
+
+.add-new-image-element {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 200px;
+    height: 200px;
+    border: 1px solid #00ADEF;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+.image-list-box,
+.image-list {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.hr-line {
+    height: 1px;
+    background-color: black;
+    width: 40vw;
+}
+
+.add-new-image-element i {
+    font-size: 2rem;
+}
+
+.image-container .delete-image-box button {
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+    border: none;
+    background-color: white;
+    color: black;
+    cursor: pointer;
+    padding: 5px 10px;
+    border-radius: 8px;
+    font-weight: bold;
+    border: 1px solid #00ADEF;
+}
+
+#input-image {
+    display: none;
+}

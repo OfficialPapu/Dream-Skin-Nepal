@@ -1,0 +1,140 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    font-family: "Inter", sans-serif;
+    text-decoration: none;
+    list-style: none;
+    outline: none;
+    box-sizing: border-box;
+    -webkit-tap-highlight-color: transparent;
+}
+
+.option-tag {
+    position: relative;
+}
+
+.select-btn {
+    display: flex;
+    height: 55px;
+    background-color: rgb(255, 255, 255);
+    justify-content: space-between;
+    padding: 17px 13px;
+    align-items: center;
+    border-radius: 8px;
+    cursor: pointer;
+    box-shadow: 0 0 10px rgba(255, 0, 128, 0.1);
+    font-size: 14px;
+}
+
+.select-btn i {
+    font-size: 25px;
+    transition: .3s;
+}
+
+.option-tag.active i {
+    transform: rotate(180deg);
+}
+
+.option-tag ul {
+    width: 100%;
+    position: absolute;
+    top: 50px;
+    left: 0;
+    padding: 20px;
+    background-color: white;
+    margin-top: 10px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(255, 0, 128, 0.1);
+}
+
+.option-tag ul li {
+    height: 55px;
+    display: flex;
+    align-items: center;
+    padding: 0 16px;
+    cursor: pointer;
+    border-radius: 8px;
+    color: #333;
+}
+
+.option-tag ul li:hover,
+.option-tag ul li.selected {
+    background-color: #F2F2F2;
+}
+
+.options {
+    display: none;
+}
+
+.option-tag.active .options {
+    display: block;
+}
+
+body {
+    background-color: #e5f0f9;
+}
+
+.coupon-container {
+    width: 500px;
+    margin: 5rem auto 1rem auto;
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(255, 0, 128, 0.1);
+    background-color: white;
+    border-radius: 8px;
+}
+
+.form-group {
+    margin: 20px 0;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 5px;
+    font-size: 12px;
+    color: #686868;
+}
+
+.form-group input {
+    width: 100%;
+    padding: 17px 13px;
+    height: 55px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    border: none;
+    box-shadow: 0 0 10px rgba(255, 0, 128, 0.1);
+}
+
+.form-group input[type='date'] {
+    text-transform: uppercase;
+    outline: none;
+    border: none;
+    background-color: white;
+}
+
+.form-group textarea {
+    width: 100%;
+    height: 100px;
+    padding: 17px 13px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    border: none;
+    box-shadow: 0 0 10px rgba(255, 0, 128, 0.1);
+}
+
+#create-coupon {
+    background-color: #d4edda;
+    color: #155724;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 8px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+@media (max-width:570px) {
+    .coupon-container {
+        width: 90vw;
+    }
+}

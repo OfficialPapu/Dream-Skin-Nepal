@@ -1,0 +1,297 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    font-family: "Inter", sans-serif;
+    text-decoration: none;
+    list-style: none;
+    outline: none;
+    -webkit-tap-highlight-color: transparent !important;
+     scrollbar-width: none;
+}
+@font-face {
+  font-family: Satisfy-Regular;
+src: url(../../Assets/Font/Satisfy-Regular.ttf);
+}
+*::-webkit-scrollbar {
+    display: none;
+}
+.register-container input:-webkit-autofill {
+   border-radius:8px;
+}
+
+body,
+html {
+    overflow-x: hidden;
+}
+
+
+.register-container {
+    width: 100vw;
+    height: 80vh;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-gap: 7rem;
+    padding: 0 2rem;
+    position: relative;
+    background-color: white;
+}
+.register-container  .authentic-text-content{
+    padding:0;
+    font-size:20px;
+}
+ .img {
+     display: flex;
+    justify-content: end;
+    align-items: center;
+}
+
+.register-content {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    text-align: center;
+}
+
+.img img {
+    width: 400px;
+}
+
+.register-content form {
+    width: 360px;
+}
+
+.register-content img {
+    height: 100px;
+}
+.slogan{
+ margin:0 0 5px 0;
+ font-size:14px;
+ color:black;
+ font-style: italic;
+}
+.slogan .pink-color, .slogan .blue-color{
+font-family:Satisfy-Regular;
+font-weight:bold;
+}
+.register-content h2 {
+    color: #333;
+    font-size: 2.9rem;
+}
+
+.register-content .input-div {
+    position: relative;
+    display: grid;
+    grid-template-columns: 7% 93%;i
+    padding: 5px 0;
+    border-bottom: 1px solid #333;
+    margin: 30px 0 !important;}
+
+.show-pass {
+    height: 45px;
+    position: absolute;
+    right: 10px;
+    cursor: pointer;
+}
+
+.show-pass:hover {
+    color: #333;
+}
+
+.register-content .input-div.one {
+    margin-top: 0;
+}
+
+.i {
+    color: #00ADEF;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.i i {
+    transition: .3s;
+}
+
+.input-div>div {
+    position: relative;
+    height: 45px;
+}
+
+.input-div>div>h5 {
+    position: absolute;
+    left: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #FF007F;
+    font-size: 14px;
+    transition: .3s;
+}
+
+.input-div:before,
+.input-div:after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    width: 0%;
+    height: 2px;
+    background-color: #00ADEF;
+    transition: .4s;
+}
+
+.input-div:before {
+    right: 50%;
+}
+
+.input-div:after {
+    left: 50%;
+}
+
+.input-div.focus:before,
+.input-div.focus:after {
+    width: 50%;
+}
+
+.input-div.focus>div>h5 {
+    top: -5px;
+    font-size: 12px;
+    color:#FF007F;
+}
+
+.input-div.focus>.i>i {
+    color: #00ADEF;
+}
+
+.input-div>div>input {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    border: none;
+    outline: none;
+    background: none;
+    padding: 0.5rem 0.7rem;
+    font-size: 1.2rem;
+    color: #555;
+}
+
+.input-div.pass {
+    margin-bottom: 4px;
+}
+
+.forgot-pass {
+    display: block;
+    text-align: right;
+    color: #999;
+    font-size: 0.9rem;
+    transition: .3s;
+    font-weight: bold;
+}
+
+.register-btn {
+    display: block;
+    width: 100%;
+    height: 50px;
+    border-radius: 25px;
+    outline: none;
+    border: none;
+    background: #00ADEF ;
+    background-size: 200%;
+    font-size: 1.2rem;
+    color: #fff;
+    margin: 1.5rem 0 1rem 0;
+    cursor: pointer;
+    transition: .5s;
+}
+
+.register-btn:hover {
+    background-position: right;
+}
+
+.new-user a {
+    font-weight: bold;
+    color: #FF007F;
+}
+
+.new-user a:hover {
+    color: #00ADEF;
+}
+@media screen and (max-width: 1050px) {
+    .register-container {
+        grid-gap: 5rem;
+    }
+}
+
+@media screen and (max-width: 1000px) {
+    form {
+        width: 290px;
+    }
+
+    .register-content h2 {
+        font-size: 2.4rem;
+        margin: 8px 0;
+    }
+
+    .img img {
+        width: 400px;
+    }
+}
+
+@media screen and (max-width: 900px) {
+    .register-content form {
+        border: 2px solid rgb(229 231 235);
+        border-radius: 8px;
+        width: 60vw;
+        padding: 20px;
+
+    }
+
+    .register-container {
+        grid-template-columns: 1fr;
+    }
+
+    .img {
+        display: none;
+    }
+
+
+    .register-container {
+        padding: 0;
+    }
+
+    .register-content {
+        justify-content: center;
+    }
+}
+
+@media (max-width:660px) {
+    .register-content form {
+        width: 80vw;
+    }
+}
+
+@media (max-width:567px) {
+    .register-content form {
+        width: 90vw;
+    }
+}
+
+@media (max-width:400px) {
+    .register-container {
+        height: auto;
+    }
+
+    .register-content form {
+        width: 80vw;
+    }
+}
+
+@media (max-width:1029px) {
+    .register-container {
+        margin-bottom: 8rem;
+        margin-top: 30px;
+
+    }
+}
