@@ -80,11 +80,10 @@ $('#shippingOptions input[type="checkbox"]').change(function () {
                 },
                 success: function (response) {
                       response=response.trim();
-                    let totalPriceText = $('.price.grand-total-price.total').text();
-                    let totalPrice = parseInt(totalPriceText.replace('Rs. ', ''));
-                    totalPrice += shippingFee - ShippingFeeAdd;
-                    ShippingFeeAdd = shippingFee;
-                    $('.price.grand-total-price.total').text('Rs. ' + totalPrice);
+                    let SubTotal= $('#SubTotal').html();
+                    let TotalPrice = parseInt(SubTotal.replace(/Rs. |\.\d{2}/g, ''));
+                    TotalPrice += shippingFee;
+                    $('#GrandTotal').html('Rs. ' + TotalPrice+'.00');
                 },
             });
     }
@@ -131,11 +130,11 @@ $(document).ready(function () {
         }
     });
 });
-function CouponCodeShowDate() {
-    $('.discount-data, .promo-applied').css({
-        'height': 'auto',
-        'margin': '0 0 7px 0'
-    });
+function ShowBox(Element) {
+    $(Element).removeClass("hidden");
+}
+function OverWriteData(Element,Data){
+    $(Element).html(Data);
 }
 
 
@@ -158,13 +157,15 @@ $(document).ready(function () {
                     window.location.reload();
                 }
                 if (CouponResponse['Message'] === 'Fixed Amount') {
-                    CouponCodeShowDate();
-                    $('.discount-price').html("- Rs. " + CouponResponse['Discount Amount']);
-                    $('.grand-total-price').html("Rs. " + CouponResponse['Amount']);
-                    $('.promo-code').html(CouponCode);
-                    $('.price.order-total-price.total, .price.grand-total-price.total').html("Rs. " + CouponResponse['Amount']);
+                    ShowBox(".CouponCodeBox");
+                    ShowBox(".CouponValueBox");
+                    ShowBox(".TotalSavedBox");
+                    OverWriteData(".PromoCode",CouponCode);
+                    OverWriteData(".CouponValue","- Rs. " + CouponResponse['Discount Amount']);
+                    OverWriteData(".TotalSavedData","- Rs. " + CouponResponse['Discount Amount']);
+                    OverWriteData("#GrandTotal","Rs. " + CouponResponse['Amount']);
                 } else if (CouponResponse['Message'] === 'Percentage') {
-                    CouponCodeShowDate();
+                    ShowBox(".CouponCodeBox");
                     $('.promo-code').html(CouponCode);
                     $('.discount-price').html(CouponResponse['Discount Amount'] + "%");
                     $('.grand-total-price').html("Rs. " + CouponResponse['Amount']);

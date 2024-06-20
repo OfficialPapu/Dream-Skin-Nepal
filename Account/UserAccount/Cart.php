@@ -13,6 +13,7 @@ include_once $base_url . 'Assets/PHP/Account Configuration/Cart Configuration.ph
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.3.0/flowbite.min.css" rel="stylesheet" />
     <link rel="stylesheet" href="Assets/CSS/Butterup/butterup.min.css">
+    <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="Assets/CSS/Butterup/butterup.css">
     <link rel="stylesheet" href="Assets/CSS/Cart.css">
 </head>
@@ -23,7 +24,7 @@ include_once $base_url . 'Assets/PHP/Account Configuration/Cart Configuration.ph
             <div class='cart-product-data'>
                 <?php
                 if ($result->num_rows > 0) {
-                echo'<div class="flex px-5 py-3 text-gray-700 rounded-lg bg-gray-50  dark:bg-gray-800 dark:border-gray-700 Breadcrumb-box" aria-label="Breadcrumb">
+                    echo '<div class="flex px-5 py-3 text-gray-700 rounded-lg bg-gray-50  dark:bg-gray-800 dark:border-gray-700 Breadcrumb-box" aria-label="Breadcrumb">
                     <ol class="inline-flex items-center space-x-1 md:space-x-2 rtl:space-x-reverse">
                         <li class="inline-flex items-center">
                             <a href="/" class="inline-flex items-center text-sm font-medium text-gray-700 hover:text-blue-600 dark:text-gray-400 dark:hover:text-white">
@@ -64,23 +65,22 @@ include_once $base_url . 'Assets/PHP/Account Configuration/Cart Configuration.ph
                         </div>
                         <div class='price-and-quantity'>";
                         if ($DiscountPrice != '') {
-                        echo "<div class='product-price-box'>
+                            echo "<div class='product-price-box'>
                         <div class='product-non-discount-price product-price'>Rs. $price.00</div>
                         <div class='product-discount-price product-price'>Rs. $DiscountPrice.00</div>
                         </div>";
                         } else if ($DiscountPercentage != '') {
                             $DiscountValueCalculate = ceil(($price / 100) * $DiscountPercentage);
                             $DiscountValue = $price - $DiscountValueCalculate;
-                        echo "<div class='product-price-box'>
+                            echo "<div class='product-price-box'>
                         <div class='product-non-discount-price product-price'>Rs. $price.00</div>
                         <div class='product-discount-price product-price'>Rs. $DiscountValue.00</div>
                         </div>";
-                            
-                        }else{
-                         echo "<div class='product-price'>Rs. $price.00</div>";
+                        } else {
+                            echo "<div class='product-price'>Rs. $price.00</div>";
                         }
-                
-               echo "<div class='quantity-increase' data-product-id-plus-minus='" . $product_id . "'>
+
+                        echo "<div class='quantity-increase' data-product-id-plus-minus='" . $product_id . "'>
                     <span class='minusButtons'>-</span>
                     <span class='product-quantity'>" . $productqtyforcart . "</span> 
                     <span class='plusButtons'>+</span>
@@ -92,65 +92,142 @@ include_once $base_url . 'Assets/PHP/Account Configuration/Cart Configuration.ph
                     <i class='bx bx-trash delete-item cart-delete-item' id='cart-close-btn' data-product-id='" . $product_id . "'><div class='hide-in-desktop remove-text'>Remove?</div></i> 
                 </div>
                 <div class='add-to-wishlist hide-in-desktop'>";
-                 if ($AddedInWishlist == 'Not Added') {
+                        if ($AddedInWishlist == 'Not Added') {
                             echo "<i class='bx bx-heart AddToWishlist AddToWishlist-1' data-product-id-wishlist='" . $row['ID'] . "'></i>";
                         } else if ($AddedInWishlist == 'Added') {
                             echo "<i class='bx bxs-heart AddToWishlist AddToWishlist-1' data-product-id-wishlist='" . $row['ID'] . "'></i>";
                         }
-                    echo "</div>
+                        echo "</div>
                 </div>
             </div>";
                     }
+                ?>
+            </div>
+        </div>
+        <!-- <div class='product-summary'>
+            <p class='summary'><i class='bx bx-shopping-bag'></i>Order Summary</p>
+            <div class='total-price'>
+                <div class='order-total'>
+                    <p>Sub Total:</p>
+                    <p class='price order-total-price total'>Rs. <?php echo $TotalPrice; ?></p>
+                </div>
+                <div class='Shipping'>
+                    <p class='shipping-title'>Shipping Fee</p>
+                    <ul id='shippingOptions'>
+                        <li>
+                            <input type='checkbox' name='Shipping-rate' id='Outside-Valley'>
+                            <label for='Outside-Valley'>Outside Valley: <span class='price'>Rs. 200</span></label>
+                        </li>
+                        <li>
+                            <input type='checkbox' name='Shipping-rate' id='Inside-Valley'>
+                            <label for='Inside-Valley'>Inside Valley: <span class='price'>Rs. 100</span></label>
+                        </li>
+                        <li>
+                            <input type='checkbox' name='Shipping-rate' id='Collect-From-Store'>
+                            <label for='Collect-From-Store'>Collect From Store: <span class='price'>Rs. 0</span></label>
+                        </li>
+                    </ul>
+                </div>
+                <div class='promo-applied'>
+                    <p>Promo Applied</p>
+                    <p class='promo-code'></p>
+                </div>
+                <div class='discount-data'>
+                    <p>Discount</p>
+                    <p class='discount-price'></p>
+                </div>
+                <div class='grand-total'>
+                    <p>Grand Total:</p>
+                    <p class='price grand-total-price total'>Rs. <?php echo $TotalPrice; ?></p>
+                </div>
+            </div>
+            <hr class='first-hr'>
+            <div class='coupon-code'>
+                <input type='text' placeholder='Enter your coupon' class='couponcode'>
+                <button id='applycode'>Apply</button>
+            </div>
+            <div class='checkout'>
+                <button class='checkout-btn'>PROCEED TO CHECKOUT</button>
+            </div>
+        </div> -->
 
-                    echo "  </div>
-</div>
-<div class='product-summary'>
-    <p class='summary'><i class='bx bx-shopping-bag'></i>Order Summary</p>
-    <div class='total-price'>
-        <div class='order-total'>
-            <p>Sub Total:</p>
-            <p class='price order-total-price total'>Rs. $TotalPrice</p>
+
+        <div class='product-summary'>
+            <div class="rounded-lg bg-card text-card-foreground shadow-sm w-full max-w-2xl">
+                <div class="flex justify-center items-center p-6 gap-[10px]">
+                    <i class='bx bx-shopping-bag text-2xl mt-[-4px] text-[#00ADEF]'></i>
+                    <h3 class="text-2xl font-semibold leading-none tracking-tight text-[#FF007F]">Order Summary</h3>
+                </div>
+                <div class="p-3 grid gap-4" data-id="4">
+                    <div class="flex items-center justify-between" data-id="5">
+                        <span>Subtotal</span>
+                        <span id="SubTotal">Rs. <?php echo $TotalPrice; ?>.00</span>
+                    </div>
+
+                    <div class="grid gap-2">
+                        <span class="font-medium">Shipping</span>
+
+
+                        <div class="grid gap-2" id='shippingOptions'>
+                            <label class="text-sm font-medium flex items-center justify-between rounded-md border border-muted px-4 py-3 cursor-pointer" for="Outside-Valley">
+                                <div class="flex items-center gap-2">
+                                    <input type="checkbox" class="mt-[-2px]" value="outside-valley" id="Outside-Valley" name='Shipping-rate'></input>
+                                    Outside Valley
+                                </div>
+                                <span>Rs. 200</span>
+                            </label>
+                            <label class="text-sm font-medium flex items-center justify-between rounded-md border border-muted px-4 py-3 cursor-pointer" for="Inside-Valley">
+                                <div class="flex items-center gap-2">
+                                    <input type="checkbox" class="mt-[-2px]" id="Inside-Valley" name='Shipping-rate'></input>
+                                    Inside Valley
+                                </div>
+                                <span>Rs. 100</span>
+                            </label>
+                            <label class="text-sm font-medium flex items-center justify-between rounded-md border border-muted px-4 py-3 cursor-pointer" for="Collect-From-Store">
+                                <div class="flex items-center justify-center gap-2">
+                                    <input type="checkbox" class="mt-[-2px]" id="Collect-From-Store" name='Shipping-rate'></input>
+                                    Collect From Store
+                                </div>
+                                <span>Rs. 0</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="flex flex-col gap-2">
+                        <div class="flex items-center justify-between CouponCodeBox hidden">
+                            <span>Coupon</span>
+                            <span class="text-green-500 PromoCode">DREAMSKIN500</span>
+                        </div>
+                        <div class="flex items-center justify-between CouponValueBox hidden">
+                            <span>Coupon Value</span>
+                            <span class="text-green-500 CouponValue">Rs. 400</span>
+                        </div>
+                        <div class="flex items-center justify-between TotalSavedBox hidden">
+                            <span>Total Saved</span>
+                            <span class="text-green-500 TotalSavedData">-Rs. 8.00</span>
+                        </div>
+                        <div class="flex justify-between font-medium">
+                            <span>Grand Total</span>
+                            <span id="GrandTotal" class="text-[#FF5200] font-bold">Rs. <?php echo $TotalPrice; ?>.00</span>
+                        </div>
+                        <div class="flex flex-col items-center justify-between text-green-500 hidden">
+                            <span>Congrats, you got free shipping!</span>
+                            <span>Purchase over 5000.</span>
+                        </div>
+                    </div>
+
+                    <div class="flex items-center justify-center gap-2 relative mt-4">
+                        <input class="h-10 w-full rounded-md bg-background px-3 py-2 text-sm couponcode" placeholder="Enter coupon code" type="text">
+                        <button class="rounded-md text-sm font-medium px-4 py-2 bg-[#FF007F] text-white absolute right-1 top-1/2 -translate-y-1/2" id="applycode">Apply</button>
+                    </div>
+                </div>
+                <div class="flex justify-center my-7">
+                    <button class='checkout-btn bg-[#FF007F] py-3 w-[70%] rounded-md text-white'>PROCEED TO CHECKOUT</button>
+                </div>
+            </div>
         </div>
-        <div class='Shipping'>
-            <p class='shipping-title'>Shipping Fee</p>
-            <ul id='shippingOptions'>
-                <li>
-                    <input type='checkbox' name='Shipping-rate' id='Outside-Valley'>
-                    <label for='Outside-Valley'>Outside Valley: <span class='price'>Rs. 200</span></label>
-                </li>
-                <li>
-                    <input type='checkbox' name='Shipping-rate' id='Inside-Valley'>
-                    <label for='Inside-Valley'>Inside Valley: <span class='price'>Rs. 100</span></label>
-                </li>
-                <li>
-                    <input type='checkbox' name='Shipping-rate' id='Collect-From-Store'>
-                    <label for='Collect-From-Store'>Collect From Store: <span class='price'>Rs. 0</span></label>
-                </li>
-            </ul>
-        </div>
-        <div class='promo-applied'>
-        <p>Promo Applied</p>
-        <p class='promo-code'></p>
-        </div>
-        <div class='discount-data'>
-        <p>Discount</p>
-        <p class='discount-price'></p>
-        </div>
-        <div class='grand-total'>
-            <p>Grand Total:</p>
-            <p class='price grand-total-price total'>Rs. $TotalPrice</p>
-        </div>
-    </div>
-    <hr class='first-hr'>
-    <div class='coupon-code'>
-        <input type='text' placeholder='Enter your coupon' class='couponcode'>
-        <button id='applycode'>Apply</button>
-    </div>
-    <div class='checkout'>
-        <button class='checkout-btn'>PROCEED TO CHECKOUT</button>
-    </div>
-</div>
- </div>";
+
+    <?php
                 } else {
                     echo " <div class='cart-empty'>
         <div class='empty-cart-img'>
@@ -159,8 +236,8 @@ include_once $base_url . 'Assets/PHP/Account Configuration/Cart Configuration.ph
         <p class='empty-cart-title'>No item in cart</p>
         <a href='/'><button class='continue-shopping'>Continue Shopping</button></a>
     </div>";
-}
- ?>
+                }
+    ?>
 </body>
 <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
 <script src="Assets/JS/Butterup/butterup.js"></script>
