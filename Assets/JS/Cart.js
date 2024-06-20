@@ -56,17 +56,16 @@ for (let i = 0; i < productQuantities.length; i++) {
     });
 }
 function CheckFreeShipping(){
-    let FreeShippingConditionPrice = $('#GrandTotal').html();
+    let FreeShippingConditionPrice = $('#SubTotal').html();
     FreeShippingConditionPrice = parseInt(FreeShippingConditionPrice.replace(/Rs. |\.\d{2}/g, ''));
-    let ShippingFeeAdd = 0;
     if(FreeShippingConditionPrice>=5000){
         ShowBox(".FreeShippingBox");
     }
 }
-
 CheckFreeShipping();
-
+let ShippingFeeAdd = 0;
 $('#shippingOptions input[type="checkbox"]').change(function () {
+
     if ($(this).is(':checked')) {
         $('#shippingOptions input[type="checkbox"]').not(this).prop('checked', false);
         let shippingFee = 0;
