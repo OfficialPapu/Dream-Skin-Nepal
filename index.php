@@ -26,7 +26,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     <meta property="og:url" content="https://www.dreamskinnepal.com/">
     <meta property="og:image" content="https://dreamskinnepal.com/Assets/Product/Media/Images/Logo/Dream skin nepal.png">
     <meta property="og:description" content="Dream Skin Nepal - Trusted for Korean Beauty products. Leading skincare, cosmetics, cruelty-free & vegan options. Free shipping over Rs. 5000. Shop online for Korean products in Nepal.">
-    <link rel="canonical" href="https://www.dreamskinnepal.com/">
+    <!-- <link rel="canonical" href="https://www.dreamskinnepal.com/"> -->
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <link rel="shortcut icon" href="Assets/Product/Media/Images/Logo/Dream skin nepal.png" type="image/x-icon">
     <link rel="stylesheet" href="Assets/CSS/Style.css">

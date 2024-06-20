@@ -1,7 +1,7 @@
 <?php
 @session_name('URLSession');
 @session_start();
-$_SESSION['URLSession']['Base Path'] = $_SERVER['DOCUMENT_ROOT'] . "/";
+$_SESSION['URLSession']['Base Path'] = $_SERVER['DOCUMENT_ROOT'] . "/Dream Skin Nepal/";
 $base_url = $_SESSION['URLSession']['Base Path'];
 include $base_url . 'Assets/Components/Admin Navbar.php';
 include $base_url . 'Assets/PHP/Admin/Product List Config.php';

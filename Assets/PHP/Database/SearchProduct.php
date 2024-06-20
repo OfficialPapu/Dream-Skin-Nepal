@@ -3,6 +3,11 @@
 @session_start();
 $base_url = $_SESSION['URLSession']['Base Path'];
 include_once $base_url . 'Assets/Components/Navbar.php';
+if(isset($_GET['Search'])){
+  $Data=$_GET['Search'];
+}else{
+  $Data='';
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -25,7 +30,7 @@ include_once $base_url . 'Assets/Components/Navbar.php';
           <i class='bx bx-search-alt-2'></i>
         </div>
         <div class="search-box-input">
-          <input type="text" class="search-input" id="search-bar" placeholder="Search here..">
+          <input type="text" class="search-input" id="search-bar" placeholder="Search here.." value="<?php echo $Data;?>">
         </div>
         <div class="designing-line-search-bar"></div>
       </div>

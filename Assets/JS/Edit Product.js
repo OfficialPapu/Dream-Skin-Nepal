@@ -1,5 +1,7 @@
 let files = [];
+let RowID = [];
 let ID = $('#ID').val();
+let ShortOrder = "";
 $(document).ready(function () {
     let container = $('.image-list-container');
     let input = $('.data-upload input');
@@ -109,7 +111,8 @@ $(document).ready(function () {
 
     $('.image-list-container').on('click', '.image .delete-image', function () {
         let index = $(this).closest('.image').index();
-        delimage(index);
+        let DeleteImageRowID = $(this).closest('.delete-image').data('row-id');
+        delimage(index, DeleteImageRowID);
     });
 
     $('.data-upload').on({
@@ -131,31 +134,83 @@ $(document).ready(function () {
         }
     });
 
-    function delimage(index) {
-        files.splice(index, 1);
-        showImages();
+    function delimage(index, DeleteImageRowID) {
+        $.ajax({
+            type: "POST",
+            url: "Assets/PHP/Configuration/Common Function.php",
+            data: {
+                DeleteImage: true,
+                DeleteImageRowID: DeleteImageRowID,
+            },
+            success: function (response) {
+                response = response.trim();
+                if (response == 'LastImage') {
+                    butterup.toast({
+                        message: 'Unable to Delete Last Image!',
+                        icon: true,
+                        dismissable: true,
+                        type: 'error',
+                    });
+                } else if (response == 'Error') {
+                    butterup.toast({
+                        message: 'Something went wrong!',
+                        icon: true,
+                        dismissable: true,
+                        type: 'error',
+                    });
+                } else if (response == 'Not Saved') {
+                    butterup.toast({
+                        message: 'File Not Saved!',
+                        icon: true,
+                        dismissable: true,
+                        type: 'error',
+                    });
+                } else if (response == 'Success') {
+                    butterup.toast({
+                        message: 'Image Deleted Successfully',
+                        icon: true,
+                        dismissable: true,
+                        type: 'success',
+                    });
+                    files = files.filter((_, i) => i !== index);
+                    FeatchRowID();
+                }
+            }
+        });
     }
+
+    container.sortable({
+        update: function (event, ui) {
+            ShortOrder = container.sortable('toArray', { attribute: 'data-sortable-id' });
+            $('.update-images').click(function (e) {
+                $.ajax({
+                    type: "POST",
+                    url: "Assets/PHP/Configuration/Common Function.php",
+                    data: {
+                        UpdatePosition: true,
+                        ID:ID,
+                        ShortOrder: ShortOrder,
+                    },
+                    success: function (response) {
+                        console.log(response);
+                    }
+                });
+            });
+        }
+    });
     function showImages() {
         let images = '';
         files.forEach((e, i) => {
-
-            try {
-                if (e['type'] == 'databaseimage') {
-                    let imgSrc = typeof e === 'string' ? e : e['name'];
-                    images += `<div class="image">  
+            if (e['type'] == 'databaseimage') {
+                let imgSrc = typeof e === 'string' ? e : e['name'];
+                images += `<div class="image" data-sortable-id="${RowID[i]}">  
                         <img src="${imgSrc}" alt="image">
-                      <span class='delete-image'><i class='bx bx-x'></i></span>
-
-                        <!-- You can include delete functionality for these images if needed -->
-                    </div>`;
-                } else {
-                    images += `<div class="image">  
+                      <span class='delete-image' data-row-id="${RowID[i]}"><i class='bx bx-x'></i></span></div>`;
+            } else {
+                images += `<div class="image">  
                       <img src="${URL.createObjectURL(e)}" alt="image">
-                      <span class='delete-image'><i class='bx bx-x'></i></span>
+                      <span class='delete-image' data-row-id="0"><i class='bx bx-x' data-row-id="0"></i></span>
                   </div>`;
-                }
-            } catch (error) {
-                console.error('Error creating object URL for file at index ' + i + ': ', error);
             }
         });
         container.html(images);
@@ -276,8 +331,8 @@ $(document).ready(function () {
         } else if (BodyHairCareID == '' && SkinCareID == '') {
             ProductTypeID = MakeupID;
         }
-        if(ProductTypeID==''){
-              ProductTypeID=SelectedProductTypeID;
+        if (ProductTypeID == '') {
+            ProductTypeID = SelectedProductTypeID;
         }
         $.ajax({
             type: "POST",
@@ -296,7 +351,7 @@ $(document).ready(function () {
                 BrandID: BrandID
             },
             success: function (response) {
-                response=response.trim();
+                response = response.trim();
                 if (response == 'Success') {
                     butterup.toast({
                         message: 'Product Successfully Updated',
@@ -321,6 +376,7 @@ $(document).ready(function () {
         url: "Assets/PHP/Configuration/Common Function.php",
         data: {
             FeatchImage: true,
+            ImageUrl: true,
             ID: ID,
         },
         dataType: "json",
@@ -329,32 +385,70 @@ $(document).ready(function () {
                 let blob = new Blob([element], { type: 'image/jpeg' });
                 let file = new File([blob], element, {
                     type: 'databaseimage',
-                    lastModified: Date.now(),
+                    createdAt: Date.now(),
                 });
 
                 return file;
             });
-
             files.push(...fileObjects);
-            showImages();
-
+            FeatchRowID();
+            setTimeout(() => {
+                showImages();
+            }, 300);
         }
     });
+    function FeatchRowID() {
+        $.ajax({
+            type: "POST",
+            url: "Assets/PHP/Configuration/Common Function.php",
+            data: {
+                FeatchImage: true,
+                RowID: true,
+                ID: ID,
+            },
+            dataType: "json",
+            success: function (Data) {
+                RowID = [];
+                Data.forEach(element => {
+                    RowID.push(element);
+                });
+                showImages();
+            }
+        });
+    }
 
-    // $.ajax({
-    //     type: "POST",
-    //     url: "Assets/PHP/Configuration/Common Function.php",
-    //     data: {
-    //         UpdateImages: true,
-    //         ID: ID,
-    //         files: JSON.stringify(files) // Serialize the files object to JSON
-    //     },
-    //     success: function (Data) {
-    //         console.log(Data);
-    //     }
-    // });
+
+    $('.update-images').click(function (e) {
+        let form = document.getElementById("uploadForm");
+        let formData = new FormData($(form)[0]);
+        formData.append('ProductID', ID);
+        formData.append('UpdateImages', true);
+        $.ajax({
+            type: "POST",
+            url: "Assets/PHP/Configuration/Common Function.php",
+            data: formData,
+            processData: false,
+            contentType: false,
+            success: function (response) {
+                response = response.trim();
+                if (response == 'Success') {
+                    butterup.toast({
+                        message: 'Image Successfully Updated',
+                        icon: true,
+                        dismissable: true,
+                        type: 'success',
+                    });
+                } else {
+                    butterup.toast({
+                        message: 'Changes Not Saved!!',
+                        icon: true,
+                        dismissable: true,
+                        type: 'error',
+                    });
+                }
+            },
+        });
+    });
 
 
 });
-
-

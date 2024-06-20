@@ -31,34 +31,33 @@ if (isset($_SESSION['Logged In'])) {
 }
 
 if (isset($_POST['AddToCart'])) {
-    if (isset($_SESSION['Logged In'])){
-    $product_id = $_POST['ProductID'];
-    $quantity = $_POST['ProductQuantity'];
-    $CheckQuantity = "SELECT * FROM `posts` WHERE `ID`='$product_id'";
-    $CheckQuantityRun = mysqli_query($conn, $CheckQuantity);
-    $ProductInfo = $CheckQuantityRun->fetch_assoc();
-    $ProductQuantityValue = $ProductInfo['Product Quantity'];
-    if ($ProductQuantityValue != 0) {
-        if ($quantity <= $ProductQuantityValue) {
-            $check_product_already_added = "SELECT * FROM `product_cart` WHERE `User ID`='$user_id' AND `Product_ID`='$product_id'";
-            $execute = mysqli_query($conn, $check_product_already_added);
-            if ($execute->num_rows > 0) {
-                echo "AlreadyExist";
-            } else {
-                $add_to_cart = "INSERT INTO `product_cart`(`User ID`, `Product_ID`, `User_IP`, `Total Due`, `Shipping Fee`,`Applied Promo Code`, `Product_Quantity`, `Date & Time`) VALUES ('$user_id','$product_id','$user_ip','','','','$quantity',NOW())";
-                $execute = mysqli_query($conn, $add_to_cart);
-                if ($execute) {
-                    echo "Added";
+    if (isset($_SESSION['Logged In'])) {
+        $product_id = $_POST['ProductID'];
+        $quantity = $_POST['ProductQuantity'];
+        $CheckQuantity = "SELECT * FROM `posts` WHERE `ID`='$product_id'";
+        $CheckQuantityRun = mysqli_query($conn, $CheckQuantity);
+        $ProductInfo = $CheckQuantityRun->fetch_assoc();
+        $ProductQuantityValue = $ProductInfo['Product Quantity'];
+        if ($ProductQuantityValue != 0) {
+            if ($quantity <= $ProductQuantityValue) {
+                $check_product_already_added = "SELECT * FROM `product_cart` WHERE `User ID`='$user_id' AND `Product_ID`='$product_id'";
+                $execute = mysqli_query($conn, $check_product_already_added);
+                if ($execute->num_rows > 0) {
+                    echo "AlreadyExist";
+                } else {
+                    $add_to_cart = "INSERT INTO `product_cart`(`User ID`, `Product_ID`, `User_IP`, `Total Due`, `Shipping Fee`,`Applied Promo Code`, `Product_Quantity`, `Date & Time`) VALUES ('$user_id','$product_id','$user_ip','','','','$quantity',NOW())";
+                    $execute = mysqli_query($conn, $add_to_cart);
+                    if ($execute) {
+                        echo "Added";
+                    }
                 }
+            } else {
+                echo "NotEnoughStock";
             }
         } else {
-            echo "NotEnoughStock";
+            echo "OutOfStock";
         }
     } else {
-        echo "OutOfStock";
-    }
-    }
-    else{
         echo "NotLoggedIn";
     }
 }
@@ -72,24 +71,24 @@ if (isset($_POST['BuyNow'])) {
     $ProductQuantityValue = $ProductInfo['Product Quantity'];
     if ($ProductQuantityValue != 0) {
         if ($quantity <= $ProductQuantityValue) {
-            $StringUserID=strval($user_id);
+            $StringUserID = strval($user_id);
             $check_product_already_added = "SELECT * FROM `product_cart` WHERE `User ID`='$user_id' AND `Product_ID`='$product_id'";
             $execute = mysqli_query($conn, $check_product_already_added);
             if ($execute->num_rows > 0) {
-                $ClearCartQuery="DELETE FROM `product_cart` WHERE `User ID`='$StringUserID' AND `Product_ID` != '$product_id'";
-                $ClearCartRun=mysqli_query($conn,$ClearCartQuery);
+                $ClearCartQuery = "DELETE FROM `product_cart` WHERE `User ID`='$StringUserID' AND `Product_ID` != '$product_id'";
+                $ClearCartRun = mysqli_query($conn, $ClearCartQuery);
                 echo "Success";
             } else {
-                $ClearCartQuery="DELETE FROM `product_cart` WHERE `User ID`='$StringUserID' AND `Product_ID` != '$product_id'";
-                $ClearCartRun=mysqli_query($conn,$ClearCartQuery);
+                $ClearCartQuery = "DELETE FROM `product_cart` WHERE `User ID`='$StringUserID' AND `Product_ID` != '$product_id'";
+                $ClearCartRun = mysqli_query($conn, $ClearCartQuery);
                 $add_to_cart = "INSERT INTO `product_cart`(`User ID`, `Product_ID`, `User_IP`, `Total Due`, `Shipping Fee`,`Applied Promo Code`, `Product_Quantity`, `Date & Time`) VALUES ('$user_id','$product_id','$user_ip','','','','$quantity',NOW())";
                 $execute = mysqli_query($conn, $add_to_cart);
                 echo "Success";
             }
-        }else {
+        } else {
             echo "NotEnoughStock";
         }
-    }else {
+    } else {
         echo "OutOfStock";
     }
 }
@@ -122,24 +121,23 @@ if (isset($_POST['AddToCartFromWishlist'])) {
 
 
 if (isset($_POST['AddToWishlist'])) {
-       if (isset($_SESSION['Logged In'])){
-    $product_id = $_POST['ProductID'];
-    $check_product_already_added = "SELECT * FROM `product_wishlist` WHERE `User ID`='$user_id' AND `Product ID`='$product_id'";
-    $execute = mysqli_query($conn, $check_product_already_added);
-    $match_count = mysqli_num_rows($execute);
-    if ($match_count > 0) {
-        echo "AlreadyExist";
-    } else {
-        $add_to_wishlist = "INSERT INTO `product_wishlist`(`User ID`, `Product ID`, `User IP`, `Date & Time`) VALUES ('$user_id','$product_id','$user_ip',NOW())";
-        $execute = mysqli_query($conn, $add_to_wishlist);
-        if ($execute) {
-            echo "Added";
+    if (isset($_SESSION['Logged In'])) {
+        $product_id = $_POST['ProductID'];
+        $check_product_already_added = "SELECT * FROM `product_wishlist` WHERE `User ID`='$user_id' AND `Product ID`='$product_id'";
+        $execute = mysqli_query($conn, $check_product_already_added);
+        $match_count = mysqli_num_rows($execute);
+        if ($match_count > 0) {
+            echo "AlreadyExist";
+        } else {
+            $add_to_wishlist = "INSERT INTO `product_wishlist`(`User ID`, `Product ID`, `User IP`, `Date & Time`) VALUES ('$user_id','$product_id','$user_ip',NOW())";
+            $execute = mysqli_query($conn, $add_to_wishlist);
+            if ($execute) {
+                echo "Added";
+            }
         }
+    } else {
+        echo "NotLoggedIn";
     }
-           
-     }else{
-         echo "NotLoggedIn";
-     }
 }
 
 
@@ -259,11 +257,10 @@ if (isset($_POST['UpdateOrderStatus'])) { {
         if ($OrderStatus == 'Shipped') {
             NotifyStatusShipped($UserEmail, $UserName, $ProductTitle, $TrackingNumber);
             echo "Shipped";
-        } 
-        else if ($OrderStatus == 'Pending') {
+        } else if ($OrderStatus == 'Pending') {
             NotifyStatusPending($UserEmail, $UserName, $ProductTitle, $TrackingNumber);
             echo "Pending";
-        }else if ($OrderStatus == 'Complete') {
+        } else if ($OrderStatus == 'Complete') {
             NotifyStatusComplete($UserEmail, $UserName, $ProductTitle);
             echo "Completed";
         } else if ($OrderStatus == 'Cancelled') {
@@ -271,8 +268,7 @@ if (isset($_POST['UpdateOrderStatus'])) { {
             echo "Cancelled";
         } else if ($OrderStatus == 'Rejected') {
             echo "Rejected";
-        } 
-        else {
+        } else {
             echo "Success";
         }
     }
@@ -328,7 +324,7 @@ if (isset($_POST['Edit'])) {
     $ProductID = $_POST['ProductID'];
     $CustomProductID = strtoupper($_POST['CustomProductID']);
     $Title = addslashes($_POST['Title']);
-    $SlugTitle= CreateSlug($Title);
+    $SlugTitle = CreateSlug($Title);
     $Price = $_POST['Price'];
     $DiscountPrice = $_POST['DiscountPrice'];
     $DiscountPercentage = $_POST['DiscountPercentage'];
@@ -353,14 +349,22 @@ WHERE p.ID = '$ProductID'";
 
 if (isset($_POST['FeatchImage'])) {
     $Images = [];
+    $RowID = [];
     $ProductID = $_POST['ID'];
-    $ImagesQuery = "SELECT * FROM `postsmeta` WHERE `Product Meta Key` LIKE '%Image%' AND `Product ID`='$ProductID'";
+    $ImagesQuery = "SELECT * FROM `postsmeta` WHERE `Product Meta Key` LIKE '%Image%' AND `Product ID`='$ProductID' ORDER BY ID ASC";
     $ImagesQueryRun = mysqli_query($conn, $ImagesQuery);
     while ($Row = $ImagesQueryRun->fetch_assoc()) {
         $Images[] = $Row['Product Meta Value'];
+        $RowID[] = $Row['ID'];
     }
-    $Data = json_encode($Images);
-    echo $Data;
+
+    if (isset($_POST['ImageUrl'])) {
+        $Data = json_encode($Images);
+        echo $Data;
+    } else if (isset($_POST['RowID'])) {
+        $Data = json_encode($RowID);
+        echo $Data;
+    }
 }
 if (isset($_POST['CreateCoponCode'])) {
     $couponcode =  $_POST['couponcode'];
@@ -563,13 +567,13 @@ JOIN postsmeta pm3 ON p.ID = pm3.`Product ID` AND pm3.`Product Meta Key` = '$Pro
         <i class='bx bxs-purchase-tag'></i> Rs. $DiscountPrice 
         </div>";
         }
-        
+
         if ($AddedInWishlist == 'Not Added') {
             $Output .= "<i class='bx bx-heart AddToWishlist AddToWishlist-btn' data-product-id-wishlist='" . $product_id . "'></i>";
         } else if ($AddedInWishlist == 'Added') {
             $Output .= "<i class='bx bxs-heart AddToWishlist AddToWishlist-btn' data-product-id-wishlist='" . $product_id . "'></i>";
-        }    
-        
+        }
+
         $Output .= "<a href='Product/$SlugUrl'>
                 <img src='$thumbnail_url' alt='$limited_title'>
                 <div class='product-data'>
@@ -622,7 +626,7 @@ if (isset($_POST['ShortItemInSearch'])) {
     } else if ($ShortType == 'ASC') {
         $Condition = 'ORDER BY `Product Price` ASC';
     }
-    
+
     $search_input = $_POST['SearchTerm'];
     $search_input = mysqli_real_escape_string($conn, $search_input);
     $search_input = addslashes($search_input);
@@ -712,7 +716,7 @@ WHERE
             $Output .= "<i class='bx bx-heart AddToWishlist AddToWishlist-btn' data-product-id-wishlist='" . $product_id . "'></i>";
         } else if ($AddedInWishlist == 'Added') {
             $Output .= "<i class='bx bxs-heart AddToWishlist AddToWishlist-btn' data-product-id-wishlist='" . $product_id . "'></i>";
-        }  
+        }
         $Output .= "<a href='Product/$SlugUrl'>
                     <img src='$thumbnail_url' alt='$limited_title'>
                     <div class='product-data'>
@@ -759,32 +763,30 @@ WHERE
 if (isset($_POST['FilterByDate'])) {
     $ShortType = $_POST['ShortType'];
     if ($ShortType == "Today") {
-     $Condition = "WHERE DATE(orders.`Order Date`) = CURDATE() ORDER BY orders.`Order ID` DESC";
-     $ConditionForPrice="WHERE DATE(o.`Order Date`) = CURDATE() AND oi.`Order Status` != 'Cancelled' AND oi.`Order Status` != 'Rejected'
+        $Condition = "WHERE DATE(orders.`Order Date`) = CURDATE() ORDER BY orders.`Order ID` DESC";
+        $ConditionForPrice = "WHERE DATE(o.`Order Date`) = CURDATE() AND oi.`Order Status` != 'Cancelled' AND oi.`Order Status` != 'Rejected'
     GROUP BY o.`Order ID`";
-        $Title="Today's Orders";
+        $Title = "Today's Orders";
     } else if ($ShortType == '7') {
         $Condition = 'WHERE orders.`Order Date` >= DATE_SUB(CURDATE(), INTERVAL 7 DAY) ORDER BY orders.`Order ID` DESC';
-        $ConditionForPrice="WHERE o.`Order Date` >= DATE_SUB(CURDATE(), INTERVAL 7 DAY) AND oi.`Order Status` != 'Cancelled' AND oi.`Order Status` != 'Rejected'
+        $ConditionForPrice = "WHERE o.`Order Date` >= DATE_SUB(CURDATE(), INTERVAL 7 DAY) AND oi.`Order Status` != 'Cancelled' AND oi.`Order Status` != 'Rejected'
     GROUP BY o.`Order ID`";
-        $Title="Last 7 days orders";
-    } 
-    else if ($ShortType == '15') {
+        $Title = "Last 7 days orders";
+    } else if ($ShortType == '15') {
         $Condition = 'WHERE orders.`Order Date` >= DATE_SUB(CURDATE(), INTERVAL 15 DAY) ORDER BY orders.`Order ID` DESC';
-        $ConditionForPrice="WHERE o.`Order Date` >= DATE_SUB(CURDATE(), INTERVAL 15 DAY) AND oi.`Order Status` != 'Cancelled' AND oi.`Order Status` != 'Rejected'
+        $ConditionForPrice = "WHERE o.`Order Date` >= DATE_SUB(CURDATE(), INTERVAL 15 DAY) AND oi.`Order Status` != 'Cancelled' AND oi.`Order Status` != 'Rejected'
     GROUP BY o.`Order ID`";
-       $Title="Last 15 days orders";
-    } 
-    else if ($ShortType == '30') {
+        $Title = "Last 15 days orders";
+    } else if ($ShortType == '30') {
         $Condition = 'WHERE orders.`Order Date` >= DATE_SUB(CURDATE(), INTERVAL 30 DAY) ORDER BY orders.`Order ID` DESC';
-        $ConditionForPrice="WHERE o.`Order Date` >= DATE_SUB(CURDATE(), INTERVAL 30 DAY) AND oi.`Order Status` != 'Cancelled' AND oi.`Order Status` != 'Rejected'
+        $ConditionForPrice = "WHERE o.`Order Date` >= DATE_SUB(CURDATE(), INTERVAL 30 DAY) AND oi.`Order Status` != 'Cancelled' AND oi.`Order Status` != 'Rejected'
     GROUP BY o.`Order ID`";
-        $Title="Last 30 days orders";
+        $Title = "Last 30 days orders";
     } else if ($ShortType == '1 years') {
         $Condition = 'WHERE orders.`Order Date` >= DATE_SUB(CURDATE(), INTERVAL 365 DAY) ORDER BY orders.`Order ID` DESC';
-        $ConditionForPrice="WHERE o.`Order Date` >= DATE_SUB(CURDATE(), INTERVAL 365 DAY) AND oi.`Order Status` != 'Cancelled' AND oi.`Order Status` != 'Rejected'
+        $ConditionForPrice = "WHERE o.`Order Date` >= DATE_SUB(CURDATE(), INTERVAL 365 DAY) AND oi.`Order Status` != 'Cancelled' AND oi.`Order Status` != 'Rejected'
     GROUP BY o.`Order ID`";
-        $Title="Last 1 years orders";
+        $Title = "Last 1 years orders";
     }
 
     $LatestOrderQuery = "SELECT DISTINCT orders.`Order ID` AS ID, 
@@ -795,7 +797,7 @@ if (isset($_POST['FilterByDate'])) {
     JOIN user_table user ON user.`ID`= orders.`User ID`
     JOIN order_items OrderList ON OrderList.`Order ID`=orders.`Order ID` AND OrderList.`User ID`= orders.`User ID` $Condition";
     $LatestOrder = mysqli_query($conn, $LatestOrderQuery);
-    
+
     $TodaySalePrice = 0;
     $TodaySaleQuery = "SELECT o.`Total Due` AS TotalDue FROM `orders` o
     JOIN order_items oi ON oi.`Order ID`=o.`Order ID` $ConditionForPrice";
@@ -808,7 +810,7 @@ if (isset($_POST['FilterByDate'])) {
     } else {
         $TodaySalePrice = 0;
     }
-    $TodaySalePrice=number_format($TodaySalePrice); 
+    $TodaySalePrice = number_format($TodaySalePrice);
     $TotalOrderQuery = "SELECT COUNT(*) AS Count FROM `orders` $Condition";
     $TotalOrder = mysqli_query($conn, $TotalOrderQuery);
     $Row2 = $TotalOrder->fetch_assoc();
@@ -853,23 +855,23 @@ if (isset($_POST['FilterByDate'])) {
                 </a>
             </div>
         </div>";
-        
-    $Output .='<div class="latest-orders-container">
-        <div class="order-list-box">';
-    $Output .="<div class='latest-order-title'>$Title</div>";
-if($LatestOrder->num_rows>0){
-    while ($row = mysqli_fetch_assoc($LatestOrder)) {
-    $OrderID =$row['ID'];
-    $FirstName = $row['FirstName'];
-    $Email = $row['Email'];
-    $TotalDue=number_format($row['TotalDue']);
-    $TotalDue = "Rs. " . $TotalDue;
-    $OrderStatus = $row['OrderStatus'];
-    $Date = $row['OrderDate'];
-    $timestamp = strtotime($Date);
-    $formattedDate = date('Y-m-d', $timestamp);
 
-        $Output .= "<div class='order-info'>
+    $Output .= '<div class="latest-orders-container">
+        <div class="order-list-box">';
+    $Output .= "<div class='latest-order-title'>$Title</div>";
+    if ($LatestOrder->num_rows > 0) {
+        while ($row = mysqli_fetch_assoc($LatestOrder)) {
+            $OrderID = $row['ID'];
+            $FirstName = $row['FirstName'];
+            $Email = $row['Email'];
+            $TotalDue = number_format($row['TotalDue']);
+            $TotalDue = "Rs. " . $TotalDue;
+            $OrderStatus = $row['OrderStatus'];
+            $Date = $row['OrderDate'];
+            $timestamp = strtotime($Date);
+            $formattedDate = date('Y-m-d', $timestamp);
+
+            $Output .= "<div class='order-info'>
             <a href='Admin/Order Detail Page.php?OrderID=$OrderID' target='_blank'>
                 <div class='order-number-box'>
                     #$OrderID
@@ -883,32 +885,30 @@ if($LatestOrder->num_rows>0){
                 <div class='total-price'>
                     $TotalDue
                 </div>";
-        if ($OrderStatus == 'Review') {
-            $Output .= "<div class='order-status review'>$OrderStatus</div>";
-        }
-        else if ($OrderStatus == 'Complete') {
-            $Output .= "<div class='order-status complete'>$OrderStatus</div>";
-        } else if ($OrderStatus == 'Pending') {
-            $Output .= "<div class='order-status pending'>$OrderStatus</div>";
-        } else if ($OrderStatus == 'Shipped') {
-            $Output .= "<div class='order-status shipped'>$OrderStatus</div>";
-        } else if ($OrderStatus == 'Cancelled' || $OrderStatus == 'Rejected') {
-            $Output .= "<div class='order-status failed'>$OrderStatus</div>";
-        }
+            if ($OrderStatus == 'Review') {
+                $Output .= "<div class='order-status review'>$OrderStatus</div>";
+            } else if ($OrderStatus == 'Complete') {
+                $Output .= "<div class='order-status complete'>$OrderStatus</div>";
+            } else if ($OrderStatus == 'Pending') {
+                $Output .= "<div class='order-status pending'>$OrderStatus</div>";
+            } else if ($OrderStatus == 'Shipped') {
+                $Output .= "<div class='order-status shipped'>$OrderStatus</div>";
+            } else if ($OrderStatus == 'Cancelled' || $OrderStatus == 'Rejected') {
+                $Output .= "<div class='order-status failed'>$OrderStatus</div>";
+            }
 
-        $Output .= "
+            $Output .= "
                 <div class='order-date'>
                     $formattedDate
                 </div>
             </a>
         </div>";
+        }
+    } else {
+        $Output .= "<div class='order-info'><a>Result Not Found</a></div>";
     }
-   }
-else{
-    $Output .="<div class='order-info'><a>Result Not Found</a></div>";
-}
- $Output .='</div></div>';
-echo $Output; 
+    $Output .= '</div></div>';
+    echo $Output;
 }
 
 
@@ -993,10 +993,10 @@ WHERE
     GROUP BY 
     OrderItem.`Order ID` 
     ORDER BY OrderID DESC";
-    
+
     $SearchResult = mysqli_query($conn, $SearchQuery);
-        $Output = '';
-        $Output .= "
+    $Output = '';
+    $Output .= "
         <tr class='table-title'>
         <th>Product</th>
         <th>Price</th>
@@ -1004,26 +1004,26 @@ WHERE
         <th>Status</th>
         <th>Action</th>
         </tr>";
-        
+
     if ($SearchResult->num_rows > 0) {
         while ($Row = $SearchResult->fetch_assoc()) {
-    $OrderID = $Row['OrderID'];
-    $Image = $Row['ImagePath'];
-    $TotalDue = "Rs. " . $Row['TotalDue'] . ".00";
-    $PaymentMethod = $Row['PaymentMethod'];
-    $Name=$Row['Name'];
-    if ($PaymentMethod == 'Cash On Delivery') {
-    $PaymentMethod = 'COD';
-    }
-    $OrderStatus = $Row['OrderStatus'];
-            
-        $Output .= "
+            $OrderID = $Row['OrderID'];
+            $Image = $Row['ImagePath'];
+            $TotalDue = "Rs. " . $Row['TotalDue'] . ".00";
+            $PaymentMethod = $Row['PaymentMethod'];
+            $Name = $Row['Name'];
+            if ($PaymentMethod == 'Cash On Delivery') {
+                $PaymentMethod = 'COD';
+            }
+            $OrderStatus = $Row['OrderStatus'];
+
+            $Output .= "
         <tr class='product-box'>
         <td class='user-product-info'>
                         <div class='product-title-data'>
                             <div class='product-img'>";
-        $Output .= "#$OrderID <img src='$Image'>";
-        $Output .= "</div>
+            $Output .= "#$OrderID <img src='$Image'>";
+            $Output .= "</div>
                     <div class='user-name'>$Name</div>
                 </div>
             </td>
@@ -1032,18 +1032,17 @@ WHERE
             </td>
             <td>$PaymentMethod</td>
             <td>";
-        if ($OrderStatus == 'Review') {
-            $Output .= "<div class='order-status review'>$OrderStatus</div>";
-        }
-        else if ($OrderStatus == 'Complete') {
-            $Output .= "<div class='order-status complete'>$OrderStatus</div>";
-        } elseif ($OrderStatus == 'Pending') {
-            $Output .= "<div class='order-status pending'>$OrderStatus</div>";
-        } elseif ($OrderStatus == 'Shipped') {
-            $Output .= "<div class='order-status shipped'>$OrderStatus</div>";
-        } elseif ($OrderStatus == 'Cancelled' || $OrderStatus == 'Rejected') {
-            $Output .= "<div class='order-status failed'>$OrderStatus</div>";
-        }
+            if ($OrderStatus == 'Review') {
+                $Output .= "<div class='order-status review'>$OrderStatus</div>";
+            } else if ($OrderStatus == 'Complete') {
+                $Output .= "<div class='order-status complete'>$OrderStatus</div>";
+            } elseif ($OrderStatus == 'Pending') {
+                $Output .= "<div class='order-status pending'>$OrderStatus</div>";
+            } elseif ($OrderStatus == 'Shipped') {
+                $Output .= "<div class='order-status shipped'>$OrderStatus</div>";
+            } elseif ($OrderStatus == 'Cancelled' || $OrderStatus == 'Rejected') {
+                $Output .= "<div class='order-status failed'>$OrderStatus</div>";
+            }
 
             $Output .= "</td>
             <td>
@@ -1056,9 +1055,7 @@ WHERE
                 </div>
             </td>
             </tr>";
-
         }
-
     } else {
         $Output .= "<div>Result not found</div>";
     }
@@ -1104,12 +1101,120 @@ WHERE
     GROUP BY 
     OrderItem.`Order ID` 
     ORDER BY OrderID DESC";
-    
-$SearchResult = mysqli_query($conn, $SearchQuery);
-$Count =  $SearchResult -> num_rows;
-echo $Count;
+
+    $SearchResult = mysqli_query($conn, $SearchQuery);
+    $Count =  $SearchResult->num_rows;
+    echo $Count;
+}
+if (isset($_POST['UpdateImages'])) {
+    $Array = [];
+    $ProductID = $_POST['ProductID'];
+    $FeatchImgQuery = "SELECT `Product Meta Key` FROM `postsmeta` WHERE `Product ID`='$ProductID' AND `Product Meta Key` LIKE '%Image%'";
+    $FeatchImgQueryRun = mysqli_query($conn, $FeatchImgQuery);
+    $ImagesCount = $FeatchImgQueryRun->num_rows;
+    $uploadDir = $base_url . "Assets/Product/Media/Images/Product Images/" . date("Y/m");
+    if (!file_exists($uploadDir)) {
+        mkdir($uploadDir, 0777, true);
+    }
+    if (!empty($_FILES['Images']['name'][0])) {
+        foreach ($_FILES['Images']['tmp_name'] as $key => $tmp_name) {
+            $name = $_FILES['Images']['name'][$key];
+            $uploadFile = $uploadDir . "/" . basename($name);
+            $imagePathWithoutBaseURL = str_replace($base_url, '', $uploadFile);
+            if (move_uploaded_file($tmp_name, $uploadFile)) {
+                $ImagesCount++;
+                $metaKey = "Image $ImagesCount";
+                $sqlImage = "INSERT INTO postsmeta (`Product ID`, `Product Meta Key`, `Product Meta Value`) VALUES ('$ProductID', '$metaKey', '$imagePathWithoutBaseURL')";
+                $conn->query($sqlImage);
+            } else {
+                echo "Error";
+            }
+        }
+        echo "Success";
+    } else {
+        echo "Success";
+    }
 }
 
+if (isset($_POST['DeleteImage'])) {
+    $RowID = $_POST['DeleteImageRowID'];
+    if ($RowID != 0) {
+        $RowInfoQuery = "SELECT * FROM postsmeta WHERE ID='$RowID'";
+        $RowInfoQueryRun = mysqli_query($conn, $RowInfoQuery);
+        if ($RowInfoQueryRun->num_rows > 0) {
+            $Row = $RowInfoQueryRun->fetch_assoc();
+            $ProductID = $Row['Product ID'];
+            $ProductMetaKey = $Row['Product Meta Key'];
+            $DeleteImagePath = $Row['Product Meta Value'];
+            if ($ProductMetaKey != 'Image 1') {
+                $DeleteQuery = "DELETE FROM `postsmeta` WHERE ID='$RowID'";
+                $DeleteQueryRun = mysqli_query($conn, $DeleteQuery);
+                $Delete = unlink($base_url . $DeleteImagePath);
+                if ($Delete) {
+                    echo "Success";
+                }
+            } else {
+                $RowInfoQuery2 = "SELECT * FROM `postsmeta` WHERE `ID` =( SELECT MIN(`ID`) FROM `postsmeta` WHERE `Product ID` = '$ProductID' AND `Product Meta Key` NOT LIKE 'Image 1' AND `Product Meta Key` LIKE '%Image%')";
+                $ResultCountQuery = "SELECT * FROM `postsmeta` WHERE `Product Meta Key` LIKE '%Image%' AND `Product ID` = '$ProductID'";
+                $ResultCountQueryRun = mysqli_query($conn, $ResultCountQuery);
+                if ($ResultCountQueryRun->num_rows > 1) {
+                    $RowInfoQueryRun = mysqli_query($conn, $RowInfoQuery2);
+                    $DeleteQuery = "DELETE FROM `postsmeta` WHERE ID='$RowID'";
+                    $DeleteQueryRun = mysqli_query($conn, $DeleteQuery);
+                    $ID = $RowInfoQueryRun->fetch_assoc()['ID'];
+                    $UpdateQuery = "UPDATE `postsmeta` SET `Product Meta Key`='Image 1' WHERE ID='$ID'";
+                    $UpdateQueryRun = mysqli_query($conn, $UpdateQuery);
+                    $Delete = unlink($base_url . $DeleteImagePath);
+                    if ($Delete) {
+                        echo "Success";
+                    }
+                } else {
+                    echo "LastImage";
+                }
+            }
+        } else {
+            echo "Error";
+        }
+    } else {
+        echo "Not Saved";
+    }
+}
+if (isset($_POST['UpdatePosition'])) {
+    $NewImageOrder = $_POST['ShortOrder'];
+    $ProductID = $_POST['ID'];
+    $ImageArray = array();
+    $ImageQuery = "SELECT * FROM `postsmeta` WHERE `Product ID`='$ProductID' AND `Product Meta Key` LIKE '%Image%' ORDER BY ID ASC";
+    $RunImageQuery = mysqli_query($conn, $ImageQuery);
+    if ($RunImageQuery->num_rows > 0) {
+        while ($Row = $RunImageQuery->fetch_assoc()) {
+            $ImageArray[] = $Row;
+        }
+    }
 
-?>
-
+    $RepeteID1=0;
+    $RepeteID2=0;
+    for ($i = 0; $i < (count($ImageArray)); $i++) {
+        if ($ImageArray[$i]['ID'] != $NewImageOrder[$i]) {
+            if($RepeteID1==$ImageArray[$i]['ID'] || $RepeteID2==$NewImageOrder[$i]){
+                break;
+            }
+            $RepeteID1=$ImageArray[$i]['ID'];
+            $RepeteID2=$NewImageOrder[$i];
+            $ImagePathQuery = "SELECT * FROM `postsmeta` WHERE ID='" . $ImageArray[$i]['ID'] . "' OR ID='" . $NewImageOrder[$i] . "'";
+            $ImagePathQueryRun = mysqli_query($conn, $ImagePathQuery);
+            $PathArray = [];
+            while ($Row = $ImagePathQueryRun->fetch_assoc()) {
+                $PathArray[] = $Row['Product Meta Value'];
+            }
+            $temp = $PathArray[0];
+            $PathArray[0] = $PathArray[1];
+            $PathArray[1] = $temp;
+            $SQL1 = "UPDATE `postsmeta` SET `Product Meta Value`='" . $PathArray[0] . "' WHERE `ID`='" . $ImageArray[$i]['ID'] . "'";
+            $SQL2 = "UPDATE `postsmeta` SET `Product Meta Value`='" . $PathArray[1] . "' WHERE `ID`='" . $NewImageOrder[$i] . "'";
+            $RunQuery1 = mysqli_query($conn, $SQL1);
+            $RunQuery2 = mysqli_query($conn, $SQL2);
+        } else {
+            echo "Success";
+        }
+    }
+}

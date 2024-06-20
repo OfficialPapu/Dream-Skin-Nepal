@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-    <base href="/">
+    <base href="/Dream Skin Nepal/">
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Admin Panel Login</title>

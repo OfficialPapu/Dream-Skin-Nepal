@@ -1,7 +1,7 @@
 <?php
 @session_name('URLSession');
 @session_start();
-$_SESSION['URLSession']['Base Path'] = $_SERVER['DOCUMENT_ROOT'] . "/";
+$_SESSION['URLSession']['Base Path'] = $_SERVER['DOCUMENT_ROOT'] . "/Dream Skin Nepal/";
 $base_url = $_SESSION['URLSession']['Base Path'];
 include_once $base_url . 'Assets/PHP/Admin/Edit Product Config.php';
 ?>
@@ -60,13 +60,13 @@ include_once $base_url . 'Assets/PHP/Admin/Edit Product Config.php';
 
 
                 <div class="product-category">
-            <input type="hidden" class="SelectedProductTypeID" value="<?php
-           echo $ProductTypeId; ?>">
+                    <input type="hidden" class="SelectedProductTypeID" value="<?php
+                                                                                echo $ProductTypeId; ?>">
                     <div class="select-skin-care-category">
                         <div class="option-tag" id="SkinCare">
                             <p class="body-heading">Select Skin Care</p>
                             <div class="select-btn">
-                            <input type="hidden" class="ProductTypeID">
+                                <input type="hidden" class="ProductTypeID">
                                 <span class="SelectedText">
                                     <?php
                                     if ($ProductCategoryName == 'Skin Care') {
@@ -86,7 +86,7 @@ include_once $base_url . 'Assets/PHP/Admin/Edit Product Config.php';
                         <div class="option-tag" id="makeup">
                             <p class="body-heading">Select Makeup</p>
                             <div class="select-btn">
-                            <input type="hidden" class="ProductTypeID">
+                                <input type="hidden" class="ProductTypeID">
                                 <span class="SelectedText">
                                     <?php
                                     if ($ProductCategoryName == 'Makeup') {
@@ -102,12 +102,12 @@ include_once $base_url . 'Assets/PHP/Admin/Edit Product Config.php';
                         </div>
                     </div>
 
-                    
+
                     <div class="select-bodyandhaircare">
                         <div class="option-tag" id="bodyandhaircare">
                             <p class="body-heading">Select Body & Hair Care</p>
                             <div class="select-btn">
-                            <input type="hidden" class="ProductTypeID">
+                                <input type="hidden" class="ProductTypeID">
                                 <span class="SelectedText">
                                     <?php
                                     if ($ProductCategoryName == 'Body & Hair Care') {
@@ -127,9 +127,9 @@ include_once $base_url . 'Assets/PHP/Admin/Edit Product Config.php';
                         <div class="option-tag" id="BrandList">
                             <p class="body-heading">Select Brand</p>
                             <div class="select-btn">
-                            <input type="hidden" class="ProductTypeID" value="<?php echo  $BrandId; ?>">
+                                <input type="hidden" class="ProductTypeID" value="<?php echo  $BrandId; ?>">
                                 <span class="SelectedText">
-                               
+
                                     <?php
                                     if ($BrandName != '') {
                                         echo $BrandName;
@@ -171,17 +171,19 @@ include_once $base_url . 'Assets/PHP/Admin/Edit Product Config.php';
             <div class="image-section">
                 <div class="card">
                     <div class="top">
-                        <p>Drag & drop image uploading</p>
+                        <div class="update-image-box">
+                            <button class="update-images">Save Changes</button>
+                        </div>
                         <div class="minimize-image-box-btn-box">
                             <i class='bx bx-chevron-up'></i>
                         </div>
                     </div>
-                    <form action="/upload" method="post" class="data-upload">
+                    <form class="data-upload" id="uploadForm" enctype="multipart/form-data">
                         <div class="upload-icon">
                             <i class='bx bx-cloud-upload'></i>
                         </div>
                         <span class="inner">Drag & drop image here or <span class="select">Browse</span></span>
-                        <input name="file" type="file" class="file" multiple />
+                        <input type="file" class="file" name="Images[]" multiple />
                     </form>
                     <div class="image-list-container"></div>
                 </div>
@@ -193,8 +195,8 @@ include_once $base_url . 'Assets/PHP/Admin/Edit Product Config.php';
     </div>
 
 </body>
-<script src="https://code.jquery.com/jquery-3.7.1.js"></script>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://code.jquery.com/ui/1.13.1/jquery-ui.min.js"></script>
 <script src="Assets/JS/Butterup/butterup.js"></script>
 <script src="Assets/JS/Butterup/butterup.min.js"></script>
 <script src="Assets/JS/Edit Product.js"></script>

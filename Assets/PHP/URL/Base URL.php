@@ -1,3 +1,3 @@
 <?php
-echo"<base href='/'>";
+echo"<base href='/Dream Skin Nepal/'>";
 ?>
