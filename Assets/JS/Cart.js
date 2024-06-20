@@ -80,9 +80,10 @@ $('#shippingOptions input[type="checkbox"]').change(function () {
                 },
                 success: function (response) {
                       response=response.trim();
-                    let SubTotal= $('#SubTotal').html();
-                    let TotalPrice = parseInt(SubTotal.replace(/Rs. |\.\d{2}/g, ''));
+                    let GrandTotal= $('#GrandTotal').html();
+                    let TotalPrice = parseInt(GrandTotal.replace(/Rs. |\.\d{2}/g, ''));
                     TotalPrice += shippingFee;
+                    shippingFee = ShippingFeeAdd;
                     $('#GrandTotal').html('Rs. ' + TotalPrice+'.00');
                 },
             });
@@ -149,7 +150,7 @@ $(document).ready(function () {
             url: "Assets/PHP/Configuration/Common Function.php",
             data: {
                 ApplyCoupon: true,
-                CouponCode: CouponCode,
+                CouponCode: "A",
             },
             dataType: "json",
             success: function (CouponResponse) {
@@ -161,15 +162,22 @@ $(document).ready(function () {
                     ShowBox(".CouponValueBox");
                     ShowBox(".TotalSavedBox");
                     OverWriteData(".PromoCode",CouponCode);
-                    OverWriteData(".CouponValue","- Rs. " + CouponResponse['Discount Amount']);
-                    OverWriteData(".TotalSavedData","- Rs. " + CouponResponse['Discount Amount']);
-                    OverWriteData("#GrandTotal","Rs. " + CouponResponse['Amount']);
+                    OverWriteData(".CouponValue","- Rs. " + CouponResponse['Discount Amount']+".00");
+                    OverWriteData(".TotalSavedData","- Rs. " + CouponResponse['Discount Amount']+".00");
+                    OverWriteData("#GrandTotal","Rs. " + CouponResponse['Amount']+".00");
                 } else if (CouponResponse['Message'] === 'Percentage') {
                     ShowBox(".CouponCodeBox");
-                    $('.promo-code').html(CouponCode);
-                    $('.discount-price').html(CouponResponse['Discount Amount'] + "%");
-                    $('.grand-total-price').html("Rs. " + CouponResponse['Amount']);
-                    $('.price.order-total-price.total, .price.grand-total-price.total').html("Rs. " + CouponResponse['Amount']);
+                    ShowBox(".CouponCodeBox");
+                    ShowBox(".CouponValueBox");
+                    ShowBox(".TotalSavedBox");
+                    OverWriteData(".PromoCode",CouponCode);
+                    OverWriteData(".CouponValue",CouponResponse['Discount Amount'] + "% OFF");
+                    OverWriteData(".TotalSavedData","- Rs. " + CouponResponse['Discount Amount']);
+
+
+                    // $('.discount-price').html(CouponResponse['Discount Amount'] + "%");
+                    // $('.grand-total-price').html("Rs. " + CouponResponse['Amount']);
+                    // $('.price.order-total-price.total, .price.grand-total-price.total').html("Rs. " + CouponResponse['Amount']);
                 } else {
                     butterup.options.maxToasts = 2;
                     butterup.toast({
