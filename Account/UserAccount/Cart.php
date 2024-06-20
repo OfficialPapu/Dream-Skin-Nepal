@@ -104,54 +104,7 @@ include_once $base_url . 'Assets/PHP/Account Configuration/Cart Configuration.ph
                 ?>
             </div>
         </div>
-        <!-- <div class='product-summary'>
-            <p class='summary'><i class='bx bx-shopping-bag'></i>Order Summary</p>
-            <div class='total-price'>
-                <div class='order-total'>
-                    <p>Sub Total:</p>
-                    <p class='price order-total-price total'>Rs. <?php echo $TotalPrice; ?></p>
-                </div>
-                <div class='Shipping'>
-                    <p class='shipping-title'>Shipping Fee</p>
-                    <ul id='shippingOptions'>
-                        <li>
-                            <input type='checkbox' name='Shipping-rate' id='Outside-Valley'>
-                            <label for='Outside-Valley'>Outside Valley: <span class='price'>Rs. 200</span></label>
-                        </li>
-                        <li>
-                            <input type='checkbox' name='Shipping-rate' id='Inside-Valley'>
-                            <label for='Inside-Valley'>Inside Valley: <span class='price'>Rs. 100</span></label>
-                        </li>
-                        <li>
-                            <input type='checkbox' name='Shipping-rate' id='Collect-From-Store'>
-                            <label for='Collect-From-Store'>Collect From Store: <span class='price'>Rs. 0</span></label>
-                        </li>
-                    </ul>
-                </div>
-                <div class='promo-applied'>
-                    <p>Promo Applied</p>
-                    <p class='promo-code'></p>
-                </div>
-                <div class='discount-data'>
-                    <p>Discount</p>
-                    <p class='discount-price'></p>
-                </div>
-                <div class='grand-total'>
-                    <p>Grand Total:</p>
-                    <p class='price grand-total-price total'>Rs. <?php echo $TotalPrice; ?></p>
-                </div>
-            </div>
-            <hr class='first-hr'>
-            <div class='coupon-code'>
-                <input type='text' placeholder='Enter your coupon' class='couponcode'>
-                <button id='applycode'>Apply</button>
-            </div>
-            <div class='checkout'>
-                <button class='checkout-btn'>PROCEED TO CHECKOUT</button>
-            </div>
-        </div> -->
-
-
+  
         <div class='product-summary'>
             <div class="rounded-lg bg-card text-card-foreground shadow-sm w-full max-w-2xl">
                 <div class="flex justify-center items-center p-6 gap-[10px]">
@@ -196,29 +149,29 @@ include_once $base_url . 'Assets/PHP/Account Configuration/Cart Configuration.ph
                     <div class="flex flex-col gap-2">
                         <div class="flex items-center justify-between CouponCodeBox hidden">
                             <span>Coupon</span>
-                            <span class="text-green-500 PromoCode">DREAMSKIN500</span>
+                            <span class="text-green-500 PromoCode"></span>
                         </div>
                         <div class="flex items-center justify-between CouponValueBox hidden">
                             <span>Coupon Value</span>
-                            <span class="text-green-500 CouponValue">Rs. 400</span>
+                            <span class="text-green-500 CouponValue"></span>
                         </div>
                         <div class="flex items-center justify-between TotalSavedBox hidden">
                             <span>Total Saved</span>
-                            <span class="text-green-500 TotalSavedData">-Rs. 8.00</span>
+                            <span class="text-green-500 TotalSavedData"></span>
                         </div>
                         <div class="flex justify-between font-medium">
                             <span>Grand Total</span>
                             <span id="GrandTotal" class="text-[#FF5200] font-bold">Rs. <?php echo $TotalPrice; ?>.00</span>
                         </div>
-                        <div class="flex flex-col items-center justify-between text-green-500 hidden">
+                        <div class="flex flex-col items-center justify-between text-green-500 FreeShippingBox hidden">
                             <span>Congrats, you got free shipping!</span>
                             <span>Purchase over 5000.</span>
                         </div>
                     </div>
 
                     <div class="flex items-center justify-center gap-2 relative mt-4">
-                        <input class="h-10 w-full rounded-md bg-background px-3 py-2 text-sm couponcode" placeholder="Enter coupon code" type="text">
-                        <button class="rounded-md text-sm font-medium px-4 py-2 bg-[#FF007F] text-white absolute right-1 top-1/2 -translate-y-1/2" id="applycode">Apply</button>
+                        <input class="h-10 w-full rounded-md bg-background px-3 py-2 text-sm border border-gray-300 couponcode" placeholder="Enter coupon code" type="text">
+                        <button class="rounded-md text-sm font-medium px-4 py-2 bg-[#FF007F] text-white absolute right-[1.5px] top-1/2 -translate-y-1/2" id="applycode">Apply</button>
                     </div>
                 </div>
                 <div class="flex justify-center my-7">

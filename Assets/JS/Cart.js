@@ -55,7 +55,17 @@ for (let i = 0; i < productQuantities.length; i++) {
         }
     });
 }
-let ShippingFeeAdd = 0;
+function CheckFreeShipping(){
+    let FreeShippingConditionPrice = $('#GrandTotal').html();
+    FreeShippingConditionPrice = parseInt(FreeShippingConditionPrice.replace(/Rs. |\.\d{2}/g, ''));
+    let ShippingFeeAdd = 0;
+    if(FreeShippingConditionPrice>=5000){
+        ShowBox(".FreeShippingBox");
+    }
+}
+
+CheckFreeShipping();
+
 $('#shippingOptions input[type="checkbox"]').change(function () {
     if ($(this).is(':checked')) {
         $('#shippingOptions input[type="checkbox"]').not(this).prop('checked', false);
@@ -82,8 +92,8 @@ $('#shippingOptions input[type="checkbox"]').change(function () {
                       response=response.trim();
                     let GrandTotal= $('#GrandTotal').html();
                     let TotalPrice = parseInt(GrandTotal.replace(/Rs. |\.\d{2}/g, ''));
-                    TotalPrice += shippingFee;
-                    shippingFee = ShippingFeeAdd;
+                    TotalPrice += shippingFee - ShippingFeeAdd;                    
+                    ShippingFeeAdd = shippingFee;
                     $('#GrandTotal').html('Rs. ' + TotalPrice+'.00');
                 },
             });
@@ -131,6 +141,7 @@ $(document).ready(function () {
         }
     });
 });
+
 function ShowBox(Element) {
     $(Element).removeClass("hidden");
 }
@@ -142,6 +153,7 @@ function OverWriteData(Element,Data){
 $(document).ready(function () {
     let couponbtncount = 0;
     $('#applycode').click(function (e) {
+        $('#shippingOptions input[type="checkbox"]').not(this).prop('checked', false);
         couponbtncount++;
         e.preventDefault();
         let CouponCode = $('.couponcode').val();
@@ -150,7 +162,7 @@ $(document).ready(function () {
             url: "Assets/PHP/Configuration/Common Function.php",
             data: {
                 ApplyCoupon: true,
-                CouponCode: "A",
+                CouponCode: CouponCode,
             },
             dataType: "json",
             success: function (CouponResponse) {
@@ -172,12 +184,12 @@ $(document).ready(function () {
                     ShowBox(".TotalSavedBox");
                     OverWriteData(".PromoCode",CouponCode);
                     OverWriteData(".CouponValue",CouponResponse['Discount Amount'] + "% OFF");
-                    OverWriteData(".TotalSavedData","- Rs. " + CouponResponse['Discount Amount']);
-
-
-                    // $('.discount-price').html(CouponResponse['Discount Amount'] + "%");
-                    // $('.grand-total-price').html("Rs. " + CouponResponse['Amount']);
-                    // $('.price.order-total-price.total, .price.grand-total-price.total').html("Rs. " + CouponResponse['Amount']);
+                    OverWriteData("#GrandTotal","Rs. " + CouponResponse['Amount']+".00");
+                    let GrandTotal=$('#GrandTotal').html();
+                    let SubTotal=$('#SubTotal').html();
+                    GrandTotal=parseInt(GrandTotal.replace(/Rs. |\.\d{2}/g, ''));
+                    SubTotal=parseInt(SubTotal.replace(/Rs. |\.\d{2}/g, ''));
+                    OverWriteData(".TotalSavedData","- Rs. " +(SubTotal - GrandTotal) +".00");
                 } else {
                     butterup.options.maxToasts = 2;
                     butterup.toast({
