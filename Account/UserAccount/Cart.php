@@ -13,6 +13,7 @@ include_once $base_url . 'Assets/PHP/Account Configuration/Cart Configuration.ph
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.3.0/flowbite.min.css" rel="stylesheet" />
     <link rel="stylesheet" href="Assets/CSS/Butterup/butterup.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@sweetalert2/theme-borderless@5/borderless.css" />
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="Assets/CSS/Butterup/butterup.css">
     <link rel="stylesheet" href="Assets/CSS/Cart.css">
@@ -169,7 +170,7 @@ include_once $base_url . 'Assets/PHP/Account Configuration/Cart Configuration.ph
                         </div>
                     </div>
 
-                    <div class="flex items-center justify-center gap-2 relative mt-4">
+                    <div class="flex items-center justify-center gap-2 relative mt-4 applycoponcodebox">
                         <input class="h-10 w-full rounded-md bg-background px-3 py-2 text-sm border border-gray-300 couponcode" placeholder="Enter coupon code" type="text">
                         <button class="rounded-md text-sm font-medium px-4 py-2 bg-[#FF007F] text-white absolute right-[1.5px] top-1/2 -translate-y-1/2" id="applycode">Apply</button>
                     </div>
@@ -194,7 +195,7 @@ include_once $base_url . 'Assets/PHP/Account Configuration/Cart Configuration.ph
 </body>
 <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
 <script src="Assets/JS/Butterup/butterup.js"></script>
-<script src="Assets/JS/Butterup/butterup.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.js"></script>
 <script src="Assets/JS/Cart.js"></script>
 
 </html>

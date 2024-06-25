@@ -1,3 +1,5 @@
+let FreeShippingConditionPrice = $('#SubTotal').html();
+FreeShippingConditionPrice = parseInt(FreeShippingConditionPrice.replace(/Rs. |\.\d{2}/g, ''));
 let plusButtons = document.getElementsByClassName('plusButtons');
 let minusButtons = document.getElementsByClassName('minusButtons');
 let productQuantities = document.querySelectorAll('.product-quantity');
@@ -56,8 +58,6 @@ for (let i = 0; i < productQuantities.length; i++) {
     });
 }
 function CheckFreeShipping(){
-    let FreeShippingConditionPrice = $('#SubTotal').html();
-    FreeShippingConditionPrice = parseInt(FreeShippingConditionPrice.replace(/Rs. |\.\d{2}/g, ''));
     if(FreeShippingConditionPrice>=5000){
         ShowBox(".FreeShippingBox");
     }
@@ -65,37 +65,48 @@ function CheckFreeShipping(){
 CheckFreeShipping();
 let ShippingFeeAdd = 0;
 $('#shippingOptions input[type="checkbox"]').change(function () {
-
-    if ($(this).is(':checked')) {
+    if(FreeShippingConditionPrice>=5000){
         $('#shippingOptions input[type="checkbox"]').not(this).prop('checked', false);
-        let shippingFee = 0;
-        switch ($(this).attr('id')) {
-            case 'Outside-Valley':
-                shippingFee = 200;
-                break;
-            case 'Inside-Valley':
-                shippingFee = 100;
-                break;
-            case 'Collect-From-Store':
-                shippingFee = 0;
-                break;
+        $.ajax({
+            type: "POST",
+            url: "Assets/PHP/Configuration/Common Function.php",
+            data: {
+                ShippingFeeChange: true,
+                ShippingFeeChangeing: 0,
+            },
+        });
+    }else{
+        if ($(this).is(':checked')) {
+            $('#shippingOptions input[type="checkbox"]').not(this).prop('checked', false);
+            let shippingFee = 0;
+            switch ($(this).attr('id')) {
+                case 'Outside-Valley':
+                    shippingFee = 200;
+                    break;
+                case 'Inside-Valley':
+                    shippingFee = 100;
+                    break;
+                case 'Collect-From-Store':
+                    shippingFee = 0;
+                    break;
+            }
+                $.ajax({
+                    type: "POST",
+                    url: "Assets/PHP/Configuration/Common Function.php",
+                    data: {
+                        ShippingFeeChange: true,
+                        ShippingFeeChangeing: shippingFee,
+                    },
+                    success: function (response) {
+                          response=response.trim();
+                        let GrandTotal= $('#GrandTotal').html();
+                        let TotalPrice = parseInt(GrandTotal.replace(/Rs. |\.\d{2}/g, ''));
+                        TotalPrice += shippingFee - ShippingFeeAdd;                    
+                        ShippingFeeAdd = shippingFee;
+                        $('#GrandTotal').html('Rs. ' + TotalPrice+'.00');
+                    },
+                });
         }
-            $.ajax({
-                type: "POST",
-                url: "Assets/PHP/Configuration/Common Function.php",
-                data: {
-                    ShippingFeeChange: true,
-                    ShippingFeeChangeing: shippingFee,
-                },
-                success: function (response) {
-                      response=response.trim();
-                    let GrandTotal= $('#GrandTotal').html();
-                    let TotalPrice = parseInt(GrandTotal.replace(/Rs. |\.\d{2}/g, ''));
-                    TotalPrice += shippingFee - ShippingFeeAdd;                    
-                    ShippingFeeAdd = shippingFee;
-                    $('#GrandTotal').html('Rs. ' + TotalPrice+'.00');
-                },
-            });
     }
 })
 
@@ -127,16 +138,20 @@ $(document).ready(function () {
 
 $(document).ready(function () {
     $('.checkout-btn').click(function (e) {
-        if ($('input[name="Shipping-rate"]:checked').length === 0) {
-            butterup.options.maxToasts = 2;
-            butterup.toast({
-                message: 'Please Select Shipping Fee!!!',
-                icon: true,
-                dismissable: true,
-                type: 'error',
-            });
-        } else {
+        if(FreeShippingConditionPrice>=5000){
             window.open("Account/UserAccount/Checkout.php", "_self");
+        }else{
+            if ($('input[name="Shipping-rate"]:checked').length === 0) {
+                butterup.options.maxToasts = 2;
+                butterup.toast({
+                    message: 'Please Select Shipping Fee!!!',
+                    icon: true,
+                    dismissable: true,
+                    type: 'error',
+                });
+            } else {
+                window.open("Account/UserAccount/Checkout.php", "_self");
+            }
         }
     });
 });
@@ -148,6 +163,16 @@ function OverWriteData(Element,Data){
     $(Element).html(Data);
 }
 
+function SucessNotify(title,text,icon){
+    Swal.fire({
+        title:title,
+        text: text,
+        icon: icon,
+        customClass: {
+            container: 'bulma', // Bulma class for container
+        }
+      });
+}
 
 $(document).ready(function () {
     let couponbtncount = 0;
@@ -169,6 +194,7 @@ $(document).ready(function () {
                     window.location.reload();
                 }
                 if (CouponResponse['Message'] === 'Fixed Amount') {
+                    SucessNotify("Coupon Applied Successfully!","Your discount has been applied.","success");
                     ShowBox(".CouponCodeBox");
                     ShowBox(".CouponValueBox");
                     ShowBox(".TotalSavedBox");
@@ -177,6 +203,7 @@ $(document).ready(function () {
                     OverWriteData(".TotalSavedData","- Rs. " + CouponResponse['Discount Amount']+".00");
                     OverWriteData("#GrandTotal","Rs. " + CouponResponse['Amount']+".00");
                 } else if (CouponResponse['Message'] === 'Percentage') {
+                    SucessNotify("Coupon Applied Successfully!","Your discount has been applied.","success");
                     ShowBox(".CouponCodeBox");
                     ShowBox(".CouponCodeBox");
                     ShowBox(".CouponValueBox");
@@ -190,13 +217,7 @@ $(document).ready(function () {
                     SubTotal=parseInt(SubTotal.replace(/Rs. |\.\d{2}/g, ''));
                     OverWriteData(".TotalSavedData","- Rs. " +(SubTotal - GrandTotal) +".00");
                 } else {
-                    butterup.options.maxToasts = 2;
-                    butterup.toast({
-                        message: 'Invalid Coupon code!',
-                        icon: true,
-                        dismissable: true,
-                        type: 'error',
-                    });
+                    SucessNotify("Invalid Coupon code!","Oops! The coupon code you entered is invalid. Please try again.","error");
                 }
 
             }

@@ -20,13 +20,13 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     <meta name="google-site-verification" content="_n9au9euneNaJXGaKlDub_Mz-_--CUur_PMLWY_KMCg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Dream Skin Nepal - Trusted for Korean Beauty products. Leading skincare, cosmetics, cruelty-free & vegan options. Free shipping over Rs. 5000. Shop online for Korean products in Nepal.">
-    <meta name="keywords" content="best korean beauty products, korean skincare, korean makeup, korean cosmetics, cruelty-free beauty, vegan skincare, Dream Skin Nepal, best korean skincare, buy korean cosmetics Nepal, online beauty shop Nepal, top korean beauty brands, free shipping beauty Nepal, korean skincare,korean skincare products,korean skincare routine,korean beauty,korean skin care,korean product,korean,viral korean products,korean beauty products,top products korea,best products korea,korean makeup,best korean skin care products,best korean skincare products 2023,skincare products,korean skincare for acne,korean skincare routıne,viral korean products #skincare #skineducation #shorts,korean skincare tips,beauty products">
+    <meta name="keywords" content="best korean beauty products, korean skincare, korean makeup, korean cosmetics, cruelty-free beauty, vegan skincare, Dream Skin Nepal, best korean skincare, buy korean cosmetics Nepal, online beauty shop Nepal, top korean beauty brands, free shipping beauty Nepal, korean skincare,korean skincare products,korean skincare routine,korean beauty,korean skin care,korean product,korean,viral korean products,korean beauty products,top products korea,best products korea,korean makeup,best korean skin care products,best korean skincare products 2023,skincare products,korean skincare for acne,korean skincare rout覺ne,viral korean products #skincare #skineducation #shorts,korean skincare tips,beauty products">
     <meta property="og:type" content="website">
     <meta property="og:title" content="Dream Skin Nepal - Best Korean Skincare Cosmetics Products in Nepal">
     <meta property="og:url" content="https://www.dreamskinnepal.com/">
     <meta property="og:image" content="https://dreamskinnepal.com/Assets/Product/Media/Images/Logo/Dream skin nepal.png">
     <meta property="og:description" content="Dream Skin Nepal - Trusted for Korean Beauty products. Leading skincare, cosmetics, cruelty-free & vegan options. Free shipping over Rs. 5000. Shop online for Korean products in Nepal.">
-    <!-- <link rel="canonical" href="https://www.dreamskinnepal.com/"> -->
+    <link rel="canonical" href="https://www.dreamskinnepal.com/">
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <link rel="shortcut icon" href="Assets/Product/Media/Images/Logo/Dream skin nepal.png" type="image/x-icon">
     <link rel="stylesheet" href="Assets/CSS/Style.css">
@@ -106,17 +106,17 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         include('Assets/Slider/Company Info Mobile.php');
         ?>
     </div>
-
+<?php //include('Countdown.html'); ?>
     <div class="fridaysales">
-        <div class="view-more-box">
-            <div class="heading-box">
-                <h2 class="product-heading">OFFER</h2>
-            </div>
-            <div class="view-more">
-                <a href="Category/ViewMoreProduct.php?Condition=OFFER">SHOP MORE<i class="bx bx-chevron-right"></i></a>
-            </div>
-        </div>
-        <?php include('Assets/Slider/Friday Sale.php'); ?>
+        <!--<div class="view-more-box">-->
+        <!--    <div class="heading-box">-->
+        <!--        <h2 class="product-heading">Live Sales</h2>-->
+        <!--    </div>-->
+        <!--    <div class="view-more">-->
+        <!--        <a href="Category/ViewMoreProduct.php?Condition=OFFER">SHOP MORE<i class="bx bx-chevron-right"></i></a>-->
+        <!--    </div>-->
+        <!--</div>-->
+        <?php //include('Assets/Slider/Friday Sale.php'); ?>
     </div>
 
     <div class="products">

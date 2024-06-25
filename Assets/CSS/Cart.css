@@ -1,24 +1,24 @@
-@import url('https://fonts.googleapis.com/css2?family=Nunito+Sans:opsz,wght@6..12,500&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Nunito+Sans:opsz,wght@6..12,500;6..12,700&family=Poppins&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Nunito+Sans:opsz,wght@6..12,500&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Nunito+Sans:opsz,wght@6..12,500;6..12,700&family=Poppins&display=swap");
 
 * {
     margin: 0;
     padding: 0;
     list-style: none;
-    font-family: 'Nunito Sans', sans-serif;
+    font-family: "Nunito Sans", sans-serif;
     box-sizing: border-box;
     outline: none;
 }
 
 .color {
-    color: #FF007F;
-
+    color: #ff007f;
 }
 
 body,
 html {
     overflow-x: hidden;
 }
+
 .Breadcrumb-box {
     margin: 20px 0 0 0;
 }
@@ -30,7 +30,7 @@ html {
 .line-divider {
     width: 90%;
     height: 1.5px;
-    background-color: #00ADEF;
+    background-color: #00adef;
 }
 
 .price-and-quantity {
@@ -39,12 +39,12 @@ html {
     align-items: center;
 }
 
-.image-and-title a{
+.image-and-title a {
     display: flex;
     justify-content: start;
     align-items: center;
     width: 35vw;
-    color:black;
+    color: black;
 }
 
 .clear-add-to-wishlist {
@@ -68,7 +68,6 @@ html {
     background-color: white;
     box-shadow: 0 0 10px rgba(255, 0, 128, 0.1);
     padding: 15px 10px;
-
 }
 
 .cart-product {
@@ -85,9 +84,8 @@ html {
     object-fit: contain;
 }
 
-
 .quantity-increase {
-    border: 1px solid #FF007F;
+    border: 1px solid #ff007f;
     display: flex;
     justify-content: space-evenly;
     align-items: center;
@@ -103,7 +101,7 @@ html {
     font-size: 19px;
     font-weight: 900;
     cursor: pointer;
-    font-family: 'Poppins', sans-serif;
+    font-family: "Poppins", sans-serif;
     user-select: none;
 }
 
@@ -113,10 +111,10 @@ html {
 
 .clear-btn i {
     font-size: 1.5rem;
-    color: #00ADEF;
+    color: #00adef;
 
     cursor: pointer;
-    transition: .3s;
+    transition: 0.3s;
 }
 
 .clear-btn:hover i {
@@ -138,10 +136,10 @@ html {
 
 .product-non-discount-price {
     text-decoration: line-through;
-    text-decoration-color:  #FF007F; 
-    -webkit-text-decoration-color:  #FF007F;
-    color:#00ADEF !important;
-    font-size: .9rem !important;
+    text-decoration-color: #ff007f;
+    -webkit-text-decoration-color: #ff007f;
+    color: #00adef !important;
+    font-size: 0.9rem !important;
 }
 
 .product-summary {
@@ -149,13 +147,14 @@ html {
     background-color: white;
     width: 400px;
     padding: 20px;
-    font-size: .9rem;
+    font-size: 0.9rem;
     position: relative;
     border-radius: 8px;
     box-shadow: 0 0 10px rgba(255, 0, 128, 0.1);
+    margin-bottom: 6rem;
 }
 
-@media (min-width:1048px) {
+@media (min-width: 1048px) {
     .hide-in-desktop {
         display: none;
     }
@@ -165,14 +164,20 @@ html {
     }
 }
 
-@media (max-width:1048px) {
-    .cart-product-data{
+@media (max-width: 1100px) {
+    .product-summary {
+        width: 600px;
+        justify-content: center;
+    }
+
+    .cart-product-data {
         flex-direction: column;
         display: flex;
         justify-content: center;
         align-items: center;
     }
-    .Breadcrumb-box{
+
+    .Breadcrumb-box {
         width: 80%;
     }
 
@@ -203,16 +208,16 @@ html {
     .clear-btn i,
     .add-to-wishlist i {
         font-size: 1.1rem;
-        color: #00ADEF;
+        color: #00adef;
         cursor: pointer;
-        transition: .3s;
-        display:flex;
-        justify-content:center;
-        align-items:center;
+        transition: 0.3s;
+        display: flex;
+        justify-content: center;
+        align-items: center;
     }
 
     .add-to-wishlist i {
-        color: #FF007F !important;
+        color: #ff007f !important;
         font-size: 25px;
     }
 
@@ -235,7 +240,7 @@ html {
         justify-content: space-between;
     }
 
-    .image-and-title a{
+    .image-and-title a {
         width: 100%;
         padding: 0;
     }
@@ -261,11 +266,18 @@ html {
         width: 100vw !important;
         padding: 0 5px 0 5px;
     }
-
 }
 
-@media (max-width:550px) {
-    .product-divider,.Breadcrumb-box{
+@media (max-width: 600px) {
+    .product-summary {
+        width: 97vw;
+    }
+}
+
+@media (max-width: 550px) {
+
+    .product-divider,
+    .Breadcrumb-box {
         width: 95vw;
     }
 }
@@ -296,14 +308,14 @@ html {
 .empty-cart-title {
     font-size: 2rem;
     margin-bottom: 20px;
-    color: #FF007F;
+    color: #ff007f;
 }
 
 .continue-shopping {
     border-radius: 8px;
     border: none;
     outline: none;
-    background-color: #FF007F;
+    background-color: #ff007f;
     color: white;
     cursor: pointer;
     font-size: 1rem;
