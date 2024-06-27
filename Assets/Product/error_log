@@ -1,0 +1,50 @@
+[24-Jun-2024 16:21:05 UTC] PHP Fatal error:  Uncaught mysqli_sql_exception: You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'A=0'' at line 1 in /home/dreamsk1/public_html/Assets/Product/Product Detail Page.php:10
+Stack trace:
+#0 /home/dreamsk1/public_html/Assets/Product/Product Detail Page.php(10): mysqli_query()
+#1 {main}
+  thrown in /home/dreamsk1/public_html/Assets/Product/Product Detail Page.php on line 10
+[24-Jun-2024 16:21:06 UTC] PHP Fatal error:  Uncaught mysqli_sql_exception: You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'A=0'' at line 1 in /home/dreamsk1/public_html/Assets/Product/Product Detail Page.php:10
+Stack trace:
+#0 /home/dreamsk1/public_html/Assets/Product/Product Detail Page.php(10): mysqli_query()
+#1 {main}
+  thrown in /home/dreamsk1/public_html/Assets/Product/Product Detail Page.php on line 10
+[24-Jun-2024 16:21:07 UTC] PHP Fatal error:  Uncaught mysqli_sql_exception: You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'A=0'' at line 1 in /home/dreamsk1/public_html/Assets/Product/Product Detail Page.php:10
+Stack trace:
+#0 /home/dreamsk1/public_html/Assets/Product/Product Detail Page.php(10): mysqli_query()
+#1 {main}
+  thrown in /home/dreamsk1/public_html/Assets/Product/Product Detail Page.php on line 10
+[24-Jun-2024 16:21:08 UTC] PHP Fatal error:  Uncaught mysqli_sql_exception: You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'A=0'' at line 1 in /home/dreamsk1/public_html/Assets/Product/Product Detail Page.php:10
+Stack trace:
+#0 /home/dreamsk1/public_html/Assets/Product/Product Detail Page.php(10): mysqli_query()
+#1 {main}
+  thrown in /home/dreamsk1/public_html/Assets/Product/Product Detail Page.php on line 10
+[24-Jun-2024 16:21:09 UTC] PHP Fatal error:  Uncaught mysqli_sql_exception: You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'A=0'' at line 1 in /home/dreamsk1/public_html/Assets/Product/Product Detail Page.php:10
+Stack trace:
+#0 /home/dreamsk1/public_html/Assets/Product/Product Detail Page.php(10): mysqli_query()
+#1 {main}
+  thrown in /home/dreamsk1/public_html/Assets/Product/Product Detail Page.php on line 10
+[24-Jun-2024 16:21:10 UTC] PHP Fatal error:  Uncaught mysqli_sql_exception: You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'A=0'' at line 1 in /home/dreamsk1/public_html/Assets/Product/Product Detail Page.php:10
+Stack trace:
+#0 /home/dreamsk1/public_html/Assets/Product/Product Detail Page.php(10): mysqli_query()
+#1 {main}
+  thrown in /home/dreamsk1/public_html/Assets/Product/Product Detail Page.php on line 10
+[25-Jun-2024 10:32:28 UTC] PHP Fatal error:  Uncaught mysqli_sql_exception: You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'nvOpzp; AND 1=1 OR (<'">iKO)),'' at line 1 in /home/dreamsk1/public_html/Assets/Product/Product Detail Page.php:10
+Stack trace:
+#0 /home/dreamsk1/public_html/Assets/Product/Product Detail Page.php(10): mysqli_query()
+#1 {main}
+  thrown in /home/dreamsk1/public_html/Assets/Product/Product Detail Page.php on line 10
+[25-Jun-2024 13:29:28 UTC] PHP Fatal error:  Uncaught mysqli_sql_exception: You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'nvOpzp; AND 1=1 OR (<'">iKO)),'' at line 1 in /home/dreamsk1/public_html/Assets/Product/Product Detail Page.php:10
+Stack trace:
+#0 /home/dreamsk1/public_html/Assets/Product/Product Detail Page.php(10): mysqli_query()
+#1 {main}
+  thrown in /home/dreamsk1/public_html/Assets/Product/Product Detail Page.php on line 10
+[26-Jun-2024 03:24:20 UTC] PHP Fatal error:  Uncaught mysqli_sql_exception: You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'nvOpzp; AND 1=1 OR (<'">iKO)),'' at line 1 in /home/dreamsk1/public_html/Assets/Product/Product Detail Page.php:10
+Stack trace:
+#0 /home/dreamsk1/public_html/Assets/Product/Product Detail Page.php(10): mysqli_query()
+#1 {main}
+  thrown in /home/dreamsk1/public_html/Assets/Product/Product Detail Page.php on line 10
+[26-Jun-2024 03:36:09 UTC] PHP Fatal error:  Uncaught mysqli_sql_exception: You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'nvOpzp; AND 1=1 OR (<'">iKO)),'' at line 1 in /home/dreamsk1/public_html/Assets/Product/Product Detail Page.php:10
+Stack trace:
+#0 /home/dreamsk1/public_html/Assets/Product/Product Detail Page.php(10): mysqli_query()
+#1 {main}
+  thrown in /home/dreamsk1/public_html/Assets/Product/Product Detail Page.php on line 10

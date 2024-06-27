@@ -1,0 +1,44 @@
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Countdown Timer</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+
+<body>
+    <section
+        class="flex flex-col items-center justify-center w-full h-[30vh] bg-gradient-to-r from-[#00adef] to-[#ff007f]"
+        data-id="1">
+        <h1 class="text-white font-lg">Sale Starts In</h1>
+        <div class="text-6xl md:text-8xl font-bold text-white mb-8" data-id="2">
+            <span id="hours">00</span>:<span id="minutes">40</span>:<span id="seconds">00</span>
+        </div>
+        <button class="inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 h-10 px-4 py-2 bg-white text-[#00adef] hover:bg-[#00adef] hover:text-white transition-colors"
+            data-id="3">Shop Now</button>
+    </section>
+    <script>
+        $(document).ready(function () {
+            let countdownTime = 4 * 60; 
+
+            const updateCountdown = () => {
+                let hours = Math.floor(countdownTime / 3600);
+                let minutes = Math.floor((countdownTime % 3600) / 60);
+                let seconds = countdownTime % 60;
+
+                $("#hours").text(hours.toString().padStart(2, '0'));
+                $("#minutes").text(minutes.toString().padStart(2, '0'));
+                $("#seconds").text(seconds.toString().padStart(2, '0'));
+
+                if (countdownTime > 0) {
+                    countdownTime--;
+                } else {
+                    clearInterval(timer);
+                }
+            };
+
+            updateCountdown(); // initial call to set values
+            const timer = setInterval(updateCountdown, 1000);
+        });
+    </script>
+</body>

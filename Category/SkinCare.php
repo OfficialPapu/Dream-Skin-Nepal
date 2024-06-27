@@ -4,6 +4,7 @@
 $_SESSION['URLSession']['Base Path'] = $_SERVER['DOCUMENT_ROOT'] . "/";
 $base_url = $_SESSION['URLSession']['Base Path'];
 include_once $base_url . "Assets/PHP/Configuration/Skin Care Config.php";
+$canonical_url = 'https://' . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -20,10 +21,16 @@ include_once $base_url . "Assets/PHP/Configuration/Skin Care Config.php";
 </script>
 
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <meta name="description" content="<?php echo $ProductTypeName; ?> - Discover Dream Skin Nepal exclusive cleansers crafted to enhance your natural radiance. Elevate your skincare routine with luxurious formulation.">
+    <meta name="keywords" content="<?php echo $ProductTypeName; ?>, skincare, radiant skin, rejuvenate skin, nourish skin, beauty, skincare routine, Dream Skin Nepal, exclusive skincare, natural glow, anti-aging, skincare products, moisturize skin, skincare regimen, luxury skincare, shop <?php echo $ProductTypeName; ?>">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="<?php echo $ProductTypeName; ?> - Dream Skin Nepal">
+    <meta property="og:url" content="<?php echo $canonical_url; ?>">
+    <meta property="og:image" content="https://dreamskinnepal.com/Assets/Product/Media/Images/Logo/Dream skin nepal.png">
+    <meta property="og:description" content="<?php echo $ProductTypeName; ?> - Discover Dream Skin Nepal exclusive cleansers crafted to enhance your natural radiance. Elevate your skincare routine with luxurious formulation.">
+     <link rel="canonical" href="<?php echo $canonical_url; ?>">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.3.0/flowbite.min.css" rel="stylesheet" />
     <link rel="stylesheet" href="Assets/CSS/Butterup/butterup.min.css">
-    <link rel="stylesheet" href="Assets/CSS/Butterup/butterup.css">
     <link rel="stylesheet" href="Assets/CSS/Product Style.css">
     <title><?php echo $ProductTypeName; ?> - Dream Skin Nepal</title>
 </head>
@@ -177,7 +184,96 @@ include_once $base_url . "Assets/PHP/Configuration/Skin Care Config.php";
     </div>
 
 </body>
-<script src="Assets/JS/Butterup/butterup.js"></script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "BreadcrumbList",
+      "@id": "<?php echo $canonical_url; ?>/#breadcrumblist",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "@id": "https://dreamskinnepal.com/#listItem",
+          "position": 1,
+          "name": "Home",
+          "item": "https://dreamskinnepal.com/",
+          "nextItem": "<?php echo $canonical_url; ?>/#listItem"
+        },
+        {
+          "@type": "ListItem",
+          "@id": "<?php echo $canonical_url; ?>/#listItem",
+          "position": 2,
+          "name": "<?php echo $ProductTypeName; ?>",
+          "previousItem": "https://dreamskinnepal.com/#listItem"
+        }
+      ]
+    },
+    {
+      "@type": "CollectionPage",
+      "@id": "<?php echo $canonical_url; ?>/#collectionpage",
+      "url": "<?php echo $canonical_url; ?>/",
+      "name": "<?php echo $ProductTypeName; ?> - Dream Skin Nepal",
+      "inLanguage": "en-US",
+      "isPartOf": { "@id": "https://dreamskinnepal.com/#website" },
+      "breadcrumb": {
+        "@id": "<?php echo $canonical_url; ?>/#breadcrumblist"
+      }
+    },
+    {
+      "@type": "Organization",
+      "@id": "https://dreamskinnepal.com/#organization",
+      "name": "Dream Skin Nepal",
+      "description": "Best Korean Beauty & Skincare Products in Nepal | Authentic K-Beauty Store",
+      "url": "https://dreamskinnepal.com/",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://dreamskinnepal.com/Assets/Product/Media/Images/Logo/Dream skin nepal.png",
+        "@id": "<?php echo $canonical_url; ?>/#organizationLogo",
+        "width": 1500,
+        "height": 1500
+      },
+      "image": {
+        "@id": "<?php echo $canonical_url; ?>/#organizationLogo"
+      },
+      "sameAs": [
+        "https://facebook.com/Dream.Skin.Nepal/",
+        "https://www.instagram.com/dream.skin.nepal/"
+      ]
+    },
+    {
+      "@type": "WebSite",
+      "@id": "https://dreamskinnepal.com/#website",
+      "url": "https://dreamskinnepal.com/",
+      "name": "Dream Skin Nepal",
+      "description": "Best Korean Beauty & Skincare Products in Nepal | Authentic K-Beauty Store",
+      "inLanguage": "en-US",
+      "publisher": { "@id": "https://dreamskinnepal.com/#organization" }
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org/",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "item": { "name": "Home", "@id": "https://dreamskinnepal.com" }
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "item": {
+        "name": "<?php echo $ProductTypeName; ?>",
+        "@id": "<?php echo $canonical_url; ?>"
+      }
+    }
+  ]
+}
+</script>
 <script src="Assets/JS/Butterup/butterup.min.js"></script>
 <script src="Assets/JS/Product Script.js"></script>
 

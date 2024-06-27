@@ -25,7 +25,7 @@ include_once $base_url . "Assets/PHP/Configuration/View More Product Config.php"
     <link rel="stylesheet" href="Assets/CSS/Butterup/butterup.min.css">
     <link rel="stylesheet" href="Assets/CSS/Butterup/butterup.css">
     <link rel="stylesheet" href="Assets/CSS/Product Style.css">
-    <title><?php echo $GetValue; ?> - Dream Skin Nepal</title>
+    <title><?php echo $PageTitle; ?> - Dream Skin Nepal</title>
 </head>
 
 <body>
@@ -52,14 +52,14 @@ include_once $base_url . "Assets/PHP/Configuration/View More Product Config.php"
                     <svg class="rtl:rotate-180 w-3 h-3 text-gray-400 mx-1" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 6 10">
                         <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 9 4-4-4-4" />
                     </svg>
-                    <span class="ms-1 text-sm font-medium text-gray-500 md:ms-2 dark:text-gray-400"><?php echo $GetValue; ?></span>
+                    <span class="ms-1 text-sm font-medium text-gray-500 md:ms-2 dark:text-gray-400"><?php echo $PageTitle; ?></span>
                 </div>
             </li>
         </ol>
     </div>   
 <div class="brand-heading-box">
         <div class="product-type-heading">
-            <h1><?php echo $GetValue; ?><div class="designing-line"></div>
+            <h1><?php echo $PageTitle; ?><div class="designing-line"></div>
             </h1>
         </div>
         <div class="option-container">

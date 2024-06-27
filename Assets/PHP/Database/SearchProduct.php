@@ -6,7 +6,7 @@ include_once $base_url . 'Assets/Components/Navbar.php';
 if(isset($_GET['Search'])){
   $Data=$_GET['Search'];
 }else{
-  $Data='';
+  $Data="";
 }
 ?>
 <!DOCTYPE html>

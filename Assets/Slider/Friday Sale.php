@@ -7,19 +7,19 @@
 <body>
     <div class="swiper swiper-container">
         <div class="sales-offer-container">
-            <!--<div class="sales-offer-box">-->
-            <!--    <div class="first-child">On sale now</div>-->
-            <!--    <div class="second-child">-->
-            <!--        <div class="ending-text">-->
-            <!--        Ends in-->
-            <!--        </div>-->
-            <!--        <div class="time">-->
-            <!--            <div class="hour">00<span class="time-info"> hrs</span></div>-->
-            <!--            <div class="minute">00<span class="time-info"> min</span></div>-->
-            <!--            <div class="second">00<span class="time-info"> sec</span></div>-->
-            <!--        </div>-->
-            <!--    </div>-->
-            <!--</div>-->
+            <div class="sales-offer-box">
+                <div class="first-child">On sale now</div>
+                <div class="second-child">
+                    <div class="ending-text">
+                    Ends in
+                    </div>
+                    <div class="time">
+                        <div class="hour">00<span class="time-info"> hrs</span></div>
+                        <div class="minute">00<span class="time-info"> min</span></div>
+                        <div class="second">00<span class="time-info"> sec</span></div>
+                    </div>
+                </div>
+            </div>
         </div>
         <div class="swiper-wrapper">
             <?php
@@ -106,7 +106,7 @@
     </div>
     <script src="Assets/JS/Friday Sale.js"></script>
         <script>
-            let CountDownTime = new Date('May 31, 2024 17:0:00').getTime();
+            let CountDownTime = new Date('June 21, 2024 19:00:00').getTime();
     setInterval(() => {
     let Today = new Date().getTime();
     let Difference = CountDownTime - Today;

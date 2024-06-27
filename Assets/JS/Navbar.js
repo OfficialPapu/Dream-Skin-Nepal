@@ -85,7 +85,7 @@ gsap.matchMedia().add("(max-width: 1030px)", () => {
     TimeLine.from(".dropdown-menu-ul li.dropdown-align", {
         x: 100,
         opacity: 0,
-        stagger: 0.2,
+        stagger: 0.1,
     });
 });
 $('.menu, .close').click(function (e) {
@@ -102,20 +102,8 @@ $('.menu, .close').click(function (e) {
     }
 
 });
-gsap.from(".social-links-nav-bar a i", {
-    y: -30,
-    delay: 1,
-})
 
-// gsap.matchMedia().add("(min-width: 1030px)", () => {
-//     gsap.from(".dropdown-menu-ul li.dropdown-align", {
-//         y: -40,
-//         opacity: 0,
-//         stagger: 0.2,
-//     });
-// });
-
-$(document).on('keydown', function(event) {
+$('#Search').on('keydown', function(event) {
     if (event.which === 13) { 
        let SearchInput=$('#Search').val();
        $('#Search').val('');

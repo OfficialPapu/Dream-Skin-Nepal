@@ -7,15 +7,17 @@ if (isset($_SESSION['Logged In'])) {
 include_once $base_url . 'Assets/Components/Navbar.php';
 $GetValue = $_GET['Condition'];
 if ($GetValue == 'NewArrivals') {
-    $GetValue = $GetValue;
-    $Condition = 'p.ID>=267';
-    $featuredproduct=267;
+    $PageTitle = "New Arrivals";
+    $Condition = 'p.ID>=292';
+    $featuredproduct=292;
 } else if ($GetValue == 'BestSellers') {
+    $PageTitle = "Best Sellers";
     $featuredproduct=0;
     $Condition =  "1 ORDER BY Rand() LIMIT 0,100";
 }else if ($GetValue == 'OFFER') {
+    $PageTitle = "OFFER";
     $featuredproduct=0;
-    $Condition =  "p.ID=270 OR p.ID=128 OR p.ID=106 OR p.ID=233 OR p.ID=146 OR p.ID=76 OR p.ID=277 OR p.ID=253 OR p.ID=249 OR p.ID=248 OR p.ID=246 OR p.ID=122";
+    $Condition =  "p.ID=32 OR p.ID=201 OR p.ID=279 OR p.ID=245 OR p.ID=84 OR p.ID=123 OR p.ID=268 OR p.ID=221 OR p.ID=50 OR p.ID=211";
 }
 $query = "SELECT DISTINCT p.ID, p.`Product Title`,p.`Slug Url`, p.`Product Price`,p.`Discount Price`,p.`Discount Percentage`, pm1.`Product Meta Value` 
 AS ProductBrand, pm2.`Product Meta Value` AS ProductThumbnail, pm3.`Product Meta Value` AS ProductType,

@@ -1,6 +1,6 @@
 <head>
     <?php
-    $ProductType = 'Category/SkinCare.php?CategoryID=';
+    $ProductType = 'Category/SkinCare.php/';
     ?>
     <?php
     include_once  $base_url . 'Assets/PHP/URL/Base URL.php';
@@ -26,20 +26,20 @@
 
                 <ul class="nav__ul">
                     <li>
-                        <a href="<?php echo $ProductType; ?>37">Cleanser</a>
+                        <a href="<?php echo $ProductType; ?>Cleanser">Cleanser</a>
                     </li>
                     <li>
-                        <a href="<?php echo $ProductType; ?>26">Moisturizer</a>
+                        <a href="<?php echo $ProductType; ?>Moisturizer">Moisturizer</a>
                     </li>
 
                     <li>
-                        <a href="<?php echo $ProductType; ?>29">Serum</a>
+                        <a href="<?php echo $ProductType; ?>Serum">Serum</a>
                     </li>
                     <li>
-                        <a href="<?php echo $ProductType; ?>30">Sunscreen</a>
+                        <a href="<?php echo $ProductType; ?>Sunscreen-Sun-Stick">Sunscreen</a>
                     </li>
                     <li>
-                        <a href="<?php echo $ProductType; ?>31">Toner</a>
+                        <a href="<?php echo $ProductType; ?>Toner-Toner-Pad">Toner</a>
                     </li>
                 </ul>
             </li>

@@ -490,8 +490,8 @@ if (isset($_POST['ShortItem'])) {
 
     if ($ProductTypeID == 0 && $BrandID == 0) {
         //  $FeaturedProduct
-        if ($FeaturedProduct == 267) {
-            $Where = "WHERE p.ID>=267 $Condition";
+        if ($FeaturedProduct == 292) {
+            $Where = "WHERE p.ID>=292 $Condition";
         } else {
             $Where = "$Condition  LIMIT 0,100 ";
         }

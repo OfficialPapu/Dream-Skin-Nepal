@@ -167,10 +167,7 @@ function SucessNotify(title,text,icon){
     Swal.fire({
         title:title,
         text: text,
-        icon: icon,
-        customClass: {
-            container: 'bulma', // Bulma class for container
-        }
+        icon: icon
       });
 }
 

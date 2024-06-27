@@ -160,7 +160,7 @@ include_once $base_url . 'Assets/PHP/Admin/Edit Product Config.php';
                     </div>
                     <div class="discount-percentage">
                         <p class="body-heading">Discount Percentage</p>
-                        <input type="text" id="DiscountPercentage" name="DiscountPercentage" placeholder="Discount percentage" value=''>
+                        <input type="text" id="DiscountPercentage" name="DiscountPercentage" placeholder="Discount percentage" value='5'>
                     </div>
                 </div>
 

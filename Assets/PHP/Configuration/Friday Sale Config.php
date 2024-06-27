@@ -13,7 +13,7 @@ JOIN postsmeta pm1 ON p.ID = pm1.`Product ID` AND pm1.`Product Meta Key` = 'Bran
 JOIN postsmeta pm2 ON p.ID = pm2.`Product ID` AND pm2.`Product Meta Key` = 'Image 1'
 LEFT JOIN `product_cart` ci ON p.ID = ci.`Product_ID` AND ci.`User ID` = '$user_id'
 LEFT JOIN `product_wishlist` wishlist ON p.ID = wishlist.`Product ID` AND wishlist.`User ID` = '$user_id'
-WHERE p.ID=270 OR p.ID=128 OR p.ID=106 OR p.ID=233 OR p.ID=146 OR p.ID=76 OR p.ID=277 OR p.ID=253 OR p.ID=249 OR p.ID=248 OR p.ID=246 OR p.ID=122
+WHERE p.ID=32 OR p.ID=201 OR p.ID=279 OR p.ID=245 OR p.ID=84 OR p.ID=123 OR p.ID=268 OR p.ID=221 OR p.ID=50 OR p.ID=211
 ORDER BY Rand() LIMIT 0,10";
 $result = $conn->query($query);
 include $base_url . "Assets/PHP/Configuration/Mobile Check.php";

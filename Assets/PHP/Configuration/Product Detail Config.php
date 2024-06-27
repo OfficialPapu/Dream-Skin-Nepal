@@ -19,9 +19,9 @@ $ProductTitle = $row['Product Title'];
 $ProductImg = $row['Thumbnail'];
 $ProductDescription = $row['Product Content'];
 }else{
-$ProductTitle = "Best Korean Skincare Cosmetics Products in Nepal";
+$ProductTitle = "Dream Skin Nepal - Best Korean Beauty & Skincare Products in Nepal | Authentic K-Beauty Store";
 $ProductImg = "Assets/Product/Media/Images/Logo/Dream skin nepal.png";
-$ProductDescription = "Dream Skin Nepal - Trusted for Korean Beauty. Leading skincare, cosmetics, cruelty-free & vegan options. Free shipping over Rs. 5000. Shop online in Nepal.";
+$ProductDescription = "Dream Skin Nepal offers the best Korean beauty and skincare products in Nepal. Shop for authentic Korean cosmetics, cruelty-free and vegan options, and enjoy free shipping on orders over Rs. 5000. Find top Korean skincare brands, face cleansing products, and more.";
 }
 ?>
 

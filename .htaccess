@@ -1,4 +1,3 @@
-RewriteEngine On
 
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
@@ -6,11 +5,11 @@ RewriteRule ^(.*)$ Product.php/$1 [L]
 
 # Redirect non-www to www
 RewriteCond %{HTTP_HOST} !^www\. [NC]
-# RewriteRule ^(.*)$ https://www.dreamskinnepal.com/$1 [L,R=301]
+RewriteRule ^(.*)$ https://www.dreamskinnepal.com/$1 [L,R=301]
 
 # Redirect http to https
 RewriteCond %{HTTPS} off
-# RewriteRule ^(.*)$ https://www.dreamskinnepal.com/$1 [L,R=301]
+RewriteRule ^(.*)$ https://www.dreamskinnepal.com/$1 [L,R=301]
 
 <IfModule mod_expires.c>
     ExpiresActive On
@@ -31,7 +30,10 @@ RewriteCond %{HTTPS} off
     # ExpiresByType application/javascript "access plus 1 month"
     # ExpiresByType application/x-javascript "access plus 1 month"
 
-    Other files
+<Directory /path/to/your/directory>
+    Options -Indexes
+</Directory>
+
     ExpiresByType application/pdf "access plus 1 month"
     ExpiresByType application/x-shockwave-flash "access plus 1 month"
 </IfModule>

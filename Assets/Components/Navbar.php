@@ -12,6 +12,8 @@ include_once $base_url . 'Assets/PHP/Configuration/Navbar Configuration.php';
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <link rel="shortcut icon" href="Assets/Product/Media/Images/Logo/Dream skin nepal.png" type="image/x-icon">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css' rel='stylesheet'>
     <link rel="stylesheet" href="Assets/CSS/Navbar.css">
 </head>
 

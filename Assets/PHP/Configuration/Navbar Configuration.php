@@ -45,3 +45,16 @@ $Query2=mysqli_query($conn,$Makeup);
 $SkinType="SELECT * FROM `product_category` WHERE `Product Category Name`='Skin Type' ORDER BY `Product Category Attribute` ASC";
 $Query3=mysqli_query($conn,$SkinType);
 ?>
+
+<?php
+$Url=$_SERVER['REQUEST_URI'];
+$Url=preg_replace('/(&|\?)product_id=\d+/', '', $Url);
+if($Url=="/Product.php/Assets/Product/Product%20Detail%20Page.php"){
+echo $ID=$_GET['product_id'];
+$ProductQuery="SELECT * FROM posts WHERE ID='$ID'";
+$ProductQueryRun=mysqli_query($conn,$ProductQuery);
+$Data=$ProductQueryRun->fetch_assoc();
+$Slug=$Data['Slug Url'];
+echo "<script>window.location.href='https://dreamskinnepal.com/Product/$Slug'</script>";
+}
+?>

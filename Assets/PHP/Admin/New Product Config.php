@@ -4,6 +4,7 @@ if (isset($_POST['AddNewProduct'])) {
     @session_start();
     $base_url = $_SESSION['URLSession']['Base Path'];
     include_once $base_url . 'Assets/PHP/Database/Database Connection.php';
+    include_once $base_url . 'Assets/PHP/Configuration/Create Slug.php';
     $CustomProductID= strtoupper($_POST['CustomProductID']);
     $productTitle = addslashes($_POST["ProductTitle"]);
     $SlugTitle= CreateSlug($productTitle);
