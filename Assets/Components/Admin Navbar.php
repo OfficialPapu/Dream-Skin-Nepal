@@ -61,11 +61,30 @@ include_once $base_url . 'Assets/PHP/Admin/Admin Navbar Config.php';
                                 </div>
                             </ul>
                         </li>
+                        <li class="subitem-menu">
+                            <div class="product-content">
+                                <div class="product-title">
+                                <i class='bx bx-category'></i>
+                                    <p>Category</p>
+                                </div>
+                                <div class="product-icon">
+                                    <i class='bx bx-chevron-down'></i>
+                                </div>
+                            </div>
+                            <ul class="submenu-ul">
+                                <div class="submenu">
+                                    <li><a href="Admin/Product Category.php">
+                                            <p>New Category</p>
+                                        </a></li>
+                                    <li>
+                                        <a href="Admin/Product List.php">
+                                            <div class="list-product">Manage Category</div>
+                                        </a>
+                                    </li>
+                                </div>
+                            </ul>
+                        </li>
 
-                        <li><a href="Admin/Product Category.php">
-                                <i class='bx bx-cart-alt'></i>
-                                <p>Category</p>
-                            </a></li>
 
                         <li><a href="Admin/Order Management.php">
                                 <i class='bx bx-package'></i>
