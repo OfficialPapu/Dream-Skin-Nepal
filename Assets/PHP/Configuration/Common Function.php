@@ -1218,3 +1218,19 @@ if (isset($_POST['UpdatePosition'])) {
         }
     }
 }
+
+if (isset($_POST['EditCategory'])) {
+    $ProductCategoryID = $_POST['CategoryID'];
+    $ProductCategoryAttribute = $_POST['CategoryAttribute'];
+    $SlugUrl=CreateSlug($ProductCategoryAttribute);
+    $MetaTitle = $_POST['MetaTitle'];
+    $MetaDescription = $_POST['MetaDescription'];
+    $MetaKeyword = $_POST['MetaKeyword'];
+    $UpdateQuery="UPDATE `product_category` SET `Product Category Attribute`='$ProductCategoryAttribute',`Slug Url`='$SlugUrl',`Meta Title`='$MetaTitle',`Meta Description`='$MetaDescription',`Meta Keyword`='$MetaKeyword' WHERE `Product Category ID`='$ProductCategoryID'";
+    $UpdateQueryRun=mysqli_query($conn,$UpdateQuery);
+    if($UpdateQueryRun){
+        echo "Success";
+    }else{
+        echo "Fail";
+    }
+}

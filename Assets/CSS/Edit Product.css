@@ -14,6 +14,9 @@
 body {
   background-color: #e5f0f9;
 }
+.category-edit {
+  margin-top: 20px !important;
+}
 
 .page-heading-and-save-box {
   display: flex;
@@ -28,6 +31,7 @@ body {
 
 .save-changes,
 .update-images {
+  font-size: 13px;
   background-color: #d4edda;
   color: #155724;
   padding: 10px;
@@ -422,4 +426,25 @@ body {
     justify-content: center;
     align-items: center;
   }
+}
+input[type="file"] {
+  border-radius: 0.5rem;
+  width: 100%;
+}
+input[type="file"]::file-selector-button {
+  -webkit-margin-start: -1rem;
+  -webkit-margin-end: 1rem;
+  background: #1f2937;
+  border: 0;
+  color: #fff;
+  cursor: pointer;
+  font-size: 0.875rem;
+  font-weight: 500;
+  margin-inline-end: 1rem;
+  margin-inline-start: -1rem;
+  padding: 12px 1rem 12px 2rem;
+  transition: 0.3s;
+}
+input[type="file"]::file-selector-button:hover {
+  background: #374151;
 }
