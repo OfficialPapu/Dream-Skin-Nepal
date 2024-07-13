@@ -73,7 +73,7 @@ include_once $base_url . 'Assets/PHP/Admin/Admin Navbar Config.php';
                             </div>
                             <ul class="submenu-ul">
                                 <div class="submenu">
-                                    <li><a href="Admin/Product Category.php">
+                                    <li><a href="Admin/New Category.php">
                                             <p>New Category</p>
                                         </a></li>
                                     <li>

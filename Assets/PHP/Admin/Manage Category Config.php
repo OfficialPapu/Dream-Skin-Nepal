@@ -21,7 +21,7 @@ if (isset($_GET['CategoryID'])) {
             $ProductCategoryAttribute = $Row['Product Category Attribute'];
             $MetaTitle = $Row['Meta Title'];
             $MetaDescription = $Row['Meta Description'];
-            $MetaKeyword = $Row['Meta Meta Keyword'];
+            $MetaKeyword = $Row['Meta Keyword'];
             $ProductCategoryAttribute = $Row['Product Category Attribute'];
         }
 }

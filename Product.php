@@ -426,7 +426,7 @@ if ($_SESSION["ReslutCount"] > 0) {
       "@type": "Organization",
       "@id": "https://www.dreamskinnepal.com/#organization",
       "name": "Dream Skin Nepal",
-      "description": "Best Korean Skincare Cosmetics Products in Nepal",
+      "description": "Dream Skin Nepal - Trusted for Korean Beauty products. Leading skincare, cosmetics, cruelty-free & vegan options. Free shipping over Rs. 5000. Shop online for Korean products in Nepal.",
       "url": "https://www.dreamskinnepal.com/",
       "logo": {
         "@type": "ImageObject",
@@ -449,7 +449,7 @@ if ($_SESSION["ReslutCount"] > 0) {
       "@id": "<?php echo $canonical_url;?>/#webpage",
       "url": "<?php echo $canonical_url;?>/",
       "name": "Not Found - Dream Skin Nepal",
-      "description": "Not Found",
+      "description": "Dream Skin Nepal - Trusted for Korean Beauty products. Leading skincare, cosmetics, cruelty-free & vegan options. Free shipping over Rs. 5000. Shop online for Korean products in Nepal.",
       "inLanguage": "en-US",
       "isPartOf": { "@id": "https://www.dreamskinnepal.com/#website" },
       "breadcrumb": {
@@ -465,7 +465,7 @@ if ($_SESSION["ReslutCount"] > 0) {
       "primaryImageOfPage": {
         "@id": "<?php echo $canonical_url;?>/#mainImage"
       },
-      "datePublished": "2023-10-28T05:35:06+05:45",
+      "datePublished": "2024-02-28T05:35:06+05:45",
       "dateModified": "2024-04-28T13:05:48+05:45"
     },
     {
@@ -473,7 +473,7 @@ if ($_SESSION["ReslutCount"] > 0) {
       "@id": "https://www.dreamskinnepal.com/#website",
       "url": "https://www.dreamskinnepal.com/",
       "name": "Dream Skin Nepal",
-      "description": "Best Korean Skincare Cosmetics Products in Nepal",
+      "description": "Dream Skin Nepal - Trusted for Korean Beauty products. Leading skincare, cosmetics, cruelty-free & vegan options. Free shipping over Rs. 5000. Shop online for Korean products in Nepal.",
       "inLanguage": "en-US",
       "publisher": { "@id": "https://www.dreamskinnepal.com/#organization" }
     }
@@ -507,7 +507,7 @@ if ($_SESSION["ReslutCount"] > 0) {
       "@id": "<?php echo $canonical_url; ?>/#product",
       "name": "Not Found - Dream Skin Nepal",
       "url": "<?php echo $canonical_url; ?>",
-      "description": "Not Found",
+      "description": "Dream Skin Nepal - Trusted for Korean Beauty products. Leading skincare, cosmetics, cruelty-free & vegan options. Free shipping over Rs. 5000. Shop online for Korean products in Nepal.",
       "image": "https://www.dreamskinnepal.com/Assets/Product/Media/Images/Logo/Dream skin nepal.png",
       "sku": "",
       "offers": [
@@ -521,7 +521,7 @@ if ($_SESSION["ReslutCount"] > 0) {
             "valueAddedTaxIncluded": false
           },
           "priceCurrency": "NPR",
-          "availability": "http://schema.org/OutOfStock",
+          "availability": "http://schema.org/<?php echo $_SESSION["StockStatus"]; ?>",
           "url": "<?php echo $canonical_url; ?>",
           "seller": {
             "@type": "Organization",

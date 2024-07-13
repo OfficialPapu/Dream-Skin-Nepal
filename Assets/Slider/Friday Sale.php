@@ -105,21 +105,26 @@
         <div class="swiper-button-next"></div>
     </div>
     <script src="Assets/JS/Friday Sale.js"></script>
-        <script>
-            let CountDownTime = new Date('June 21, 2024 19:00:00').getTime();
-    setInterval(() => {
-    let Today = new Date().getTime();
-    let Difference = CountDownTime - Today;
-    let Hours = Math.floor(Difference / (1000 * 60 * 60));
-    let Minutes = Math.floor((Difference % (1000 * 60 * 60)) / (1000 * 60));
-    let Seconds = Math.floor((Difference % (1000 * 60)) / 1000);
-
-    let formattedHours = ('0' + Hours).slice(-2);
-    let formattedMinutes = ('0' + Minutes).slice(-2);
-    let formattedSeconds = ('0' + Seconds).slice(-2);
-
-    $('.hour').html(formattedHours + `<span class="time-info"> hrs</span> `);
-    $('.minute').html(formattedMinutes + `<span class="time-info"> min</span> `);
-    $('.second').html(formattedSeconds + `<span class="time-info"> sec</span> `);
+    <script>
+let countDownTime = new Date('July 12, 2024 23:00:00').getTime();
+setInterval(() => {
+    let today = new Date().getTime();
+    let difference = countDownTime - today;
+    
+    if (difference > 0) {
+        let hours = Math.floor(difference / (1000 * 60 * 60));
+        let minutes = Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60));
+        let seconds = Math.floor((difference % (1000 * 60)) / 1000);
+        
+        $('.hour').html(hours + `<span class="time-info"> hrs</span>`);
+        $('.minute').html(minutes + `<span class="time-info"> min</span>`);
+        $('.second').html(seconds + `<span class="time-info"> sec</span>`);
+        
+    } else {
+        $('.hour').html('00<span class="time-info"> hrs</span>');
+        $('.minute').html('00<span class="time-info"> min</span>');
+        $('.second').html('00<span class="time-info"> sec</span>');
+    }
 }, 1000);
+
     </script>

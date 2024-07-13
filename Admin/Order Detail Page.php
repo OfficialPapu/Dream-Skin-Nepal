@@ -218,6 +218,7 @@ include $base_url . 'Assets/PHP/Admin/Order Detail Page Config.php';
         if ($OrderDetail->num_rows > 0) {
             echo '<div class="Summary-box">';
             $OrderID =  $OrderInfo['OrderID'];
+            $UserID =  $OrderInfo['UserID'];
             $TotalDue = "Rs. " . $OrderInfo['TotalDue'] . ".00";
             $OrderDate =  $OrderInfo['OrderDate'];
             $dateTime = new DateTime($OrderDate);
@@ -225,10 +226,13 @@ include $base_url . 'Assets/PHP/Admin/Order Detail Page Config.php';
         ?>
             <div class="body-title">Summary</div>
             <div class="summary-item">
+                <div class="body-text">User ID</div>
+                <div class="body-title-3"><?php echo $UserID; ?></div>
+              </div>
+            <div class="summary-item">
                 <div class="body-text">Order ID</div>
-                <div class="body-title-3">
-                    <?php echo "#" . $RowOrderID; ?></div>
-            </div>
+                <div class="body-title-3"><?php echo "#" . $OrderID; ?></div>
+              </div>
             <div class="summary-item">
                 <div class="body-text">Date</div>
                 <div class="body-title-3"><?php echo  $formattedDate; ?></div>

@@ -19,18 +19,18 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     <meta charset="UTF-8">
     <meta name="google-site-verification" content="_n9au9euneNaJXGaKlDub_Mz-_--CUur_PMLWY_KMCg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Dream Skin Nepal offers the best Korean beauty and skincare products in Nepal. Shop for authentic Korean cosmetics, cruelty-free and vegan options, and enjoy free shipping on orders over Rs. 5000. Find top Korean skincare brands, face cleansing products, and more.">
+    <meta name="description" content="Dream Skin Nepal - Trusted for Korean Beauty products. Leading skincare, cosmetics, cruelty-free & vegan options. Free shipping over Rs. 5000. Shop online for Korean products in Nepal.">
     <meta name="keywords" content="best korean beauty products, korean skincare, korean makeup, korean cosmetics, cruelty-free beauty, vegan skincare, Dream Skin Nepal, best korean skincare, buy korean cosmetics Nepal, online beauty shop Nepal, top korean beauty brands, free shipping beauty Nepal, korean skincare in Nepal, face cleansing products in Nepal, Korean product store in Nepal, Korean genuine products in Nepal, authentic korean skincare products, Korean skin care and beauty clinic Nepal, welcos in Nepal, glutathione cream in Nepal, how to buy products from AliExpress in Nepal, how to order from AliExpress in Nepal, best korean skincare products, Korean skincare routine, viral Korean products, Korean skincare for acne">
     <meta property="og:type" content="website">
-    <meta property="og:title" content="Dream Skin Nepal - Best Korean Beauty & Skincare Products in Nepal | Authentic K-Beauty Store">
+    <meta property="og:title" content="Dream Skin Nepal - Best Korean Skincare Cosmetics Products in Nepal">
     <meta property="og:url" content="https://www.dreamskinnepal.com/">
     <meta property="og:image" content="https://dreamskinnepal.com/Assets/Product/Media/Images/Logo/Dream skin nepal.png">
-    <meta property="og:description" content="Dream Skin Nepal offers the best Korean beauty and skincare products in Nepal. Shop for authentic Korean cosmetics, cruelty-free and vegan options, and enjoy free shipping on orders over Rs. 5000. Find top Korean skincare brands, face cleansing products, and more.">
+    <meta property="og:description" content="Dream Skin Nepal - Trusted for Korean Beauty products. Leading skincare, cosmetics, cruelty-free & vegan options. Free shipping over Rs. 5000. Shop online for Korean products in Nepal.">
     <link rel="canonical" href="https://www.dreamskinnepal.com/">
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <link rel="shortcut icon" href="Assets/Product/Media/Images/Logo/Dream skin nepal.png" type="image/x-icon">
     <link rel="stylesheet" href="Assets/CSS/Style.css">
-    <title>Dream Skin Nepal - Best Korean Beauty & Skincare Products in Nepal | Authentic K-Beauty Store</title>
+    <title>Dream Skin Nepal - Best Korean Skincare Cosmetics Products in Nepal</title>
     <style>
         .offer-imges {
             background-color: rgba(0, 0, 0, 0.7);
@@ -95,7 +95,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <nav class="main-nav">
         <?php include('Assets/Components/Navbar.php'); ?>
     </nav>
-<h1 style="display:none">Dream Skin Nepal - Best Korean Beauty & Skincare Products in Nepal | Authentic K-Beauty Store</h1>
+<h1 style="display:none">Dream Skin Nepal - Best Korean Skincare Cosmetics Products in Nepal</h1>
     <div class="image_cresol">
         <?php include('Assets/Slider/Image Cresol.php'); ?>
     </div>
@@ -108,15 +108,15 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     </div>
 <?php //include('Countdown.html'); ?>
     <div class="fridaysales">
-        <!--<div class="view-more-box">-->
-        <!--    <div class="heading-box">-->
-        <!--        <h2 class="product-heading">Live Sales</h2>-->
-        <!--    </div>-->
-        <!--    <div class="view-more">-->
-        <!--        <a href="Category/ViewMoreProduct.php?Condition=OFFER">SHOP MORE<i class="bx bx-chevron-right"></i></a>-->
-        <!--    </div>-->
-        <!--</div>-->
-        <?php //include('Assets/Slider/Friday Sale.php'); ?>
+        <div class="view-more-box">
+            <div class="heading-box">
+                <h2 class="product-heading">Live Sales</h2>
+            </div>
+            <div class="view-more">
+                <a href="Category/ViewMoreProduct.php?Condition=OFFER">SHOP MORE<i class="bx bx-chevron-right"></i></a>
+            </div>
+        </div>
+        <?php include('Assets/Slider/Friday Sale.php'); ?>
     </div>
 
     <div class="products">
@@ -204,8 +204,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       "@type": "WebPage",
       "@id": "https://www.dreamskinnepal.com/#webpage",
       "url": "https://www.dreamskinnepal.com/",
-      "name": "Best Korean Skincare Cosmetics Products in Nepal - Dream Skin Nepal",
-      "description": "Dream Skin Nepal offers the best Korean beauty and skincare products in Nepal. Shop for authentic Korean cosmetics, cruelty-free and vegan options, and enjoy free shipping on orders over Rs. 5000. Find top Korean skincare brands, face cleansing products, and more.",
+      "name": "Dream Skin Nepal - Best Korean Skincare Cosmetics Products in Nepal",
+      "description": "Dream Skin Nepal - Trusted for Korean Beauty products. Leading skincare, cosmetics, cruelty-free & vegan options. Free shipping over Rs. 5000. Shop online for Korean products in Nepal.",
       "inLanguage": "en-US",
       "isPartOf": { "@id": "https://www.dreamskinnepal.com/#website" },
       "breadcrumb": { "@id": "https://www.dreamskinnepal.com/#breadcrumblist" },
@@ -217,7 +217,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       "@id": "https://www.dreamskinnepal.com/#website",
       "url": "https://www.dreamskinnepal.com/",
       "name": "Dream Skin Nepal",
-      "description": "Dream Skin Nepal offers the best Korean beauty and skincare products in Nepal. Shop for authentic Korean cosmetics, cruelty-free and vegan options, and enjoy free shipping on orders over Rs. 5000. Find top Korean skincare brands, face cleansing products, and more.",
+      "description": "Dream Skin Nepal - Trusted for Korean Beauty products. Leading skincare, cosmetics, cruelty-free & vegan options. Free shipping over Rs. 5000. Shop online for Korean products in Nepal.",
       "inLanguage": "en-US",
       "publisher": { "@id": "https://www.dreamskinnepal.com/#organization" },
       "potentialAction": {
@@ -232,6 +232,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   ]
 }
 </script>
+
 <script>
     // document.querySelector('.close-icon-box').addEventListener('click', function() {
     //     document.querySelector('.offer-imges').remove();

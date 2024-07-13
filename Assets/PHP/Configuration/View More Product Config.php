@@ -8,8 +8,8 @@ include_once $base_url . 'Assets/Components/Navbar.php';
 $GetValue = $_GET['Condition'];
 if ($GetValue == 'NewArrivals') {
     $PageTitle = "New Arrivals";
-    $Condition = 'p.ID>=292';
-    $featuredproduct=292;
+    $Condition = 'p.ID>=322 OR p.ID=192 OR p.ID=187 OR p.ID=30 OR p.ID=12';
+    $featuredproduct=322;
 } else if ($GetValue == 'BestSellers') {
     $PageTitle = "Best Sellers";
     $featuredproduct=0;
@@ -17,7 +17,7 @@ if ($GetValue == 'NewArrivals') {
 }else if ($GetValue == 'OFFER') {
     $PageTitle = "OFFER";
     $featuredproduct=0;
-    $Condition =  "p.ID=32 OR p.ID=201 OR p.ID=279 OR p.ID=245 OR p.ID=84 OR p.ID=123 OR p.ID=268 OR p.ID=221 OR p.ID=50 OR p.ID=211";
+    $Condition =  "p.ID=294 OR p.ID=295 OR p.ID=143 OR p.ID=216 OR p.ID=13 OR p.ID=292 OR p.ID=121 OR p.ID=293 OR p.ID=25 OR p.ID=204";
 }
 $query = "SELECT DISTINCT p.ID, p.`Product Title`,p.`Slug Url`, p.`Product Price`,p.`Discount Price`,p.`Discount Percentage`, pm1.`Product Meta Value` 
 AS ProductBrand, pm2.`Product Meta Value` AS ProductThumbnail, pm3.`Product Meta Value` AS ProductType,

@@ -46,7 +46,7 @@ include_once $base_url . 'Assets/PHP/Admin/Edit Product Config.php';
 
                     <div class="product-quanttiy">
                         <p class="body-heading">Product Quanttiy</p>
-                        <input type="text" name="ProductQuantity" id="ProductQuantity" placeholder="Product Quantity">
+                        <input type="text" name="ProductQuantity" id="ProductQuantity" placeholder="Product Quantity" value="50">
                     </div>
                 </div>
 

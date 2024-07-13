@@ -490,8 +490,8 @@ if (isset($_POST['ShortItem'])) {
 
     if ($ProductTypeID == 0 && $BrandID == 0) {
         //  $FeaturedProduct
-        if ($FeaturedProduct == 292) {
-            $Where = "WHERE p.ID>=292 $Condition";
+        if ($FeaturedProduct == 322) {
+            $Where = "WHERE p.ID>=322 OR p.ID=192 OR p.ID=187 OR p.ID=30 OR p.ID=12 $Condition";
         } else {
             $Where = "$Condition  LIMIT 0,100 ";
         }
@@ -1218,7 +1218,6 @@ if (isset($_POST['UpdatePosition'])) {
         }
     }
 }
-
 if (isset($_POST['EditCategory'])) {
     $ProductCategoryID = $_POST['CategoryID'];
     $ProductCategoryAttribute = $_POST['CategoryAttribute'];

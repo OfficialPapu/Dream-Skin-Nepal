@@ -72,10 +72,17 @@ include $base_url . 'Assets/PHP/Admin/Transaction Record Config.php';
           <div class="rounded-lg border bg-card text-card-foreground shadow-sm w-auto md:w-1/2" data-v0-t="card">
             <div class="flex flex-col space-y-1.5 p-6">
               <h3 class="whitespace-nowrap text-2xl leading-none tracking-tight text-[#00ADEF] font-bold">
-                Delivery Information
+                Billing Information
               </h3>
             </div>
             <div class="px-6 pt-2 pb-6 grid gap-4">
+            <div class="flex items-center gap-2">
+                 <i class='bx bx-credit-card-front text-xl'></i>
+                  <div>
+                    <div class="font-medium">Lifetime Purchase</div>
+                    <div class="text-sm text-gray-500 dark:text-gray-400"><?php echo "Rs. ". $LifetimePurchase.".00"; ?></div>
+                </div>
+                </div>
               <div class="grid gap-2">
                 <div class="font-medium">Name</div>
                 <div class="text-sm text-gray-500 dark:text-gray-400"><?php echo $BillingName; ?></div>
@@ -120,7 +127,7 @@ include $base_url . 'Assets/PHP/Admin/Transaction Record Config.php';
                     <div class="border rounded-md px-2 pt-4 pb-2 flex justify-evenly">
                       <div class="grid gap-4">
                         <div class="relative group">
-                          <img src="<?php echo $Thumbnail; ?>" width="200px" height="200px" class="aspect-square object-cover rounded-lg border border-gray-200 dark:border-gray-800" />
+                          <img src="<?php echo $Thumbnail; ?>" width="200px" height="200px" class="aspect-square object-cover rounded-lg border border-gray-200" />
                           <div class="grid gap-1">
                             <div class="font-medium w-[200px] mt-2"><?php echo $limited_title; ?></div>
                             <div class="text-sm text-gray-500 dark:text-gray-400"><?php echo "Rs. " . $ProductPrice . ".00"; ?></div>

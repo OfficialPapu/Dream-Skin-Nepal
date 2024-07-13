@@ -36,6 +36,7 @@ WHERE OrderList.`User ID` = '$DBUserID' AND OrderList.`Order ID`='$RowOrderID'";
 $OrderDetail=mysqli_query($conn,$OrderDetailQuery);
 $OrderInfo=$OrderDetail->fetch_assoc();
 $AllItemsQuery="SELECT
+OrderList.`User ID` AS UserID,
 OrderList.`Order ID` AS OrderID,
 pm1.`Product Meta Value` AS ImagePath,
 OrderList.`Quantity`,

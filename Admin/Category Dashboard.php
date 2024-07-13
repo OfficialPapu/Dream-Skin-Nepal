@@ -1,7 +1,7 @@
 <?php
 @session_name('URLSession');
 @session_start();
-$_SESSION['URLSession']['Base Path'] = $_SERVER['DOCUMENT_ROOT'] . "/Dream Skin Nepal/";
+$_SESSION['URLSession']['Base Path'] = $_SERVER['DOCUMENT_ROOT'] . "/";
 $base_url = $_SESSION['URLSession']['Base Path'];
 include $base_url . 'Assets/Components/Admin Navbar.php';
 include_once $base_url . 'Assets/PHP/Database/Database Connection.php';
@@ -19,12 +19,12 @@ $MySqli = mysqli_query($conn, $Query);
   <title>Category Dashboard</title>
 </head>
 
-<body>
-  <div class="container mx-auto py-8 px-5 mt-[4.5rem] bg-[#E5F0F9]">
+<body class="bg-[#E5F0F9]">
+  <div class="container mx-auto py-8 px-5 mt-[4.5rem]">
     <div class="flex flex-col md:flex-row items-center justify-between mb-6">
       <h1 class="text-3xl font-bold text-[#ff007f]">Product Category</h1>
       <div class="flex items-center space-x-4 mt-4 md:mt-0">
-        <a class="bg-white inline-flex h-9 items-center justify-center rounded-md bg-primary px-4 py-2 text-sm font-medium text-primary-foreground border border-[#00adef] text-[#ff007f] hover:bg-[#00adef] hover:text-white duration-300" href="Admin/Product List.php">
+        <a class="bg-white inline-flex h-9 items-center justify-center rounded-md bg-primary px-4 py-2 text-sm font-medium text-primary-foreground border border-[#00adef] text-[#ff007f] hover:bg-[#00adef] hover:text-white duration-300" href="Admin/New Category.php">
           Add Category
         </a>
         <div class="relative flex-1 max-w-md">

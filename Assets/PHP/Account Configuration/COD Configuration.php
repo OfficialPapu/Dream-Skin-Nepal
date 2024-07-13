@@ -10,7 +10,7 @@ include $base_url . 'Assets/PHP/Email Management/Orders Email/User Notify Email.
 
 function generateTrackingNumber()
 {
-    $prefix = "DNS";
+    $prefix = "DSN";
     $randomNumber = mt_rand(0, 99999999);
     $trackingNumber = $prefix . $randomNumber;
     return $trackingNumber;

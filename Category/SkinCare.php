@@ -19,20 +19,19 @@ $canonical_url = 'https://' . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
 
   gtag('config', 'AW-10828634041');
 </script>
-
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="<?php echo $ProductTypeName; ?> - Discover Dream Skin Nepal exclusive cleansers crafted to enhance your natural radiance. Elevate your skincare routine with luxurious formulation.">
-    <meta name="keywords" content="<?php echo $ProductTypeName; ?>, skincare, radiant skin, rejuvenate skin, nourish skin, beauty, skincare routine, Dream Skin Nepal, exclusive skincare, natural glow, anti-aging, skincare products, moisturize skin, skincare regimen, luxury skincare, shop <?php echo $ProductTypeName; ?>">
+    <meta name="description" content="<?php echo $SkinCareDescription; ?>">
+    <meta name="keywords" content="<?php echo $SkinCarekeywords; ?>">
     <meta property="og:type" content="website">
-    <meta property="og:title" content="<?php echo $ProductTypeName; ?> - Dream Skin Nepal">
+    <meta property="og:title" content="<?php echo $SkinCareTitle; ?>">
     <meta property="og:url" content="<?php echo $canonical_url; ?>">
     <meta property="og:image" content="https://dreamskinnepal.com/Assets/Product/Media/Images/Logo/Dream skin nepal.png">
-    <meta property="og:description" content="<?php echo $ProductTypeName; ?> - Discover Dream Skin Nepal exclusive cleansers crafted to enhance your natural radiance. Elevate your skincare routine with luxurious formulation.">
+    <meta property="og:description" content="<?php echo $SkinCareDescription; ?>">
      <link rel="canonical" href="<?php echo $canonical_url; ?>">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.3.0/flowbite.min.css" rel="stylesheet" />
     <link rel="stylesheet" href="Assets/CSS/Butterup/butterup.min.css">
     <link rel="stylesheet" href="Assets/CSS/Product Style.css">
-    <title><?php echo $ProductTypeName; ?> - Dream Skin Nepal</title>
+    <title><?php echo $SkinCareTitle; ?></title>
 </head>
 
 <body>
@@ -204,7 +203,7 @@ $canonical_url = 'https://' . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
           "@type": "ListItem",
           "@id": "<?php echo $canonical_url; ?>/#listItem",
           "position": 2,
-          "name": "<?php echo $ProductTypeName; ?>",
+          "name": "<?php echo $SkinCareTitle; ?>",
           "previousItem": "https://dreamskinnepal.com/#listItem"
         }
       ]
@@ -213,7 +212,7 @@ $canonical_url = 'https://' . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
       "@type": "CollectionPage",
       "@id": "<?php echo $canonical_url; ?>/#collectionpage",
       "url": "<?php echo $canonical_url; ?>/",
-      "name": "<?php echo $ProductTypeName; ?> - Dream Skin Nepal",
+      "name": "<?php echo $SkinCareTitle; ?>",
       "inLanguage": "en-US",
       "isPartOf": { "@id": "https://dreamskinnepal.com/#website" },
       "breadcrumb": {
@@ -224,7 +223,7 @@ $canonical_url = 'https://' . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
       "@type": "Organization",
       "@id": "https://dreamskinnepal.com/#organization",
       "name": "Dream Skin Nepal",
-      "description": "Best Korean Beauty & Skincare Products in Nepal | Authentic K-Beauty Store",
+      "description": "<?php echo $SchemaDescription; ?>",
       "url": "https://dreamskinnepal.com/",
       "logo": {
         "@type": "ImageObject",
@@ -246,7 +245,7 @@ $canonical_url = 'https://' . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
       "@id": "https://dreamskinnepal.com/#website",
       "url": "https://dreamskinnepal.com/",
       "name": "Dream Skin Nepal",
-      "description": "Best Korean Beauty & Skincare Products in Nepal | Authentic K-Beauty Store",
+      "description": "<?php echo $SchemaDescription; ?>",
       "inLanguage": "en-US",
       "publisher": { "@id": "https://dreamskinnepal.com/#organization" }
     }
@@ -267,7 +266,7 @@ $canonical_url = 'https://' . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
       "@type": "ListItem",
       "position": 2,
       "item": {
-        "name": "<?php echo $ProductTypeName; ?>",
+        "name": "<?php echo $SkinCareTitle; ?>",
         "@id": "<?php echo $canonical_url; ?>"
       }
     }

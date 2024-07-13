@@ -14,7 +14,7 @@ include $base_url . 'Assets/Components/Admin Navbar.php';
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <link rel="stylesheet" href="Assets/CSS/Butterup/butterup.min.css">
     <link rel="stylesheet" href="Assets/CSS/Butterup/butterup.css">
-    <link rel="stylesheet" href="Assets/CSS/Product Category.css">
+    <link rel="stylesheet" href="Assets/CSS/New Category.css">
     <title>Add Product Category</title>
 </head>
 
@@ -64,5 +64,5 @@ include $base_url . 'Assets/Components/Admin Navbar.php';
 <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
 <script src="Assets/JS/Butterup/butterup.js"></script>
 <script src="Assets/JS/Butterup/butterup.min.js"></script>
-<script src="Assets/JS/Product Category.js"></script>
+<script src="Assets/JS/New Category.js"></script>
 </html>

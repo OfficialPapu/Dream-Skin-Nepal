@@ -17,7 +17,7 @@ $(document).ready(function () {
             if(CategoryAttribute!=''){
             $.ajax({
                 type: "POST",
-                url: "Assets/PHP/Admin/Product Category Config.php",
+                url: "Assets/PHP/Admin/New Category Config.php",
                 data: {
                     CreateCategory: true,
                     CategoryName: CategoryName,

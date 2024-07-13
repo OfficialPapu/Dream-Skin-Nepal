@@ -18,7 +18,7 @@ $UploadFile = $UploadDir ."/". $RandNum. basename($_FILES["fileToUpload"]["name"
 
 function generateTrackingNumber()
 {
-    $prefix = "DNS";
+    $prefix = "DSN";
     $randomNumber = mt_rand(0, 99999999);
     $trackingNumber = $prefix . $randomNumber;
     return $trackingNumber;

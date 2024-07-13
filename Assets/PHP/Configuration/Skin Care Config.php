@@ -16,6 +16,10 @@ $Find = mysqli_query($conn, $FindProductType);
 $Row = $Find->fetch_assoc();
 $ProductTypeName = $Row['Product Category Attribute'];
 $ProductTypeID = $Row['Product Category ID'];
+$MetaTitle = $Row['Meta Title'];
+$MetaDescription = $Row['Meta Description'];
+$MetaKeyword = $Row['Meta Keyword'];
+
 $query = "SELECT DISTINCT p.ID, p.`Product Title`,p.`Slug Url`, p.`Product Price`,p.`Discount Price`,p.`Discount Percentage`, pm1.`Product Meta Value` 
 AS ProductBrand, pm2.`Product Meta Value` AS ProductThumbnail, pm3.`Product Meta Value` AS ProductType,
 CASE WHEN wishlist.`Product ID` IS NOT NULL THEN 'Added' ELSE 'Not Added' END AS IsAddedToWishlist,
@@ -30,4 +34,26 @@ JOIN postsmeta pm3 ON p.ID = pm3.`Product ID` AND pm3.`Product Meta Key` = 'Prod
 WHERE pm3.`Product Meta Value`='$ProductTypeID'";
 $result = $conn->query($query);
 include_once $base_url . 'Assets/PHP/Configuration/Mobile Check.php';
+
+if($MetaTitle !=''){
+    $SkinCareTitle = "$MetaTitle - Dream Skin Nepal";
+}else{
+$SkinCareTitle = "$ProductTypeName - Dream Skin Nepal";
+}
+
+
+if($MetaDescription !=''){
+    $SkinCareDescription = $MetaDescription;
+}else{
+$SkinCareDescription="$ProductTypeName - Discover Dream Skin Nepal exclusive cleansers crafted to enhance your natural radiance. Elevate your skincare routine with luxurious formulation.";
+}
+
+if($MetaKeyword !=''){
+    $SkinCarekeywords = $MetaKeyword;
+}else{
+$SkinCarekeywords="$ProductTypeName, skincare, radiant skin, rejuvenate skin, nourish skin, beauty, skincare routine, Dream Skin Nepal, exclusive skincare, natural glow, anti-aging, skincare products, moisturize skin, skincare regimen, luxury skincare, shop $ProductTypeName";
+}
+
+$SchemaDescription="Best Korean Skincare Cosmetics Products in Nepal - Dream Skin Nepal";
+
 ?>

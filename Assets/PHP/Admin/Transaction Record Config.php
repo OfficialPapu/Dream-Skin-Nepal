@@ -7,7 +7,8 @@ if (!function_exists('isMobileDevice')) {
 }
 $is_mobile = isMobileDevice();
 $UserID = $_GET['UserID'];
-$UserInfoQuery = "SELECT * FROM user_table LEFT JOIN delivery_info delivery ON user_table.ID = delivery.`User ID` WHERE user_table.`ID` = '$UserID'";
+$UserInfoQuery = "SELECT *, SUM(`Total Due`) AS LifetimePurchase FROM user_table LEFT JOIN delivery_info delivery ON user_table.ID = delivery.`User ID`
+    JOIN order_items ON order_items.`User ID`= user_table.ID WHERE user_table.`ID` = '$UserID'";
 $UserInfoQueryRun = mysqli_query($conn, $UserInfoQuery);
 if ($UserInfoQueryRun->num_rows > 0) {
   $PurchaseHistoryQuery = "SELECT * FROM `order_items` JOIN posts p ON p.`ID`= order_items.`Product ID` JOIN postsmeta pm1 ON p.`ID`= pm1.`Product ID` AND pm1.`Product Meta Key` = 'Image 1' WHERE `User ID` = '$UserID'";
@@ -19,6 +20,7 @@ if ($UserInfoQueryRun->num_rows > 0) {
   $UserAddress = $Row['User Address'];
   $UserPic = $Row['User Picture'];
   $DSNPoint = $Row['DNS Point'];
+  $LifetimePurchase = $Row['LifetimePurchase'];
   $AccountSignupDate = $Row['Account Signup Date'];
   $DateTime = new DateTime($AccountSignupDate);
   $FormattedDate = $DateTime->format('j, M, Y');
@@ -28,6 +30,9 @@ if ($UserInfoQueryRun->num_rows > 0) {
   $BillingAddress = $Row['Address'];
   if ($DSNPoint == '') {
     $DSNPoint = "0";
+  }
+  if ($LifetimePurchase == NULL) {
+    $LifetimePurchase = "0";
   }
   $DateOfBirth = $Row['Date Of Birth'];
   if ($UserPic == '') {
