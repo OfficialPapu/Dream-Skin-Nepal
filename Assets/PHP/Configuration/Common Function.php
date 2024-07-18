@@ -45,7 +45,7 @@ if (isset($_POST['AddToCart'])) {
                 if ($execute->num_rows > 0) {
                     echo "AlreadyExist";
                 } else {
-                    $add_to_cart = "INSERT INTO `product_cart`(`User ID`, `Product_ID`, `User_IP`, `Total Due`, `Shipping Fee`,`Applied Promo Code`, `Product_Quantity`, `Date & Time`) VALUES ('$user_id','$product_id','$user_ip','','','','$quantity',NOW())";
+                    $add_to_cart = "INSERT INTO `product_cart`(`User ID`, `Product_ID`, `User_IP`, `Total Due`, `Shipping Fee`,`Applied Promo Code`, `Product_Quantity`, `Date & Time`) VALUES ('$user_id','$product_id','$user_ip','','','','$quantity',CONVERT_TZ(NOW(), '+00:00', '+05:45') )";
                     $execute = mysqli_query($conn, $add_to_cart);
                     if ($execute) {
                         echo "Added";
@@ -81,7 +81,7 @@ if (isset($_POST['BuyNow'])) {
             } else {
                 $ClearCartQuery = "DELETE FROM `product_cart` WHERE `User ID`='$StringUserID' AND `Product_ID` != '$product_id'";
                 $ClearCartRun = mysqli_query($conn, $ClearCartQuery);
-                $add_to_cart = "INSERT INTO `product_cart`(`User ID`, `Product_ID`, `User_IP`, `Total Due`, `Shipping Fee`,`Applied Promo Code`, `Product_Quantity`, `Date & Time`) VALUES ('$user_id','$product_id','$user_ip','','','','$quantity',NOW())";
+                $add_to_cart = "INSERT INTO `product_cart`(`User ID`, `Product_ID`, `User_IP`, `Total Due`, `Shipping Fee`,`Applied Promo Code`, `Product_Quantity`, `Date & Time`) VALUES ('$user_id','$product_id','$user_ip','','','','$quantity',CONVERT_TZ(NOW(), '+00:00', '+05:45') )";
                 $execute = mysqli_query($conn, $add_to_cart);
                 echo "Success";
             }
@@ -107,7 +107,7 @@ if (isset($_POST['AddToCartFromWishlist'])) {
             $product_delete_query = "DELETE FROM `product_wishlist` WHERE `User ID`='$user_id' AND `Product ID`='$product_id'";
             $execute_query = mysqli_query($conn, $product_delete_query);
         } else {
-            $add_to_cart = "INSERT INTO `product_cart`(`User ID`, `Product_ID`, `User_IP`, `Total Due`, `Shipping Fee`, `Product_Quantity`, `Date & Time`) VALUES ('$user_id','$product_id','$user_ip','','','$quantity',NOW())";
+            $add_to_cart = "INSERT INTO `product_cart`(`User ID`, `Product_ID`, `User_IP`, `Total Due`, `Shipping Fee`, `Product_Quantity`, `Date & Time`) VALUES ('$user_id','$product_id','$user_ip','','','$quantity',CONVERT_TZ(NOW(), '+00:00', '+05:45') )";
             $execute = mysqli_query($conn, $add_to_cart);
             if ($execute) {
                 $product_delete_query = "DELETE FROM `product_wishlist` WHERE `User ID`='$user_id' AND `Product ID`='$product_id'";
@@ -129,7 +129,7 @@ if (isset($_POST['AddToWishlist'])) {
         if ($match_count > 0) {
             echo "AlreadyExist";
         } else {
-            $add_to_wishlist = "INSERT INTO `product_wishlist`(`User ID`, `Product ID`, `User IP`, `Date & Time`) VALUES ('$user_id','$product_id','$user_ip',NOW())";
+            $add_to_wishlist = "INSERT INTO `product_wishlist`(`User ID`, `Product ID`, `User IP`, `Date & Time`) VALUES ('$user_id','$product_id','$user_ip',CONVERT_TZ(NOW(), '+00:00', '+05:45') )";
             $execute = mysqli_query($conn, $add_to_wishlist);
             if ($execute) {
                 echo "Added";
@@ -377,7 +377,7 @@ if (isset($_POST['CreateCoponCode'])) {
     if ($FindDublicateRun->num_rows > 0) {
         echo "Exists";
     } else {
-        $InsertCouponcode = "INSERT INTO `coupon_code`(`Coupon Code`, `Coupon Type`, `Coupon Value`, `Description`, `Start Date`, `End Date`) VALUES ('$couponcode','$coupontype','$couponamount','$coupondescription',NOW(),'$enddate')";
+        $InsertCouponcode = "INSERT INTO `coupon_code`(`Coupon Code`, `Coupon Type`, `Coupon Value`, `Description`, `Start Date`, `End Date`) VALUES ('$couponcode','$coupontype','$couponamount','$coupondescription',CONVERT_TZ(NOW(), '+00:00', '+05:45') ,'$enddate')";
         $InsertCouponcodeRun = mysqli_query($conn, $InsertCouponcode);
         if ($InsertCouponcodeRun) {
             echo "Success";
@@ -422,11 +422,23 @@ if (isset($_POST['ApplyCoupon'])) {
                     $couponValue = $Row['Coupon Value'];
                     $minimumCartPrice = $Row['Minimum Cart Price'];
                     $SubPerProduct = ($couponValue / $cart_item_count);
+
+                    $item_count = "SELECT * FROM product_cart WHERE `User ID`='$user_id'";
+                    $execute = mysqli_query($conn, $item_count);
+                    $TotalPrice = 0;
+                    $TotalSaved=0;
+                    while ($rowcart = $execute->fetch_assoc()) {
+                        $TotalPrice += $rowcart['Total Due'];
+                        $TotalSaved += $rowcart['Product Price'];
+                    }
+                    $SavedAmount = $TotalSaved - $TotalPrice;
+
                     if ($couponType == 'Fixed Amount') {
                         if ($Subtotal >= $minimumCartPrice) {
                             $TotalPrice = $Subtotal - $couponValue;
                             $response['Amount'] = $TotalPrice;
                             $response['Discount Amount'] = $couponValue;
+                            $response['Total Saved'] = $couponValue + $SavedAmount;
                             $response['Message'] = "Fixed Amount";
                             foreach ($cartItems as $cartItem) {
                                 $RowID = $cartItem['ID'];
@@ -443,6 +455,7 @@ if (isset($_POST['ApplyCoupon'])) {
                         $TotalPrice = $Subtotal - $PercentageCalculate;
                         $response['Amount'] = $TotalPrice;
                         $response['Discount Amount'] = $couponValue;
+                        $response['Total Saved Amount'] =  $SavedAmount;
                         $response['Message'] = "Percentage";
                         foreach ($cartItems as $cartItem) {
                             $RowID = $cartItem['ID'];
@@ -464,6 +477,8 @@ if (isset($_POST['ApplyCoupon'])) {
     }
     echo json_encode($response);
 }
+
+
 
 
 if (isset($_POST['FindCustomProductID'])) {
@@ -1191,15 +1206,15 @@ if (isset($_POST['UpdatePosition'])) {
         }
     }
 
-    $RepeteID1=0;
-    $RepeteID2=0;
+    $RepeteID1 = 0;
+    $RepeteID2 = 0;
     for ($i = 0; $i < (count($ImageArray)); $i++) {
         if ($ImageArray[$i]['ID'] != $NewImageOrder[$i]) {
-            if($RepeteID1==$ImageArray[$i]['ID'] || $RepeteID2==$NewImageOrder[$i]){
+            if ($RepeteID1 == $ImageArray[$i]['ID'] || $RepeteID2 == $NewImageOrder[$i]) {
                 break;
             }
-            $RepeteID1=$ImageArray[$i]['ID'];
-            $RepeteID2=$NewImageOrder[$i];
+            $RepeteID1 = $ImageArray[$i]['ID'];
+            $RepeteID2 = $NewImageOrder[$i];
             $ImagePathQuery = "SELECT * FROM `postsmeta` WHERE ID='" . $ImageArray[$i]['ID'] . "' OR ID='" . $NewImageOrder[$i] . "'";
             $ImagePathQueryRun = mysqli_query($conn, $ImagePathQuery);
             $PathArray = [];
@@ -1221,15 +1236,15 @@ if (isset($_POST['UpdatePosition'])) {
 if (isset($_POST['EditCategory'])) {
     $ProductCategoryID = $_POST['CategoryID'];
     $ProductCategoryAttribute = $_POST['CategoryAttribute'];
-    $SlugUrl=CreateSlug($ProductCategoryAttribute);
+    $SlugUrl = CreateSlug($ProductCategoryAttribute);
     $MetaTitle = $_POST['MetaTitle'];
     $MetaDescription = $_POST['MetaDescription'];
     $MetaKeyword = $_POST['MetaKeyword'];
-    $UpdateQuery="UPDATE `product_category` SET `Product Category Attribute`='$ProductCategoryAttribute',`Slug Url`='$SlugUrl',`Meta Title`='$MetaTitle',`Meta Description`='$MetaDescription',`Meta Keyword`='$MetaKeyword' WHERE `Product Category ID`='$ProductCategoryID'";
-    $UpdateQueryRun=mysqli_query($conn,$UpdateQuery);
-    if($UpdateQueryRun){
+    $UpdateQuery = "UPDATE `product_category` SET `Product Category Attribute`='$ProductCategoryAttribute',`Slug Url`='$SlugUrl',`Meta Title`='$MetaTitle',`Meta Description`='$MetaDescription',`Meta Keyword`='$MetaKeyword' WHERE `Product Category ID`='$ProductCategoryID'";
+    $UpdateQueryRun = mysqli_query($conn, $UpdateQuery);
+    if ($UpdateQueryRun) {
         echo "Success";
-    }else{
+    } else {
         echo "Fail";
     }
 }

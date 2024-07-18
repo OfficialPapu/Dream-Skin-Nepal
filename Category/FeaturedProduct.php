@@ -34,7 +34,7 @@ LEFT JOIN `product_cart` ci ON p.ID = ci.`Product_ID`
 LEFT JOIN `product_wishlist` wishlist ON p.ID = wishlist.`Product ID` AND wishlist.`User ID` = '$user_id'
 JOIN postsmeta pm1 ON p.ID = pm1.`Product ID` AND pm1.`Product Meta Key` = 'Brand ID'
 JOIN postsmeta pm2 ON p.ID = pm2.`Product ID` AND pm2.`Product Meta Key` = 'Image 1'
-JOIN postsmeta pm3 ON p.ID = pm3.`Product ID` AND pm3.`Product Meta Key` = 'Product Type ID' ORDER BY RAND() LIMIT 10 ";
+JOIN postsmeta pm3 ON p.ID = pm3.`Product ID` AND pm3.`Product Meta Key` = 'Product Type ID' ORDER BY RAND() LIMIT 5 ";
       $result = $conn->query($query);
       include_once $base_url . 'Assets/PHP/Configuration/Mobile Check.php';
       ?>
@@ -79,18 +79,18 @@ JOIN postsmeta pm3 ON p.ID = pm3.`Product ID` AND pm3.`Product Meta Key` = 'Prod
         echo "<i class='bx bxs-heart AddToWishlist AddToWishlist-btn' data-product-id-wishlist='" . $row['ID'] . "'></i>";
         }
           echo "<a href='Product/$SlugUrl'>
-            <img src='$thumbnail_url' alt='$limited_title'>
+            <img src='$thumbnail_url' alt='$product_title'>
             <div class='product-data'>
                 <span class='productbrand'>$BrandName</span>
                 <h5>$limited_title</h5>
         </a>
-        <div class='stars'>
+        <!--  <div class='stars'>
             <i class='bx bxs-star'></i>
             <i class='bx bxs-star'></i>
             <i class='bx bxs-star'></i>
             <i class='bx bxs-star'></i>
             <i class='bx bxs-star'></i>
-        </div>
+        </div>-->
     </div>
     <div class='price-cart'>";
           if ($DiscountPrice != '') {

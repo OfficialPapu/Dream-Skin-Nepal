@@ -34,6 +34,15 @@
                 $Row = $Find->fetch_assoc();
                 $ProductBrand = $Row['Product Category Attribute'];
                 $thumbnail_url = $row['ProductThumbnail'];
+                if($DiscountPercentage != ''){
+                    $DiscountValueCalculate = ceil(($price / 100) * $DiscountPercentage);
+                    $DiscountValue = $price - $DiscountValueCalculate;
+                    $DNSPoint=$DiscountValue/100;
+                }elseif($DiscountPrice != ''){
+                    $DNSPoint=$DiscountPrice/100;
+                }else{
+                    $DNSPoint=$price/100;
+                }
                 echo "<div class='swiper-slide'>";
                 echo "<div class='product-box'>";
                 if ($StockStatus == 'Out of Stock') {
@@ -55,18 +64,17 @@
                     echo "<i class='bx bxs-heart AddToWishlist AddToWishlist-1' data-product-id-wishlist='" . $row['ID'] . "'></i>";
                 }
                 echo "<a href='Product/$SlugUrl'>";
-                echo "<img src='$thumbnail_url' alt='$product_title' loading='lazy'>";
+                echo "<div class='dns-point-container'>
+                 <div class='dns-point'>
+                    $DNSPoint DSN Point
+                </div>
+                <img src='$thumbnail_url' alt='$product_title' loading='lazy'>
+                </div>";
+            
                 echo "<div class='product-data'>";
                 echo "<span class='productbrand'>$ProductBrand</span>";
                 echo "<h5>$limited_title</h5>";
                 echo "</a>";
-                echo "<div class='stars'>";
-                echo "<i class='bx bxs-star'></i>";
-                echo "<i class='bx bxs-star'></i>";
-                echo "<i class='bx bxs-star'></i>";
-                echo "<i class='bx bxs-star'></i>";
-                echo "<i class='bx bxs-star'></i>";
-                echo "</div>";
                 echo "</div>";
                 echo "<div class='price-cart'>";
                 if ($DiscountPrice != '') {

@@ -1,4 +1,6 @@
 <?php
+$session_lifetime = 30 * 24 * 60 * 60; 
+session_set_cookie_params($session_lifetime);
 @session_name('Cart');
 @session_name('LoginSession');
 @session_name('URLSession');
@@ -14,6 +16,7 @@ if (isset($_POST['DataSend'])) {
     $execute_login = mysqli_query($conn, $check_user);
     if ($execute_login->num_rows > 0) {
         @session_start();
+        @session_regenerate_id(true);
         $row = $execute_login->fetch_assoc();
         $_SESSION['Logged In'] = true;
         $_SESSION['user_first_name'] = $row['First Name'];

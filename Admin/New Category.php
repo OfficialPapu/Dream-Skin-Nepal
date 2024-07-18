@@ -43,7 +43,7 @@ include $base_url . 'Assets/Components/Admin Navbar.php';
                             Body & Hair Care
                         </li>
                         <li class="option-list">
-                            Baby Care
+                            Kids Care
                         </li>
                         <li class="option-list">
                             Skincare Set

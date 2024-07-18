@@ -14,10 +14,10 @@ var swiper = new Swiper(".swiper-container", {
         320: {
             slidesPerView: 2,
         },
-        768: {
+        865: {
             slidesPerView: 3,
         },
-        1024: {
+        1064: {
             slidesPerView: 4,
         },
         1505: {

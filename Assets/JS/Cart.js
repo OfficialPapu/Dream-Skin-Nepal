@@ -20,7 +20,7 @@ updatecartquantitydb = (Product_id) => {
             productid: Product_id,
         },
         success: function (response) {
-              response=response.trim();
+            response = response.trim();
             if (response == 'OutOfStock') {
                 butterup.toast({
                     message: 'Product is not enough in stock!',
@@ -57,15 +57,15 @@ for (let i = 0; i < productQuantities.length; i++) {
         }
     });
 }
-function CheckFreeShipping(){
-    if(FreeShippingConditionPrice>=5000){
+function CheckFreeShipping() {
+    if (FreeShippingConditionPrice >= 5000) {
         ShowBox(".FreeShippingBox");
     }
 }
 CheckFreeShipping();
 let ShippingFeeAdd = 0;
 $('#shippingOptions input[type="checkbox"]').change(function () {
-    if(FreeShippingConditionPrice>=5000){
+    if (FreeShippingConditionPrice >= 5000) {
         $('#shippingOptions input[type="checkbox"]').not(this).prop('checked', false);
         $.ajax({
             type: "POST",
@@ -75,7 +75,7 @@ $('#shippingOptions input[type="checkbox"]').change(function () {
                 ShippingFeeChangeing: 0,
             },
         });
-    }else{
+    } else {
         if ($(this).is(':checked')) {
             $('#shippingOptions input[type="checkbox"]').not(this).prop('checked', false);
             let shippingFee = 0;
@@ -90,22 +90,22 @@ $('#shippingOptions input[type="checkbox"]').change(function () {
                     shippingFee = 0;
                     break;
             }
-                $.ajax({
-                    type: "POST",
-                    url: "Assets/PHP/Configuration/Common Function.php",
-                    data: {
-                        ShippingFeeChange: true,
-                        ShippingFeeChangeing: shippingFee,
-                    },
-                    success: function (response) {
-                          response=response.trim();
-                        let GrandTotal= $('#GrandTotal').html();
-                        let TotalPrice = parseInt(GrandTotal.replace(/Rs. |\.\d{2}/g, ''));
-                        TotalPrice += shippingFee - ShippingFeeAdd;                    
-                        ShippingFeeAdd = shippingFee;
-                        $('#GrandTotal').html('Rs. ' + TotalPrice+'.00');
-                    },
-                });
+            $.ajax({
+                type: "POST",
+                url: "Assets/PHP/Configuration/Common Function.php",
+                data: {
+                    ShippingFeeChange: true,
+                    ShippingFeeChangeing: shippingFee,
+                },
+                success: function (response) {
+                    response = response.trim();
+                    let GrandTotal = $('#GrandTotal').html();
+                    let TotalPrice = parseInt(GrandTotal.replace(/Rs. |\.\d{2}/g, ''));
+                    TotalPrice += shippingFee - ShippingFeeAdd;
+                    ShippingFeeAdd = shippingFee;
+                    $('#GrandTotal').html('Rs. ' + TotalPrice + '.00');
+                },
+            });
         }
     }
 })
@@ -124,7 +124,7 @@ $(document).ready(function () {
                 ProductID: ProductID,
             },
             success: function (response) {
-                  response=response.trim();
+                response = response.trim();
                 $(DeleteElement).slideUp("fast", function () {
                     $(this).remove();
                 });
@@ -138,9 +138,9 @@ $(document).ready(function () {
 
 $(document).ready(function () {
     $('.checkout-btn').click(function (e) {
-        if(FreeShippingConditionPrice>=5000){
+        if (FreeShippingConditionPrice >= 5000) {
             window.open("Account/UserAccount/Checkout.php", "_self");
-        }else{
+        } else {
             if ($('input[name="Shipping-rate"]:checked').length === 0) {
                 butterup.options.maxToasts = 2;
                 butterup.toast({
@@ -159,16 +159,16 @@ $(document).ready(function () {
 function ShowBox(Element) {
     $(Element).removeClass("hidden");
 }
-function OverWriteData(Element,Data){
+function OverWriteData(Element, Data) {
     $(Element).html(Data);
 }
 
-function SucessNotify(title,text,icon){
+function SucessNotify(title, text, icon) {
     Swal.fire({
-        title:title,
+        title: title,
         text: text,
         icon: icon
-      });
+    });
 }
 
 $(document).ready(function () {
@@ -190,31 +190,28 @@ $(document).ready(function () {
                 if (couponbtncount >= 2) {
                     window.location.reload();
                 }
+                $("#TotalSavedInitial").addClass("hidden");
+                ShowBox(".CouponCodeBox");
+                ShowBox(".CouponCodeBox");
+                ShowBox(".CouponValueBox");
+                ShowBox(".TotalSavedBox");
+                OverWriteData(".PromoCode", CouponCode);
                 if (CouponResponse['Message'] === 'Fixed Amount') {
-                    SucessNotify("Coupon Applied Successfully!","Your discount has been applied.","success");
-                    ShowBox(".CouponCodeBox");
-                    ShowBox(".CouponValueBox");
-                    ShowBox(".TotalSavedBox");
-                    OverWriteData(".PromoCode",CouponCode);
-                    OverWriteData(".CouponValue","- Rs. " + CouponResponse['Discount Amount']+".00");
-                    OverWriteData(".TotalSavedData","- Rs. " + CouponResponse['Discount Amount']+".00");
-                    OverWriteData("#GrandTotal","Rs. " + CouponResponse['Amount']+".00");
+                    SucessNotify("Coupon Applied Successfully!", "Your discount has been applied.", "success");
+                    OverWriteData(".CouponValue", "- Rs. " + CouponResponse['Discount Amount'] + ".00");
+                    OverWriteData(".TotalSavedData", "- Rs. " + CouponResponse['Total Saved'] + ".00");
+                    OverWriteData("#GrandTotal", "Rs. " + CouponResponse['Amount'] + ".00");
                 } else if (CouponResponse['Message'] === 'Percentage') {
-                    SucessNotify("Coupon Applied Successfully!","Your discount has been applied.","success");
-                    ShowBox(".CouponCodeBox");
-                    ShowBox(".CouponCodeBox");
-                    ShowBox(".CouponValueBox");
-                    ShowBox(".TotalSavedBox");
-                    OverWriteData(".PromoCode",CouponCode);
-                    OverWriteData(".CouponValue",CouponResponse['Discount Amount'] + "% OFF");
-                    OverWriteData("#GrandTotal","Rs. " + CouponResponse['Amount']+".00");
-                    let GrandTotal=$('#GrandTotal').html();
-                    let SubTotal=$('#SubTotal').html();
-                    GrandTotal=parseInt(GrandTotal.replace(/Rs. |\.\d{2}/g, ''));
-                    SubTotal=parseInt(SubTotal.replace(/Rs. |\.\d{2}/g, ''));
-                    OverWriteData(".TotalSavedData","- Rs. " +(SubTotal - GrandTotal) +".00");
+                    SucessNotify("Coupon Applied Successfully!", "Your discount has been applied.", "success");
+                    OverWriteData(".CouponValue", CouponResponse['Discount Amount'] + "% OFF");
+                    OverWriteData("#GrandTotal", "Rs. " + CouponResponse['Amount'] + ".00");
+                    let GrandTotal = $('#GrandTotal').html();
+                    let SubTotal = $('#SubTotal').html();
+                    GrandTotal = parseInt(GrandTotal.replace(/Rs. |\.\d{2}/g, ''));
+                    SubTotal = parseInt(SubTotal.replace(/Rs. |\.\d{2}/g, ''));
+                    OverWriteData(".TotalSavedData", "- Rs. " + (SubTotal - GrandTotal + CouponResponse['Total Saved Amount']) + ".00");
                 } else {
-                    SucessNotify("Invalid Coupon code!","Oops! The coupon code you entered is invalid. Please try again.","error");
+                    SucessNotify("Invalid Coupon code!", "Oops! The coupon code you entered is invalid. Please try again.", "error");
                 }
 
             }
@@ -234,7 +231,7 @@ $('.AddToWishlist-1').click(function (e) {
             ProductID: ProductID,
         },
         success: function (response) {
-              response=response.trim();
+            response = response.trim();
             if (response == 'Added') {
                 butterup.toast({
                     message: 'Successfully Added To The Wishlist',

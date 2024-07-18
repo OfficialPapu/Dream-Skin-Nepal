@@ -34,7 +34,7 @@ if (isset($_GET['PaymentInfo'])) {
     $Cart = "SELECT * FROM `product_cart` WHERE `User ID`='$user_id'";
     $runquery = $conn->query($Cart);
     if ($runquery->num_rows > 0) {
-        $InsertOrder = "INSERT INTO `orders`(`User ID`, `Total Due`, `Shipping Fee`,`Order Date`) VALUES ('$user_id','$TotalPrice','$TotalShippingFee',NOW())";
+        $InsertOrder = "INSERT INTO `orders`(`User ID`, `Total Due`, `Shipping Fee`,`Order Date`) VALUES ('$user_id','$TotalPrice','$TotalShippingFee',CONVERT_TZ(NOW(), '+00:00', '+05:45') )";
         $send = mysqli_query($conn, $InsertOrder);
         if ($send) {
             $PaymentMethod="Cash On Delivery";
@@ -47,7 +47,7 @@ if (isset($_GET['PaymentInfo'])) {
                 $PerProductPrice = $row['Total Due'];
                 $UpdateQuantity = "UPDATE `posts` SET `Product Quantity` = `Product Quantity` - $product_quantity WHERE `ID` = '$product_id_db'";
                 $UpdateQuantityRun = mysqli_query($conn, $UpdateQuantity);
-                $insert_into_order_items = "INSERT INTO `order_items`(`Order ID`, `User ID`, `Product ID`, `Quantity`,`Total Due`,`Payment Method`,`Payment Screenshot`, `Order Status`, `Tracking Number`, `Order Date`) VALUES ('$order_id','$user_id','$product_id_db','$product_quantity','$PerProductPrice','$PaymentMethod','','Pending','$trackingNumber',NOW())";
+                $insert_into_order_items = "INSERT INTO `order_items`(`Order ID`, `User ID`, `Product ID`, `Quantity`,`Total Due`,`Payment Method`,`Payment Screenshot`, `Order Status`, `Tracking Number`, `Order Date`) VALUES ('$order_id','$user_id','$product_id_db','$product_quantity','$PerProductPrice','$PaymentMethod','','Pending','$trackingNumber',CONVERT_TZ(NOW(), '+00:00', '+05:45') )";
                 $runentry = mysqli_query($conn, $insert_into_order_items);
                 if ($runentry) {
                     $deleteproductfromcart = "DELETE FROM `product_cart` WHERE `User ID`='$user_id'";

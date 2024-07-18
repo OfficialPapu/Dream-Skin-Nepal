@@ -22,8 +22,10 @@ if ($UserInfoQueryRun->num_rows > 0) {
   $DSNPoint = $Row['DNS Point'];
   $LifetimePurchase = $Row['LifetimePurchase'];
   $AccountSignupDate = $Row['Account Signup Date'];
-  $DateTime = new DateTime($AccountSignupDate);
-  $FormattedDate = $DateTime->format('j, M, Y');
+   if($Row -> num_rows > 0){
+  $DateTime = DateTime::createFromFormat('Y-m-d H:i:s', $AccountSignupDate);
+  $FormattedDate = $DateTime->format('j M, Y g:i A');
+   }
   $BillingName = $Row['Full Name'];
   $BillingPhone = $Row['Phone'];
   $BillingCity = $Row['City'];

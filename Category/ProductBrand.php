@@ -124,13 +124,13 @@ include_once $base_url . "Assets/PHP/Configuration/Product Brand Config.php";
                 <span class='productbrand'>$BrandName</span>
                 <h5>$limited_title</h5>
         </a>
-        <div class='stars'>
+      <!--  <div class='stars'>
             <i class='bx bxs-star'></i>
             <i class='bx bxs-star'></i>
             <i class='bx bxs-star'></i>
             <i class='bx bxs-star'></i>
             <i class='bx bxs-star'></i>
-        </div>
+        </div>-->
     </div>
     <div class='price-cart'>";
             if ($DiscountPrice != '') {

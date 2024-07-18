@@ -12,7 +12,7 @@ $canonical_url = 'https://' . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
     <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="<?php echo $ProductTitle ?> available at Dream Skin Nepal. Check out the details, price, and exclusive discounts on korean skincare product in Nepal">
+    <meta name="description" content="<?php echo $ProductTitle ?> price in Nepal. Check out the details, price, and exclusive discounts on korean skincare product in Nepal">
     <meta name="keywords" content="<?php echo $ProductTitle ?>, Dream Skin Nepal, skincare products, discounts, in Neapl, korean skincare product in Nepal">
     <meta property="og:title" content="<?php echo $ProductTitle ?> - Dream Skin Nepal">
     <meta property="og:site_name" content="Dream Skin Nepal">
@@ -238,7 +238,6 @@ $canonical_url = 'https://' . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
     <div class="flex flex-col items-center justify-center gap-6 md:mb-[5rem] mb-[2rem] mt-[5rem] px-4 md:px-6" data-id="1"><div class="max-w-md text-center" data-id="2"><h1 class="text-4xl font-bold tracking-tight sm:text-5xl" data-id="3" style="color: rgb(255, 0, 127);">Product Not Found</h1><p class="mt-4 text-gray-500 dark:text-gray-400" data-id="4">We're sorry, but the product you were looking for could not be found. It may have been removed or is no longer available.</p><a data-id="5" class="inline-flex items-center justify-center mt-2 rounded-md border border-[#00ADEF] bg-white px-6 py-3 text-[#FF007F] text-sm font-bold shadow-sm transition-colors hover:bg-[#00ADEF] hover:text-white disabled:pointer-events-none disabled:opacity-50 dark:bg-gray-50 dark:text-gray-900 dark:hover:bg-gray-50/90 dark:focus:ring-gray-300" href="/" rel="ugc"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="mr-2 h-4 w-4"><path d="m12 19-7-7 7-7"></path><path d="M19 12H5"></path></svg>
   Go back home
     </a></div></div>
-        <!--echo "<p class='not-found'>Products Not Found</p>";-->
    <?php
    }
     ?>

@@ -119,10 +119,10 @@ include $base_url . 'Assets/PHP/Admin/Transaction Record Config.php';
                     $Thumbnail = $Row['Product Meta Value'];
                     $Orderstatus = $Row['Order Status'];
                     $PaymentMethod = $Row['Payment Method'];
-                    $PaymentScreenshot	 = $Row['Payment Screenshot'];
+                    $PaymentScreenshot = $Row['Payment Screenshot'];
                     $Orderdate = $Row['Order Date'];
-                    $dateTime = new DateTime($Orderdate);
-                    $formattedDate = $dateTime->format("j M, Y");
+                    $dateTime = DateTime::createFromFormat('Y-m-d H:i:s', $Orderdate);
+                    $formattedDate = $dateTime->format('j M, Y');
                 ?>
                     <div class="border rounded-md px-2 pt-4 pb-2 flex justify-evenly">
                       <div class="grid gap-4">

@@ -10,9 +10,8 @@ $base_url = $_SESSION['URLSession']['Base Path'];
 include_once $base_url . 'Assets/PHP/Database/Database Connection.php';
 
 if (isset($_POST['ListProduct'])) {
-    $search_input = $_POST['SearchInput'];
-    $search_input = mysqli_real_escape_string($conn, $search_input);
-    $search_input = addslashes($search_input);
+$search_input = addslashes(mysqli_real_escape_string($conn, $_POST['SearchInput']));
+$search_input_metaphone = metaphone($search_input);
     $query = "SELECT DISTINCT p.ID,
     p.`Custom Product ID`, 
     p.`Product Title`, 

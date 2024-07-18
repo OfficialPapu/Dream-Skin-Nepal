@@ -3,9 +3,6 @@
 @session_start();
 $base_url = $_SESSION['URLSession']['Base Path'];
 include_once $base_url . 'Assets/Components/Navbar.php';
-if (isset($_SESSION['Logged In'])) {
-  $user_id = $_SESSION['LoginSession']['user_id'];
-}
 $DnsPointQuery = "SELECT * FROM `user_table` WHERE `ID`='$user_id'";
 $DnsPointRun = mysqli_query($conn, $DnsPointQuery);
 $Row = $DnsPointRun->fetch_assoc();

@@ -12,7 +12,6 @@ include_once $base_url . 'Assets/PHP/Configuration/Navbar Configuration.php';
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <link rel="shortcut icon" href="Assets/Product/Media/Images/Logo/Dream skin nepal.png" type="image/x-icon">
-    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <link href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css' rel='stylesheet'>
     <link rel="stylesheet" href="Assets/CSS/Navbar.css">
 </head>
@@ -20,27 +19,29 @@ include_once $base_url . 'Assets/PHP/Configuration/Navbar Configuration.php';
 <div class="overlay-box"></div>
 <header>
     <nav class="nav">
-        <div class="header-container">
-            <div class="menu-and-close-icon hide-item">
-                <i class='bx bx-menu-alt-right menu-icon menu'></i>
+            <div class="header-container">
+                <div class="menu-and-close-icon hide-item">
+                    <i class='bx bx-menu-alt-right menu-icon menu'></i>
+                </div>
+                <div class="authentic-text-box hide-item">
+                    <p class="authentic-text-content">#<span class="pink-color">Genuinely</span><span class="blue-color bold-style-text">Authentic</span></p>
+                </div>
+                <div class="logo">
+                    <a href="/"> <img src="Assets/Product/Media/Images/Logo/dream skin main logo.jpg" alt="Logo" class="Dreamskin-logo"></a>
+                </div>
             </div>
-            <div class="authentic-text-box hide-item">
-                <p class="authentic-text-content">#<span class="pink-color">Genuinely</span><span class="blue-color bold-style-text">Authentic</span></p>
-            </div>
-            <div class="logo">
-                <a href="/"> <img src="Assets/Product//Media//Images/Logo/dream skin main logo.jpg" alt="Logo" class="Dreamskin-logo"></a>
-            </div>
-        </div>
+
         <div class="bottom-top-navbar">
+        <div class="search-box-navbar">
+                <input type="text" placeholder="Search..." id="Search" />
+                <div class="icon-box">
+                    <i class='bx bx-search-alt-2'></i>
+                </div>
+            </div>
             <div class="dropdown-menu-container">
                 <div class="custom-dropdown-menu">
                     <ul class="dropdown-menu-ul">
-                            <div class="search-box-navbar">
-                                <input type="text" placeholder="Search..." id="Search"/>
-                                <div class="icon-box">
-                                    <i class='bx bx-search-alt-2'></i>
-                                </div>
-                            </div>
+
                         <li class="dropdown-align">
                             <div class="toggle-name"><a href="/" class="color">Home</a> </div>
                         </li>
@@ -109,7 +110,7 @@ include_once $base_url . 'Assets/PHP/Configuration/Navbar Configuration.php';
                         </li>
 
                         <li class="dropdown-align">
-                            <div class="toggle-name"><a href="<?php echo $BabyCareUrl; ?>/Baby-Care" class="color"><span class="bold-style">Baby Care</span></a></div>
+                            <div class="toggle-name"><a href="<?php echo $BabyCareUrl; ?>/Kids-Care" class="color"><span class="bold-style">Kids Care</span></a></div>
                         </li>
                         <li class="dropdown-align">
                             <a href='Category/BrandList.php' class="toggle-name">

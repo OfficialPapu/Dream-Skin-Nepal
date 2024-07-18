@@ -16,7 +16,7 @@ if (isset($_POST['AddNewProduct'])) {
     $ProductTypeID = $_POST["ProductTypeID"];
     $BrandID = $_POST["BrandID"];
 
-    $sql = "INSERT INTO posts (`Custom Product ID`, `Product Title`,`Slug Url`,`Product Content`, `Product Price`, `Discount Price`, `Discount Percentage`, `Product Quantity`, `Post Date`) VALUES ('$CustomProductID','$productTitle','$SlugTitle','$productContent', '$productPrice', '$discountPrice','$DiscountPercentage', '$Quantity', NOW())";
+    $sql = "INSERT INTO posts (`Custom Product ID`, `Product Title`,`Slug Url`,`Product Content`, `Product Price`, `Discount Price`, `Discount Percentage`, `Product Quantity`, `Post Date`) VALUES ('$CustomProductID','$productTitle','$SlugTitle','$productContent', '$productPrice', '$discountPrice','$DiscountPercentage', '$Quantity', CONVERT_TZ(NOW(), '+00:00', '+05:45'))";
     if ($conn->query($sql) === TRUE) {
         $productId = $conn->insert_id;
 

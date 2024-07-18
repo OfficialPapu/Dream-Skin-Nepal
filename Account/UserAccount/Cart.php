@@ -27,7 +27,7 @@ include_once $base_url . 'Assets/PHP/Account Configuration/Cart Configuration.ph
                     echo '<div class="flex px-5 py-3 text-gray-700 rounded-lg bg-gray-50  dark:bg-gray-800 dark:border-gray-700 Breadcrumb-box" aria-label="Breadcrumb">
                     <ol class="inline-flex items-center space-x-1 md:space-x-2 rtl:space-x-reverse">
                         <li class="inline-flex items-center">
-                            <a href="/" class="inline-flex items-center text-sm font-medium text-gray-700 hover:text-blue-600 dark:text-gray-400 dark:hover:text-white">
+                            <a href="/Dream Skin Nepal/" class="inline-flex items-center text-sm font-medium text-gray-700 hover:text-blue-600 dark:text-gray-400 dark:hover:text-white">
                                 <svg class="w-3 h-3 me-2.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
                                     <path d="m19.707 9.293-2-2-7-7a1 1 0 0 0-1.414 0l-7 7-2 2a1 1 0 0 0 1.414 1.414L2 10.414V18a2 2 0 0 0 2 2h3a1 1 0 0 0 1-1v-4a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v4a1 1 0 0 0 1 1h3a2 2 0 0 0 2-2v-7.586l.293.293a1 1 0 0 0 1.414-1.414Z" />
                                 </svg>
@@ -104,7 +104,7 @@ include_once $base_url . 'Assets/PHP/Account Configuration/Cart Configuration.ph
                 ?>
             </div>
         </div>
-  
+
         <div class='product-summary'>
             <div class="rounded-lg bg-card text-card-foreground shadow-sm w-full max-w-2xl">
                 <div class="flex justify-center items-center p-6 gap-[10px]">
@@ -157,8 +157,16 @@ include_once $base_url . 'Assets/PHP/Account Configuration/Cart Configuration.ph
                         </div>
                         <div class="flex items-center justify-between TotalSavedBox hidden">
                             <span>Total Saved</span>
-                            <span class="text-green-500 TotalSavedData"></span>
+                            <span class="text-green-500 TotalSavedData font-bold"></span>
                         </div>
+                        <?php
+                        if ($TotalPrice != $TotalSaved) {
+                            echo "<div class='flex justify-between font-medium' id='TotalSavedInitial'>
+                            <span>Total Saved</span>
+                            <span class='text-green-500 font-bold'>Rs. $SavedAmount.00</span>
+                        </div>";
+                        }
+                        ?>
                         <div class="flex justify-between font-medium">
                             <span>Grand Total</span>
                             <span id="GrandTotal" class="text-[#FF5200] font-bold">Rs. <?php echo $TotalPrice; ?>.00</span>

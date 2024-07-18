@@ -33,7 +33,7 @@ if (isset($_POST['check'])) {
     $existingRowResult = mysqli_query($conn, $checkExistingRowQuery);
     $user_found = mysqli_num_rows($existingRowResult);
     if ($user_found > 0) {
-        $UpdateData = "UPDATE `delivery_info` SET `Full Name`='$name',`Phone`='$phone',`City`='$city',`Address`='$address',`Order Date`=NOW() WHERE `User ID`='$user_id'";
+        $UpdateData = "UPDATE `delivery_info` SET `Full Name`='$name',`Phone`='$phone',`City`='$city',`Address`='$address',`Order Date`=CONVERT_TZ(NOW(), '+00:00', '+05:45')  WHERE `User ID`='$user_id'";
         $execute = mysqli_query($conn, $UpdateData);
         $_SESSION['user_data_confirm-name'] = $name;
         $_SESSION['user_data_confirm-add'] = $city . ', ' . $address;

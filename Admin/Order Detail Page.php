@@ -221,22 +221,23 @@ include $base_url . 'Assets/PHP/Admin/Order Detail Page Config.php';
             $UserID =  $OrderInfo['UserID'];
             $TotalDue = "Rs. " . $OrderInfo['TotalDue'] . ".00";
             $OrderDate =  $OrderInfo['OrderDate'];
-            $dateTime = new DateTime($OrderDate);
-            $formattedDate = $dateTime->format("j M, Y");
+            $dateTime = DateTime::createFromFormat('Y-m-d H:i:s', $OrderDate);
+            $formattedDate = $dateTime->format('j M, Y');
+            $formattedTime = $dateTime->format('g:i A');
         ?>
             <div class="body-title">Summary</div>
             <div class="summary-item">
                 <div class="body-text">User ID</div>
                 <div class="body-title-3"><?php echo $UserID; ?></div>
-              </div>
-            <div class="summary-item">
-                <div class="body-text">Order ID</div>
-                <div class="body-title-3"><?php echo "#" . $OrderID; ?></div>
-              </div>
+             </div>
             <div class="summary-item">
                 <div class="body-text">Date</div>
                 <div class="body-title-3"><?php echo  $formattedDate; ?></div>
             </div>
+             <div class="summary-item">
+                <div class="body-text">Time</div>
+                <div class="body-title-3"><?php echo $formattedTime; ?></div>
+             </div>
             <div class="summary-item">
                 <div class="body-text">Total</div>
                 <div class="body-title-3 tf-color-1"><?php echo  $TotalDue; ?></div>
