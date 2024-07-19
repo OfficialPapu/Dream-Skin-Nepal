@@ -11,7 +11,7 @@ if ($SlugUrl == '/' || $SlugUrl == '') {
     echo "<script>window.location.href='/'</script>";
 }
 $SlugUrl = str_replace("/", "", $SlugUrl);
-$FindProductType = "SELECT * FROM `product_category` WHERE `Slug Url` LIKE '%bb-cream%'";
+$FindProductType = "SELECT * FROM `product_category` WHERE `Slug Url` LIKE '%$SlugUrl%'";
 $Find = mysqli_query($conn, $FindProductType);
 $Row = $Find->fetch_assoc();
 $ProductTypeName = $Row['Product Category Attribute'];
@@ -52,8 +52,17 @@ function ComboSetProduct($result, $base_url, $is_mobile, $conn)
         $Find = mysqli_query($conn, $FindBrandName);
         $Row = $Find->fetch_assoc();
         $BrandName = $Row['Product Category Attribute'];
+        if($DiscountPercentage != ''){
+            $DiscountValueCalculate = ceil(($price / 100) * $DiscountPercentage);
+            $DiscountValue = $price - $DiscountValueCalculate;
+            $DNSPoint=$DiscountValue/100;
+        }elseif($DiscountPrice != ''){
+            $DNSPoint=$DiscountPrice/100;
+        }else{
+            $DNSPoint=$price/100;
+        }
         echo "<div class='product-divider'>
-<div class='product-box !rounded-[4px]'>";
+<div class='product-box !rounded-[4px]' data-product-id='$product_id' data-selected='0'>";
         if ($StockStatus == 'Out of Stock') {
             echo "<div class='price-and-stock-info out-of-stock'>
 <i class='bx bxs-purchase-tag'></i> Out of Stock
@@ -72,7 +81,12 @@ function ComboSetProduct($result, $base_url, $is_mobile, $conn)
         } else if ($AddedInWishlist == 'Added') {
             echo "<i class='bx bxs-heart AddToWishlist AddToWishlist-btn' data-product-id-wishlist='" . $row['ID'] . "'></i>";
         }
-        echo "<img src='$thumbnail_url' alt='$limited_title'>
+        echo " <div class='dns-point-container'>
+                 <div class='dns-point'>
+                    $DNSPoint DSN Point
+                </div>
+                <img src='$thumbnail_url' alt='$product_title' loading='lazy'>
+                </div>
         <div class='product-data'>
             <span class='productbrand'>$BrandName</span>
             <h5>$limited_title</h5>
@@ -97,5 +111,7 @@ function ComboSetProduct($result, $base_url, $is_mobile, $conn)
 </div>
 </div>";
     }
-    echo "</div>";
+   echo "</div>";
+
 }
+?>

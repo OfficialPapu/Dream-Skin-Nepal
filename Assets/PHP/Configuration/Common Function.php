@@ -62,6 +62,34 @@ if (isset($_POST['AddToCart'])) {
     }
 }
 
+if (isset($_POST['CreateComboSet'])) {
+        $product_ids = $_POST['selectedProductIds'];
+        foreach ($product_ids as $index => $product_id) {
+            $CheckQuantity = "SELECT * FROM `posts` WHERE `ID`='$product_id'";
+            $CheckQuantityRun = mysqli_query($conn, $CheckQuantity);
+            if ($CheckQuantityRun && $CheckQuantityRun->num_rows > 0) {
+                $ProductInfo = $CheckQuantityRun->fetch_assoc();
+                $ProductQuantityValue = $ProductInfo['Product Quantity'];
+                if ($ProductQuantityValue != 0) {
+                        $check_product_already_added = "SELECT * FROM `product_cart` WHERE `User ID`='$user_id' AND `Product_ID`='$product_id'";
+                        $execute = mysqli_query($conn, $check_product_already_added);
+                        if ($execute && $execute->num_rows > 0) {
+                            echo "AlreadyExist";
+                        } else {
+                            $add_to_cart = "INSERT INTO `product_cart`(`User ID`, `Product_ID`, `User_IP`, `Total Due`, `Shipping Fee`,`Applied Promo Code`, `Product_Quantity`, `Date & Time`) VALUES ('$user_id','$product_id','$user_ip','','','','1',CONVERT_TZ(NOW(), '+00:00', '+05:45'))";
+                            $execute = mysqli_query($conn, $add_to_cart);
+                            if ($execute) {
+                                echo "Added";
+                            }
+                        }
+                } else {
+                    echo "OutOfStock";
+                }
+            } 
+        }
+}
+
+
 if (isset($_POST['BuyNow'])) {
     $product_id = $_POST['ProductID'];
     $quantity = $_POST['ProductQuantity'];
@@ -567,14 +595,14 @@ JOIN postsmeta pm3 ON p.ID = pm3.`Product ID` AND pm3.`Product Meta Key` = '$Pro
         $Find = mysqli_query($conn, $FindBrandName);
         $Row = $Find->fetch_assoc();
         $BrandName = $Row['Product Category Attribute'];
-        if($DiscountPercentage != ''){
+        if ($DiscountPercentage != '') {
             $DiscountValueCalculate = ceil(($price / 100) * $DiscountPercentage);
             $DiscountValue = $price - $DiscountValueCalculate;
-            $DNSPoint=$DiscountValue/100;
-        }elseif($DiscountPrice != ''){
-            $DNSPoint=$DiscountPrice/100;
-        }else{
-            $DNSPoint=$price/100;
+            $DNSPoint = $DiscountValue / 100;
+        } elseif ($DiscountPrice != '') {
+            $DNSPoint = $DiscountPrice / 100;
+        } else {
+            $DNSPoint = $price / 100;
         }
         $Output .= "<div class='product-divider'>
         <div class='product-box'>";

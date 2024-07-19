@@ -53,29 +53,37 @@ include_once $base_url . "Assets/PHP/Configuration/Combo Set Config.php";
             <h1><?php echo $ProductTypeName; ?><div class="designing-line"></div>
             </h1>
         </div>
-        <div class="option-container">
-            <div class="option-tag">
-                <div class="select-btn">
-                    <span class="SelectedText">Sort By</span>
-                    <i class='bx bx-chevron-down'></i>
+    </div>
+    <div>
+        <div class="flex justify-between items-center mt-4 px-4 md:px-6 py-4 md:shadow-[0_0_10px_rgba(255,_0,_128,_0.1)] shadow-[0_0_5px_rgba(255,_0,_128,_0.1)] rounded-lg">
+            <div class="inline-block text-2xl rounded-lg text-[#FF007F]">
+                Beginner
+            </div>
+            <div class="inline-block text-xl rounded-lg text-[00adef]">
+                Save Upto: Rs. 1430.00</span>
+            </div>
+        </div>
+        <?php
+        ComboSetProduct($result, $base_url, $is_mobile, $conn);
+        ?>
+        <hr>
+        <div class="flex justify-between md:items-center items-start md:flex-row flex-col p-6 mb-6 md:gap-0 gap-10">
+            <div>
+                <div class="flex items-center justify-between !gap-6 text-[20px]">
+                    <span>Grand total :</span>
+                    <span>Rs. 35.00</span>
                 </div>
-                <ul class="options" data-producttypeid="<?php echo $ProductTypeID; ?>" data-brandid="0" data-featuredproduct="0">
-                    <li class="option-list" data-shorttype="Default">
-                        Default
-                    </li>
-                    <li class="option-list" data-shorttype="ASC">
-                        Price Low to High <i class='bx bx-down-arrow-alt'></i>
-                    </li>
-                    <li class="option-list" data-shorttype="DESC">
-                        Price High to Low <i class='bx bx-up-arrow-alt'></i>
-                    </li>
-                </ul>
+                <div class="flex items-center justify-between gap-3">
+                    <span>Total Saved :</span>
+                    <span class="text-green-500">Rs. 54.00</span>
+                </div>
+            </div>
+
+            <div>
+                <button class="bg-[#FF007F] rounded-lg px-14 py-2 text-white" id="AddToCart">Add To Cart</button>
             </div>
         </div>
     </div>
-    <?php
-    ComboSetProduct($result, $base_url, $is_mobile, $conn);
-    ?>
     <footer>
         <?php
         include_once $base_url . 'Assets/Components/Footer.php';
