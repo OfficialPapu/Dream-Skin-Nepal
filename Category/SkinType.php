@@ -66,21 +66,24 @@ include_once $base_url . "Assets/PHP/Configuration/Combo Set Config.php";
         <?php
         ComboSetProduct($result, $base_url, $is_mobile, $conn);
         ?>
-        <hr>
-        <div class="flex justify-between md:items-center items-start md:flex-row flex-col p-6 mb-6 md:gap-0 gap-10">
-            <div>
-                <div class="flex items-center justify-between !gap-6 text-[20px]">
-                    <span>Grand total :</span>
-                    <span>Rs. 35.00</span>
+        <div class="rounded-lg border text-card-foreground max-w-[500px] py-6 bg-background border-muted shadow-md mb-2 mx-auto">
+            <div class="grid gap-6 p-6">
+                <div class="flex items-center justify-between">
+                    <div class="grid gap-1">
+                        <h3 class="text-xl font-bold">Add to Cart</h3>
+                        <p class="text-muted-foreground text-sm">Get this item added to your cart</p>
+                    </div><button class="inline-flex items-center justify-center whitespace-nowrap text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 bg-primary text-primary-foreground hover:bg-primary/90 h-11 rounded-md shrink-0 px-6 py-3 bg-[#ff007f] text-white" id="AddToCart">Add to Cart</button>
                 </div>
-                <div class="flex items-center justify-between gap-3">
-                    <span>Total Saved :</span>
-                    <span class="text-green-500">Rs. 54.00</span>
+                <div class="flex items-center justify-between">
+                    <div class="grid gap-1">
+                        <p class="text-muted-foreground text-sm">Total Price</p>
+                        <h4 class="text-2xl md:text-3xl font-bold">Rs. 8764.00</h4>
+                    </div>
+                    <div class="grid gap-1 text-right">
+                        <p class="text-muted-foreground text-sm">You Save</p>
+                        <h4 class="text-2xl md:text-3xl font-bold text-green-500">Rs. 9834.00</h4>
+                    </div>
                 </div>
-            </div>
-
-            <div>
-                <button class="bg-[#FF007F] rounded-lg px-14 py-2 text-white" id="AddToCart">Add To Cart</button>
             </div>
         </div>
     </div>
