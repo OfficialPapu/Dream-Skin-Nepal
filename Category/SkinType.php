@@ -66,14 +66,13 @@ include_once $base_url . "Assets/PHP/Configuration/Combo Set Config.php";
         <?php
         ComboSetProduct($result, $base_url, $is_mobile, $conn);
         ?>
-        <div class="rounded-lg border text-card-foreground max-w-[500px] py-6 bg-background border-muted shadow-md mb-2 mx-auto">
-            <div class="grid gap-6 p-6">
-                <div class="flex items-center justify-between">
-                    <div class="grid gap-1">
-                        <h3 class="text-xl font-bold">Add to Cart</h3>
-                        <p class="text-muted-foreground text-sm">Get this item added to your cart</p>
-                    </div><button class="inline-flex items-center justify-center whitespace-nowrap text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 bg-primary text-primary-foreground hover:bg-primary/90 h-11 rounded-md shrink-0 px-6 py-3 bg-[#ff007f] text-white" id="AddToCart">Add to Cart</button>
+        <div class="rounded-lg text-card-foreground max-w-[500px] bg-background border-muted shadow-md mb-2 mx-auto">
+            <div class="flex flex-col gap-4 p-6">
+                <div>
+                    <h3 class="text-xl font-bold">Add to Cart</h3>
+                    <p class="text-muted-foreground text-sm">Get this item added to your cart</p>
                 </div>
+
                 <div class="flex items-center justify-between">
                     <div class="grid gap-1">
                         <p class="text-muted-foreground text-sm">Total Price</p>
@@ -83,6 +82,9 @@ include_once $base_url . "Assets/PHP/Configuration/Combo Set Config.php";
                         <p class="text-muted-foreground text-sm">You Save</p>
                         <h4 class="text-2xl md:text-3xl font-bold text-green-500">Rs. 9834.00</h4>
                     </div>
+                </div>
+                <div>
+                    <button class="inline-flex items-center justify-center whitespace-nowrap text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 bg-primary text-primary-foreground hover:bg-primary/90 h-11 rounded-md shrink-0 px-6 py-3 bg-[#ff007f] text-white w-full" id="AddToCart">Add to Cart</button>
                 </div>
             </div>
         </div>
