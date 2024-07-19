@@ -426,7 +426,7 @@ if (isset($_POST['ApplyCoupon'])) {
                     $item_count = "SELECT * FROM product_cart WHERE `User ID`='$user_id'";
                     $execute = mysqli_query($conn, $item_count);
                     $TotalPrice = 0;
-                    $TotalSaved=0;
+                    $TotalSaved = 0;
                     while ($rowcart = $execute->fetch_assoc()) {
                         $TotalPrice += $rowcart['Total Due'];
                         $TotalSaved += $rowcart['Product Price'];
@@ -567,6 +567,15 @@ JOIN postsmeta pm3 ON p.ID = pm3.`Product ID` AND pm3.`Product Meta Key` = '$Pro
         $Find = mysqli_query($conn, $FindBrandName);
         $Row = $Find->fetch_assoc();
         $BrandName = $Row['Product Category Attribute'];
+        if($DiscountPercentage != ''){
+            $DiscountValueCalculate = ceil(($price / 100) * $DiscountPercentage);
+            $DiscountValue = $price - $DiscountValueCalculate;
+            $DNSPoint=$DiscountValue/100;
+        }elseif($DiscountPrice != ''){
+            $DNSPoint=$DiscountPrice/100;
+        }else{
+            $DNSPoint=$price/100;
+        }
         $Output .= "<div class='product-divider'>
         <div class='product-box'>";
         if ($StockStatus == 'Out of Stock') {
@@ -590,18 +599,16 @@ JOIN postsmeta pm3 ON p.ID = pm3.`Product ID` AND pm3.`Product Meta Key` = '$Pro
         }
 
         $Output .= "<a href='Product/$SlugUrl'>
-                <img src='$thumbnail_url' alt='$limited_title'>
+                  <div class='dns-point-container'>
+                 <div class='dns-point'>
+                    $DNSPoint DSN Point
+                </div>
+                <img src='$thumbnail_url' alt='$product_title' loading='lazy'>
+                </div>
                 <div class='product-data'>
                     <span class='productbrand'>$BrandName</span>
                     <h5>$limited_title</h5>
             </a>
-            <div class='stars'>
-                <i class='bx bxs-star'></i>
-                <i class='bx bxs-star'></i>
-                <i class='bx bxs-star'></i>
-                <i class='bx bxs-star'></i>
-                <i class='bx bxs-star'></i>
-            </div>
         </div>
         <div class='price-cart'>";
         if ($DiscountPrice != '') {
@@ -712,6 +719,15 @@ WHERE
         $Find = mysqli_query($conn, $FindBrandName);
         $Row = $Find->fetch_assoc();
         $BrandName = $Row['Product Category Attribute'];
+        if ($DiscountPercentage != '') {
+            $DiscountValueCalculate = ceil(($price / 100) * $DiscountPercentage);
+            $DiscountValue = $price - $DiscountValueCalculate;
+            $DNSPoint = $DiscountValue / 100;
+        } elseif ($DiscountPrice != '') {
+            $DNSPoint = $DiscountPrice / 100;
+        } else {
+            $DNSPoint = $price / 100;
+        }
         $Output .= "<div class='product-divider'>
             <div class='product-box'>";
         if ($StockStatus == 'Out of Stock') {
@@ -733,18 +749,16 @@ WHERE
             $Output .= "<i class='bx bxs-heart AddToWishlist AddToWishlist-btn' data-product-id-wishlist='" . $product_id . "'></i>";
         }
         $Output .= "<a href='Product/$SlugUrl'>
-                    <img src='$thumbnail_url' alt='$limited_title'>
+                    <div class='dns-point-container'>
+                 <div class='dns-point'>
+                    $DNSPoint DSN Point
+                </div>
+                <img src='$thumbnail_url' alt='$product_title' loading='lazy'>
+                </div>
                     <div class='product-data'>
                         <span class='productbrand'>$BrandName</span>
                         <h5>$limited_title</h5>
                 </a>
-                <div class='stars'>
-                    <i class='bx bxs-star'></i>
-                    <i class='bx bxs-star'></i>
-                    <i class='bx bxs-star'></i>
-                    <i class='bx bxs-star'></i>
-                    <i class='bx bxs-star'></i>
-                </div>
             </div>
             <div class='price-cart'>";
         if ($DiscountPrice != '') {
