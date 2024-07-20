@@ -228,6 +228,8 @@ function FindValue($ProductCategoryID)
 if (isset($_POST['UpdateOrderStatus'])) { {
         $OrderStatus = $_POST['SelectedOption'];
         $UserID = $_POST['UserID'];
+        $Subtotal = $_POST['Subtotal'];
+        $DsnPoint=$Subtotal/100;
         $RowOrderID = $_POST['RowOrderID'];
         $UpdateQuery = "UPDATE `order_items` SET `Order Status`='$OrderStatus' WHERE `Order ID`='$RowOrderID'";
         $Execute = mysqli_query($conn, $UpdateQuery);
@@ -264,9 +266,13 @@ if (isset($_POST['UpdateOrderStatus'])) { {
             NotifyStatusComplete($UserEmail, $UserName, $ProductTitle);
             echo "Completed";
         } else if ($OrderStatus == 'Cancelled') {
+            $UpdateDsnQuery="UPDATE `user_table` SET `DSN Point`=`DSN Point` - '$DsnPoint' WHERE `ID`='$user_id'";
+            $UpdateDsnQueryRun=$conn->query($UpdateDsnQuery);    
             NotifyStatusCanceled($UserEmail, $UserName, $ProductTitle);
             echo "Cancelled";
         } else if ($OrderStatus == 'Rejected') {
+            $UpdateDsnQuery="UPDATE `user_table` SET `DSN Point`=`DSN Point` - '$DsnPoint' WHERE `ID`='$user_id'";
+            $UpdateDsnQueryRun=$conn->query($UpdateDsnQuery); 
             echo "Rejected";
         } else {
             echo "Success";

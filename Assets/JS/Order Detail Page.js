@@ -22,6 +22,7 @@ $(document).ready(function () {
         $('.SelectedText').html(SelectedOption);
         let UserID = $('.option-tag').data('user-id');
         let RowOrderID = $('.option-tag').data('row-id');
+        let Subtotal = $("#subtotal").val();
         $.ajax({
             url: 'Assets/PHP/Configuration/Common Function.php',
             method: 'POST',
@@ -30,6 +31,7 @@ $(document).ready(function () {
                 SelectedOption: SelectedOption,
                 UserID: UserID,
                 RowOrderID:RowOrderID,
+                Subtotal:Subtotal,
             },
             success: function (response) {
                 response=response.trim();

@@ -83,14 +83,15 @@ include $base_url . 'Assets/PHP/Admin/Order Detail Page Config.php';
                     <div class="cart-body">
                         <?php
                         if ($OrderDetail->num_rows > 0) {
-                            $SubTotal = "Rs. " . $OrderInfo['SubTotal'] . ".00";
+                            $SubTotal =  $OrderInfo['SubTotal'] ;
                             $TotalDue = "Rs. " . $OrderInfo['TotalDue'] . ".00";
                             $ShippingFee = "Rs. " . $OrderInfo['ShippingFee'] . ".00";
                         ?>
                             <ul>
                                 <li class="cart-totals-item">
+                                    <input type="hidden" value="<?php echo $SubTotal; ?>" id="subtotal">
                                     <span class="body-text">Subtotal:</span>
-                                    <span class="body-title-2"><?php echo  $SubTotal; ?></span>
+                                    <span class="body-title-2"><?php echo "Rs. " .$SubTotal.".00"?></span>
                                 </li>
                                 <li class="divider"></li>
                                 <li class="cart-totals-item">
