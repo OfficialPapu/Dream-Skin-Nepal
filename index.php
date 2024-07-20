@@ -10,12 +10,23 @@ include 'Assets/PHP/URL/Base Path.php';
 
 <head>
     <!-- Google Tag Manager -->
-<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-})(window,document,'script','dataLayer','GTM-PD3FG3HH');</script>
-<!-- End Google Tag Manager -->
+    <script>
+        (function(w, d, s, l, i) {
+            w[l] = w[l] || [];
+            w[l].push({
+                'gtm.start': new Date().getTime(),
+                event: 'gtm.js'
+            });
+            var f = d.getElementsByTagName(s)[0],
+                j = d.createElement(s),
+                dl = l != 'dataLayer' ? '&l=' + l : '';
+            j.async = true;
+            j.src =
+                'https://www.googletagmanager.com/gtm.js?id=' + i + dl;
+            f.parentNode.insertBefore(j, f);
+        })(window, document, 'script', 'dataLayer', 'GTM-PD3FG3HH');
+    </script>
+    <!-- End Google Tag Manager -->
     <meta charset="UTF-8">
     <meta name="google-site-verification" content="_n9au9euneNaJXGaKlDub_Mz-_--CUur_PMLWY_KMCg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -84,18 +95,16 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                 font-size: 3rem;
             }
         }
-
     </style>
 </head>
 
 <body>
     <!-- Google Tag Manager (noscript) -->
-<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PD3FG3HH"
-height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PD3FG3HH" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <nav class="main-nav">
         <?php include('Assets/Components/Navbar.php'); ?>
     </nav>
-<h1 style="display:none">Dream Skin Nepal - Best Korean Skincare Cosmetics Products in Nepal</h1>
+    <h1 style="display:none">Dream Skin Nepal - Best Korean Skincare Cosmetics Products in Nepal</h1>
     <div class="image_cresol">
         <?php include('Assets/Slider/Image Cresol.php'); ?>
     </div>
@@ -106,7 +115,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         include('Assets/Slider/Company Info Mobile.php');
         ?>
     </div>
-<?php //include('Countdown.html'); ?>
+    <?php //include('Countdown.html'); 
+    ?>
     <div class="fridaysales">
         <!--<div class="view-more-box">-->
         <!--    <div class="heading-box">-->
@@ -116,7 +126,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <!--        <a href="Category/ViewMoreProduct.php?Condition=OFFER">SHOP MORE<i class="bx bx-chevron-right"></i></a>-->
         <!--    </div>-->
         <!--</div>-->
-        <?php //include('Assets/Slider/Friday Sale.php'); ?>
+        <?php //include('Assets/Slider/Friday Sale.php'); 
+        ?>
     </div>
 
     <div class="products">
@@ -128,8 +139,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                 <a href="Category/ViewMoreProduct.php?Condition=NewArrivals">SHOP MORE<i class="bx bx-chevron-right"></i></a>
             </div>
         </div>
-        <?php 
-        $Sql="ORDER BY Rand() LIMIT 0,10";
+        <?php
+        $Sql = "WHERE p.ID>=322 OR p.ID=192 OR p.ID=187 OR p.ID=30 OR p.ID=12 ORDER BY Rand() LIMIT 0,10";
         include('Assets/Slider/Product Slider.php');
         ?>
     </div>
@@ -143,19 +154,33 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                 <a href="Category/ViewMoreProduct.php?Condition=BestSellers">SHOP MORE<i class="bx bx-chevron-right"></i></a>
             </div>
         </div>
-        <?php 
-        $Sql="ORDER BY Rand() LIMIT 0,10";
+        <?php
+        $Sql = "ORDER BY Rand() LIMIT 0,10";
         include('Assets/Slider/Product Slider.php');
         ?>
     </div>
 
-    <div class="products recommanded">
-        <h2 class="product-heading">Recommended For You</h2>
-        <?php 
-        $Sql="ORDER BY Rand() LIMIT 0,10";
+    <?php
+    $CategorySql = "SELECT * FROM `product_category` WHERE `Product Category Name`='Skin Care'";
+    $CategorySqlRun = mysqli_query($conn, $CategorySql);
+    while ($Row = $CategorySqlRun->fetch_assoc()) {
+        $CategoryAttribute = $Row['Product Category Attribute'];
+        $CategoryID = $Row['Product Category ID'];
+        $SlugUrl= $Row['Slug Url'];
+        $Sql = "WHERE pm3.`Product Meta Value`='$CategoryID'";
+        echo "<div class='products'>
+        <div class='view-more-box'>
+            <div class='heading-box'>
+                <h2 class='product-heading'>$CategoryAttribute</h2>
+            </div>
+            <div class='view-more'>
+                <a href='Category/SkinCare.php/$SlugUrl'>SHOP MORE<i class='bx bx-chevron-right'></i></a>
+            </div>
+        </div>";
         include('Assets/Slider/Product Slider.php');
-        ?>
-    </div>
+        echo "</div>";
+    }
+    ?>
 
     <div class="products review">
         <h2 class="product-heading">Customer Reviews</h2>
@@ -176,70 +201,75 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <script src="Assets/JS/Script.js"></script>
 
 <script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@graph": [
     {
-      "@type": "BreadcrumbList",
-      "@id": "https://www.dreamskinnepal.com/#breadcrumblist",
-      "itemListElement": [
-        {
-          "@type": "ListItem",
-          "@id": "https://www.dreamskinnepal.com/#listItem",
-          "position": 1,
-          "name": "Home"
-        }
-      ]
-    },
-    {
-      "@type": "Organization",
-      "@id": "https://www.dreamskinnepal.com/#organization",
-      "name": "Dream Skin Nepal",
-      "url": "https://www.dreamskinnepal.com/",
-      "logo": {
-        "@type": "ImageObject",
-        "url": "https://dreamskinnepal.com/Assets/Product/Media/Images/Logo/Dream skin nepal.png",
-        "@id": "https://www.dreamskinnepal.com/#organizationLogo",
-        "width": 600,
-        "height": 600
-      },
-      "image": { "@id": "https://www.dreamskinnepal.com/#organizationLogo" },
-      "sameAs": [
-        "https://facebook.com/Dream.Skin.Nepal/",
-        "https://www.instagram.com/dream.skin.nepal/"
-      ]
-    },
-    {
-      "@type": "WebPage",
-      "@id": "https://www.dreamskinnepal.com/#webpage",
-      "url": "https://www.dreamskinnepal.com/",
-      "name": "Dream Skin Nepal - Best Korean Skincare Cosmetics Products in Nepal",
-      "description": "Dream Skin Nepal - Trusted for Korean Beauty products. Leading skincare, cosmetics, cruelty-free & vegan options. Free shipping over Rs. 5000. Shop online for Korean products in Nepal.",
-      "inLanguage": "en-US",
-      "isPartOf": { "@id": "https://www.dreamskinnepal.com/#website" },
-      "breadcrumb": { "@id": "https://www.dreamskinnepal.com/#breadcrumblist" },
-      "datePublished": "2023-10-06T22:28:28+05:45",
-      "dateModified": "2024-02-15T17:04:34+05:45"
-    },
-    {
-      "@type": "WebSite",
-      "@id": "https://www.dreamskinnepal.com/#website",
-      "url": "https://www.dreamskinnepal.com/",
-      "name": "Dream Skin Nepal",
-      "description": "Dream Skin Nepal - Trusted for Korean Beauty products. Leading skincare, cosmetics, cruelty-free & vegan options. Free shipping over Rs. 5000. Shop online for Korean products in Nepal.",
-      "inLanguage": "en-US",
-      "publisher": { "@id": "https://www.dreamskinnepal.com/#organization" },
-      "potentialAction": {
-        "@type": "SearchAction",
-        "target": {
-          "@type": "EntryPoint",
-          "urlTemplate": "https://www.dreamskinnepal.com/Assets/PHP/Database/SearchProduct.php?search_term_string={search_term_string}"
-        },
-        "query-input": "required name=search_term_string"
-      }
+        "@context": "https://schema.org",
+        "@graph": [{
+                "@type": "BreadcrumbList",
+                "@id": "https://www.dreamskinnepal.com/#breadcrumblist",
+                "itemListElement": [{
+                    "@type": "ListItem",
+                    "@id": "https://www.dreamskinnepal.com/#listItem",
+                    "position": 1,
+                    "name": "Home"
+                }]
+            },
+            {
+                "@type": "Organization",
+                "@id": "https://www.dreamskinnepal.com/#organization",
+                "name": "Dream Skin Nepal",
+                "url": "https://www.dreamskinnepal.com/",
+                "logo": {
+                    "@type": "ImageObject",
+                    "url": "https://dreamskinnepal.com/Assets/Product/Media/Images/Logo/Dream skin nepal.png",
+                    "@id": "https://www.dreamskinnepal.com/#organizationLogo",
+                    "width": 600,
+                    "height": 600
+                },
+                "image": {
+                    "@id": "https://www.dreamskinnepal.com/#organizationLogo"
+                },
+                "sameAs": [
+                    "https://facebook.com/Dream.Skin.Nepal/",
+                    "https://www.instagram.com/dream.skin.nepal/"
+                ]
+            },
+            {
+                "@type": "WebPage",
+                "@id": "https://www.dreamskinnepal.com/#webpage",
+                "url": "https://www.dreamskinnepal.com/",
+                "name": "Dream Skin Nepal - Best Korean Skincare Cosmetics Products in Nepal",
+                "description": "Dream Skin Nepal - Trusted for Korean Beauty products. Leading skincare, cosmetics, cruelty-free & vegan options. Free shipping over Rs. 5000. Shop online for Korean products in Nepal.",
+                "inLanguage": "en-US",
+                "isPartOf": {
+                    "@id": "https://www.dreamskinnepal.com/#website"
+                },
+                "breadcrumb": {
+                    "@id": "https://www.dreamskinnepal.com/#breadcrumblist"
+                },
+                "datePublished": "2023-10-06T22:28:28+05:45",
+                "dateModified": "2024-02-15T17:04:34+05:45"
+            },
+            {
+                "@type": "WebSite",
+                "@id": "https://www.dreamskinnepal.com/#website",
+                "url": "https://www.dreamskinnepal.com/",
+                "name": "Dream Skin Nepal",
+                "description": "Dream Skin Nepal - Trusted for Korean Beauty products. Leading skincare, cosmetics, cruelty-free & vegan options. Free shipping over Rs. 5000. Shop online for Korean products in Nepal.",
+                "inLanguage": "en-US",
+                "publisher": {
+                    "@id": "https://www.dreamskinnepal.com/#organization"
+                },
+                "potentialAction": {
+                    "@type": "SearchAction",
+                    "target": {
+                        "@type": "EntryPoint",
+                        "urlTemplate": "https://www.dreamskinnepal.com/Assets/PHP/Database/SearchProduct.php?search_term_string={search_term_string}"
+                    },
+                    "query-input": "required name=search_term_string"
+                }
+            }
+        ]
     }
-  ]
-}
 </script>
 
 <script>
@@ -255,7 +285,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 </script>
 
 <script>
-    !function(f, b, e, v, n, t, s) {
+    ! function(f, b, e, v, n, t, s) {
         if (f.fbq) return;
         n = f.fbq = function() {
             n.callMethod ? n.callMethod.apply(n, arguments) : n.queue.push(arguments)
@@ -274,6 +304,4 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     fbq('init', '1300972564192880');
     fbq('track', 'PageView');
 </script>
-<noscript><img height="1" width="1" style="display:none"
-    src="https://www.facebook.com/tr?id=1300972564192880&ev=PageView&noscript=1"
-/ alt='meta pixel'></noscript>
+<noscript><img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=1300972564192880&ev=PageView&noscript=1" / alt='meta pixel'></noscript>

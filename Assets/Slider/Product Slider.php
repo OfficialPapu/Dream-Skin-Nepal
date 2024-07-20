@@ -6,7 +6,6 @@
     include_once $base_url . 'Assets/PHP/Database/Database Connection.php';
     include_once $base_url . 'Assets/PHP/Configuration/Slider Config.php';
     include_once  $base_url . 'Assets/PHP/URL/Base URL.php';
-    $Sql="WHERE p.ID>=322 OR p.ID=192 OR p.ID=187 OR p.ID=30 OR p.ID=12 ORDER BY Rand() LIMIT 0,10";
     ?>
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/11.0.5/swiper-bundle.min.css" />
