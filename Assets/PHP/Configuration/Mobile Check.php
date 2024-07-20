@@ -1,6 +1,4 @@
 <?php
-$result = mysqli_query($conn, $query);
-
 if (!function_exists('isMobileDevice')) {
     function isMobileDevice()
     {
