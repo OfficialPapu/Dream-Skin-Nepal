@@ -18,6 +18,6 @@ FROM posts p
 JOIN postsmeta pm1 ON p.ID = pm1.`Product ID` AND pm1.`Product Meta Key` = 'Image 1'
 JOIN order_items ON p.ID = order_items.`Product ID`
 JOIN orders ON order_items.`Order ID` = orders.`Order ID`
-WHERE order_items.`User ID` = '$user_id'";
+WHERE order_items.`User ID` = '$user_id' ORDER BY order_items.`ID` DESC";
     $result = $conn->query($query);
   ?>

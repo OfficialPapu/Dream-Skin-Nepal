@@ -23,6 +23,10 @@ if (isset($_POST['DataSend'])) {
         $_SESSION['user_last_name'] = $row['Last Name'];
         $_SESSION['user_email'] = $row['Email'];
         $_SESSION['LoginSession']['user_id'] = $row['ID'];
+        
+        setcookie('Logged_In', true, time() + $session_lifetime, "/");
+        setcookie('user_id', $row['ID'], time() + $session_lifetime, "/");
+        
         if (isset($_SESSION['Cart']['user_id'])) {
             $GuestID = $_SESSION['Cart']['user_id'];
             $user_id = $_SESSION['LoginSession']['user_id'];

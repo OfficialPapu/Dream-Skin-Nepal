@@ -148,10 +148,10 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <?php include('Assets/Slider/Product Slider 3.php'); ?>
     </div>
 
-    <!--<div class="products review">-->
-    <!--    <h2 class="product-heading">Customer Reviews</h2>-->
-    <!--    <?php //include('Assets/Slider/Customer Review.php'); ?>-->
-    <!--</div>-->
+    <div class="products review">
+        <h2 class="product-heading">Customer Reviews</h2>
+        <?php include('Assets/Slider/Customer Review.php'); ?>
+    </div>
 
     <div class="whatsapp">
         <a href="https://wa.me/9862078653"><img src="Assets/Product/Media/Images/Logo/Whatsapp.png" alt="Contact us on WhatsApp"></a>

@@ -83,7 +83,7 @@ include_once $base_url . 'Assets/PHP/Configuration/Navbar Configuration.php';
                         </li>
 
                         <li class="dropdown-align">
-                            <div class="toggle-name"> <span class="bold-style">Make Up</span>
+                            <div class="toggle-name"> <span class="bold-style">Makeup</span>
                                 <!--<span class="plus-minus-box">-->
                                 <!--    <i class='bx bx-plus plus hide-item'></i>-->
                                 <!--    <i class='bx bx-minus minus hide-item'></i>-->

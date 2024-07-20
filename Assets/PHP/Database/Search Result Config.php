@@ -74,6 +74,15 @@ WHERE
         $Find = mysqli_query($conn, $FindBrandName);
         $Row = $Find->fetch_assoc();
         $BrandName = $Row['Product Category Attribute'];
+        if($DiscountPercentage != ''){
+            $DiscountValueCalculate = ceil(($price / 100) * $DiscountPercentage);
+        $DiscountValue = $price - $DiscountValueCalculate;
+        $DNSPoint=$DiscountValue/100;
+        }elseif($DiscountPrice != ''){
+        $DNSPoint=$DiscountPrice/100;
+        }else{
+        $DNSPoint=$price/100;
+        }
         $Output .= "<div class='product-divider'>
             <div class='product-box'>";
         if ($StockStatus == 'Out of Stock') {
@@ -90,18 +99,16 @@ WHERE
             </div>";
         }
         $Output .= "<a href='Product/$SlugUrl'>
-                    <img src='$thumbnail_url' alt='$limited_title'>
+                      <div class='dns-point-container'>
+                 <div class='dns-point'>
+                    $DNSPoint DSN Point
+                </div>
+                <img src='$thumbnail_url' alt='$product_title' loading='lazy'>
+                </div>
                     <div class='product-data'>
                         <span class='productbrand'>$BrandName</span>
                         <h5>$limited_title</h5>
-                </a>
-                <div class='stars'>
-                    <i class='bx bxs-star'></i>
-                    <i class='bx bxs-star'></i>
-                    <i class='bx bxs-star'></i>
-                    <i class='bx bxs-star'></i>
-                    <i class='bx bxs-star'></i>
-                </div>
+                </a>    
             </div>
             <div class='price-cart'>";
         if ($DiscountPrice != '') {

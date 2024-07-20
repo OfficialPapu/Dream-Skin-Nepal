@@ -58,3 +58,20 @@ $Slug=$Data['Slug Url'];
 echo "<script>window.location.href='https://dreamskinnepal.com/Product/$Slug'</script>";
 }
 ?>
+
+<?php
+ if (!isset($_SESSION['Logged In'])) {
+    if(isset($_COOKIE['Logged_In'])){
+        $CookieUserID=$_COOKIE['user_id'];
+        $UserQuery="SELECT * FROM user_table WHERE ID = '$CookieUserID'";
+        $UserQueryRun=mysqli_query($conn,$UserQuery);
+        $row=$UserQueryRun->fetch_assoc();
+        @session_start();
+        $_SESSION['Logged In'] = true;
+        $_SESSION['user_first_name'] = $row['First Name'];
+        $_SESSION['user_last_name'] = $row['Last Name'];
+        $_SESSION['user_email'] = $row['Email'];
+        $_SESSION['LoginSession']['user_id'] = $row['ID'];
+    }
+ }
+?>
