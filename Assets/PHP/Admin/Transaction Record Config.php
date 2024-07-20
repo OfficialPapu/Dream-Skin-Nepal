@@ -22,7 +22,7 @@ if ($UserInfoQueryRun->num_rows > 0) {
   $DSNPoint = $Row['DSN Point'];
   $LifetimePurchase = $Row['LifetimePurchase'];
   $AccountSignupDate = $Row['Account Signup Date'];
-   if($Row -> num_rows > 0){
+   if($UserInfoQueryRun -> num_rows > 0){
   $DateTime = DateTime::createFromFormat('Y-m-d H:i:s', $AccountSignupDate);
   $FormattedDate = $DateTime->format('j M, Y g:i A');
    }
