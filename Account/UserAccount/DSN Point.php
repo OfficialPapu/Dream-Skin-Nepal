@@ -3,16 +3,16 @@
 @session_start();
 $base_url = $_SESSION['URLSession']['Base Path'];
 include_once $base_url . 'Assets/Components/Navbar.php';
-$DnsPointQuery = "SELECT * FROM `user_table` WHERE `ID`='$user_id'";
-$DnsPointRun = mysqli_query($conn, $DnsPointQuery);
-$Row = $DnsPointRun->fetch_assoc();
-$DnsPoint = $Row['DNS Point'];
-if ($DnsPoint != '') {
-  if (intval($DnsPoint) == $DnsPoint) {
-    $DnsPoint = number_format($DnsPoint, 2, '.', '');
+$DsnPointQuery = "SELECT * FROM `user_table` WHERE `ID`='$user_id'";
+$DsnPointRun = mysqli_query($conn, $DsnPointQuery);
+$Row = $DsnPointRun->fetch_assoc();
+$DsnPoint = $Row['DSN Point'];
+if ($DsnPoint != '') {
+  if (intval($DsnPoint) == $DsnPoint) {
+    $DsnPoint = number_format($DsnPoint, 2, '.', '');
   }
 } else {
-  $DnsPoint = "0.00";
+  $DsnPoint = "0.00";
 }
 ?>
 <!DOCTYPE html>
@@ -23,22 +23,22 @@ if ($DnsPoint != '') {
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
-  <title>DNS Points - Dream Skin Nepal</title>
+  <title>DSN Points - Dream Skin Nepal</title>
   <style>
-      .dns-container{
+      .dsn-container{
         display: flex;
       }
-      .right-dns-data{
+      .right-dsn-data{
             width: calc(100vw - 300px);
       }
       @media (max-width:860px) {
         .hide-item-small-screen {
         display: none;
         }
-        .dns-container{
+        .dsn-container{
        display:block;
       }
-    .right-dns-data{
+    .right-dsn-data{
             width: 100vw;
       }
       }
@@ -46,24 +46,24 @@ if ($DnsPoint != '') {
 </head>
 
 <body>
-<div class="dns-container">
+<div class="dsn-container">
  <div class="left-nav-bar hide-item-small-screen">
 <?php
 include_once $base_url . 'Assets/Components/Left Navbar.php';
 ?>
 </div>   
-    <div class="right-dns-data">
-  <div class="overlay-dns-container h-screen w-screen bg-[rgba(0,0,0,0.5)] fixed z-[150] top-0  left-0 hidden"></div>
+    <div class="right-dsn-data">
+  <div class="overlay-dsn-container h-screen w-screen bg-[rgba(0,0,0,0.5)] fixed z-[150] top-0  left-0 hidden"></div>
   <div class="md:mt-[70px] mt-[17vh] flex justify-center">
     <div class="md:w-full md:max-w-md px-4 md:px-10 md:pt-4 md:pb-10 py-10 bg-white rounded-lg shadow-[0_0_10px_rgba(255,0,128,0.1)] dark:bg-gray-800">
       <div class="flex flex-col items-center">
         <img src="Assets/Product/Media/Images/Logo/dream skin main logo.jpg" alt="Dream Skin Nepal" class="h-20 md:h-32 object-contain" />
-        <h1 class="text-xl md:text-2xl font-bold dns-heading mb-2 text-[#ff007f]">
-          Total DNS Points
+        <h1 class="text-xl md:text-2xl font-bold dsn-heading mb-2 text-[#ff007f]">
+          Total DS Points
         </h1>
-        <div class="text-3xl md:text-4xl font-bold text-primary dns-points text-[#00adef]"><?php echo $DnsPoint; ?></div>
+        <div class="text-3xl md:text-4xl font-bold text-primary dsn-points text-[#00adef]"><?php echo $dsnPoint; ?></div>
         <div class="m-2 text-sm md:text-base text-gray-500 dark:text-gray-400">
-          You have collected <?php echo $DnsPoint; ?> points so far.
+          You have collected <?php echo $dsnPoint; ?> points so far.
         </div>
         <div class="mt-3 flex md:flex-row gap-4">
           <a class="inline-flex items-center justify-center px-4 py-2 border bg-[#FF007F] hover:bg-[#00ADEF] transition duration-300 text-white text-sm font-medium bg-primary rounded-md hover:bg-primary-600 focus:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 focus-visible:ring-offset-2 dark:bg-primary-500 dark:hover:bg-primary-600 dark:focus-visible:ring-offset-gray-800" href="Account/UserAccount/My Orders.php" rel="ugc">
@@ -112,12 +112,12 @@ include_once $base_url . 'Assets/Components/Left Navbar.php';
     $("#NoTnow").click(function(e) {
       e.preventDefault();
       $(".popup-box").css("display", "none");
-      $(".overlay-dns-container").css("display", "none");
+      $(".overlay-dsn-container").css("display", "none");
     });
     $('#Redeem').click(function(e) {
       e.preventDefault();
       $(".popup-box").css("display", "block");
-      $(".overlay-dns-container").css("display", "block");
+      $(".overlay-dsn-container").css("display", "block");
     });
   </script>
 </body>

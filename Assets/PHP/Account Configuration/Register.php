@@ -20,7 +20,7 @@ if (isset($_POST['DataSend'])) {
         if ($already_exist_query->num_rows > 0) {
             echo "Exists";
         } else {
-            $send_form_data = "INSERT INTO `user_table`(`ID`, `First Name`, `Last Name`, `Email`, `Mobile Number`, `Password`, `DNS Point`, `User Address`, `User Picture`, `User IP`, `User Gender`, `Date Of Birth`,`Account Signup Date`) VALUES ('','$first_name','$last_name','$email','$mobile_number','$password','','','','$ip','','',CONVERT_TZ(NOW(), '+00:00', '+05:45'))";
+            $send_form_data = "INSERT INTO `user_table`(`ID`, `First Name`, `Last Name`, `Email`, `Mobile Number`, `Password`, `DSN Point`, `User Address`, `User Picture`, `User IP`, `User Gender`, `Date Of Birth`,`Account Signup Date`) VALUES ('','$first_name','$last_name','$email','$mobile_number','$password','','','','$ip','','',CONVERT_TZ(NOW(), '+00:00', '+05:45'))";
             $ex = mysqli_query($conn, $send_form_data);
             if ($ex) {
                 echo "Sucess";

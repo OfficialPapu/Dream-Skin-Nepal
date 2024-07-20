@@ -78,7 +78,7 @@ if ($RunQuery->num_rows > 0) {
                     </div>
                     <div class="side-bar-order-section">
                         <ul>
-                            <li><a href="Account/UserAccount/DNS Point.php" class="color-design-num"><i class='bx bx-data'></i>DNS Point</a></li>
+                            <li><a href="Account/UserAccount/DSN Point.php" class="color-design-num"><i class='bx bx-data'></i>DSN Point</a></li>
                         </ul>
                     </div>
                 </div>

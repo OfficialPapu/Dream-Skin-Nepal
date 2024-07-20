@@ -544,10 +544,10 @@ html {
 }
 
 
-.dns-point-container {
+.dsn-point-container {
     position: relative;
   }
-  .dns-point {
+  .dsn-point {
     border-radius: 5px;
     right: 0px;
     bottom: 0px;
@@ -563,7 +563,7 @@ html {
   }
   
   @media (max-width:550px) {
-    .dns-point{
+    .dsn-point{
      padding: 5px;
     } 
     .product-box {

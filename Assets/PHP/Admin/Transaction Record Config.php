@@ -19,7 +19,7 @@ if ($UserInfoQueryRun->num_rows > 0) {
   $MobileNumber = $Row['Mobile Number'];
   $UserAddress = $Row['User Address'];
   $UserPic = $Row['User Picture'];
-  $DSNPoint = $Row['DNS Point'];
+  $DSNPoint = $Row['DSN Point'];
   $LifetimePurchase = $Row['LifetimePurchase'];
   $AccountSignupDate = $Row['Account Signup Date'];
    if($Row -> num_rows > 0){

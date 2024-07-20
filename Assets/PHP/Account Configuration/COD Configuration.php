@@ -54,17 +54,17 @@ if (isset($_GET['PaymentInfo'])) {
                     $rundelete = mysqli_query($conn, $deleteproductfromcart);
                 }
             } {
-        $DnsPointFetach="SELECT * FROM `user_table` WHERE `ID`='$user_id'";
-        $DnsPointFetachRun=$conn->query($DnsPointFetach);
-        $Row=$DnsPointFetachRun->fetch_assoc();
-        $DnsPointDB=$Row['DNS Point'];
-        if($DnsPointDB==''){
-        $DnsPointDB=0;
+        $DsnPointFetach="SELECT * FROM `user_table` WHERE `ID`='$user_id'";
+        $DsnPointFetachRun=$conn->query($DsnPointFetach);
+        $Row=$DsnPointFetachRun->fetch_assoc();
+        $DsnPointDB=$Row['DSN Point'];
+        if($DsnPointDB==''){
+        $DsnPointDB=0;
         }
-        $PurchaseDnsPoint = $TotalPrice/100;
-        $DnsPoint=$DnsPointDB+$PurchaseDnsPoint;
-        $UpdateDnsQuery="UPDATE `user_table` SET `DNS Point`='$DnsPoint' WHERE `ID`='$user_id'";
-        $UpdateDnsQueryRun=$conn->query($UpdateDnsQuery);         
+        $PurchaseDsnPoint = $TotalPrice/100;
+        $DsnPoint=$DsnPointDB+$PurchaseDsnPoint;
+        $UpdateDsnQuery="UPDATE `user_table` SET `DSN Point`='$DsnPoint' WHERE `ID`='$user_id'";
+        $UpdateDsnQueryRun=$conn->query($UpdateDsnQuery);         
         $ProductInformationQuery = "SELECT
             OrderList.`Tracking Number`,
             OrderItem.`Shipping Fee` AS ShippingFee,

@@ -116,11 +116,11 @@ $canonical_url = 'https://' . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
              if($DiscountPercentage != ''){
                     $DiscountValueCalculate = ceil(($price / 100) * $DiscountPercentage);
                     $DiscountValue = $price - $DiscountValueCalculate;
-                    $DNSPoint=$DiscountValue/100;
+                    $DSNPoint=$DiscountValue/100;
                 }elseif($DiscountPrice != ''){
-                    $DNSPoint=$DiscountPrice/100;
+                    $DSNPoint=$DiscountPrice/100;
                 }else{
-                    $DNSPoint=$price/100;
+                    $DSNPoint=$price/100;
                 }
             echo "<div class='product-divider'>
     <div class='product-box'>";
@@ -143,9 +143,9 @@ $canonical_url = 'https://' . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
         echo "<i class='bx bxs-heart AddToWishlist AddToWishlist-btn' data-product-id-wishlist='" . $row['ID'] . "'></i>";
         }
             echo "<a href='Product/$SlugUrl'>
-             <div class='dns-point-container'>
-                 <div class='dns-point'>
-                    $DNSPoint DSN Point
+             <div class='DSN-point-container'>
+                 <div class='DSN-point'>
+                    $DSNPoint DSN Point
                 </div>
                 <img src='$thumbnail_url' alt='$product_title' loading='lazy'>
                 </div>
