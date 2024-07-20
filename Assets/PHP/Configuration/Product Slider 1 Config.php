@@ -17,3 +17,5 @@ WHERE p.ID>=322 OR p.ID=192 OR p.ID=187 OR p.ID=30 OR p.ID=12 ORDER BY Rand() LI
 $result = $conn->query($query);
 include $base_url . "Assets/PHP/Configuration/Mobile Check.php";
 ?>
+
+
