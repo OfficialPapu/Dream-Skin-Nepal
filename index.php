@@ -128,7 +128,10 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                 <a href="Category/ViewMoreProduct.php?Condition=NewArrivals">SHOP MORE<i class="bx bx-chevron-right"></i></a>
             </div>
         </div>
-        <?php include('Assets/Slider/Product Slider 1.php'); ?>
+        <?php 
+        $Sql="ORDER BY Rand() LIMIT 0,10";
+        include('Assets/Slider/Product Slider.php');
+        ?>
     </div>
 
     <div class="products">
@@ -140,12 +143,18 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                 <a href="Category/ViewMoreProduct.php?Condition=BestSellers">SHOP MORE<i class="bx bx-chevron-right"></i></a>
             </div>
         </div>
-        <?php include('Assets/Slider/Product Slider 2.php'); ?>
+        <?php 
+        $Sql="ORDER BY Rand() LIMIT 0,10";
+        include('Assets/Slider/Product Slider.php');
+        ?>
     </div>
 
     <div class="products recommanded">
         <h2 class="product-heading">Recommended For You</h2>
-        <?php include('Assets/Slider/Product Slider 3.php'); ?>
+        <?php 
+        $Sql="ORDER BY Rand() LIMIT 0,10";
+        include('Assets/Slider/Product Slider.php');
+        ?>
     </div>
 
     <div class="products review">
