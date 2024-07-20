@@ -451,10 +451,10 @@
   border: none;
 }
 
-.dsn-point-container {
+.DSN-point-container {
   position: relative;
 }
-.dsn-point {
+.DSN-point {
   border-radius: 5px;
   right: 0px;
   bottom: 0px;
@@ -470,7 +470,7 @@
 }
 
 @media (max-width:550px) {
- .dsn-point{
+ .DSN-point{
   padding: 5px;
  } 
  .product-box {
