@@ -9,7 +9,6 @@ include 'Assets/PHP/URL/Base Path.php';
 <html lang="en">
 
 <head>
-    <!-- Google Tag Manager -->
     <script>
         (function(w, d, s, l, i) {
             w[l] = w[l] || [];
@@ -158,10 +157,7 @@ include 'Assets/PHP/URL/Base Path.php';
     </footer>
 
 </body>
-
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 <script src="Assets/JS/Script.js"></script>
-
 <script type="application/ld+json">
     {
         "@context": "https://schema.org",
@@ -233,35 +229,6 @@ include 'Assets/PHP/URL/Base Path.php';
         ]
     }
 </script>
-
-<script>
-
-let countDownTime = new Date('July 15, 2024 23:00:00').getTime();
-setInterval(() => {
-    let today = new Date().getTime();
-    let difference = countDownTime - today;
-    
-    if (difference > 0) {
-        let hours = Math.floor(difference / (1000 * 60 * 60));
-        let minutes = Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60));
-        let seconds = Math.floor((difference % (1000 * 60)) / 1000);
-        
-        $('.hour').html(hours + `<span class="time-info"> hrs</span>`);
-        $('.minute').html(minutes + `<span class="time-info"> min</span>`);
-        $('.second').html(seconds + `<span class="time-info"> sec</span>`);
-        
-    } else {
-        $('.hour').html('00<span class="time-info"> hrs</span>');
-        $('.minute').html('00<span class="time-info"> min</span>');
-        $('.second').html('00<span class="time-info"> sec</span>');
-    }
-}, 1000);
-
-    setTimeout(function() {
-        document.querySelector('.whatsapp').classList.add('show-whatsapp');
-    }, 2000);
-</script>
-
 <script>
     ! function(f, b, e, v, n, t, s) {
         if (f.fbq) return;
