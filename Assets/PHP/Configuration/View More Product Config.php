@@ -17,7 +17,7 @@ if ($GetValue == 'NewArrivals') {
 }else if ($GetValue == 'OFFER') {
     $PageTitle = "OFFER";
     $featuredproduct=0;
-    $Condition =  "p.ID=294 OR p.ID=295 OR p.ID=143 OR p.ID=216 OR p.ID=13 OR p.ID=292 OR p.ID=121 OR p.ID=293 OR p.ID=25 OR p.ID=204";
+    $Condition = 'p.ID=30 OR p.ID=325 OR p.ID=143 OR p.ID=192 OR p.ID=327 OR p.ID=292 OR p.ID=187 OR p.ID=329 OR p.ID=121';
 }
 $query = "SELECT DISTINCT p.ID, p.`Product Title`,p.`Slug Url`, p.`Product Price`,p.`Discount Price`,p.`Discount Percentage`, pm1.`Product Meta Value` 
 AS ProductBrand, pm2.`Product Meta Value` AS ProductThumbnail, pm3.`Product Meta Value` AS ProductType,
