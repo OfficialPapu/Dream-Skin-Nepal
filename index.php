@@ -61,22 +61,38 @@ include 'Assets/PHP/URL/Base Path.php';
         include('Assets/Slider/Company Info Mobile.php');
         ?>
     </div>
-    <?php //include('Countdown.html'); 
-    ?>
+
     <div class="fridaysales">
-        <!--<div class="view-more-box">-->
-        <!--    <div class="heading-box">-->
-        <!--        <h2 class="product-heading">Live Sales</h2>-->
-        <!--    </div>-->
-        <!--    <div class="view-more">-->
-        <!--        <a href="Category/ViewMoreProduct.php?Condition=OFFER">SHOP MORE<i class="bx bx-chevron-right"></i></a>-->
-        <!--    </div>-->
-        <!--</div>-->
-        <?php //include('Assets/Slider/Friday Sale.php'); 
+        <div class="view-more-box">
+            <div class="heading-box">
+                <h2 class="product-heading">Live Sales</h2>
+            </div>
+            <div class="view-more">
+                <a href="Category/ViewMoreProduct.php?Condition=OFFER">SHOP MORE<i class="bx bx-chevron-right"></i></a>
+            </div>
+        </div>
+        <div class="sales-offer-container">
+            <div class="sales-offer-box">
+                <div class="first-child">On sale now</div>
+                <div class="second-child">
+                    <div class="ending-text">
+                        Ends in
+                    </div>
+                    <div class="time">
+                        <div class="hour">00<span class="time-info"> hrs</span></div>
+                        <div class="minute">00<span class="time-info"> min</span></div>
+                        <div class="second">00<span class="time-info"> sec</span></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <?php
+        $Sql = "WHERE p.ID=30 OR p.ID=325 OR p.ID=143 OR p.ID=192 OR p.ID=327 OR p.ID=292 OR p.ID=187 OR p.ID=329 OR p.ID=121 ORDER BY Rand() LIMIT 0,10";
+        include('Assets/Slider/Product Slider.php');
         ?>
     </div>
 
-    <div class="products">
+    <!-- <div class="products">
         <div class="view-more-box">
             <div class="heading-box">
                 <h2 class="product-heading">New Arrivals</h2>
@@ -87,9 +103,9 @@ include 'Assets/PHP/URL/Base Path.php';
         </div>
         <?php
         $Sql = "WHERE p.ID=30 OR p.ID=325 OR p.ID=143 OR p.ID=192 OR p.ID=327 OR p.ID=292 OR p.ID=187 OR p.ID=329 OR p.ID=121 ORDER BY Rand() LIMIT 0,10";
-        include('Assets/Slider/Product Slider.php');
+        //include('Assets/Slider/Product Slider.php');
         ?>
-    </div>
+    </div> -->
 
     <div class="products">
         <div class="view-more-box">
@@ -112,7 +128,7 @@ include 'Assets/PHP/URL/Base Path.php';
     while ($Row = $CategorySqlRun->fetch_assoc()) {
         $CategoryAttribute = $Row['Product Category Attribute'];
         $CategoryID = $Row['Product Category ID'];
-        $SlugUrl= $Row['Slug Url'];
+        $SlugUrl = $Row['Slug Url'];
         $Sql = "WHERE pm3.`Product Meta Value`='$CategoryID'";
         echo "<div class='products'>
         <div class='view-more-box'>
@@ -219,6 +235,29 @@ include 'Assets/PHP/URL/Base Path.php';
 </script>
 
 <script>
+
+let countDownTime = new Date('July 15, 2024 23:00:00').getTime();
+setInterval(() => {
+    let today = new Date().getTime();
+    let difference = countDownTime - today;
+    
+    if (difference > 0) {
+        let hours = Math.floor(difference / (1000 * 60 * 60));
+        let minutes = Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60));
+        let seconds = Math.floor((difference % (1000 * 60)) / 1000);
+        
+        $('.hour').html(hours + `<span class="time-info"> hrs</span>`);
+        $('.minute').html(minutes + `<span class="time-info"> min</span>`);
+        $('.second').html(seconds + `<span class="time-info"> sec</span>`);
+        
+    } else {
+        $('.hour').html('00<span class="time-info"> hrs</span>');
+        $('.minute').html('00<span class="time-info"> min</span>');
+        $('.second').html('00<span class="time-info"> sec</span>');
+    }
+}, 1000);
+
+
     setTimeout(function() {
         document.querySelector('.whatsapp').classList.add('show-whatsapp');
     }, 2000);
