@@ -8,7 +8,7 @@ include_once $base_url . 'Assets/Components/Navbar.php';
 $GetValue = $_GET['Condition'];
 if ($GetValue == 'NewArrivals') {
     $PageTitle = "New Arrivals";
-    $Condition = 'WHERE p.ID=30 OR p.ID=325 OR p.ID=143 OR p.ID=192 p.ID=327 p.ID=292 p.ID=187 p.ID=329 p.ID=121';
+    $Condition = 'WHERE p.ID=30 OR p.ID=325 OR p.ID=143 OR p.ID=192 OR p.ID=327 OR p.ID=292 OR p.ID=187 OR p.ID=329 OR p.ID=121';
     $featuredproduct=322;
 } else if ($GetValue == 'BestSellers') {
     $PageTitle = "Best Sellers";

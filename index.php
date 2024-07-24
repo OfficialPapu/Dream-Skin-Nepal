@@ -86,7 +86,7 @@ include 'Assets/PHP/URL/Base Path.php';
             </div>
         </div>
         <?php
-        $Sql = "WHERE p.ID=30 OR p.ID=325 OR p.ID=143 OR p.ID=192 p.ID=327 p.ID=292 p.ID=187 p.ID=329 p.ID=121  ORDER BY Rand() LIMIT 0,10";
+        $Sql = "WHERE p.ID=30 OR p.ID=325 OR p.ID=143 OR p.ID=192 OR p.ID=327 OR p.ID=292 OR p.ID=187 OR p.ID=329 OR p.ID=121 ORDER BY Rand() LIMIT 0,10";
         include('Assets/Slider/Product Slider.php');
         ?>
     </div>
