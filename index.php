@@ -42,60 +42,6 @@ include 'Assets/PHP/URL/Base Path.php';
     <link rel="shortcut icon" href="Assets/Product/Media/Images/Logo/Dream skin nepal.png" type="image/x-icon">
     <link rel="stylesheet" href="Assets/CSS/Style.css">
     <title>Dream Skin Nepal - Best Korean Skincare Cosmetics Products in Nepal</title>
-    <style>
-        .offer-imges {
-            background-color: rgba(0, 0, 0, 0.7);
-            position: fixed;
-            top: 0;
-            z-index: 1000;
-            height: 100vh;
-            width: 100vw;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            cursor: pointer;
-        }
-
-        .offer-imges img {
-            width: 90vw;
-            height: 90vh;
-            object-fit: contain;
-        }
-
-        .close-icon-box {
-            position: absolute;
-            background-color: white;
-            z-index: 100;
-            border-radius: 50%;
-            cursor: pointer;
-            top: 5%;
-            right: 10%;
-        }
-
-        .close-icon-box i {
-            color: #FF007F;
-            font-size: 3.5rem;
-        }
-
-        @media (max-width: 400px) {
-            .offer-imges {
-                align-items: start;
-            }
-
-            .offer-imges img {
-                height: 80vh;
-            }
-
-            .close-icon-box {
-                top: 5%;
-                right: 5%;
-            }
-
-            .close-icon-box i {
-                font-size: 3rem;
-            }
-        }
-    </style>
 </head>
 
 <body>
@@ -140,7 +86,7 @@ include 'Assets/PHP/URL/Base Path.php';
             </div>
         </div>
         <?php
-        $Sql = "WHERE p.ID>=322 OR p.ID=192 OR p.ID=187 OR p.ID=30 OR p.ID=12 ORDER BY Rand() LIMIT 0,10";
+        $Sql = "WHERE p.ID=30 OR p.ID=325 OR p.ID=143 OR p.ID=192 p.ID=327 p.ID=292 p.ID=187 p.ID=329 p.ID=121  ORDER BY Rand() LIMIT 0,10";
         include('Assets/Slider/Product Slider.php');
         ?>
     </div>
@@ -273,12 +219,6 @@ include 'Assets/PHP/URL/Base Path.php';
 </script>
 
 <script>
-    // document.querySelector('.close-icon-box').addEventListener('click', function() {
-    //     document.querySelector('.offer-imges').remove();
-    // });
-    // document.addEventListener('click', function() {
-    //     document.querySelector('.offer-imges').remove();
-    // });
     setTimeout(function() {
         document.querySelector('.whatsapp').classList.add('show-whatsapp');
     }, 2000);
