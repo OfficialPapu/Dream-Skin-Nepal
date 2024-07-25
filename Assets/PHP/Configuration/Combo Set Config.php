@@ -62,7 +62,7 @@ function ComboSetProduct($result, $base_url, $is_mobile, $conn)
             $DNSPoint=$price/100;
         }
         echo "<div class='product-divider'>
-<div class='product-box !rounded-[4px]' data-product-id='$product_id' data-selected='0'>";
+<div class='product-box !rounded-[4px]' data-product-id='$product_id' data-selected='0' style='border:1px solid white'>";
         if ($StockStatus == 'Out of Stock') {
             echo "<div class='price-and-stock-info out-of-stock'>
 <i class='bx bxs-purchase-tag'></i> Out of Stock

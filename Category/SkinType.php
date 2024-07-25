@@ -55,14 +55,6 @@ include_once $base_url . "Assets/PHP/Configuration/Combo Set Config.php";
         </div>
     </div>
     <div>
-        <div class="flex justify-between items-center mt-4 px-4 md:px-6 py-4 md:shadow-[0_0_10px_rgba(255,_0,_128,_0.1)] shadow-[0_0_5px_rgba(255,_0,_128,_0.1)] rounded-lg">
-            <div class="inline-block text-2xl rounded-lg text-[#FF007F]">
-                Beginner
-            </div>
-            <div class="inline-block text-xl rounded-lg text-[00adef]">
-                Save Upto: Rs. 1430.00</span>
-            </div>
-        </div>
         <?php
         ComboSetProduct($result, $base_url, $is_mobile, $conn);
         ?>

@@ -15,7 +15,7 @@ $(document).ready(function () {
                     $iconBox.remove();
                 }
             });
-            $this.toggleClass("border border-[#00adef]");
+            $this.toggleClass("!border-[#00adef]");
         } else {
             $this.attr("data-selected", "1");
             $this.prepend(`<div class='bg-[#00adef] text-white absolute -bottom-[.1px] -right-[1px] [clip-path:polygon(100%_0%,_0%_100%,_100%_100%)] rounded-br-[3px] w-[60px] h-[60px] grid place-items-center selected-icon-box'>
@@ -28,7 +28,7 @@ $(document).ready(function () {
                 duration: 0.1,
             });
 
-            $this.toggleClass("border border-[#00adef]");
+            $this.toggleClass("!border-[#00adef]");
         }
     });
 
