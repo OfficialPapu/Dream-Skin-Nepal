@@ -1,8 +1,47 @@
 $(document).ready(function () {
+    function UpdateInfo() {
+        let selectedProductIds = [];
+        $(".product-box[data-selected='1']").each(function () {
+            let productId = $(this).attr("data-product-id");
+            selectedProductIds.push(productId);
+        });
+        $.ajax({
+            type: "POST",
+            url: "Assets/PHP/Configuration/Common Function.php",
+            data: {
+                UpdateInfo: true,
+                selectedProductIds: selectedProductIds,
+            },
+            success: function (response) {
+            }
+        });
+    }
+
     $(".product-box").click(function (e) {
         e.preventDefault();
+        UpdateInfo();
         var $this = $(this);
         var $iconBox = $this.find('.selected-icon-box');
+
+        $(".product-box[data-selected='1']").each(function () {
+            if (this !== $this[0]) {
+                $(this).toggleClass("!border-[#00adef]");
+                $(this).attr("data-selected", "0");
+                let $iconBoxOther = $(this).find('.selected-icon-box');
+                if ($iconBoxOther.length) {
+                    gsap.to($iconBoxOther, {
+                        y: -10,
+                        x: -10,
+                        opacity: 0,
+                        duration: 0.1,
+                        onComplete: function () {
+                            $iconBoxOther.remove();
+                        }
+                    });
+                }
+            }
+        });
+
 
         if ($iconBox.length) {
             $this.attr("data-selected", "0");
@@ -31,8 +70,7 @@ $(document).ready(function () {
             $this.toggleClass("!border-[#00adef]");
         }
     });
-
-    $("#AddToCart").click(function (e) {
+    $("#BuyNow").click(function (e) {
         e.preventDefault();
         let selectedProductIds = [];
 
