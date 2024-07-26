@@ -1,28 +1,15 @@
 $(document).ready(function () {
-    function UpdateInfo() {
-        let selectedProductIds = [];
-        $(".product-box[data-selected='1']").each(function () {
-            let productId = $(this).attr("data-product-id");
-            selectedProductIds.push(productId);
-        });
-        $.ajax({
-            type: "POST",
-            url: "Assets/PHP/Configuration/Common Function.php",
-            data: {
-                UpdateInfo: true,
-                selectedProductIds: selectedProductIds,
-            },
-            success: function (response) {
-            }
-        });
+    function StoreSelectedProduct(Category, ProductID) {
+        let selectedProducts = JSON.parse(localStorage.getItem('selectedProducts')) || {};
+        selectedProducts[Category] = ProductID;
+        localStorage.setItem('selectedProducts', JSON.stringify(selectedProducts));
     }
 
     $(".product-box").click(function (e) {
         e.preventDefault();
-        UpdateInfo();
         var $this = $(this);
         var $iconBox = $this.find('.selected-icon-box');
-
+        StoreSelectedProduct("Toner",$(this).data("product-id"));
         $(".product-box[data-selected='1']").each(function () {
             if (this !== $this[0]) {
                 $(this).toggleClass("!border-[#00adef]");
@@ -41,7 +28,6 @@ $(document).ready(function () {
                 }
             }
         });
-
 
         if ($iconBox.length) {
             $this.attr("data-selected", "0");
@@ -101,4 +87,11 @@ $(document).ready(function () {
 
 
     });
+
+    gsap.from(".product-main-container-brands", {
+        duration: 0.3,
+        scale: 0,
+        y: -300
+    })
 });
+

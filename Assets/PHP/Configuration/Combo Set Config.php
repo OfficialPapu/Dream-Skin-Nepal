@@ -6,16 +6,8 @@ if (isset($_SESSION['Logged In'])) {
 }
 include_once $base_url . 'Assets/Components/Navbar.php';
 ChangeUrl();
-$SlugUrl = $_SERVER['PATH_INFO'];
-if ($SlugUrl == '/' || $SlugUrl == '') {
-    echo "<script>window.location.href='/'</script>";
-}
-$SlugUrl = str_replace("/", "", $SlugUrl);
-$FindProductType = "SELECT * FROM `product_category` WHERE `Slug Url` LIKE '%$SlugUrl%'";
-$Find = mysqli_query($conn, $FindProductType);
-$Row = $Find->fetch_assoc();
-$ProductTypeName = $Row['Product Category Attribute'];
-$ProductTypeID = $Row['Product Category ID'];
+$ProductTypeName="Skin Type";
+$ProductTypeID=36;
 $query = "SELECT DISTINCT p.ID, p.`Product Title`,p.`Slug Url`, p.`Product Price`,p.`Discount Price`,p.`Discount Percentage`, pm1.`Product Meta Value` 
 AS ProductBrand, pm2.`Product Meta Value` AS ProductThumbnail, pm3.`Product Meta Value` AS ProductType,
 CASE WHEN wishlist.`Product ID` IS NOT NULL THEN 'Added' ELSE 'Not Added' END AS IsAddedToWishlist,
