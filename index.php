@@ -28,6 +28,7 @@ include 'Assets/PHP/URL/Base Path.php';
     <!-- End Google Tag Manager -->
     <meta charset="UTF-8">
     <meta name="google-site-verification" content="_n9au9euneNaJXGaKlDub_Mz-_--CUur_PMLWY_KMCg" />
+    <meta name="google-adsense-account" content="ca-pub-3974057861773104">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Dream Skin Nepal - Trusted for Korean Beauty products. Leading skincare, cosmetics, cruelty-free & vegan options. Free shipping over Rs. 5000. Shop online for Korean products in Nepal.">
     <meta name="keywords" content="best korean beauty products, korean skincare, korean makeup, korean cosmetics, cruelty-free beauty, vegan skincare, Dream Skin Nepal, best korean skincare, buy korean cosmetics Nepal, online beauty shop Nepal, top korean beauty brands, free shipping beauty Nepal, korean skincare in Nepal, face cleansing products in Nepal, Korean product store in Nepal, Korean genuine products in Nepal, authentic korean skincare products, Korean skin care and beauty clinic Nepal, welcos in Nepal, glutathione cream in Nepal, how to buy products from AliExpress in Nepal, how to order from AliExpress in Nepal, best korean skincare products, Korean skincare routine, viral Korean products, Korean skincare for acne">
