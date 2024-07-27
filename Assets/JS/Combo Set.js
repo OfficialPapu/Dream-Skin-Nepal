@@ -5,6 +5,10 @@ $(document).ready(function () {
         localStorage.setItem('selectedProducts', JSON.stringify(selectedProducts));
     }
 
+    function GetSelectedProducts() {
+        return JSON.parse(localStorage.getItem('selectedProducts')) || {};
+    }
+
     $(document).on('click', '.product-box', function (e) {
         e.preventDefault();
         var $this = $(this);
@@ -56,6 +60,7 @@ $(document).ready(function () {
 
             $this.toggleClass("!border-[#00adef]");
         }
+        UpdateInfo();
     });
 
     gsap.from(".product-main-container-brands", {
@@ -75,8 +80,37 @@ $(document).ready(function () {
             scrub: 1,
         },
     })
-
-    async function ListProduct(ProductTypeID) {
+    function UpdateInfo() {
+        let selectedProducts = GetSelectedProducts();
+        let productIds = Object.values(selectedProducts);
+        if (productIds.length === 0) {
+            $("#TotalPrice").html("Rs. 0");
+            $("#DiscountPrice").html("0");
+            $("#DiscountPercentage").html("0% OFF");
+            $("#SavedAmount").html("0");
+           $(".text-area-box").html("Please Select at least one product");
+            return; 
+        }
+        $.ajax({
+            type: "POST",
+            url: "Assets/PHP/Configuration/Common Function.php",
+            data: {
+                UpdatePriceInfo: true,
+                productIds: productIds,
+            },
+            success: function (response) {
+                let TotalPrice = response.trim();
+                let DiscountPercentage = productIds.length;
+                let DiscountAmount = (TotalPrice / 100) * DiscountPercentage;
+                let DiscountPrice = TotalPrice - DiscountAmount;
+                $("#TotalPrice").html(`Rs. ${TotalPrice}`);
+                $("#DiscountPrice").html(DiscountPrice);
+                $("#DiscountPercentage").html(`${DiscountPercentage}% OFF`);
+                $("#SavedAmount").html(DiscountAmount);
+            }
+        });
+    }
+    function ListProduct(ProductTypeID) {
         $.ajax({
             type: "POST",
             url: "Assets/PHP/Configuration/Common Function.php",
@@ -122,12 +156,10 @@ $(document).ready(function () {
         loadNextCategory();
     });
     loadCategory(0);
-
+    UpdateInfo();
     $(document).on('click', '#Previous', function (e) {
         loadPreviousCategory();
     });
-
-
 
 });
 

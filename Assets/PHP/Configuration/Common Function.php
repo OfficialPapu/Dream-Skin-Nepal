@@ -66,6 +66,19 @@ if (isset($_POST['AddToCart'])) {
 
 
 
+if (isset($_POST['UpdatePriceInfo'])) {
+    $productIds = $_POST['productIds'];
+    $productIdsString = implode(',', array_map('intval', $productIds));
+    $query = "SELECT ID, `Product Price` FROM posts WHERE ID IN ($productIdsString)";
+    $result = $conn->query($query);
+
+    $TotalPrice = 0;
+    while ($row = $result->fetch_assoc()) {
+        $TotalPrice += $row['Product Price'];
+    }
+    echo ($TotalPrice);
+}
+
 if (isset($_POST['GetProducts'])) {
     $ProductTypeID = $_POST['ProductTypeID'];
     $query = "SELECT DISTINCT p.ID, p.`Product Title`,p.`Slug Url`, p.`Product Price`,p.`Discount Price`,p.`Discount Percentage`, pm1.`Product Meta Value` 
