@@ -27,6 +27,7 @@ include 'Assets/PHP/URL/Base Path.php';
     </script>
     <!-- End Google Tag Manager -->
     <meta charset="UTF-8">
+    <meta name="ezoic-site-verification" content="8JoqehVJGqPYfEJaZHK6BJrFX6FVsB" />
     <meta name="google-site-verification" content="_n9au9euneNaJXGaKlDub_Mz-_--CUur_PMLWY_KMCg" />
     <meta name="google-adsense-account" content="ca-pub-3974057861773104">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
