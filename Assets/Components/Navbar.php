@@ -203,6 +203,7 @@ include_once $base_url . 'Assets/PHP/Configuration/Navbar Configuration.php';
         </div>
     </nav>
 </header>
+<script type='text/javascript' src='//pl23874214.highrevenuenetwork.com/c7/ff/ee/c7ffee6e53265b21a276c2df0ca5cdbd.js'></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
 <script src="Assets/JS/Navbar.js"></script>
