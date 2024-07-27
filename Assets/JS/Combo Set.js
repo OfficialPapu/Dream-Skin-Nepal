@@ -5,11 +5,12 @@ $(document).ready(function () {
         localStorage.setItem('selectedProducts', JSON.stringify(selectedProducts));
     }
 
-    $(".product-box").click(function (e) {
+    $(document).on('click', '.product-box', function (e) {
         e.preventDefault();
         var $this = $(this);
         var $iconBox = $this.find('.selected-icon-box');
-        StoreSelectedProduct("Toner",$(this).data("product-id"));
+        let CategoryName = $(".product-main-container-brands").data("category-name");
+        StoreSelectedProduct(CategoryName, $(this).data("product-id"));
         $(".product-box[data-selected='1']").each(function () {
             if (this !== $this[0]) {
                 $(this).toggleClass("!border-[#00adef]");
@@ -56,42 +57,77 @@ $(document).ready(function () {
             $this.toggleClass("!border-[#00adef]");
         }
     });
-    $("#BuyNow").click(function (e) {
-        e.preventDefault();
-        let selectedProductIds = [];
-
-        $(".product-box[data-selected='1']").each(function () {
-            let productId = $(this).attr("data-product-id");
-            selectedProductIds.push(productId);
-        });
-        if (selectedProductIds.length == 0) {
-            butterup.toast({
-                message: 'Select at least one product!',
-                icon: true,
-                dismissable: true,
-                type: 'error',
-            });
-            return 0;
-        }
-        $.ajax({
-            type: "POST",
-            url: "Assets/PHP/Configuration/Common Function.php",
-            data: {
-                CreateComboSet: true,
-                selectedProductIds: selectedProductIds,
-            },
-            success: function (response) {
-                window.location.href = "Account/UserAccount/Cart.php";
-            }
-        });
-
-
-    });
 
     gsap.from(".product-main-container-brands", {
         duration: 0.3,
         scale: 0,
         y: -300
     })
+    gsap.from(".offer-summary", {
+        y: -50,
+        opacity: 0,
+        duration: 0.2,
+        scrollTrigger: {
+            trigger: ".offer-summary",
+            scroller: "body",
+            start: "top 90%",
+            end: "top 100%",
+            scrub: 1,
+        },
+    })
+
+    async function ListProduct(ProductTypeID) {
+        $.ajax({
+            type: "POST",
+            url: "Assets/PHP/Configuration/Common Function.php",
+            data: {
+                GetProducts: true,
+                ProductTypeID: ProductTypeID,
+            },
+            success: function (response) {
+                $(".product-main-container-brands").html(response);
+            }
+        });
+    }
+    const Categories = [
+        { name: "Moisturizer", id: 100 },
+        { name: "BB-Creams", id: 36 },
+    ];
+
+    let currentIndex = 0;
+    function loadCategory(index) {
+        if (index >= 0 && index < Categories.length) {
+            let category = Categories[index];
+            $("#SetName").html(category.name);
+            $("title").text(`${category.name} - Dream Skin Nepal`);
+            $(".product-main-container-brands").data("category-name", category.name);
+            ListProduct(category.id);
+            currentIndex = index;
+        }
+    }
+
+    function loadNextCategory() {
+        if (currentIndex < Categories.length - 1) {
+            loadCategory(currentIndex + 1);
+        }
+    }
+
+    function loadPreviousCategory() {
+        if (currentIndex > 0) {
+            loadCategory(currentIndex - 1);
+        }
+    }
+
+    $(document).on('click', '#Next', function (e) {
+        loadNextCategory();
+    });
+    loadCategory(0);
+
+    $(document).on('click', '#Previous', function (e) {
+        loadPreviousCategory();
+    });
+
+
+
 });
 

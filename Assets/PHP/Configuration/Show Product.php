@@ -1,32 +1,6 @@
 <?php
-if (isset($_SESSION['Logged In'])) {
-    $user_id = $_SESSION['LoginSession']['user_id'];
-} else {
-    $user_id = $_SESSION['Cart']['user_id'];
-}
-include_once $base_url . 'Assets/Components/Navbar.php';
-ChangeUrl();
-$ProductTypeName="Skin Type";
-$ProductTypeID=36;
-$query = "SELECT DISTINCT p.ID, p.`Product Title`,p.`Slug Url`, p.`Product Price`,p.`Discount Price`,p.`Discount Percentage`, pm1.`Product Meta Value` 
-AS ProductBrand, pm2.`Product Meta Value` AS ProductThumbnail, pm3.`Product Meta Value` AS ProductType,
-CASE WHEN wishlist.`Product ID` IS NOT NULL THEN 'Added' ELSE 'Not Added' END AS IsAddedToWishlist,
-CASE WHEN ci.`Product_ID` IS NOT NULL AND ci.`User ID`='$user_id' THEN 'Added' ELSE 'Not Added' END AS IsAddedToCart,
-CASE WHEN p.`Product Quantity` <= 0 THEN 'Out of Stock' ELSE 'In Stock'END AS StockStatus
-FROM posts p 
-LEFT JOIN `product_cart` ci ON p.ID = ci.`Product_ID`
-LEFT JOIN `product_wishlist` wishlist ON p.ID = wishlist.`Product ID` AND wishlist.`User ID` = '$user_id'
-JOIN postsmeta pm1 ON p.ID = pm1.`Product ID` AND pm1.`Product Meta Key` = 'Brand ID'
-JOIN postsmeta pm2 ON p.ID = pm2.`Product ID` AND pm2.`Product Meta Key` = 'Image 1'
-JOIN postsmeta pm3 ON p.ID = pm3.`Product ID` AND pm3.`Product Meta Key` = 'Product Type ID'
-WHERE pm3.`Product Meta Value`='$ProductTypeID'";
-$result = $conn->query($query);
-include_once $base_url . 'Assets/PHP/Configuration/Mobile Check.php';
-
-
-function ComboSetProduct($result, $base_url, $is_mobile, $conn)
+function ShowProducts($result, $base_url, $is_mobile, $conn)
 {
-    echo "<div class='product-main-container-brands'>";
     while ($row = $result->fetch_assoc()) {
         $product_title = $row['Product Title'];
         include $base_url . "Assets/PHP/Configuration/TItle Length Count.php";
@@ -44,14 +18,14 @@ function ComboSetProduct($result, $base_url, $is_mobile, $conn)
         $Find = mysqli_query($conn, $FindBrandName);
         $Row = $Find->fetch_assoc();
         $BrandName = $Row['Product Category Attribute'];
-        if($DiscountPercentage != ''){
+        if ($DiscountPercentage != '') {
             $DiscountValueCalculate = ceil(($price / 100) * $DiscountPercentage);
             $DiscountValue = $price - $DiscountValueCalculate;
-            $DNSPoint=$DiscountValue/100;
-        }elseif($DiscountPrice != ''){
-            $DNSPoint=$DiscountPrice/100;
-        }else{
-            $DNSPoint=$price/100;
+            $DSNPoint = $DiscountValue / 100;
+        } elseif ($DiscountPrice != '') {
+            $DSNPoint = $DiscountPrice / 100;
+        } else {
+            $DSNPoint = $price / 100;
         }
         echo "<div class='product-divider'>
 <div class='product-box !rounded-[4px]' data-product-id='$product_id' data-selected='0' style='border:1px solid white'>";
@@ -73,9 +47,9 @@ function ComboSetProduct($result, $base_url, $is_mobile, $conn)
         } else if ($AddedInWishlist == 'Added') {
             echo "<i class='bx bxs-heart AddToWishlist AddToWishlist-btn' data-product-id-wishlist='" . $row['ID'] . "'></i>";
         }
-        echo " <div class='dns-point-container'>
-                 <div class='dns-point'>
-                    $DNSPoint DSN Point
+        echo " <div class='DSN-point-container'>
+                 <div class='DSN-point'>
+                    $DSNPoint DSN Point
                 </div>
                 <img src='$thumbnail_url' alt='$product_title' loading='lazy'>
                 </div>
@@ -103,7 +77,6 @@ function ComboSetProduct($result, $base_url, $is_mobile, $conn)
 </div>
 </div>";
     }
-   echo "</div>";
-
 }
+
 ?>
