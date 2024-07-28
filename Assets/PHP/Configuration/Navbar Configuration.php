@@ -45,7 +45,7 @@ $Query2=mysqli_query($conn,$Makeup);
 $SkinType="SELECT * FROM `product_category` WHERE `Product Category Name`='Skin Type' ORDER BY `Product Category Attribute` ASC";
 $Query3=mysqli_query($conn,$SkinType);
 $BodyAndHairCare="SELECT * FROM `product_category` WHERE `Product Category Name`='Body & Hair Care' ORDER BY `Product Category Attribute` ASC";
-$Query3=mysqli_query($conn,$BodyAndHairCare);
+$Query4=mysqli_query($conn,$BodyAndHairCare);
 ?>
 
 <?php

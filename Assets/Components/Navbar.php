@@ -111,10 +111,10 @@ include_once $base_url . 'Assets/PHP/Configuration/Navbar Configuration.php';
                             </div>
                             <ul class="sub-category-dorpdown-menu second-dropdown">
                                 <?php
-                                while ($row = $Query3->fetch_assoc()) {
+                                while ($row = $Query4->fetch_assoc()) {
                                     $BodyAndHairCare = $row['Product Category Attribute'];
                                     $SlugUrl = $row['Slug Url'];
-                                    echo "<li><a href='$BodyAndHairCareUrl/$BodyAndHairCare' class='sub-category-dorpdown-link'>$Makeup</a></li>";
+                                    echo "<li><a href='$BodyAndHairCareUrl/$BodyAndHairCare' class='sub-category-dorpdown-link'>$BodyAndHairCare akeup</a></li>";
                                 }
                                 ?>
                             </ul>
