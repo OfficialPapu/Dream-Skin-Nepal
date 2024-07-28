@@ -109,7 +109,7 @@ include_once $base_url . 'Assets/PHP/Configuration/Navbar Configuration.php';
                                 <!--    <i class='bx bx-chevron-down arrow hide-item-in-mobile'></i>-->
                                 <!--</span>-->
                             </div>
-                            <ul class="sub-category-dorpdown-menu third-dropdown">
+                            <ul class="sub-category-dorpdown-menu low-height">
                                 <?php
                                 while ($row = $Query4->fetch_assoc()) {
                                     $BodyAndHairCare = $row['Product Category Attribute'];
