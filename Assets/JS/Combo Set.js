@@ -1,7 +1,7 @@
 $(document).ready(function () {
     function StoreSelectedProduct(Category, ProductID) {
         let selectedProducts = JSON.parse(localStorage.getItem("selectedProducts")) || {};
-        
+
         if (selectedProducts[ProductID] === Category) {
             delete selectedProducts[ProductID];
         } else {
@@ -12,7 +12,7 @@ $(document).ready(function () {
             }
             selectedProducts[ProductID] = Category;
         }
-        
+
         localStorage.setItem("selectedProducts", JSON.stringify(selectedProducts));
     }
 
@@ -28,7 +28,7 @@ $(document).ready(function () {
             let $this = $(this);
             let ProductID = $this.data("product-id");
             let isSelected = selectedProducts[ProductID] === categoryName;
-            
+
             if (isSelected) {
                 $this.attr("data-selected", "1");
                 if ($this.find(".selected-icon-box").length === 0) {
@@ -36,11 +36,11 @@ $(document).ready(function () {
                         <i class='bx bx-check absolute bottom-[0px] right-[5px] text-2xl'></i>
                     </div>`);
                 }
-                $this.addClass("!border-[#00adef]"); 
+                $this.addClass("!border-[#00adef]");
             } else {
                 $this.attr("data-selected", "0");
                 $this.find(".selected-icon-box").remove();
-                $this.removeClass("!border-[#00adef]"); 
+                $this.removeClass("!border-[#00adef]");
             }
         });
     }
@@ -52,12 +52,12 @@ $(document).ready(function () {
         let ProductID = $this.data("product-id");
         StoreSelectedProduct(CategoryName, ProductID);
         UpdateProductSelection();
-        UpdateInfo(); 
+        UpdateInfo();
     });
 
     function UpdateInfo() {
         let selectedProducts = GetSelectedProducts();
-        let productIds = Object.keys(selectedProducts); 
+        let productIds = Object.keys(selectedProducts);
         if (productIds.length === 0) {
             $(".hide-box").html("Please Select at least one product");
         } else {
@@ -89,6 +89,20 @@ $(document).ready(function () {
         }
     }
 
+    // function ListProduct(ProductTypeID) {
+    //     $.ajax({
+    //         type: "POST",
+    //         url: "Assets/PHP/Configuration/Common Function.php",
+    //         data: {
+    //             GetProducts: true,
+    //             ProductTypeID: ProductTypeID,
+    //         },
+    //         success: function (response) {
+    //             $(".product-main-container-brands").html(response);
+    //             UpdateProductSelection(); 
+    //         },
+    //     });
+    // }
     function ListProduct(ProductTypeID) {
         $.ajax({
             type: "POST",
@@ -98,11 +112,21 @@ $(document).ready(function () {
                 ProductTypeID: ProductTypeID,
             },
             success: function (response) {
-                $(".product-main-container-brands").html(response);
-                UpdateProductSelection(); 
+                gsap.to(".product-main-container-brands", {
+                    onComplete: function () {
+                        $(".product-main-container-brands").html(response);
+                        UpdateProductSelection();
+                        gsap.from(".product-main-container-brands", {
+                            x: 400,
+                            duration: 0.3,
+                            opacity: 0,
+                        });
+                    }
+                });
             },
         });
     }
+
 
     const Categories = [
         { name: "Moisturizer", id: 100 },
@@ -114,13 +138,21 @@ $(document).ready(function () {
     function loadCategory(index) {
         if (index >= 0 && index < Categories.length) {
             let category = Categories[index];
-            $("#SetName").html(category.name);
-            $("title").text(`${category.name} - Dream Skin Nepal`);
-            $(".product-main-container-brands").data("category-name", category.name);
-            ListProduct(category.id);
+            $("#SetName").css({ opacity: 0 });
+            gsap.to("#SetName", {
+                opacity: 1,
+                duration: 0.6,
+                onComplete: function () {
+                    $("#SetName").html(category.name);
+                    $("title").text(`${category.name} - Dream Skin Nepal`);
+                    $(".product-main-container-brands").data("category-name", category.name);
+                    ListProduct(category.id);
+                }
+            });
             currentIndex = index;
         }
     }
+
 
     function loadNextCategory() {
         if (currentIndex < Categories.length - 1) {
@@ -142,14 +174,9 @@ $(document).ready(function () {
         loadPreviousCategory();
     });
 
-    loadCategory(0); 
-    UpdateInfo(); 
+    loadCategory(0);
+    UpdateInfo();
 
-    gsap.from(".product-main-container-brands", {
-        duration: 0.3,
-        scale: 0,
-        y: -300,
-    });
     gsap.from(".offer-summary", {
         y: -50,
         opacity: 0,
