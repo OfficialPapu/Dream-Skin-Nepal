@@ -1,13 +1,18 @@
 $(document).ready(function () {
     function StoreSelectedProduct(Category, ProductID) {
         let selectedProducts = JSON.parse(localStorage.getItem("selectedProducts")) || {};
-        if (selectedProducts[Category] === ProductID) {
-            // If the product is already selected, remove it
-            delete selectedProducts[Category];
+        
+        if (selectedProducts[ProductID] === Category) {
+            delete selectedProducts[ProductID];
         } else {
-            // Otherwise, add or update the product
-            selectedProducts[Category] = ProductID;
+            for (let id in selectedProducts) {
+                if (selectedProducts[id] === Category) {
+                    delete selectedProducts[id];
+                }
+            }
+            selectedProducts[ProductID] = Category;
         }
+        
         localStorage.setItem("selectedProducts", JSON.stringify(selectedProducts));
     }
 
@@ -15,73 +20,44 @@ $(document).ready(function () {
         return JSON.parse(localStorage.getItem("selectedProducts")) || {};
     }
 
+    function UpdateProductSelection() {
+        let selectedProducts = GetSelectedProducts();
+        let categoryName = $(".product-main-container-brands").data("category-name");
+
+        $(".product-box").each(function () {
+            let $this = $(this);
+            let ProductID = $this.data("product-id");
+            let isSelected = selectedProducts[ProductID] === categoryName;
+            
+            if (isSelected) {
+                $this.attr("data-selected", "1");
+                if ($this.find(".selected-icon-box").length === 0) {
+                    $this.prepend(`<div class='bg-[#00adef] text-white absolute -bottom-[.1px] -right-[1px] [clip-path:polygon(100%_0%,_0%_100%,_100%_100%)] rounded-br-[3px] w-[60px] h-[60px] grid place-items-center selected-icon-box'>
+                        <i class='bx bx-check absolute bottom-[0px] right-[5px] text-2xl'></i>
+                    </div>`);
+                }
+                $this.addClass("!border-[#00adef]"); 
+            } else {
+                $this.attr("data-selected", "0");
+                $this.find(".selected-icon-box").remove();
+                $this.removeClass("!border-[#00adef]"); 
+            }
+        });
+    }
+
     $(document).on("click", ".product-box", function (e) {
         e.preventDefault();
         var $this = $(this);
-        var $iconBox = $this.find(".selected-icon-box");
         let CategoryName = $(".product-main-container-brands").data("category-name");
         let ProductID = $this.data("product-id");
-
-        // Store or remove the selected product from localStorage
         StoreSelectedProduct(CategoryName, ProductID);
-
-        // Update UI based on selection
-        if ($iconBox.length) {
-            // Product is currently selected, so deselect it
-            $this.attr("data-selected", "0");
-            gsap.to($iconBox, {
-                y: -10,
-                x: -10,
-                opacity: 0,
-                duration: 0.1,
-                onComplete: function () {
-                    $iconBox.remove();
-                    UpdateInfo(); // Call UpdateInfo after UI update
-                },
-            });
-            $this.toggleClass("!border-[#00adef]");
-        } else {
-            // Product is not selected, so select it
-            $this.attr("data-selected", "1");
-            $this.prepend(`<div class='bg-[#00adef] text-white absolute -bottom-[.1px] -right-[1px] [clip-path:polygon(100%_0%,_0%_100%,_100%_100%)] rounded-br-[3px] w-[60px] h-[60px] grid place-items-center selected-icon-box'>
-                <i class='bx bx-check absolute bottom-[0px] right-[5px] text-2xl'></i>
-            </div>`);
-            gsap.from($this.find(".selected-icon-box").last(), {
-                y: 10,
-                x: 10,
-                opacity: 0,
-                duration: 0.1,
-                onComplete: function () {
-                    UpdateInfo(); // Call UpdateInfo after UI update
-                },
-            });
-
-            $this.toggleClass("!border-[#00adef]");
-        }
-    });
-
-    // GSAP Animations
-    gsap.from(".product-main-container-brands", {
-        duration: 0.3,
-        scale: 0,
-        y: -300,
-    });
-    gsap.from(".offer-summary", {
-        y: -50,
-        opacity: 0,
-        duration: 0.2,
-        scrollTrigger: {
-            trigger: ".offer-summary",
-            scroller: "body",
-            start: "top 90%",
-            end: "top 100%",
-            scrub: 1,
-        },
+        UpdateProductSelection();
+        UpdateInfo(); 
     });
 
     function UpdateInfo() {
         let selectedProducts = GetSelectedProducts();
-        let productIds = Object.values(selectedProducts);
+        let productIds = Object.keys(selectedProducts); 
         if (productIds.length === 0) {
             $(".hide-box").html("Please Select at least one product");
         } else {
@@ -111,7 +87,6 @@ $(document).ready(function () {
                 },
             });
         }
-
     }
 
     function ListProduct(ProductTypeID) {
@@ -124,6 +99,7 @@ $(document).ready(function () {
             },
             success: function (response) {
                 $(".product-main-container-brands").html(response);
+                UpdateProductSelection(); 
             },
         });
     }
@@ -158,14 +134,32 @@ $(document).ready(function () {
         }
     }
 
-    $(document).on("click", "#Next", function (e) {
+    $(document).on("click", "#Next", function () {
         loadNextCategory();
     });
 
-    $(document).on("click", "#Previous", function (e) {
+    $(document).on("click", "#Previous", function () {
         loadPreviousCategory();
     });
 
-    loadCategory(0);
-    UpdateInfo();
+    loadCategory(0); 
+    UpdateInfo(); 
+
+    gsap.from(".product-main-container-brands", {
+        duration: 0.3,
+        scale: 0,
+        y: -300,
+    });
+    gsap.from(".offer-summary", {
+        y: -50,
+        opacity: 0,
+        duration: 0.2,
+        scrollTrigger: {
+            trigger: ".offer-summary",
+            scroller: "body",
+            start: "top 90%",
+            end: "top 100%",
+            scrub: 1,
+        },
+    });
 });
