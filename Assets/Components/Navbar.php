@@ -71,7 +71,7 @@ include_once $base_url . 'Assets/PHP/Configuration/Navbar Configuration.php';
                                 <!--    <i class='bx bx-chevron-down arrow hide-item-in-mobile'></i>-->
                                 <!--</span>-->
                             </div>
-                            <ul class="sub-category-dorpdown-menu low-height">
+                            <ul class="sub-category-dorpdown-menu xs-height">
                                 <?php
                                 while ($row = $Query3->fetch_assoc()) {
                                     $SkinType = $row['Product Category Attribute'];
@@ -109,7 +109,7 @@ include_once $base_url . 'Assets/PHP/Configuration/Navbar Configuration.php';
                                 <!--    <i class='bx bx-chevron-down arrow hide-item-in-mobile'></i>-->
                                 <!--</span>-->
                             </div>
-                            <ul class="sub-category-dorpdown-menu second-dropdown">
+                            <ul class="sub-category-dorpdown-menu third-dropdown">
                                 <?php
                                 while ($row = $Query4->fetch_assoc()) {
                                     $BodyAndHairCare = $row['Product Category Attribute'];
@@ -119,14 +119,6 @@ include_once $base_url . 'Assets/PHP/Configuration/Navbar Configuration.php';
                                 ?>
                             </ul>
                         </li>
-
-                        <!-- <li class="dropdown-align">
-                            <div class="toggle-name"><a href="<?php echo $BodyAndHairCareUrl; ?>/Hair-Care" class="color"><span class="bold-style">Hair Care</span></a></div>
-                        </li>
-
-                        <li class="dropdown-align">
-                            <div class="toggle-name"><a href="<?php echo $BodyAndHairCareUrl; ?>/Body-Care" class="color"><span class="bold-style">Body Care</span></a></div>
-                        </li> -->
 
                         <li class="dropdown-align">
                             <div class="toggle-name"><a href="<?php echo $BabyCareUrl; ?>/Kids-Care" class="color"><span class="bold-style">Kids Care</span></a></div>
