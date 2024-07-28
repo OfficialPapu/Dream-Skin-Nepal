@@ -114,7 +114,7 @@ include_once $base_url . 'Assets/PHP/Configuration/Navbar Configuration.php';
                                 while ($row = $Query4->fetch_assoc()) {
                                     $BodyAndHairCare = $row['Product Category Attribute'];
                                     $SlugUrl = $row['Slug Url'];
-                                    echo "<li><a href='$BodyAndHairCareUrl/$BodyAndHairCare' class='sub-category-dorpdown-link'>$BodyAndHairCare</a></li>";
+                                    echo "<li><a href='$BodyAndHairCareUrl/$SlugUrl' class='sub-category-dorpdown-link'>$BodyAndHairCare</a></li>";
                                 }
                                 ?>
                             </ul>
