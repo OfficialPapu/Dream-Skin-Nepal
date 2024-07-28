@@ -102,12 +102,31 @@ include_once $base_url . 'Assets/PHP/Configuration/Navbar Configuration.php';
                         </li>
 
                         <li class="dropdown-align">
+                            <div class="toggle-name"> <span class="bold-style">Body & Haircare</span>
+                                <!--<span class="plus-minus-box">-->
+                                <!--    <i class='bx bx-plus plus hide-item'></i>-->
+                                <!--    <i class='bx bx-minus minus hide-item'></i>-->
+                                <!--    <i class='bx bx-chevron-down arrow hide-item-in-mobile'></i>-->
+                                <!--</span>-->
+                            </div>
+                            <ul class="sub-category-dorpdown-menu second-dropdown">
+                                <?php
+                                while ($row = $Query3->fetch_assoc()) {
+                                    $BodyAndHairCare = $row['Product Category Attribute'];
+                                    $SlugUrl = $row['Slug Url'];
+                                    echo "<li><a href='$BodyAndHairCareUrl/$BodyAndHairCare' class='sub-category-dorpdown-link'>$Makeup</a></li>";
+                                }
+                                ?>
+                            </ul>
+                        </li>
+
+                        <!-- <li class="dropdown-align">
                             <div class="toggle-name"><a href="<?php echo $BodyAndHairCareUrl; ?>/Hair-Care" class="color"><span class="bold-style">Hair Care</span></a></div>
                         </li>
 
                         <li class="dropdown-align">
                             <div class="toggle-name"><a href="<?php echo $BodyAndHairCareUrl; ?>/Body-Care" class="color"><span class="bold-style">Body Care</span></a></div>
-                        </li>
+                        </li> -->
 
                         <li class="dropdown-align">
                             <div class="toggle-name"><a href="<?php echo $BabyCareUrl; ?>/Kids-Care" class="color"><span class="bold-style">Kids Care</span></a></div>
