@@ -353,9 +353,11 @@ sup {
   .sub-category-dorpdown-menu.second-dropdown.active {
     height: 550px;
   }
+
   .sub-category-dorpdown-menu.xs-height.active {
     height: 140px;
   }
+
 
   /* Dropdown-menu End*/
 
