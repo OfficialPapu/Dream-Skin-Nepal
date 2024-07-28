@@ -55,6 +55,36 @@ $(document).ready(function () {
         UpdateInfo();
     });
 
+// ShowPreview();
+    function ShowPreview() {
+        let selectedProducts = GetSelectedProducts();
+        let productIds = Object.keys(selectedProducts);
+        $.ajax({
+            type: "POST",
+            url: "Assets/PHP/Configuration/Common Function.php",
+            data: {
+                ShowPreview: true,
+                productIds: productIds,
+            },
+            success: function (response) {
+                $(".brand-heading-box").addClass("!hidden");
+                $(".offer-summary").addClass("!hidden");
+                $('.preview').removeClass("hidden");
+                $(".product-main-container-brands").addClass("pointer-events-none");
+                gsap.to(".product-main-container-brands", {
+                    onComplete: function () {
+                        $(".product-main-container-brands").html(response);
+                        gsap.from(".product-main-container-brands", {
+                            scale:0.8,
+                            duration: 0.3,
+                            opacity: 0,
+                        });
+                    }
+                });
+            }
+        });
+    }
+
     function UpdateInfo() {
         let selectedProducts = GetSelectedProducts();
         let productIds = Object.keys(selectedProducts);
@@ -88,21 +118,6 @@ $(document).ready(function () {
             });
         }
     }
-
-    // function ListProduct(ProductTypeID) {
-    //     $.ajax({
-    //         type: "POST",
-    //         url: "Assets/PHP/Configuration/Common Function.php",
-    //         data: {
-    //             GetProducts: true,
-    //             ProductTypeID: ProductTypeID,
-    //         },
-    //         success: function (response) {
-    //             $(".product-main-container-brands").html(response);
-    //             UpdateProductSelection(); 
-    //         },
-    //     });
-    // }
     function ListProduct(ProductTypeID) {
         $.ajax({
             type: "POST",
@@ -126,11 +141,25 @@ $(document).ready(function () {
             },
         });
     }
-
-
+    gsap.from(".offer-summary", {
+        y: -50,
+        opacity: 0,
+        duration: 0.2,
+        scrollTrigger: {
+            trigger: ".offer-summary",
+            scroller: "body",
+            start: "top 90%",
+            end: "top 100%",
+            scrub: 1,
+        },
+    });
     const Categories = [
         { name: "Moisturizer", id: 100 },
-        { name: "BB-Creams", id: 36 },
+        { name: "BB-Creamsd", id: 36 },
+        { name: "BB-Creamssss", id: 36 },
+        { name: "BB-Creamssssas", id: 36 },
+        { name: "BB-Creamsasssas", id: 36 },
+        { name: "BB-Creamsssdfssas", id: 36 },
     ];
 
     let currentIndex = 0;
@@ -154,9 +183,12 @@ $(document).ready(function () {
     }
 
 
+
     function loadNextCategory() {
         if (currentIndex < Categories.length - 1) {
             loadCategory(currentIndex + 1);
+        } else {
+            ShowPreview();
         }
     }
 
@@ -177,16 +209,4 @@ $(document).ready(function () {
     loadCategory(0);
     UpdateInfo();
 
-    gsap.from(".offer-summary", {
-        y: -50,
-        opacity: 0,
-        duration: 0.2,
-        scrollTrigger: {
-            trigger: ".offer-summary",
-            scroller: "body",
-            start: "top 90%",
-            end: "top 100%",
-            scrub: 1,
-        },
-    });
 });
