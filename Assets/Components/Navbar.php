@@ -71,7 +71,7 @@ include_once $base_url . 'Assets/PHP/Configuration/Navbar Configuration.php';
                                 <!--    <i class='bx bx-chevron-down arrow hide-item-in-mobile'></i>-->
                                 <!--</span>-->
                             </div>
-                            <ul class="sub-category-dorpdown-menu xs-height">
+                            <ul class="sub-category-dorpdown-menu low-height">
                                 <?php
                                 while ($row = $Query3->fetch_assoc()) {
                                     $SkinType = $row['Product Category Attribute'];
