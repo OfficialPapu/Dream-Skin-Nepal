@@ -58,23 +58,17 @@ ChangeUrl();
     </div> -->
     <div class="brand-heading-box">
         <div class="product-type-heading">
-            <h1><span id="SetName"></span><div class="designing-line"></div>
+            <h1><span id="SetName"></span>
+                <div class="designing-line"></div>
             </h1>
         </div>
     </div>
     <div>
-    <div class='product-main-container-brands'></div>
+        <div class='product-main-container-brands'></div>
         <div class="offer-summary mb-[6rem] md:mb-[0rem]">
             <div class="w-full bg-background px-4 py-6 md:px-6 md:py-8 card">
                 <div class="max-w-6xl mx-auto grid md:grid-cols-2 gap-6 items-center">
-                    <div class="grid gap-2 text-area-box">
-                        <div class="flex items-center gap-4">
-                            <div class="text-4xl font-bold text-[#ff007f]" id="DiscountPrice">Rs. 99.99</div>
-                            <div class="text-2xl font-bold text-[#00adef] line-through" style="text-decoration-color:#ff007f; -webkit-text-decoration-color:#ff007f;" id="TotalPrice">Rs. 149.99</div>
-                            <div class="bg-[#ff007f] text-white px-3 py-1 rounded-full text-sm font-medium" id="DiscountPercentage">3% OFF</div>
-                        </div>
-                        <p class="text-[#6e6e76]">You're saving <span class="font-bold text-[#00adef]" id="SavedAmount">Rs. 50</span> on this purchase!</p>
-                    </div>
+                    <div class="grid gap-2 hide-box"></div>
                     <div class="flex items-center justify-end gap-4">
                         <button class="text-md text-[#ff007f] font-500 ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 border border-[#00adef] bg-background h-11 rounded-md px-8 hover:bg-[#00adef] hover:text-white duration-300" id="Next">Next</button>
                         <button class="text-md font-500 ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 h-11 rounded-md px-8 bg-[#ff007f] text-white hover:bg-[#ff007f]/90" id="Previous">Previous</button>

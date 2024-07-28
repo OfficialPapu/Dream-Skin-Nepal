@@ -1,40 +1,33 @@
 $(document).ready(function () {
     function StoreSelectedProduct(Category, ProductID) {
-        let selectedProducts = JSON.parse(localStorage.getItem('selectedProducts')) || {};
-        selectedProducts[Category] = ProductID;
-        localStorage.setItem('selectedProducts', JSON.stringify(selectedProducts));
+        let selectedProducts = JSON.parse(localStorage.getItem("selectedProducts")) || {};
+        if (selectedProducts[Category] === ProductID) {
+            // If the product is already selected, remove it
+            delete selectedProducts[Category];
+        } else {
+            // Otherwise, add or update the product
+            selectedProducts[Category] = ProductID;
+        }
+        localStorage.setItem("selectedProducts", JSON.stringify(selectedProducts));
     }
 
     function GetSelectedProducts() {
-        return JSON.parse(localStorage.getItem('selectedProducts')) || {};
+        return JSON.parse(localStorage.getItem("selectedProducts")) || {};
     }
 
-    $(document).on('click', '.product-box', function (e) {
+    $(document).on("click", ".product-box", function (e) {
         e.preventDefault();
         var $this = $(this);
-        var $iconBox = $this.find('.selected-icon-box');
+        var $iconBox = $this.find(".selected-icon-box");
         let CategoryName = $(".product-main-container-brands").data("category-name");
-        StoreSelectedProduct(CategoryName, $(this).data("product-id"));
-        $(".product-box[data-selected='1']").each(function () {
-            if (this !== $this[0]) {
-                $(this).toggleClass("!border-[#00adef]");
-                $(this).attr("data-selected", "0");
-                let $iconBoxOther = $(this).find('.selected-icon-box');
-                if ($iconBoxOther.length) {
-                    gsap.to($iconBoxOther, {
-                        y: -10,
-                        x: -10,
-                        opacity: 0,
-                        duration: 0.1,
-                        onComplete: function () {
-                            $iconBoxOther.remove();
-                        }
-                    });
-                }
-            }
-        });
+        let ProductID = $this.data("product-id");
 
+        // Store or remove the selected product from localStorage
+        StoreSelectedProduct(CategoryName, ProductID);
+
+        // Update UI based on selection
         if ($iconBox.length) {
+            // Product is currently selected, so deselect it
             $this.attr("data-selected", "0");
             gsap.to($iconBox, {
                 y: -10,
@@ -43,31 +36,36 @@ $(document).ready(function () {
                 duration: 0.1,
                 onComplete: function () {
                     $iconBox.remove();
-                }
+                    UpdateInfo(); // Call UpdateInfo after UI update
+                },
             });
             $this.toggleClass("!border-[#00adef]");
         } else {
+            // Product is not selected, so select it
             $this.attr("data-selected", "1");
             $this.prepend(`<div class='bg-[#00adef] text-white absolute -bottom-[.1px] -right-[1px] [clip-path:polygon(100%_0%,_0%_100%,_100%_100%)] rounded-br-[3px] w-[60px] h-[60px] grid place-items-center selected-icon-box'>
                 <i class='bx bx-check absolute bottom-[0px] right-[5px] text-2xl'></i>
             </div>`);
-            gsap.from($this.find('.selected-icon-box').last(), {
+            gsap.from($this.find(".selected-icon-box").last(), {
                 y: 10,
                 x: 10,
                 opacity: 0,
                 duration: 0.1,
+                onComplete: function () {
+                    UpdateInfo(); // Call UpdateInfo after UI update
+                },
             });
 
             $this.toggleClass("!border-[#00adef]");
         }
-        UpdateInfo();
     });
 
+    // GSAP Animations
     gsap.from(".product-main-container-brands", {
         duration: 0.3,
         scale: 0,
-        y: -300
-    })
+        y: -300,
+    });
     gsap.from(".offer-summary", {
         y: -50,
         opacity: 0,
@@ -79,37 +77,43 @@ $(document).ready(function () {
             end: "top 100%",
             scrub: 1,
         },
-    })
+    });
+
     function UpdateInfo() {
         let selectedProducts = GetSelectedProducts();
         let productIds = Object.values(selectedProducts);
         if (productIds.length === 0) {
-            $("#TotalPrice").html("Rs. 0");
-            $("#DiscountPrice").html("0");
-            $("#DiscountPercentage").html("0% OFF");
-            $("#SavedAmount").html("0");
-           $(".text-area-box").html("Please Select at least one product");
-            return; 
+            $(".hide-box").html("Please Select at least one product");
+        } else {
+            $.ajax({
+                type: "POST",
+                url: "Assets/PHP/Configuration/Common Function.php",
+                data: {
+                    UpdatePriceInfo: true,
+                    productIds: productIds,
+                },
+                success: function (response) {
+                    let TotalPrice = parseFloat(response.trim());
+                    let DiscountPercentage = productIds.length;
+                    let DiscountAmount = Math.round((TotalPrice / 100) * DiscountPercentage);
+                    let DiscountPrice = Math.round(TotalPrice - DiscountAmount);
+                    const NumberFormatter = new Intl.NumberFormat("en-US");
+                    const FormattedTotalPrice = NumberFormatter.format(TotalPrice.toFixed(2));
+                    const FormattedDiscountAmount = NumberFormatter.format(DiscountAmount);
+                    const FormattedDiscountPrice = NumberFormatter.format(DiscountPrice.toFixed(2));
+
+                    $(".hide-box").html(`<div class="flex items-center gap-4">
+                                <div class="text-4xl font-bold text-[#ff007f]" id="DiscountPrice">Rs. ${FormattedDiscountPrice}</div>
+                                <div class="text-2xl font-bold text-[#00adef] line-through" style="text-decoration-color:#ff007f; -webkit-text-decoration-color:#ff007f;" id="TotalPrice">Rs. ${FormattedTotalPrice}</div>
+                                <div class="bg-[#ff007f] text-white px-3 py-1 rounded-full text-sm font-medium" id="DiscountPercentage">${DiscountPercentage}% OFF</div>
+                            </div>
+                            <p class="text-[#6e6e76]">You're saving <span class="font-bold text-[#00adef]" id="SavedAmount">Rs. ${FormattedDiscountAmount}</span> on this purchase!</p>`);
+                },
+            });
         }
-        $.ajax({
-            type: "POST",
-            url: "Assets/PHP/Configuration/Common Function.php",
-            data: {
-                UpdatePriceInfo: true,
-                productIds: productIds,
-            },
-            success: function (response) {
-                let TotalPrice = response.trim();
-                let DiscountPercentage = productIds.length;
-                let DiscountAmount = (TotalPrice / 100) * DiscountPercentage;
-                let DiscountPrice = TotalPrice - DiscountAmount;
-                $("#TotalPrice").html(`Rs. ${TotalPrice}`);
-                $("#DiscountPrice").html(DiscountPrice);
-                $("#DiscountPercentage").html(`${DiscountPercentage}% OFF`);
-                $("#SavedAmount").html(DiscountAmount);
-            }
-        });
+
     }
+
     function ListProduct(ProductTypeID) {
         $.ajax({
             type: "POST",
@@ -120,15 +124,17 @@ $(document).ready(function () {
             },
             success: function (response) {
                 $(".product-main-container-brands").html(response);
-            }
+            },
         });
     }
+
     const Categories = [
         { name: "Moisturizer", id: 100 },
         { name: "BB-Creams", id: 36 },
     ];
 
     let currentIndex = 0;
+
     function loadCategory(index) {
         if (index >= 0 && index < Categories.length) {
             let category = Categories[index];
@@ -152,14 +158,14 @@ $(document).ready(function () {
         }
     }
 
-    $(document).on('click', '#Next', function (e) {
+    $(document).on("click", "#Next", function (e) {
         loadNextCategory();
     });
-    loadCategory(0);
-    UpdateInfo();
-    $(document).on('click', '#Previous', function (e) {
+
+    $(document).on("click", "#Previous", function (e) {
         loadPreviousCategory();
     });
 
+    loadCategory(0);
+    UpdateInfo();
 });
-
