@@ -1314,9 +1314,13 @@ if (isset($_POST['ProceedToCart'])) {
             $productData = $productResult->fetch_assoc();
 
             $productPrice = $productData['Product Price'];
-
-            $InsertBundleCart = "INSERT INTO `product_cart`(`User ID`, `Product_ID`, `User_IP`, `Product Price`, `Shipping Fee`, `Discount Percentage`, `Product_Quantity`, `Date & Time`) VALUES ('$user_id', '$productId', '$user_ip', '$productPrice', '','$DiscountPercentage', '1', CONVERT_TZ(NOW(), '+00:00', '+05:45'))";
-            $InsertBundleCartRun = mysqli_query($conn, $InsertBundleCart);
+            
+            $check_product_already_added = "SELECT * FROM `product_cart` WHERE `User ID`='$user_id' AND `Product_ID`='$productId'";
+            $execute = mysqli_query($conn, $check_product_already_added);
+            if (!($execute->num_rows > 0)) {
+                $InsertBundleCart = "INSERT INTO `product_cart`(`User ID`, `Product_ID`, `User_IP`, `Product Price`, `Shipping Fee`, `Discount Percentage`, `Product_Quantity`, `Date & Time`) VALUES ('$user_id', '$productId', '$user_ip', '$productPrice', '','$DiscountPercentage', '1', CONVERT_TZ(NOW(), '+00:00', '+05:45'))";
+                $InsertBundleCartRun = mysqli_query($conn, $InsertBundleCart);
+            }
         }
         echo "Success";
     } else {

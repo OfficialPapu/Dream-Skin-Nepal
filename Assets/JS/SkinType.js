@@ -54,7 +54,7 @@ $(document).ready(function () {
         UpdateProductSelection();
         UpdateInfo();
     });
-    // ShowPreview()
+    ShowPreview()
     function ShowPreview() {
         let selectedProducts = GetSelectedProducts();
         let productIds = Object.keys(selectedProducts);
