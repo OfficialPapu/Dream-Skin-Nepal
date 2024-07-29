@@ -46,18 +46,12 @@ $query = "SELECT p.ID, p.`Product Title`, p.`Product Price`, p.`Discount Price`,
     LEFT JOIN `product_wishlist` wishlist ON p.ID = wishlist.`Product ID` AND wishlist.`User ID` = '$user_id'
     JOIN product_cart cart ON cart.`Product_ID` = p.`ID` WHERE cart.`User ID`='$user_id'";
 $result = $conn->query($query);
-$TotalDue = "SELECT `Total Due`, `Product Price`,`Discount Percentage` FROM `product_cart` WHERE `User ID`='$user_id'";
+$TotalDue = "SELECT `Total Due`, `Product Price` FROM `product_cart` WHERE `User ID`='$user_id'";
 $TotalPrice = 0;
 $TotalSaved=0;
-$DiscountPercentageSet = "";
 $runquery = mysqli_query($conn, $TotalDue);
 while ($rowcart = $runquery->fetch_assoc()) {
     $TotalPrice += $rowcart['Total Due'];
     $TotalSaved += $rowcart['Product Price'];
-    $DiscountPercentageSet=$rowcart['Discount Percentage'];
-}
-if($DiscountPercentageSet !=''){
-    $DiscountAmount = ($TotalPrice/100) *$DiscountPercentageSet;
-    $TotalPrice = $TotalPrice - $DiscountAmount;
 }
 $SavedAmount = $TotalSaved - $TotalPrice;
