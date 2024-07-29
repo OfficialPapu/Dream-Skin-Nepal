@@ -111,7 +111,7 @@ ChangeUrl();
 <script src="Assets/JS/Butterup/butterup.js"></script>
 <script src="Assets/JS/Butterup/butterup.min.js"></script>
 <script src="Assets/JS/Product Script.js"></script>
-<script src="Assets/JS/Combo Set.js"></script>
+<script src="Assets/JS/SkinType.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script async src="https://www.googletagmanager.com/gtag/js?id=AW-10828634041"></script>
 <script>
