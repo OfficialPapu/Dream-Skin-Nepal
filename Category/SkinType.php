@@ -1,178 +1,128 @@
 <?php
 @session_name('URLSession');
 @session_start();
-$_SESSION['URLSession']['Base Path'] = $_SERVER['DOCUMENT_ROOT'] . "/";
+$_SESSION['URLSession']['Base Path'] = $_SERVER['DOCUMENT_ROOT'] . "/Dream Skin Nepal/";
 $base_url = $_SESSION['URLSession']['Base Path'];
-include_once $base_url . "Assets/PHP/Configuration/Product Type Config.php";
+include_once $base_url . 'Assets/Components/Navbar.php';
+ChangeUrl();
 ?>
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
-    <!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=AW-10828634041"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'AW-10828634041');
-</script>
-
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.3.0/flowbite.min.css" rel="stylesheet" />
     <link rel="stylesheet" href="Assets/CSS/Butterup/butterup.min.css">
     <link rel="stylesheet" href="Assets/CSS/Butterup/butterup.css">
     <link rel="stylesheet" href="Assets/CSS/Product Style.css">
-    <title><?php echo $ProductTypeName; ?> - Dream Skin Nepal</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <title></title>
+    <style>
+        .offer-summary {
+            background-color: #d7f4ff;
+            background-image:
+                radial-gradient(at 47% 33%, hsl(156.00, 0%, 100%) 0, transparent 59%),
+                radial-gradient(at 82% 65%, hsl(330.27, 81%, 74%) 0, transparent 55%);
+        }
+
+        .card {
+            backdrop-filter: blur(13px) saturate(200%);
+            -webkit-backdrop-filter: blur(13px) saturate(200%);
+            background-color: rgba(255, 255, 255, 0.66);
+            border: 1px solid rgba(209, 213, 219, 0.3);
+        }
+
+        /* .offer-summary {
+            background-color: #111927;
+            background-image:
+                radial-gradient(at 47% 33%, hsl(218.18, 39%, 11%) 0, transparent 59%),
+                radial-gradient(at 82% 65%, hsl(230.29, 61%, 22%) 0, transparent 55%);
+        }
+
+        .card {
+            backdrop-filter: blur(16px) saturate(200%);
+            -webkit-backdrop-filter: blur(16px) saturate(200%);
+            background-color: rgba(17, 25, 40, 0.73);
+            border-radius: 12px;
+            border: 1px solid rgba(255, 255, 255, 0.125);
+        } */
+    </style>
 </head>
 
 <body>
-    <div class="flex px-5 py-3 text-gray-700 rounded-lg bg-gray-50 dark:bg-gray-800 dark:border-gray-700 Breadcrumb-box" aria-label="Breadcrumb">
-        <ol class="inline-flex items-center space-x-1 md:space-x-2 rtl:space-x-reverse">
-            <li class="inline-flex items-center">
-                <a href="/" class="inline-flex items-center text-sm font-medium text-gray-700 hover:text-blue-600 dark:text-gray-400 dark:hover:text-white">
-                    <svg class="w-3 h-3 me-2.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
-                        <path d="m19.707 9.293-2-2-7-7a1 1 0 0 0-1.414 0l-7 7-2 2a1 1 0 0 0 1.414 1.414L2 10.414V18a2 2 0 0 0 2 2h3a1 1 0 0 0 1-1v-4a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v4a1 1 0 0 0 1 1h3a2 2 0 0 0 2-2v-7.586l.293.293a1 1 0 0 0 1.414-1.414Z" />
-                    </svg>
-                    Home
-                </a>
-            </li>
-            <li>
-      <div class="flex items-center">
-        <svg class="rtl:rotate-180 w-3 h-3 text-gray-400 mx-1" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 6 10">
-          <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 9 4-4-4-4"/>
-        </svg>
-        <a href="/" class="ms-1 text-sm font-medium text-gray-700 hover:text-blue-600 md:ms-2 dark:text-gray-400 dark:hover:text-white">SkinCare Set</a>
-      </div>
-    </li>
-            <li aria-current="page">
-                <div class="flex items-center">
-                    <svg class="rtl:rotate-180 w-3 h-3 text-gray-400 mx-1" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 6 10">
-                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 9 4-4-4-4" />
-                    </svg>
-                    <span class="ms-1 text-sm font-medium text-gray-500 md:ms-2 dark:text-gray-400"><?php echo $ProductTypeName; ?></span>
+    <!-- <div class="flex flex-col items-start gap-2 my-4">
+        <div class="w-full rounded-full bg-muted">
+            <div class="h-1 rounded-full bg-[#ff007f]" style="width: 60%;"></div>
+        </div>
+    </div> -->
+    <div class="hidden preview mt-12 mb-6">
+        <div class="max-w-2xl w-full px-4 py-8 rounded-lg shadow-md mx-auto">
+            <div class="flex flex-col items-center gap-6 mb-6">
+                <div class="rounded-lg border text-card-foreground w-full" data-v0-t="card">
+                    <div class="flex flex-col space-y-1.5 p-6">
+                        <h3 class="whitespace-nowrap tracking-tight text-2xl font-medium">Summary</h3>
+                    </div>
+                    <div class="p-6 grid gap-4">
+                        <div class="flex items-center justify-between"><span class="text-muted-foreground">Total Products</span><span class="font-medium" id="TotalProudcts">0</span></div>
+                        <div class="flex items-center justify-between"><span class="text-muted-foreground">Discount Percentage</span><span class="font-medium text-green-500" id="DiscountPercentageSummary">0%</span></div>
+                        <div class="flex items-center justify-between"><span class="text-muted-foreground">Discount Amount</span><span class="font-medium text-green-500" id="DiscountAmt">Rs 0.00</span></div>
+                        <div class="flex items-center justify-between hidden" id="SkinTypeSetNamebox"><span class="text-muted-foreground">Set Name</span><span class="font-medium" id="SkinTypeSetNametext">jkdflkjdlg</span></div>
+                        <div class="flex items-center justify-between">
+                            <span class="text-muted-foreground">Total Price</span>
+                            <span class="font-bold text-end">
+                                <span id="SubTotal" class="line-through text-[#00adef]" style="text-decoration-color:#ff007f; -webkit-text-decoration-color:#ff007f;">Rs. 0.00</span><br>
+                                <span id="Total" class="text-[#FF5200] text-lg">Rs. 0.00</span>
+                            </span>
+                        </div>
+                    </div>
                 </div>
-            </li>
-        </ol>
+                <div class="flex items-center gap-4 w-full" id="SkintypenameBox">
+                        <input class="flex h-10 w-full border border-gray-300 text-sm rounded-md px-4 py-2" placeholder="Enter your skintype set name" type="text" id="SkinTypeSetName">
+                    <button class="text-md text-[#ff007f] font-500 ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 border border-[#00adef] bg-background h-11 rounded-md px-8 hover:bg-[#00adef] hover:text-white duration-300" id="Save">Save</button>
+                </div>
+                <button class="text-md font-500 ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 h-11 rounded-md px-8 bg-[#ff007f] text-white hover:bg-[#ff007f]/90 w-full" id="Proceedtocart">Proceed to cart</button>
+            </div>
+        </div>
     </div>
-<div class="brand-heading-box">
+    <div class="brand-heading-box">
         <div class="product-type-heading">
-            <h1><?php echo $ProductTypeName; ?><div class="designing-line"></div>
+            <h1><span id="SetName"></span>
+                <div class="designing-line"></div>
             </h1>
         </div>
-        <div class="option-container">
-            <div class="option-tag">
-                <div class="select-btn">
-                    <span class="SelectedText">Sort By</span>
-                    <i class='bx bx-chevron-down'></i>
+    </div>
+
+    <div>
+        <div class='product-main-container-brands'></div>
+        <div class="offer-summary mb-[6rem] md:mb-[0rem]">
+            <div class="w-full bg-background px-4 py-6 md:px-6 md:py-8 card">
+                <div class="max-w-6xl mx-auto grid md:grid-cols-2 gap-6 items-center">
+                    <div class="grid gap-2 hide-box"></div>
+                    <div class="flex items-center justify-end gap-4">
+                        <button class="text-md text-[#ff007f] font-500 ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 border border-[#00adef] bg-background h-11 rounded-md px-8 hover:bg-[#00adef] hover:text-white duration-300" id="Next">Next</button>
+                        <button class="text-md font-500 ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 h-11 rounded-md px-8 bg-[#ff007f] text-white hover:bg-[#ff007f]/90" id="Previous">Previous</button>
+                    </div>
                 </div>
-                <ul class="options" data-producttypeid="<?php echo $ProductTypeID;?>" data-brandid="0" data-featuredproduct="0">
-                    <li class="option-list" data-shorttype="Default">
-                        Default
-                    </li>
-                    <li class="option-list" data-shorttype="ASC">
-                        Price Low to High <i class='bx bx-down-arrow-alt'></i>
-                    </li>
-                    <li class="option-list" data-shorttype="DESC">
-                        Price High to Low <i class='bx bx-up-arrow-alt'></i>
-                    </li>
-                </ul>
             </div>
         </div>
 
-    </div>
-    <div class="product-main-container-brands">
-        <?php
-        while ($row = $result->fetch_assoc()) {
-            $product_title = $row['Product Title'];
-            include $base_url . "Assets/PHP/Configuration/TItle Length Count.php";
-            $price = $row['Product Price'];
-            $DiscountPrice = $row['Discount Price'];
-            $DiscountPercentage = $row['Discount Percentage'];
-            $StockStatus = $row['StockStatus'];
-            $product_id = $row['ID'];
-            $SlugUrl = $row['Slug Url'];
-            $AddedInCart = $row['IsAddedToCart'];
-            $AddedInWishlist = $row['IsAddedToWishlist'];
-            $thumbnail_url = $row['ProductThumbnail'];
-            $BrandID=$row['ProductBrand'];
-            $FindBrandName="SELECT * FROM `product_category` WHERE `Product Category ID`='$BrandID'";
-            $Find=mysqli_query($conn,$FindBrandName);
-            $Row=$Find->fetch_assoc();
-            $BrandName=$Row['Product Category Attribute'];
-            echo "<div class='product-divider'>
-    <div class='product-box'>";
-            if ($StockStatus == 'Out of Stock') {
-                echo "<div class='price-and-stock-info out-of-stock'>
-<i class='bx bxs-purchase-tag'></i> Out of Stock
-</div>";
-            } 
-             elseif ($DiscountPercentage != '') {
-                echo "<div class='price-and-stock-info discount'>
-            <i class='bx bxs-purchase-tag'></i> $DiscountPercentage% Off
-            </div>";
-            }
-            elseif ($DiscountPrice != '') {
-            echo "<div class='price-and-stock-info discount'>
-            <i class='bx bxs-purchase-tag'></i> Rs. $DiscountPrice 
-            </div>";
-            }
-           if ($AddedInWishlist == 'Not Added') {
-        echo "<i class='bx bx-heart AddToWishlist AddToWishlist-btn' data-product-id-wishlist='" . $row['ID'] . "'></i>";
-        } else if ($AddedInWishlist == 'Added') {
-        echo "<i class='bx bxs-heart AddToWishlist AddToWishlist-btn' data-product-id-wishlist='" . $row['ID'] . "'></i>";
-        }
-            echo "<a href='Product/$SlugUrl'>
-            <img src='$thumbnail_url' alt='$limited_title'>
-            <div class='product-data'>
-                <span class='productbrand'>$BrandName</span>
-                <h5>$limited_title</h5>
-        </a>
-      <!--  <div class='stars'>
-            <i class='bx bxs-star'></i>
-            <i class='bx bxs-star'></i>
-            <i class='bx bxs-star'></i>
-            <i class='bx bxs-star'></i>
-            <i class='bx bxs-star'></i>
-        </div>-->
-    </div>
-    <div class='price-cart'>";
-            if ($DiscountPrice != '') {
-                echo "<div class='product-price-box'>
-        <h4 class='product-non-discount-price'>Rs. $price.00</h4>
-        <h4 class='product-discount-price'>Rs. $DiscountPrice.00</h4>
-        </div>";
-            } elseif ($DiscountPercentage != '') {
-                $DiscountValueCalculate = ceil(($price / 100) * $DiscountPercentage);
-                $DiscountValue = $price - $DiscountValueCalculate;
-                echo "<div class='product-price-box'>
-                <h4 class='product-non-discount-price'>Rs. $price.00</h4>
-                <h4 class='product-discount-price'>Rs. $DiscountValue.00</h4>
-                </div>";
-            } else {
-                echo "<h4>Rs. $price.00</h4>";
-            }
-            if ($AddedInCart == 'Not Added') {
-                echo "<i class='bx bx-cart product-cart AddToCart' data-product-id='" . $row['ID'] . "'></i>";
-            } else if ($AddedInCart == 'Added') {
-                echo "<i class='bx bx-check product-cart AddToCart' data-product-id='" . $row['ID'] . "'></i>";
-            }
-            echo "</div>
-    </div>
-</div>";
-        }
-        ?>
-    </div>
-    <footer>
-        <?php
-        include_once $base_url . 'Assets/Components/Footer.php';
-        ?>
-    </footer>
 </body>
 <script src="Assets/JS/Butterup/butterup.js"></script>
 <script src="Assets/JS/Butterup/butterup.min.js"></script>
 <script src="Assets/JS/Product Script.js"></script>
+<script src="Assets/JS/SkinType.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=AW-10828634041"></script>
+<script>
+    window.dataLayer = window.dataLayer || [];
+
+    function gtag() {
+        dataLayer.push(arguments);
+    }
+    gtag('js', new Date());
+
+    gtag('config', 'AW-10828634041');
+</script>
 
 </html>

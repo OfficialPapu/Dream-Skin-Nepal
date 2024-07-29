@@ -9,6 +9,7 @@ $base_url = $_SESSION['URLSession']['Base Path'];
 include_once $base_url . 'Assets/PHP/Configuration/User IP.php';
 include_once $base_url . 'Assets/PHP/Configuration/Create Slug.php';
 include_once $base_url . 'Assets/PHP/Database/Database Connection.php';
+include_once $base_url . 'Assets/PHP/Configuration/Show Product.php';
 include_once $base_url . 'Assets/PHP/Email Management/Orders Email/Order Status Pending.php';
 include_once $base_url . 'Assets/PHP/Email Management/Orders Email/Order Status Shipped.php';
 include_once $base_url . 'Assets/PHP/Email Management/Orders Email/Order Status Complete.php';
@@ -1267,4 +1268,99 @@ if (isset($_POST['EditCategory'])) {
     } else {
         echo "Fail";
     }
+}
+
+
+
+if (isset($_POST['UpdatePriceInfo'])) {
+    $productIds = $_POST['productIds'];
+    $productIdsString = implode(',', array_map('intval', $productIds));
+    $query = "SELECT ID, `Product Price` FROM posts WHERE ID IN ($productIdsString)";
+    $result = $conn->query($query);
+
+    $TotalPrice = 0;
+    while ($row = $result->fetch_assoc()) {
+        $TotalPrice += $row['Product Price'];
+    }
+    echo ($TotalPrice);
+}
+
+if (isset($_POST['StoreSkinTypeName'])) {
+    $SkinTypeSetName = $_POST['SkinTypeSetName'];
+    $Sql = "INSERT INTO `product_bundles`(`User ID`, `Bundle Name`, `Created At`) VALUES ('$user_id','$SkinTypeSetName',CONVERT_TZ(NOW(), '+00:00', '+05:45'))";
+    $SqlRun = mysqli_query($conn, $Sql);
+    if ($SqlRun) {
+        $_SESSION['StoredBundleID'] = true;
+        $_SESSION['BundleID'] = $conn->insert_id;
+        echo "Success";
+    } else {
+        echo "Error";
+    }
+}
+if (isset($_POST['ProceedToCart'])) {
+    if (isset($_SESSION['StoredBundleID'])) {
+        unset($_SESSION['StoredBundleID']);
+        $productIds = $_POST['productIds'];
+        $BundleID = $_SESSION['BundleID'];
+        foreach ($productIds as $key => $value) {
+            $InsertBundle = "INSERT INTO `bundle_items`(`Bundle ID`, `Product ID`) VALUES ('$BundleID','$value')";
+
+            $InsertBundleRun = mysqli_query($conn, $InsertBundle);
+        }
+        $DiscountPercentage = count($productIds);
+        foreach ($productIds as $productId) {
+            $productQuery = "SELECT * FROM `posts` WHERE `ID` = '$productId'";
+            $productResult = mysqli_query($conn, $productQuery);
+            $productData = $productResult->fetch_assoc();
+
+            $productPrice = $productData['Product Price'];
+
+            $InsertBundleCart = "INSERT INTO `product_cart`(`User ID`, `Product_ID`, `User_IP`, `Product Price`, `Shipping Fee`, `Discount Percentage`, `Product_Quantity`, `Date & Time`) VALUES ('$user_id', '$productId', '$user_ip', '$productPrice', '','$DiscountPercentage', '1', CONVERT_TZ(NOW(), '+00:00', '+05:45'))";
+            $InsertBundleCartRun = mysqli_query($conn, $InsertBundleCart);
+        }
+        echo "Success";
+    } else {
+        echo  "Bundel Name Empty";
+    }
+}
+
+if (isset($_POST['ShowPreview'])) {
+    $productIds = $_POST['productIds'];
+    $productIdsString = implode(',', array_map('intval', $productIds));
+    $query = "SELECT DISTINCT p.ID, p.`Product Title`,p.`Slug Url`, p.`Product Price`,p.`Discount Price`,p.`Discount Percentage`, pm1.`Product Meta Value` 
+    AS ProductBrand, pm2.`Product Meta Value` AS ProductThumbnail, pm3.`Product Meta Value` AS ProductType,
+    CASE WHEN wishlist.`Product ID` IS NOT NULL THEN 'Added' ELSE 'Not Added' END AS IsAddedToWishlist,
+    CASE WHEN ci.`Product_ID` IS NOT NULL AND ci.`User ID`='$user_id' THEN 'Added' ELSE 'Not Added' END AS IsAddedToCart,
+    CASE WHEN p.`Product Quantity` <= 0 THEN 'Out of Stock' ELSE 'In Stock'END AS StockStatus
+    FROM posts p 
+    LEFT JOIN `product_cart` ci ON p.ID = ci.`Product_ID`
+    LEFT JOIN `product_wishlist` wishlist ON p.ID = wishlist.`Product ID` AND wishlist.`User ID` = '$user_id'
+    JOIN postsmeta pm1 ON p.ID = pm1.`Product ID` AND pm1.`Product Meta Key` = 'Brand ID'
+    JOIN postsmeta pm2 ON p.ID = pm2.`Product ID` AND pm2.`Product Meta Key` = 'Image 1'
+    JOIN postsmeta pm3 ON p.ID = pm3.`Product ID` AND pm3.`Product Meta Key` = 'Product Type ID'
+    WHERE p.ID IN ($productIdsString)";
+    include_once $base_url . 'Assets/PHP/Configuration/Mobile Check.php';
+    $result = $conn->query($query);
+    ShowProducts($result, $base_url, $is_mobile, $conn);
+}
+
+
+
+if (isset($_POST['GetProducts'])) {
+    $ProductTypeID = $_POST['ProductTypeID'];
+    $query = "SELECT DISTINCT p.ID, p.`Product Title`,p.`Slug Url`, p.`Product Price`,p.`Discount Price`,p.`Discount Percentage`, pm1.`Product Meta Value` 
+AS ProductBrand, pm2.`Product Meta Value` AS ProductThumbnail, pm3.`Product Meta Value` AS ProductType,
+CASE WHEN wishlist.`Product ID` IS NOT NULL THEN 'Added' ELSE 'Not Added' END AS IsAddedToWishlist,
+CASE WHEN ci.`Product_ID` IS NOT NULL AND ci.`User ID`='$user_id' THEN 'Added' ELSE 'Not Added' END AS IsAddedToCart,
+CASE WHEN p.`Product Quantity` <= 0 THEN 'Out of Stock' ELSE 'In Stock'END AS StockStatus
+FROM posts p 
+LEFT JOIN `product_cart` ci ON p.ID = ci.`Product_ID`
+LEFT JOIN `product_wishlist` wishlist ON p.ID = wishlist.`Product ID` AND wishlist.`User ID` = '$user_id'
+JOIN postsmeta pm1 ON p.ID = pm1.`Product ID` AND pm1.`Product Meta Key` = 'Brand ID'
+JOIN postsmeta pm2 ON p.ID = pm2.`Product ID` AND pm2.`Product Meta Key` = 'Image 1'
+JOIN postsmeta pm3 ON p.ID = pm3.`Product ID` AND pm3.`Product Meta Key` = 'Product Type ID'
+WHERE pm3.`Product Meta Value`='$ProductTypeID'";
+    include_once $base_url . 'Assets/PHP/Configuration/Mobile Check.php';
+    $result = $conn->query($query);
+    ShowProducts($result, $base_url, $is_mobile, $conn);
 }
