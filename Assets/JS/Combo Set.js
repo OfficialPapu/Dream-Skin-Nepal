@@ -54,8 +54,7 @@ $(document).ready(function () {
         UpdateProductSelection();
         UpdateInfo();
     });
-
-// ShowPreview();
+    // ShowPreview()
     function ShowPreview() {
         let selectedProducts = GetSelectedProducts();
         let productIds = Object.keys(selectedProducts);
@@ -75,7 +74,7 @@ $(document).ready(function () {
                     onComplete: function () {
                         $(".product-main-container-brands").html(response);
                         gsap.from(".product-main-container-brands", {
-                            scale:0.8,
+                            scale: 0.8,
                             duration: 0.3,
                             opacity: 0,
                         });
@@ -84,6 +83,70 @@ $(document).ready(function () {
             }
         });
     }
+    $("#Save").click(function (e) {
+        e.preventDefault();
+        let SkinTypeSetName = $("#SkinTypeSetName").val();
+        if (SkinTypeSetName != "") {
+            $.ajax({
+                type: "POST",
+                url: "Assets/PHP/Configuration/Common Function.php",
+                data: {
+                    StoreSkinTypeName: true,
+                    SkinTypeSetName: SkinTypeSetName,
+                },
+                success: function (response) {
+                    response = response.trim();
+                    if (response == "Success") {
+                        Swal.fire({
+                            title: "Skintype Set Saved Sucessfully!",
+                            text: "Skintype name saved",
+                            icon: "success"
+                        });
+                        $("#SkinTypeSetNametext").html(SkinTypeSetName);
+                        $("#SkinTypeSetNamebox").toggleClass("hidden");
+                        $("#SkintypenameBox").addClass("hidden");
+                    }
+                }
+            });
+        } else {
+            butterup.options.maxToasts = 2;
+            butterup.toast({
+                message: 'Skintype set name is required!',
+                icon: true,
+                dismissable: true,
+                type: 'error',
+            });
+        }
+    });
+    $("#Proceedtocart").click(function (e) {
+        e.preventDefault();
+        let selectedProducts = GetSelectedProducts();
+        let productIds = Object.keys(selectedProducts);
+        $.ajax({
+            type: "POST",
+            url: "Assets/PHP/Configuration/Common Function.php",
+            data: {
+                ProceedToCart: true,
+                productIds: productIds,
+            },
+            success: function (response) {
+                response=response.trim();
+                if (response == "Bundel Name Empty") {
+                    butterup.options.maxToasts = 2;
+                    butterup.toast({
+                        message: 'Skintype set name is required!',
+                        icon: true,
+                        dismissable: true,
+                        type: 'error',
+                    });
+                } else if (response == "Success") {
+                    // localStorage.clear();
+                    window.location.href="Account/UserAccount/Cart.php";
+                }
+            }
+        });
+
+    });
 
     function UpdateInfo() {
         let selectedProducts = GetSelectedProducts();
@@ -114,6 +177,11 @@ $(document).ready(function () {
                                 <div class="bg-[#ff007f] text-white px-3 py-1 rounded-full text-sm font-medium" id="DiscountPercentage">${DiscountPercentage}% OFF</div>
                             </div>
                             <p class="text-[#6e6e76]">You're saving <span class="font-bold text-[#00adef]" id="SavedAmount">Rs. ${FormattedDiscountAmount}</span> on this purchase!</p>`);
+                    $("#TotalProudcts").html(DiscountPercentage);
+                    $("#DiscountPercentageSummary").html(DiscountPercentage + "%");
+                    $("#DiscountAmt").html(`Rs. ${FormattedDiscountAmount}.00`);
+                    $("#SubTotal").html(`Rs. ${FormattedTotalPrice}.00`);
+                    $("#Total").html(`Rs. ${FormattedDiscountPrice}.00`);
                 },
             });
         }

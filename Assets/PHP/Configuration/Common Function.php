@@ -79,6 +79,45 @@ if (isset($_POST['UpdatePriceInfo'])) {
     echo ($TotalPrice);
 }
 
+if (isset($_POST['StoreSkinTypeName'])) {
+    $SkinTypeSetName = $_POST['SkinTypeSetName'];
+    $Sql = "INSERT INTO `product_bundles`(`User ID`, `Bundle Name`, `Created At`) VALUES ('$user_id','$SkinTypeSetName',CONVERT_TZ(NOW(), '+00:00', '+05:45'))";
+    $SqlRun = mysqli_query($conn, $Sql);
+    if ($SqlRun) {
+        $_SESSION['StoredBundleID'] = true;
+        $_SESSION['BundleID'] = $conn->insert_id;
+        echo "Success";
+    } else {
+        echo "Error";
+    }
+}
+if (isset($_POST['ProceedToCart'])) {
+    if (isset($_SESSION['StoredBundleID'])) {
+        unset($_SESSION['StoredBundleID']);
+        $productIds = $_POST['productIds'];
+        $BundleID = $_SESSION['BundleID'];
+        foreach ($productIds as $key => $value) {
+            $InsertBundle = "INSERT INTO `bundle_items`(`Bundle ID`, `Product ID`) VALUES ('$BundleID','$value')";
+
+            $InsertBundleRun = mysqli_query($conn, $InsertBundle);
+        }
+        $DiscountPercentage = count($productIds);
+        foreach ($productIds as $productId) {
+            $productQuery = "SELECT * FROM `posts` WHERE `ID` = '$productId'";
+            $productResult = mysqli_query($conn, $productQuery);
+            $productData = $productResult->fetch_assoc();
+
+            $productPrice = $productData['Product Price'];
+
+            $InsertBundleCart = "INSERT INTO `product_cart`(`User ID`, `Product_ID`, `User_IP`, `Product Price`, `Shipping Fee`, `Discount Percentage`, `Product_Quantity`, `Date & Time`) VALUES ('$user_id', '$productId', '$user_ip', '$productPrice', '','$DiscountPercentage', '1', CONVERT_TZ(NOW(), '+00:00', '+05:45'))";
+            $InsertBundleCartRun = mysqli_query($conn, $InsertBundleCart);
+        }
+        echo "Success";
+    } else {
+        echo  "Bundel Name Empty";
+    }
+}
+
 if (isset($_POST['ShowPreview'])) {
     $productIds = $_POST['productIds'];
     $productIdsString = implode(',', array_map('intval', $productIds));
@@ -98,6 +137,8 @@ if (isset($_POST['ShowPreview'])) {
     $result = $conn->query($query);
     ShowProducts($result, $base_url, $is_mobile, $conn);
 }
+
+
 
 if (isset($_POST['GetProducts'])) {
     $ProductTypeID = $_POST['ProductTypeID'];

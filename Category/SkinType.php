@@ -56,7 +56,35 @@ ChangeUrl();
             <div class="h-1 rounded-full bg-[#ff007f]" style="width: 60%;"></div>
         </div>
     </div> -->
-
+    <div class="hidden preview mt-12 mb-6">
+        <div class="max-w-2xl w-full px-4 py-8 rounded-lg shadow-md mx-auto">
+            <div class="flex flex-col items-center gap-6 mb-6">
+                <div class="rounded-lg border text-card-foreground w-full" data-v0-t="card">
+                    <div class="flex flex-col space-y-1.5 p-6">
+                        <h3 class="whitespace-nowrap tracking-tight text-2xl font-medium">Summary</h3>
+                    </div>
+                    <div class="p-6 grid gap-4">
+                        <div class="flex items-center justify-between"><span class="text-muted-foreground">Total Products</span><span class="font-medium" id="TotalProudcts">0</span></div>
+                        <div class="flex items-center justify-between"><span class="text-muted-foreground">Discount Percentage</span><span class="font-medium text-green-500" id="DiscountPercentageSummary">0%</span></div>
+                        <div class="flex items-center justify-between"><span class="text-muted-foreground">Discount Amount</span><span class="font-medium text-green-500" id="DiscountAmt">Rs 0.00</span></div>
+                        <div class="flex items-center justify-between hidden" id="SkinTypeSetNamebox"><span class="text-muted-foreground">Set Name</span><span class="font-medium" id="SkinTypeSetNametext">jkdflkjdlg</span></div>
+                        <div class="flex items-center justify-between">
+                            <span class="text-muted-foreground">Total Price</span>
+                            <span class="font-bold text-end">
+                                <span id="SubTotal" class="line-through text-[#00adef]" style="text-decoration-color:#ff007f; -webkit-text-decoration-color:#ff007f;">Rs. 0.00</span><br>
+                                <span id="Total" class="text-[#FF5200] text-lg">Rs. 0.00</span>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                <div class="flex items-center gap-4 w-full" id="SkintypenameBox">
+                        <input class="flex h-10 w-full border border-gray-300 text-sm rounded-md px-4 py-2" placeholder="Enter your skintype set name" type="text" id="SkinTypeSetName">
+                    <button class="text-md text-[#ff007f] font-500 ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 border border-[#00adef] bg-background h-11 rounded-md px-8 hover:bg-[#00adef] hover:text-white duration-300" id="Save">Save</button>
+                </div>
+                <button class="text-md font-500 ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 h-11 rounded-md px-8 bg-[#ff007f] text-white hover:bg-[#ff007f]/90 w-full" id="Proceedtocart">Proceed to cart</button>
+            </div>
+        </div>
+    </div>
     <div class="brand-heading-box">
         <div class="product-type-heading">
             <h1><span id="SetName"></span>
@@ -64,6 +92,7 @@ ChangeUrl();
             </h1>
         </div>
     </div>
+
     <div>
         <div class='product-main-container-brands'></div>
         <div class="offer-summary mb-[6rem] md:mb-[0rem]">
@@ -77,33 +106,13 @@ ChangeUrl();
                 </div>
             </div>
         </div>
-        <div class="hidden preview">
-            <div class="max-w-2xl w-full px-4 py-8 rounded-lg shadow-md mx-auto">
-                <div class="flex flex-col items-center gap-6 mb-6">
-                    <div class="rounded-lg border text-card-foreground w-full" data-v0-t="card">
-                        <div class="flex flex-col space-y-1.5 p-6">
-                            <h3 class="whitespace-nowrap tracking-tight text-2xl font-medium">Summary</h3>
-                        </div>
-                        <div class="p-6 grid gap-4">
-                            <div class="flex items-center justify-between"><span class="text-muted-foreground">Total Products</span><span class="font-medium">3</span></div>
-                            <div class="flex items-center justify-between"><span class="text-muted-foreground">Discount Percentage</span><span class="font-medium text-green-500">15%</span></div>
-                            <div class="flex items-center justify-between"><span class="text-muted-foreground">Discount Amount</span><span class="font-medium text-green-500">$25.00</span></div>
-                            <div class="flex items-center justify-between"><span class="text-muted-foreground">Total Price</span><span class="font-medium">$150.00</span></div>
-                        </div>
-                    </div>
-                    <div class="flex items-center gap-4 w-full">
-                        <input class="flex h-10 w-full border border-gray-300 text-sm rounded-md px-4 py-2" placeholder="Enter your skintype set name" type="text">
-                        <button class="text-md text-[#ff007f] font-500 ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 border border-[#00adef] bg-background h-11 rounded-md px-8 hover:bg-[#00adef] hover:text-white duration-300">Save</button>
-                    </div>
-                    <button class="text-md font-500 ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 h-11 rounded-md px-8 bg-[#ff007f] text-white hover:bg-[#ff007f]/90 w-full">Add to cart</button>
-                </div>
-            </div>
-        </div>
+
 </body>
 <script src="Assets/JS/Butterup/butterup.js"></script>
 <script src="Assets/JS/Butterup/butterup.min.js"></script>
 <script src="Assets/JS/Product Script.js"></script>
 <script src="Assets/JS/Combo Set.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script async src="https://www.googletagmanager.com/gtag/js?id=AW-10828634041"></script>
 <script>
     window.dataLayer = window.dataLayer || [];
