@@ -137,6 +137,7 @@ $(document).ready(function () {
 });
 
 $(document).ready(function () {
+    SetNavigationPath();
     $('.checkout-btn').click(function (e) {
         if (FreeShippingConditionPrice >= 5000) {
             window.open("Account/UserAccount/Checkout.php", "_self");
@@ -168,6 +169,16 @@ function SucessNotify(title, text, icon) {
         title: title,
         text: text,
         icon: icon
+    });
+}
+function SetNavigationPath(){
+    $.ajax({
+        type: "POST",
+        url: "Assets/PHP/Configuration/Common Function.php",
+        data: {
+            SetPath:true,
+            Path:"CartPath",
+        }
     });
 }
 

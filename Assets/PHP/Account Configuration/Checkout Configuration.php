@@ -7,8 +7,14 @@ if (isset($_SESSION['Logged In'])) {
     echo "<script>window.open('Account/Authentication/LoginInterface.php','_self');</script>";
     $user_id = $_SESSION['Cart']['user_id'];
 }
+if ($_SESSION['NavigationPath'] == "BundlePath") {
+    $query = "SELECT p.ID, p.`Product Title`, p.`Slug Url`, p.`Product Price`, bc.`Product ID` AS Cartproducts, bc.`Product Quantity` AS CartQuantity, bc.`Total Due`, pm1.`Product Meta Value` AS ProductTmumbnail FROM posts p JOIN postsmeta pm1 ON p.ID = pm1.`Product ID` AND pm1.`Product Meta Key` = 'Image 1' JOIN bundle_cart bc ON bc.`Product ID` = p.`ID` JOIN product_bundles pb ON pb.`Bundle ID` = bc.`Bundle ID` WHERE pb.`User ID` = '$user_id'";
+    $result = $conn->query($query);
+$TotalDue = "SELECT * FROM `bundle_cart` bc JOIN product_bundles pb ON pb.`Bundle ID` = bc.`Bundle ID` WHERE `User ID`='$user_id'";
+$shippingFeeQuery = "SELECT `Shipping Fee` AS totalShippingFee FROM `bundle_cart` bc JOIN product_bundles pb ON pb.`Bundle ID` = bc.`Bundle ID` WHERE `User ID`='$user_id'";
 
-$query = "SELECT p.ID, p.`Product Title`,p.`Slug Url` ,p.`Product Price`,p.`Discount Price`,p.`Discount Percentage`,
+} else if ($_SESSION['NavigationPath'] == "CartPath") {
+    $query = "SELECT p.ID, p.`Product Title`,p.`Slug Url` ,p.`Product Price`,p.`Discount Price`,p.`Discount Percentage`,
 cart.`Product_ID` AS cartproducts,
 cart.`User_IP` AS UserIpCart,
 cart.`Product_Quantity` AS CartQuantity,
@@ -17,12 +23,15 @@ JOIN postsmeta pm1 ON p.ID = pm1.`Product ID` AND pm1.`Product Meta Key` = 'Imag
 JOIN product_cart cart ON cart.`Product_ID` = p.`ID` WHERE cart.`User ID`='$user_id'";
 $result = $conn->query($query);
 $TotalDue = "SELECT * FROM `product_cart` WHERE `User ID`='$user_id'";
+$shippingFeeQuery = "SELECT `Shipping Fee` AS totalShippingFee FROM `product_cart` WHERE `User ID`='$user_id'";
+}
 $runquery = $conn->query($TotalDue);
 $TotalPrice = 0;
 $AddedShippingFee = false;
 while ($row = $runquery->fetch_assoc()) {
     $TotalPrice += $row['Total Due'];
 }
+$TotalPrice =ceil($TotalPrice);
 
 if (isset($_POST['check'])) {
     $name = $_POST['user_name_data'];
@@ -46,4 +55,3 @@ if (isset($_POST['check'])) {
         }
     }
 }
-?>

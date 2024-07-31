@@ -38,9 +38,11 @@ include_once $base_url . 'Assets/PHP/Account Configuration/Checkout Configuratio
                                     </div>
                                     <p class='review-shipping-add'><i>*Note : Confirm your shipping address</i></p>
                                     <div class="add-input">
-                                        <div class="data-check"><input type="hidden" class="check-data-filled" value="<?php if(isset($_SESSION['user_data_confirm-name'])){
-                                            echo $_SESSION['user_data_confirm-name'];
-                                        }else{ echo ''; }?>"></div>
+                                        <div class="data-check"><input type="hidden" class="check-data-filled" value="<?php if (isset($_SESSION['user_data_confirm-name'])) {
+                                                                                                                            echo $_SESSION['user_data_confirm-name'];
+                                                                                                                        } else {
+                                                                                                                            echo '';
+                                                                                                                        } ?>"></div>
                                         <div class="user-name"><input type="text" placeholder="Full Name" class="user-name-data"></div>
                                         <div class="user-number"><input type="text" placeholder="Phone" class="user-number-data"></div>
                                         <div class="user-city"><input type="text" placeholder="City" class="user-city-data"></div>
@@ -81,7 +83,6 @@ include_once $base_url . 'Assets/PHP/Account Configuration/Checkout Configuratio
                             </li>
                         </ol>
                     </div>';
-                        $shippingFeeQuery = "SELECT `Shipping Fee` AS totalShippingFee FROM `product_cart` WHERE `User ID`='$user_id'";
                         $shippingFeeResult = $conn->query($shippingFeeQuery);
                         $shippingFeeRow = $shippingFeeResult->fetch_assoc();
                         $TotalPrice += $shippingFeeRow['totalShippingFee'];
@@ -102,16 +103,20 @@ include_once $base_url . 'Assets/PHP/Account Configuration/Checkout Configuratio
                             $product_title = $row['Product Title'];
                             $SlugUrl = $row['Slug Url'];
                             $price = $row['Product Price'];
-                            $DiscountPrice = $row['Discount Price'];
-                            $DiscountPercentage = $row['Discount Percentage'];
-                            if($DiscountPrice != ''){
-                                $price=$DiscountPrice;
-                            }else if ($DiscountPercentage != '') {
-                            $DiscountValueCalculate = ceil(($price / 100) * $DiscountPercentage);
-                            $DiscountValue = $price - $DiscountValueCalculate;
-                            $price = $DiscountValue;
+                            if ($_SESSION['NavigationPath'] == "BundlePath") {
+                                $price =  ceil($row['Total Due']);
+                            } else if ($_SESSION['NavigationPath'] == "CartPath") {
+                                $DiscountPrice = $row['Discount Price'];
+                                $DiscountPercentage = $row['Discount Percentage'];
+                                if ($DiscountPrice != '') {
+                                    $price = $DiscountPrice;
+                                } else if ($DiscountPercentage != '') {
+                                    $DiscountValueCalculate = ceil(($price / 100) * $DiscountPercentage);
+                                    $DiscountValue = $price - $DiscountValueCalculate;
+                                    $price = $DiscountValue;
+                                }
                             }
-                            
+
                             $productqty = $row['CartQuantity'];
                             $thumbnail_url = $row['ProductTmumbnail'];
                             echo " <div class='product-divider'>
@@ -187,4 +192,5 @@ include_once $base_url . 'Assets/PHP/Account Configuration/Checkout Configuratio
 <script src="Assets/JS/Butterup/butterup.js"></script>
 <script src="Assets/JS/Butterup/butterup.min.js"></script>
 <script src="Assets/JS/Checkout.js"></script>
+
 </html>

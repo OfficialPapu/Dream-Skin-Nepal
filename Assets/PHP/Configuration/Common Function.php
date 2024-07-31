@@ -1292,17 +1292,18 @@ if (isset($_POST['StoreSkinTypeName'])) {
     $SqlRun = mysqli_query($conn, $Sql);
     if ($SqlRun) {
         $BundleID = $conn->insert_id;
-        if (StoreProductInBundleItems($conn, $productIds, $BundleID)) {
+        if (StoreProductInBundleItems($conn, $productIds, $BundleID, $user_id)) {
             echo "Success";
-            $_SESSION['BundleSetPath']=true;
         }
     } else {
         echo "Error";
     }
 }
-function StoreProductInBundleItems($conn, $productIds, $BundleID)
+function StoreProductInBundleItems($conn, $productIds, $BundleID, $user_id)
 {
     $DiscountPercentageSet = count($productIds);
+    $ClearCartQuery = "DELETE bc FROM bundle_cart bc JOIN product_bundles pb ON pb.`Bundle ID` = bc.`Bundle ID` WHERE pb.`User ID` = '$user_id'";
+    $ClearCartRun = mysqli_query($conn, $ClearCartQuery);
     foreach ($productIds as $key => $value) {
 
         $productQuery = "SELECT * FROM `posts` WHERE `ID` = '$value'";
@@ -1360,3 +1361,6 @@ if (isset($_POST['ShippingFeeChangeSet'])) {
 }
 
 
+if (isset($_POST['SetPath'])) {
+    $_SESSION['NavigationPath']=$_POST['Path'];
+}

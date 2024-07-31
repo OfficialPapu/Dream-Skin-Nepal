@@ -15,7 +15,7 @@ $('#shippingOptions input[type="checkbox"]').change(function () {
             type: "POST",
             url: "Assets/PHP/Configuration/Common Function.php",
             data: {
-                ShippingFeeChange: true,
+                ShippingFeeChangeSet: true,
                 ShippingFeeChangeing: 0,
             },
         });
@@ -58,6 +58,7 @@ $('#shippingOptions input[type="checkbox"]').change(function () {
 
 
 $(document).ready(function () {
+    SetNavigationPath();
     $('.checkout-btn').click(function (e) {
         if (FreeShippingConditionPrice >= 5000) {
             window.open("Account/UserAccount/Checkout.php", "_self");
@@ -84,3 +85,17 @@ function OverWriteData(Element, Data) {
     $(Element).html(Data);
 }
 
+
+function SetNavigationPath(){
+    $.ajax({
+        type: "POST",
+        url: "Assets/PHP/Configuration/Common Function.php",
+        data: {
+            SetPath:true,
+            Path:"BundlePath",
+        },
+        success:function(response){
+            console.log(response);
+        }
+    });
+}
