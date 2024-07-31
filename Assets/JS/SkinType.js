@@ -54,100 +54,9 @@ $(document).ready(function () {
         UpdateProductSelection();
         UpdateInfo();
     });
-    ShowPreview()
-    function ShowPreview() {
-        let selectedProducts = GetSelectedProducts();
-        let productIds = Object.keys(selectedProducts);
-        $.ajax({
-            type: "POST",
-            url: "Assets/PHP/Configuration/Common Function.php",
-            data: {
-                ShowPreview: true,
-                productIds: productIds,
-            },
-            success: function (response) {
-                $(".brand-heading-box").addClass("!hidden");
-                $(".offer-summary").addClass("!hidden");
-                $('.preview').removeClass("hidden");
-                $(".product-main-container-brands").addClass("pointer-events-none");
-                gsap.to(".product-main-container-brands", {
-                    onComplete: function () {
-                        $(".product-main-container-brands").html(response);
-                        gsap.from(".product-main-container-brands", {
-                            scale: 0.8,
-                            duration: 0.3,
-                            opacity: 0,
-                        });
-                    }
-                });
-            }
-        });
-    }
-    $("#Save").click(function (e) {
-        e.preventDefault();
-        let SkinTypeSetName = $("#SkinTypeSetName").val();
-        if (SkinTypeSetName != "") {
-            $.ajax({
-                type: "POST",
-                url: "Assets/PHP/Configuration/Common Function.php",
-                data: {
-                    StoreSkinTypeName: true,
-                    SkinTypeSetName: SkinTypeSetName,
-                },
-                success: function (response) {
-                    response = response.trim();
-                    if (response == "Success") {
-                        Swal.fire({
-                            title: "Skintype Set Saved Sucessfully!",
-                            text: "Skintype name saved",
-                            icon: "success"
-                        });
-                        $("#SkinTypeSetNametext").html(SkinTypeSetName);
-                        $("#SkinTypeSetNamebox").toggleClass("hidden");
-                        $("#SkintypenameBox").addClass("hidden");
-                    }
-                }
-            });
-        } else {
-            butterup.options.maxToasts = 2;
-            butterup.toast({
-                message: 'Skintype set name is required!',
-                icon: true,
-                dismissable: true,
-                type: 'error',
-            });
-        }
-    });
-    $("#Proceedtocart").click(function (e) {
-        e.preventDefault();
-        let selectedProducts = GetSelectedProducts();
-        let productIds = Object.keys(selectedProducts);
-        $.ajax({
-            type: "POST",
-            url: "Assets/PHP/Configuration/Common Function.php",
-            data: {
-                ProceedToCart: true,
-                productIds: productIds,
-            },
-            success: function (response) {
-                response=response.trim();
-                if (response == "Bundel Name Empty") {
-                    butterup.options.maxToasts = 2;
-                    butterup.toast({
-                        message: 'Skintype set name is required!',
-                        icon: true,
-                        dismissable: true,
-                        type: 'error',
-                    });
-                } else if (response == "Success") {
-                    // localStorage.clear();
-                    window.location.href="Account/UserAccount/Cart.php";
-                }
-            }
-        });
 
-    });
-
+   
+   
     function UpdateInfo() {
         let selectedProducts = GetSelectedProducts();
         let productIds = Object.keys(selectedProducts);
@@ -170,18 +79,19 @@ $(document).ready(function () {
                     const FormattedTotalPrice = NumberFormatter.format(TotalPrice.toFixed(2));
                     const FormattedDiscountAmount = NumberFormatter.format(DiscountAmount);
                     const FormattedDiscountPrice = NumberFormatter.format(DiscountPrice.toFixed(2));
+                    if (DiscountPercentage >= 2) {
+                        $(".hide-box").html(`<div class="flex items-center gap-4">
+                            <div class="text-4xl font-bold text-[#ff007f]" id="DiscountPrice">Rs. ${FormattedDiscountPrice}</div>
+                            <div class="text-2xl font-bold text-[#00adef] line-through" style="text-decoration-color:#ff007f; -webkit-text-decoration-color:#ff007f;" id="TotalPrice">Rs. ${FormattedTotalPrice}</div>
+                            <div class="bg-[#ff007f] text-white px-3 py-1 rounded-full text-sm font-medium" id="DiscountPercentage">${DiscountPercentage}% OFF</div>
+                        </div>
+                        <p class="text-[#6e6e76]">You're saving <span class="font-bold text-[#00adef]" id="SavedAmount">Rs. ${FormattedDiscountAmount}</span> on this purchase!</p>`);
+                    }else{
+                        $(".hide-box").html(`<div class="flex items-center gap-4">
+                            <div class="text-4xl font-bold text-[#ff007f]" id="DiscountPrice">Rs. ${FormattedDiscountPrice}.00</div>
+                            </div>`);
 
-                    $(".hide-box").html(`<div class="flex items-center gap-4">
-                                <div class="text-4xl font-bold text-[#ff007f]" id="DiscountPrice">Rs. ${FormattedDiscountPrice}</div>
-                                <div class="text-2xl font-bold text-[#00adef] line-through" style="text-decoration-color:#ff007f; -webkit-text-decoration-color:#ff007f;" id="TotalPrice">Rs. ${FormattedTotalPrice}</div>
-                                <div class="bg-[#ff007f] text-white px-3 py-1 rounded-full text-sm font-medium" id="DiscountPercentage">${DiscountPercentage}% OFF</div>
-                            </div>
-                            <p class="text-[#6e6e76]">You're saving <span class="font-bold text-[#00adef]" id="SavedAmount">Rs. ${FormattedDiscountAmount}</span> on this purchase!</p>`);
-                    $("#TotalProudcts").html(DiscountPercentage);
-                    $("#DiscountPercentageSummary").html(DiscountPercentage + "%");
-                    $("#DiscountAmt").html(`Rs. ${FormattedDiscountAmount}.00`);
-                    $("#SubTotal").html(`Rs. ${FormattedTotalPrice}.00`);
-                    $("#Total").html(`Rs. ${FormattedDiscountPrice}.00`);
+                    }
                 },
             });
         }
@@ -223,11 +133,7 @@ $(document).ready(function () {
     });
     const Categories = [
         { name: "Moisturizer", id: 100 },
-        { name: "BB-Creamsd", id: 36 },
-        { name: "BB-Creamssss", id: 36 },
-        { name: "BB-Creamssssas", id: 36 },
-        { name: "BB-Creamsasssas", id: 36 },
-        { name: "BB-Creamsssdfssas", id: 36 },
+        { name: "Dk", id: 36 },
     ];
 
     let currentIndex = 0;
@@ -250,13 +156,86 @@ $(document).ready(function () {
         }
     }
 
+    function TakeSetNameInput() {
+        let selectedProducts = GetSelectedProducts();
+        let productIds = Object.keys(selectedProducts);
+        Swal.fire({
+            title: "Enter your skintype set name",
+            input: "text",
+            inputAttributes: {
+                autocapitalize: "off",
+                placeholder: "eg. serum set",
+                autocomplete: "off"
+            },
+            showCancelButton: true,
+            confirmButtonText: "Save",
+            showLoaderOnConfirm: true,
+            customClass: {
+                confirmButton: 'custom-look-up-button',
+                cancelButton: 'custom-cancel-button',
+                input: 'custom-input rounded-lg'
+            },
+            preConfirm: (login) => {
+                if (login === "") {
+                    Swal.showValidationMessage("Skintype set name is required!");
+                    return false;
+                }
+
+                return new Promise((resolve, reject) => {
+                    $.ajax({
+                        type: "POST",
+                        url: "Assets/PHP/Configuration/Common Function.php",
+                        data: {
+                            StoreSkinTypeName: true,
+                            SkinTypeSetName: login,
+                            productIds: productIds,
+
+                        },
+                        success: function (response) {
+                            response = response.trim();
+                            if (response === "Success") {
+                                resolve(response);
+                            } else {
+                                reject(response);
+                            }
+                        },
+                        error: function (xhr, status, error) {
+                            reject(error);
+                        }
+                    });
+                });
+            },
+            allowOutsideClick: () => !Swal.isLoading()
+        }).then((result) => {
+            if (result.isConfirmed) {
+                Swal.fire({
+                    title: "Skintype Set Saved Successfully!",
+                    text: "Skintype name saved",
+                    icon: "success",
+                    customClass: {
+                        confirmButton: 'custom-success-button' 
+                    }
+                }).then(() => {
+                    localStorage.clear();
+                    window.location.href = "Category/Skin-Type-Preview.php";
+                });
+            }
+        }).catch((error) => {
+            Swal.fire({
+                title: "Error!",
+                text: error,
+                icon: "error"
+            });
+        });
+    }
+
 
 
     function loadNextCategory() {
         if (currentIndex < Categories.length - 1) {
             loadCategory(currentIndex + 1);
         } else {
-            ShowPreview();
+            TakeSetNameInput();
         }
     }
 

@@ -230,7 +230,7 @@ if (isset($_POST['UpdateOrderStatus'])) { {
         $OrderStatus = $_POST['SelectedOption'];
         $UserID = $_POST['UserID'];
         $Subtotal = $_POST['Subtotal'];
-        $DsnPoint=$Subtotal/100;
+        $DsnPoint = $Subtotal / 100;
         $RowOrderID = $_POST['RowOrderID'];
         $UpdateQuery = "UPDATE `order_items` SET `Order Status`='$OrderStatus' WHERE `Order ID`='$RowOrderID'";
         $Execute = mysqli_query($conn, $UpdateQuery);
@@ -267,13 +267,13 @@ if (isset($_POST['UpdateOrderStatus'])) { {
             NotifyStatusComplete($UserEmail, $UserName, $ProductTitle);
             echo "Completed";
         } else if ($OrderStatus == 'Cancelled') {
-            $UpdateDsnQuery="UPDATE `user_table` SET `DSN Point`=`DSN Point` - '$DsnPoint' WHERE `ID`='$user_id'";
-            $UpdateDsnQueryRun=$conn->query($UpdateDsnQuery);    
+            $UpdateDsnQuery = "UPDATE `user_table` SET `DSN Point`=`DSN Point` - '$DsnPoint' WHERE `ID`='$user_id'";
+            $UpdateDsnQueryRun = $conn->query($UpdateDsnQuery);
             NotifyStatusCanceled($UserEmail, $UserName, $ProductTitle);
             echo "Cancelled";
         } else if ($OrderStatus == 'Rejected') {
-            $UpdateDsnQuery="UPDATE `user_table` SET `DSN Point`=`DSN Point` - '$DsnPoint' WHERE `ID`='$user_id'";
-            $UpdateDsnQueryRun=$conn->query($UpdateDsnQuery); 
+            $UpdateDsnQuery = "UPDATE `user_table` SET `DSN Point`=`DSN Point` - '$DsnPoint' WHERE `ID`='$user_id'";
+            $UpdateDsnQueryRun = $conn->query($UpdateDsnQuery);
             echo "Rejected";
         } else {
             echo "Success";
@@ -574,14 +574,14 @@ JOIN postsmeta pm3 ON p.ID = pm3.`Product ID` AND pm3.`Product Meta Key` = '$Pro
         $Find = mysqli_query($conn, $FindBrandName);
         $Row = $Find->fetch_assoc();
         $BrandName = $Row['Product Category Attribute'];
-        if($DiscountPercentage != ''){
+        if ($DiscountPercentage != '') {
             $DiscountValueCalculate = ceil(($price / 100) * $DiscountPercentage);
             $DiscountValue = $price - $DiscountValueCalculate;
-            $DSNPoint=$DiscountValue/100;
-        }elseif($DiscountPrice != ''){
-            $DSNPoint=$DiscountPrice/100;
-        }else{
-            $DSNPoint=$price/100;
+            $DSNPoint = $DiscountValue / 100;
+        } elseif ($DiscountPrice != '') {
+            $DSNPoint = $DiscountPrice / 100;
+        } else {
+            $DSNPoint = $price / 100;
         }
         $Output .= "<div class='product-divider'>
         <div class='product-box'>";
@@ -1287,68 +1287,52 @@ if (isset($_POST['UpdatePriceInfo'])) {
 
 if (isset($_POST['StoreSkinTypeName'])) {
     $SkinTypeSetName = $_POST['SkinTypeSetName'];
-    $Sql = "INSERT INTO `product_bundles`(`User ID`, `Bundle Name`, `Created At`) VALUES ('$user_id','$SkinTypeSetName',CONVERT_TZ(NOW(), '+00:00', '+05:45'))";
+    $productIds = $_POST['productIds'];
+    $Sql = "INSERT INTO `product_bundles`(`User ID`, `Bundle Name`,`Shipping Fee`,`Created At`) VALUES ('$user_id','$SkinTypeSetName','',CONVERT_TZ(NOW(), '+00:00', '+05:45'))";
     $SqlRun = mysqli_query($conn, $Sql);
     if ($SqlRun) {
-        $_SESSION['StoredBundleID'] = true;
-        $_SESSION['BundleID'] = $conn->insert_id;
-        echo "Success";
+        $BundleID = $conn->insert_id;
+        if (StoreProductInBundleItems($conn, $productIds, $BundleID)) {
+            echo "Success";
+            $_SESSION['BundleSetPath']=true;
+        }
     } else {
         echo "Error";
     }
 }
-if (isset($_POST['ProceedToCart'])) {
-    if (isset($_SESSION['StoredBundleID'])) {
-        unset($_SESSION['StoredBundleID']);
-        $productIds = $_POST['productIds'];
-        $BundleID = $_SESSION['BundleID'];
-        foreach ($productIds as $key => $value) {
-            $InsertBundle = "INSERT INTO `bundle_items`(`Bundle ID`, `Product ID`) VALUES ('$BundleID','$value')";
+function StoreProductInBundleItems($conn, $productIds, $BundleID)
+{
+    $DiscountPercentageSet = count($productIds);
+    foreach ($productIds as $key => $value) {
 
-            $InsertBundleRun = mysqli_query($conn, $InsertBundle);
-        }
-        $DiscountPercentage = count($productIds);
-        foreach ($productIds as $productId) {
-            $productQuery = "SELECT * FROM `posts` WHERE `ID` = '$productId'";
-            $productResult = mysqli_query($conn, $productQuery);
-            $productData = $productResult->fetch_assoc();
+        $productQuery = "SELECT * FROM `posts` WHERE `ID` = '$value'";
+        $productResult = mysqli_query($conn, $productQuery);
+        $row = $productResult->fetch_assoc();
 
-            $productPrice = $productData['Product Price'];
-            
-            $check_product_already_added = "SELECT * FROM `product_cart` WHERE `User ID`='$user_id' AND `Product_ID`='$productId'";
-            $execute = mysqli_query($conn, $check_product_already_added);
-            if (!($execute->num_rows > 0)) {
-                $InsertBundleCart = "INSERT INTO `product_cart`(`User ID`, `Product_ID`, `User_IP`, `Product Price`, `Shipping Fee`, `Discount Percentage`, `Product_Quantity`, `Date & Time`) VALUES ('$user_id', '$productId', '$user_ip', '$productPrice', '','$DiscountPercentage', '1', CONVERT_TZ(NOW(), '+00:00', '+05:45'))";
-                $InsertBundleCartRun = mysqli_query($conn, $InsertBundleCart);
-            }
+        $ProductPrice = $row["Product Price"];
+        $price = $row["Product Price"];
+        $DiscountPrice = $row['Discount Price'];
+        $DiscountPercentage = $row['Discount Percentage'];
+        if ($DiscountPrice != '') {
+            $price = $DiscountPrice;
+        } else if ($DiscountPercentage != '') {
+            $DiscountValueCalculate = ceil(($price / 100) * $DiscountPercentage);
+            $DiscountValue = $price - $DiscountValueCalculate;
+            $price = $DiscountValue;
         }
-        echo "Success";
-    } else {
-        echo  "Bundel Name Empty";
+        $subtotal = 1 * $price;
+        $SubTotalSavedPrice = 1 * $ProductPrice;
+        $TotalDuePerProduct = $subtotal;
+        if ($DiscountPercentageSet >= 2) {
+            $subtotalDiscount =  ($subtotal / 100) * $DiscountPercentageSet;
+            $TotalDuePerProduct = $subtotal - $subtotalDiscount;
+        }
+
+        $InsertBundle = "INSERT INTO `bundle_cart`(`Bundle ID`, `Product ID`, `Product Price`, `Total Due`, `Product Quantity`) VALUES ('$BundleID','$value','$SubTotalSavedPrice','$TotalDuePerProduct','1')";
+        $InsertBundleRun = mysqli_query($conn, $InsertBundle);
     }
+    echo "Success";
 }
-
-if (isset($_POST['ShowPreview'])) {
-    $productIds = $_POST['productIds'];
-    $productIdsString = implode(',', array_map('intval', $productIds));
-    $query = "SELECT DISTINCT p.ID, p.`Product Title`,p.`Slug Url`, p.`Product Price`,p.`Discount Price`,p.`Discount Percentage`, pm1.`Product Meta Value` 
-    AS ProductBrand, pm2.`Product Meta Value` AS ProductThumbnail, pm3.`Product Meta Value` AS ProductType,
-    CASE WHEN wishlist.`Product ID` IS NOT NULL THEN 'Added' ELSE 'Not Added' END AS IsAddedToWishlist,
-    CASE WHEN ci.`Product_ID` IS NOT NULL AND ci.`User ID`='$user_id' THEN 'Added' ELSE 'Not Added' END AS IsAddedToCart,
-    CASE WHEN p.`Product Quantity` <= 0 THEN 'Out of Stock' ELSE 'In Stock'END AS StockStatus
-    FROM posts p 
-    LEFT JOIN `product_cart` ci ON p.ID = ci.`Product_ID`
-    LEFT JOIN `product_wishlist` wishlist ON p.ID = wishlist.`Product ID` AND wishlist.`User ID` = '$user_id'
-    JOIN postsmeta pm1 ON p.ID = pm1.`Product ID` AND pm1.`Product Meta Key` = 'Brand ID'
-    JOIN postsmeta pm2 ON p.ID = pm2.`Product ID` AND pm2.`Product Meta Key` = 'Image 1'
-    JOIN postsmeta pm3 ON p.ID = pm3.`Product ID` AND pm3.`Product Meta Key` = 'Product Type ID'
-    WHERE p.ID IN ($productIdsString)";
-    include_once $base_url . 'Assets/PHP/Configuration/Mobile Check.php';
-    $result = $conn->query($query);
-    ShowProducts($result, $base_url, $is_mobile, $conn);
-}
-
-
 
 if (isset($_POST['GetProducts'])) {
     $ProductTypeID = $_POST['ProductTypeID'];
@@ -1368,3 +1352,11 @@ WHERE pm3.`Product Meta Value`='$ProductTypeID'";
     $result = $conn->query($query);
     ShowProducts($result, $base_url, $is_mobile, $conn);
 }
+
+if (isset($_POST['ShippingFeeChangeSet'])) {
+    $ShippingFee = $_POST['ShippingFeeChangeing'];
+    $sendupdate = "UPDATE `product_bundles` SET `Shipping Fee`='$ShippingFee' WHERE `User ID`='$user_id'";
+    $queryrun = mysqli_query($conn, $sendupdate);
+}
+
+

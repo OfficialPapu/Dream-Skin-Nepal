@@ -19,6 +19,89 @@ ChangeUrl();
     <script src="https://cdn.tailwindcss.com"></script>
     <title></title>
     <style>
+        /* Custom styles for the "Look up" button */
+.custom-look-up-button {
+  background-color: #4CAF50; /* Change to your desired background color */
+  color: white; /* Change to your desired text color */
+  border: none; /* Remove border */
+  padding: 10px 20px; /* Adjust padding as needed */
+  font-size: 16px; /* Adjust font size as needed */
+  cursor: pointer; /* Change cursor to pointer */
+}
+
+.custom-look-up-button:hover {
+  background-color: #45a049; /* Change to your desired hover background color */
+}
+
+/* Custom styles for the "Cancel" button */
+.custom-cancel-button {
+  background-color: #f44336; /* Change to your desired background color */
+  color: white; /* Change to your desired text color */
+  border: none; /* Remove border */
+  padding: 10px 20px; /* Adjust padding as needed */
+  font-size: 16px; /* Adjust font size as needed */
+  cursor: pointer; /* Change cursor to pointer */
+}
+
+.custom-cancel-button:hover {
+  background-color: #e53935; /* Change to your desired hover background color */
+}
+
+/* Custom styles for the input field */
+.custom-input {
+  border: 2px solid #4CAF50; /* Example border color */
+  padding: 10px; /* Example padding */
+  font-size: 16px; /* Example font size */
+  border-radius: 5px; /* Example border radius */
+}
+
+/* Change the placeholder text color */
+.custom-input::placeholder {
+  color: #9e9e9e; /* Example placeholder color */
+}
+
+/* Custom styles for the success button */
+.custom-success-button {
+  background-color: #4CAF50; /* Change to your desired background color */
+  color: white; /* Change to your desired text color */
+  border: none; /* Remove border */
+  padding: 10px 20px; /* Adjust padding as needed */
+  font-size: 16px; /* Adjust font size as needed */
+  cursor: pointer; /* Change cursor to pointer */
+}
+
+.custom-success-button:hover {
+  background-color: #45a049; /* Change to your desired hover background color */
+}
+
+/* Custom styles for the "Look up" button */
+.custom-look-up-button {
+  background-color: #4CAF50; /* Change to your desired background color */
+  color: white; /* Change to your desired text color */
+  border: none; /* Remove border */
+  padding: 10px 20px; /* Adjust padding as needed */
+  font-size: 16px; /* Adjust font size as needed */
+  cursor: pointer; /* Change cursor to pointer */
+}
+
+.custom-look-up-button:hover {
+  background-color: #45a049; /* Change to your desired hover background color */
+}
+
+/* Custom styles for the "Cancel" button */
+.custom-cancel-button {
+  background-color: #f44336; /* Change to your desired background color */
+  color: white; /* Change to your desired text color */
+  border: none; /* Remove border */
+  padding: 10px 20px; /* Adjust padding as needed */
+  font-size: 16px; /* Adjust font size as needed */
+  cursor: pointer; /* Change cursor to pointer */
+}
+
+.custom-cancel-button:hover {
+  background-color: #e53935; /* Change to your desired hover background color */
+}
+
         .offer-summary {
             background-color: #d7f4ff;
             background-image:
@@ -67,7 +150,7 @@ ChangeUrl();
                         <div class="flex items-center justify-between"><span class="text-muted-foreground">Total Products</span><span class="font-medium" id="TotalProudcts">0</span></div>
                         <div class="flex items-center justify-between"><span class="text-muted-foreground">Discount Percentage</span><span class="font-medium text-green-500" id="DiscountPercentageSummary">0%</span></div>
                         <div class="flex items-center justify-between"><span class="text-muted-foreground">Discount Amount</span><span class="font-medium text-green-500" id="DiscountAmt">Rs 0.00</span></div>
-                        <div class="flex items-center justify-between hidden" id="SkinTypeSetNamebox"><span class="text-muted-foreground">Set Name</span><span class="font-medium" id="SkinTypeSetNametext">jkdflkjdlg</span></div>
+                        <div class="flex items-center justify-between hidden" id="SkinTypeSetNamebox"><span class="text-muted-foreground">Set Name</span><span class="font-medium" id="SkinTypeSetNametext">Set Name</span></div>
                         <div class="flex items-center justify-between">
                             <span class="text-muted-foreground">Total Price</span>
                             <span class="font-bold text-end">
