@@ -81,8 +81,8 @@ $(document).ready(function () {
                     const FormattedDiscountPrice = NumberFormatter.format(DiscountPrice.toFixed(2));
                     if (DiscountPercentage >= 2) {
                         $(".hide-box").html(`<div class="flex items-center gap-4">
-                            <div class="text-4xl font-bold text-[#ff007f]" id="DiscountPrice">Rs. ${FormattedDiscountPrice}</div>
-                            <div class="text-2xl font-bold text-[#00adef] line-through" style="text-decoration-color:#ff007f; -webkit-text-decoration-color:#ff007f;" id="TotalPrice">Rs. ${FormattedTotalPrice}</div>
+                            <div class="md:text-4xl text-3xl font-bold text-[#ff007f]" id="DiscountPrice">Rs. ${FormattedDiscountPrice}</div>
+                            <div class="text-xl font-bold text-[#00adef] line-through" style="text-decoration-color:#ff007f; -webkit-text-decoration-color:#ff007f;" id="TotalPrice">Rs. ${FormattedTotalPrice}</div>
                             <div class="bg-[#ff007f] text-white px-3 py-1 rounded-full text-sm font-medium" id="DiscountPercentage">${DiscountPercentage}% OFF</div>
                         </div>
                         <p class="text-[#6e6e76]">You're saving <span class="font-bold text-[#00adef]" id="SavedAmount">Rs. ${FormattedDiscountAmount}</span> on this purchase!</p>`);
@@ -132,8 +132,15 @@ $(document).ready(function () {
         },
     });
     const Categories = [
-        { name: "Moisturizer", id: 100 },
-        { name: "Dk", id: 36 },
+        { name: "Cleanser", id: 37 },
+        { name: "Clay Mask", id: 25 },
+        { name: "Toner", id: 31 },
+        { name: "Essence", id: 32 },
+        { name: "Serum", id: 29 },
+        { name: "Moisturizer", id: 26 },
+        { name: "Eye Cream", id: 23 },
+        { name: "Retinol", id: 55 },
+        { name: "Sunscreen", id: 30 },
     ];
 
     let currentIndex = 0;

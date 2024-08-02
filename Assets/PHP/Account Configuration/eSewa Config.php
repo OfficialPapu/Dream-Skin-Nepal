@@ -24,13 +24,18 @@ function generateTrackingNumber()
     return $trackingNumber;
 }
 $user_ip = get_ip();
-$TotalDue = "SELECT * FROM `product_cart` WHERE `User ID`='$user_id'";
+if ($_SESSION['NavigationPath'] == "BundlePath") {
+    $TotalDue = "SELECT * FROM `bundle_cart` bc JOIN product_bundles pb ON pb.`Bundle ID` = bc.`Bundle ID` WHERE `User ID`='$user_id'";
+} else if ($_SESSION['NavigationPath'] == "CartPath") {
+    $TotalDue = "SELECT * FROM `product_cart` WHERE `User ID`='$user_id'";
+}
 $runquery = $conn->query($TotalDue);
 $TotalPrice = 0;
 while ($row = $runquery->fetch_assoc()) {
     $TotalShippingFee = $row['Shipping Fee'];
     $TotalPrice += $row['Total Due'];
 }
+$TotalPrice = ceil($TotalPrice);
 $trackingNumber = "";
 $order_id;
 if (!isset($_SESSION['order_id'])) {
@@ -41,7 +46,11 @@ if (!isset($_SESSION['order_id'])) {
 if (isset($_GET['PaymentInfo'])) {
     move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $UploadFile);
 
-    $Cart = "SELECT * FROM `product_cart` WHERE `User ID`='$user_id'";
+    if ($_SESSION['NavigationPath'] == "BundlePath") {
+        $Cart = "SELECT * FROM `bundle_cart` bc JOIN product_bundles pb ON pb.`Bundle ID` = bc.`Bundle ID` WHERE `User ID`='$user_id'";
+    } else if ($_SESSION['NavigationPath'] == "CartPath") {
+        $Cart = "SELECT * FROM `product_cart` WHERE `User ID`='$user_id'";
+    }
     $runquery = $conn->query($Cart);
     if ($runquery->num_rows > 0) {
         $InsertOrder = "INSERT INTO `orders`(`User ID`, `Total Due`, `Shipping Fee`,`Order Date`) VALUES ('$user_id','$TotalPrice','$TotalShippingFee',CONVERT_TZ(NOW(), '+00:00', '+05:45') )";
@@ -52,15 +61,29 @@ if (isset($_GET['PaymentInfo'])) {
             $order_id = $_SESSION['order_id'];
             while ($row = $runquery->fetch_assoc()) {
                 $trackingNumber = generateTrackingNumber();
-                $product_id_db = $row['Product_ID'];
-                $product_quantity = $row['Product_Quantity'];
+                if ($_SESSION['NavigationPath'] == "BundlePath") {
+                    $product_id_db = $row['Product ID'];
+                    $product_quantity = $row['Product Quantity'];
+                } else if ($_SESSION['NavigationPath'] == "CartPath") {
+                    $product_id_db = $row['Product_ID'];
+                    $product_quantity = $row['Product_Quantity'];
+                }
                 $PerProductPrice = $row['Total Due'];
                 $UpdateQuantity = "UPDATE `posts` SET `Product Quantity` = `Product Quantity` - $product_quantity WHERE `ID` = '$product_id_db'";
                 $UpdateQuantityRun = mysqli_query($conn, $UpdateQuantity);
                 $insert_into_order_items = "INSERT INTO `order_items`(`Order ID`, `User ID`, `Product ID`, `Quantity`,`Total Due`,`Payment Method`,`Payment Screenshot`, `Order Status`, `Tracking Number`, `Order Date`) VALUES ('$order_id','$user_id','$product_id_db','$product_quantity','$PerProductPrice','$PaymentMethod','$DBStoreName','Review','$trackingNumber',CONVERT_TZ(NOW(), '+00:00', '+05:45') )";
                 $runentry = mysqli_query($conn, $insert_into_order_items);
+                if ($_SESSION['NavigationPath'] == "BundlePath") {
+                    $BundleID = $row['Bundle ID'];
+                    $InsertQuery = "INSERT INTO `bundle_items`(`Bundle ID`, `Product ID`, `Date`) VALUES ('$BundleID','$product_id_db',CONVERT_TZ(NOW(), '+00:00', '+05:45'))";
+                    $InsertRun = mysqli_query($conn, $InsertQuery);
+                }
                 if ($runentry) {
-                    $deleteproductfromcart = "DELETE FROM `product_cart` WHERE `User ID`='$user_id'";
+                    if ($_SESSION['NavigationPath'] == "BundlePath") {
+                        $deleteproductfromcart = "DELETE bc FROM bundle_cart bc JOIN product_bundles pb ON pb.`Bundle ID` = bc.`Bundle ID` WHERE pb.`User ID` = '$user_id'";
+                    } else if ($_SESSION['NavigationPath'] == "CartPath") {
+                        $deleteproductfromcart = "DELETE FROM `product_cart` WHERE `User ID`='$user_id'";
+                    }
                     $rundelete = mysqli_query($conn, $deleteproductfromcart);
                 }
             } {

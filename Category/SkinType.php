@@ -19,88 +19,81 @@ ChangeUrl();
     <script src="https://cdn.tailwindcss.com"></script>
     <title></title>
     <style>
-        /* Custom styles for the "Look up" button */
-.custom-look-up-button {
-  background-color: #4CAF50; /* Change to your desired background color */
-  color: white; /* Change to your desired text color */
-  border: none; /* Remove border */
-  padding: 10px 20px; /* Adjust padding as needed */
-  font-size: 16px; /* Adjust font size as needed */
-  cursor: pointer; /* Change cursor to pointer */
-}
+        .custom-look-up-button {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+        }
 
-.custom-look-up-button:hover {
-  background-color: #45a049; /* Change to your desired hover background color */
-}
+        .custom-look-up-button:hover {
+            background-color: #45a049;
+        }
 
-/* Custom styles for the "Cancel" button */
-.custom-cancel-button {
-  background-color: #f44336; /* Change to your desired background color */
-  color: white; /* Change to your desired text color */
-  border: none; /* Remove border */
-  padding: 10px 20px; /* Adjust padding as needed */
-  font-size: 16px; /* Adjust font size as needed */
-  cursor: pointer; /* Change cursor to pointer */
-}
+        .custom-cancel-button {
+            background-color: #f44336;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+        }
 
-.custom-cancel-button:hover {
-  background-color: #e53935; /* Change to your desired hover background color */
-}
+        .custom-cancel-button:hover {
+            background-color: #e53935;
+        }
 
-/* Custom styles for the input field */
-.custom-input {
-  border: 2px solid #4CAF50; /* Example border color */
-  padding: 10px; /* Example padding */
-  font-size: 16px; /* Example font size */
-  border-radius: 5px; /* Example border radius */
-}
+        .custom-input {
+            border: 2px solid #4CAF50;
+            padding: 10px;
+            font-size: 16px;
+            border-radius: 5px;
+        }
 
-/* Change the placeholder text color */
-.custom-input::placeholder {
-  color: #9e9e9e; /* Example placeholder color */
-}
+        .custom-input::placeholder {
+            color: #9e9e9e;
+        }
 
-/* Custom styles for the success button */
-.custom-success-button {
-  background-color: #4CAF50; /* Change to your desired background color */
-  color: white; /* Change to your desired text color */
-  border: none; /* Remove border */
-  padding: 10px 20px; /* Adjust padding as needed */
-  font-size: 16px; /* Adjust font size as needed */
-  cursor: pointer; /* Change cursor to pointer */
-}
+        .custom-success-button {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+        }
 
-.custom-success-button:hover {
-  background-color: #45a049; /* Change to your desired hover background color */
-}
+        .custom-success-button:hover {
+            background-color: #45a049;
+        }
 
-/* Custom styles for the "Look up" button */
-.custom-look-up-button {
-  background-color: #4CAF50; /* Change to your desired background color */
-  color: white; /* Change to your desired text color */
-  border: none; /* Remove border */
-  padding: 10px 20px; /* Adjust padding as needed */
-  font-size: 16px; /* Adjust font size as needed */
-  cursor: pointer; /* Change cursor to pointer */
-}
+        .custom-look-up-button {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+        }
 
-.custom-look-up-button:hover {
-  background-color: #45a049; /* Change to your desired hover background color */
-}
+        .custom-look-up-button:hover {
+            background-color: #45a049;
+        }
 
-/* Custom styles for the "Cancel" button */
-.custom-cancel-button {
-  background-color: #f44336; /* Change to your desired background color */
-  color: white; /* Change to your desired text color */
-  border: none; /* Remove border */
-  padding: 10px 20px; /* Adjust padding as needed */
-  font-size: 16px; /* Adjust font size as needed */
-  cursor: pointer; /* Change cursor to pointer */
-}
+        .custom-cancel-button {
+            background-color: #f44336;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+        }
 
-.custom-cancel-button:hover {
-  background-color: #e53935; /* Change to your desired hover background color */
-}
+        .custom-cancel-button:hover {
+            background-color: #e53935;
+        }
 
         .offer-summary {
             background-color: #d7f4ff;
@@ -161,7 +154,7 @@ ChangeUrl();
                     </div>
                 </div>
                 <div class="flex items-center gap-4 w-full" id="SkintypenameBox">
-                        <input class="flex h-10 w-full border border-gray-300 text-sm rounded-md px-4 py-2" placeholder="Enter your skintype set name" type="text" id="SkinTypeSetName">
+                    <input class="flex h-10 w-full border border-gray-300 text-sm rounded-md px-4 py-2" placeholder="Enter your skintype set name" type="text" id="SkinTypeSetName">
                     <button class="text-md text-[#ff007f] font-500 ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 border border-[#00adef] bg-background h-11 rounded-md px-8 hover:bg-[#00adef] hover:text-white duration-300" id="Save">Save</button>
                 </div>
                 <button class="text-md font-500 ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 h-11 rounded-md px-8 bg-[#ff007f] text-white hover:bg-[#ff007f]/90 w-full" id="Proceedtocart">Proceed to cart</button>

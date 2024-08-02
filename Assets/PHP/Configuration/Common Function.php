@@ -46,7 +46,7 @@ if (isset($_POST['AddToCart'])) {
                 if ($execute->num_rows > 0) {
                     echo "AlreadyExist";
                 } else {
-                    $add_to_cart = "INSERT INTO `product_cart`(`User ID`, `Product_ID`, `User_IP`, `Total Due`, `Shipping Fee`,`Applied Promo Code`, `Product_Quantity`, `Date & Time`) VALUES ('$user_id','$product_id','$user_ip','','','','$quantity',CONVERT_TZ(NOW(), '+00:00', '+05:45') )";
+                    $add_to_cart = "INSERT INTO `product_cart`(`User ID`, `Product_ID`, `User_IP`, `Total Due`, `Shipping Fee`,`Applied Promo Code`, `Product_Quantity`, `Date & Time`) VALUES ('$user_id','$product_id','$user_ip','','0','','$quantity',CONVERT_TZ(NOW(), '+00:00', '+05:45') )";
                     $execute = mysqli_query($conn, $add_to_cart);
                     if ($execute) {
                         echo "Added";
@@ -108,7 +108,7 @@ if (isset($_POST['AddToCartFromWishlist'])) {
             $product_delete_query = "DELETE FROM `product_wishlist` WHERE `User ID`='$user_id' AND `Product ID`='$product_id'";
             $execute_query = mysqli_query($conn, $product_delete_query);
         } else {
-            $add_to_cart = "INSERT INTO `product_cart`(`User ID`, `Product_ID`, `User_IP`, `Total Due`, `Shipping Fee`, `Product_Quantity`, `Date & Time`) VALUES ('$user_id','$product_id','$user_ip','','','$quantity',CONVERT_TZ(NOW(), '+00:00', '+05:45') )";
+            $add_to_cart = "INSERT INTO `product_cart`(`User ID`, `Product_ID`, `User_IP`, `Total Due`, `Shipping Fee`, `Product_Quantity`, `Date & Time`) VALUES ('$user_id','$product_id','$user_ip','','0','$quantity',CONVERT_TZ(NOW(), '+00:00', '+05:45') )";
             $execute = mysqli_query($conn, $add_to_cart);
             if ($execute) {
                 $product_delete_query = "DELETE FROM `product_wishlist` WHERE `User ID`='$user_id' AND `Product ID`='$product_id'";
@@ -1288,7 +1288,7 @@ if (isset($_POST['UpdatePriceInfo'])) {
 if (isset($_POST['StoreSkinTypeName'])) {
     $SkinTypeSetName = $_POST['SkinTypeSetName'];
     $productIds = $_POST['productIds'];
-    $Sql = "INSERT INTO `product_bundles`(`User ID`, `Bundle Name`,`Shipping Fee`,`Created At`) VALUES ('$user_id','$SkinTypeSetName','',CONVERT_TZ(NOW(), '+00:00', '+05:45'))";
+    $Sql = "INSERT INTO `product_bundles`(`User ID`, `Bundle Name`,`Shipping Fee`,`Created At`) VALUES ('$user_id','$SkinTypeSetName','0',CONVERT_TZ(NOW(), '+00:00', '+05:45'))";
     $SqlRun = mysqli_query($conn, $Sql);
     if ($SqlRun) {
         $BundleID = $conn->insert_id;
