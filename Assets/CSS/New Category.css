@@ -1,0 +1,141 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    outline: none;
+    font-family: "Inter", sans-serif;
+}
+
+.category-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+body {
+    background-color: #e4f2fe;
+}
+
+.category form {
+    background-color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    height: 400px;
+    width: 450px;
+    padding: 0 20px;
+    border-radius: 20px;
+    gap: 30px;
+}
+
+.category .submit-box input {
+    border-radius: 8px;
+    padding: 12px 90px;
+    border: none;
+    background-color: #00ADEF;
+    font-size: 1rem;
+    color: white;
+    cursor: pointer;
+}
+
+.input-box-category input {
+    width: 440px;
+    height: 55px;
+    padding: 0 16px;
+    border-radius: 8px;
+    border: none;
+    box-shadow: 0 0 4px rgba(0, 0, 0, 0.1);
+    font-size: 1rem;
+}
+
+.option-tag {
+    position: relative;
+}
+
+.select-btn {
+    width: 400px;
+    display: flex;
+    height: 55px;
+    background-color: rgb(255, 255, 255);
+    justify-content: space-between;
+    padding: 0 20px;
+    align-items: center;
+    border-radius: 8px;
+    cursor: pointer;
+    box-shadow: 0 0 4px rgba(0, 0, 0, 0.1);
+}
+
+.select-btn i {
+    font-size: 25px;
+    transition: .3s;
+}
+
+.option-tag.active i {
+    transform: rotate(180deg);
+}
+
+.option-tag ul {
+    width: 400px;
+    position: absolute;
+    top: 50px;
+    left: 0;
+    padding: 10px 20px;
+    background-color: white;
+    margin-top: 10px;
+    border-radius: 8px;
+    box-shadow: 0 0 3px rgba(0, 0, 0, 0.1);
+    z-index: 1;
+}
+
+.option-tag ul li {
+    height: 55px;
+    display: flex;
+    align-items: center;
+    padding: 0 16px;
+    cursor: pointer;
+    border-radius: 8px;
+    color: #333;
+}
+
+.option-tag ul li:hover {
+    background-color: #F2F2F2;
+}
+
+.options {
+    display: none;
+}
+
+.option-tag.active .options {
+    display: block;
+}
+
+@media (max-width:570px) {
+    .category-container{
+        height: 90vh;
+    }
+    .category form {
+        width: 85vw;
+        height: 70vh;
+    }
+
+    .option-tag ul,
+    .input-box-category input,
+    .select-btn {
+        width: 75vw;
+    }
+    .input-box-category input {
+        width: calc(75vw + 40px);
+    }
+    .category h1{
+        font-size: 25px;
+    }
+}
+@media (max-width:360px) {
+    .category form{
+        height: 50vh;
+    }
+}
