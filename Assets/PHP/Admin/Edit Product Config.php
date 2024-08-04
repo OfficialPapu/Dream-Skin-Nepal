@@ -24,6 +24,21 @@ if (isset($_GET['ProductID'])) {
     $GeneralInformationQueryRun = mysqli_query($conn, $GeneralInformationQuery);
     $Row = $GeneralInformationQueryRun->fetch_assoc();
 
+    $CheckSkinTypeQuery = "SELECT * FROM `postsmeta` WHERE `Product ID` = '$ProductID' AND `Product Meta Key`='Skin Type'";
+    $CheckResult = $conn->query($CheckSkinTypeQuery);
+    $ExistingSkinTypes = [];
+    while ($row = $CheckResult->fetch_assoc()) {
+        $ExistingSkinTypes[] = $row['Product Meta Value'];
+    }
+    $values = [];
+    foreach ($ExistingSkinTypes as $id) {
+        $SelectCategoryQuery="SELECT * FROM `product_category` WHERE `Product Category ID`='$id'";
+        $SelectCategory=$conn->query($SelectCategoryQuery);
+        $RowData=$SelectCategory->fetch_assoc();
+        $SkinTypeName=$RowData['Product Category Attribute'];
+        $values[] = $SkinTypeName;  
+    }
+    $values=implode(", ", $values);
     $Productid = $Row['ID'];
     $CustomProductID = $Row['CustomID'];
     $ProductTitle = $Row['Title'];
@@ -39,8 +54,8 @@ if (isset($_GET['ProductID'])) {
     $ProductBrandQueryRun = mysqli_query($conn, $ProductBrandQuery);
     $BrandData = $ProductBrandQueryRun->fetch_assoc();
     $BrandName = $BrandData['Product Category Attribute'];
-    $ProductTypeName='';
-    $ProductCategoryName='';
+    $ProductTypeName = '';
+    $ProductCategoryName = '';
     if ($ProductTypeId != '') {
         $ProductTypeQuery = "SELECT * FROM `product_category` WHERE `Product Category ID`='$ProductTypeId'";
         $ProductTypeQueryRun = mysqli_query($conn, $ProductTypeQuery);

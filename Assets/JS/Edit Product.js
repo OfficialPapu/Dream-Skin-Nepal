@@ -2,6 +2,7 @@ let files = [];
 let RowID = [];
 let ID = $('#ID').val();
 let ShortOrder = "";
+let SkintypeID = [];
 $(document).ready(function () {
     let container = $('.image-list-container');
     let input = $('.data-upload input');
@@ -188,7 +189,7 @@ $(document).ready(function () {
                     url: "Assets/PHP/Configuration/Common Function.php",
                     data: {
                         UpdatePosition: true,
-                        ID:ID,
+                        ID: ID,
                         ShortOrder: ShortOrder,
                     },
                     success: function (response) {
@@ -304,12 +305,36 @@ $(document).ready(function () {
             }
         });
     }
-
+    let SkinType = () => {
+        $.ajax({
+            type: "POST",
+            url: "Assets/PHP/Configuration/Common Function.php",
+            data: {
+                SkintypeList: true,
+                SelectName: 'Skin Type',
+                ID: ID,
+            },
+            dataType: "json",
+            success: function (SelectData) {
+                SelectData.forEach(data => {
+                    const isChecked = data['CategoryID'] !== null && data['CategoryID'] !== undefined;
+                    const Element = $(`
+                        <label class="checkbox-container">
+                        <input class="custom-checkbox" type="checkbox" value="${data['ProductCategoryAttribute']}" data-categoryid="${data['ProductCategoryID']}" ${isChecked ? 'checked' : ''}>
+                        <span class="checkmark"></span>
+                        <p>${data['ProductCategoryAttribute']}</p>
+                        </label>`);
+                    $('#Skintype').append(Element);
+                });
+            }
+        });
+    }
 
     BrandList();
     SkinCareList();
     MakeupList();
     BodyHairCare();
+    SkinType();
 
     $('.save-changes').click(function (e) {
         let CustomProductID = $('#CustomProductID').val();
@@ -348,7 +373,8 @@ $(document).ready(function () {
                 ProductQuantity: ProductQuantity,
                 ProductDescription: ProductDescription,
                 ProductTypeID: ProductTypeID,
-                BrandID: BrandID
+                BrandID: BrandID,
+                SkintypeID: SkintypeID,
             },
             success: function (response) {
                 response = response.trim();
@@ -449,6 +475,24 @@ $(document).ready(function () {
             },
         });
     });
-
+    
+    $(document).on('change', '.custom-checkbox', function () {
+        let SkintypeValue = [];
+        SkintypeID = [];
+        $(this).closest('.select-skin-type').find(".custom-checkbox:checked").each(function () {
+            SkintypeValue.push($(this).val());
+            SkintypeID.push($(this).data("categoryid"));
+        });
+        $(this).closest('.select-skin-type').find('.SelectedText').text(SkintypeValue.join(', '));
+    });
+    $(window).click(function (event) {
+        if (!$(event.target).closest('.select-skin-type').length) {
+            $('.select-skin-type .option-tag').removeClass('active');
+        }
+    });
+    
 
 });
+
+
+

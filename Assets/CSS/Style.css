@@ -18,7 +18,6 @@ body {
 .recommanded .product-heading,
 .review .product-heading {
     margin: 0 20px;
-
 }
 
 
@@ -126,4 +125,13 @@ body.active {
     .view-more-box {
         padding: 0 10px;
     }
+}
+
+.banner{
+    margin: 15px 0 0 0;
+}
+.banner img{
+    width: 100%;
+    object-fit: contain;
+    height: 100%;
 }

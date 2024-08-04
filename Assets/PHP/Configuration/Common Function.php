@@ -200,7 +200,6 @@ if (isset($_POST['ShippingFeeChange'])) {
 }
 
 if (isset($_POST['SelectList'])) {
-    global $conn;
     $SelectName = $_POST['SelectName'];
     $OptionList = array();
     $SelectQuery = "SELECT * FROM `product_category` WHERE `Product Category Name`='$SelectName' ORDER BY `Product Category Attribute` ASC";
@@ -209,6 +208,23 @@ if (isset($_POST['SelectList'])) {
         $OptionList[] = array(
             'ProductCategoryID' => $Row['Product Category ID'],
             'ProductCategoryAttribute' => $Row['Product Category Attribute'],
+        );
+    }
+    $Data = json_encode($OptionList);
+    echo $Data;
+}
+
+if (isset($_POST['SkintypeList'])) {
+    $SelectName = $_POST['SelectName'];
+    $ProductID = $_POST['ID'];
+    $OptionList = array();
+    $SelectQuery = "SELECT `Product Category ID`,`Product Category Attribute`,pm1.`Product Meta Value` AS CategoryID FROM `product_category` LEFT JOIN postsmeta pm1 ON pm1.`Product Meta Value` = product_category.`Product Category ID` AND pm1.`Product Meta Key` = 'Skin Type' AND pm1.`Product ID`='$ProductID' WHERE `Product Category Name` = 'Skin Type' ORDER BY `Product Category Attribute` ASC";
+    $Select = mysqli_query($conn, $SelectQuery);
+    while ($Row = $Select->fetch_assoc()) {
+        $OptionList[] = array(
+            'ProductCategoryID' => $Row['Product Category ID'],
+            'ProductCategoryAttribute' => $Row['Product Category Attribute'],
+            'CategoryID' => $Row['CategoryID'],
         );
     }
     $Data = json_encode($OptionList);
@@ -230,7 +246,7 @@ if (isset($_POST['UpdateOrderStatus'])) { {
         $OrderStatus = $_POST['SelectedOption'];
         $UserID = $_POST['UserID'];
         $Subtotal = $_POST['Subtotal'];
-        $DsnPoint=$Subtotal/100;
+        $DsnPoint = $Subtotal / 100;
         $RowOrderID = $_POST['RowOrderID'];
         $UpdateQuery = "UPDATE `order_items` SET `Order Status`='$OrderStatus' WHERE `Order ID`='$RowOrderID'";
         $Execute = mysqli_query($conn, $UpdateQuery);
@@ -267,13 +283,13 @@ if (isset($_POST['UpdateOrderStatus'])) { {
             NotifyStatusComplete($UserEmail, $UserName, $ProductTitle);
             echo "Completed";
         } else if ($OrderStatus == 'Cancelled') {
-            $UpdateDsnQuery="UPDATE `user_table` SET `DSN Point`=`DSN Point` - '$DsnPoint' WHERE `ID`='$user_id'";
-            $UpdateDsnQueryRun=$conn->query($UpdateDsnQuery);    
+            $UpdateDsnQuery = "UPDATE `user_table` SET `DSN Point`=`DSN Point` - '$DsnPoint' WHERE `ID`='$user_id'";
+            $UpdateDsnQueryRun = $conn->query($UpdateDsnQuery);
             NotifyStatusCanceled($UserEmail, $UserName, $ProductTitle);
             echo "Cancelled";
         } else if ($OrderStatus == 'Rejected') {
-            $UpdateDsnQuery="UPDATE `user_table` SET `DSN Point`=`DSN Point` - '$DsnPoint' WHERE `ID`='$user_id'";
-            $UpdateDsnQueryRun=$conn->query($UpdateDsnQuery); 
+            $UpdateDsnQuery = "UPDATE `user_table` SET `DSN Point`=`DSN Point` - '$DsnPoint' WHERE `ID`='$user_id'";
+            $UpdateDsnQueryRun = $conn->query($UpdateDsnQuery);
             echo "Rejected";
         } else {
             echo "Success";
@@ -339,6 +355,7 @@ if (isset($_POST['Edit'])) {
     $ProductDescription = addslashes($_POST['ProductDescription']);
     $ProductTypeID = $_POST['ProductTypeID'];
     $BrandID = $_POST['BrandID'];
+    $SkintypeID = $_POST['SkintypeID'];
     $Query = "UPDATE `posts` p 
 JOIN `postsmeta` pm1 ON p.ID = pm1.`Product ID` AND pm1.`Product Meta Key`='Brand ID'
 JOIN `postsmeta` pm3 ON p.ID = pm3.`Product ID` AND pm3.`Product Meta Key`='Product Type ID'
@@ -348,6 +365,16 @@ pm3.`Product Meta Value` = '$ProductTypeID'
 WHERE p.ID = '$ProductID'";
     $UpdateQuery = $conn->query($Query);
     if ($UpdateQuery) {
+        $DeleteQuery = "DELETE FROM `postsmeta` WHERE `Product ID` = '$ProductID' AND `Product Meta Key`='Skin Type'";
+        $DeleteResult = $conn->query($DeleteQuery);
+        $values = [];
+        foreach ($SkintypeID as $id) {
+            $values[] = "('$ProductID', 'Skin Type', '$id')";
+        }
+        if (!empty($values)) {
+            $InsertQuery = "INSERT INTO `postsmeta` (`Product ID`, `Product Meta Key`, `Product Meta Value`) VALUES " . implode(", ", $values);
+            $conn->query($InsertQuery);
+        }
         echo "Success";
     } else {
         echo "Failed";
@@ -574,14 +601,14 @@ JOIN postsmeta pm3 ON p.ID = pm3.`Product ID` AND pm3.`Product Meta Key` = '$Pro
         $Find = mysqli_query($conn, $FindBrandName);
         $Row = $Find->fetch_assoc();
         $BrandName = $Row['Product Category Attribute'];
-        if($DiscountPercentage != ''){
+        if ($DiscountPercentage != '') {
             $DiscountValueCalculate = ceil(($price / 100) * $DiscountPercentage);
             $DiscountValue = $price - $DiscountValueCalculate;
-            $DSNPoint=$DiscountValue/100;
-        }elseif($DiscountPrice != ''){
-            $DSNPoint=$DiscountPrice/100;
-        }else{
-            $DSNPoint=$price/100;
+            $DSNPoint = $DiscountValue / 100;
+        } elseif ($DiscountPrice != '') {
+            $DSNPoint = $DiscountPrice / 100;
+        } else {
+            $DSNPoint = $price / 100;
         }
         $Output .= "<div class='product-divider'>
         <div class='product-box'>";
@@ -1360,5 +1387,5 @@ if (isset($_POST['ShippingFeeChangeSet'])) {
 
 
 if (isset($_POST['SetPath'])) {
-    $_SESSION['NavigationPath']=$_POST['Path'];
+    $_SESSION['NavigationPath'] = $_POST['Path'];
 }

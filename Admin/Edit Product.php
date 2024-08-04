@@ -1,7 +1,7 @@
 <?php
 @session_name('URLSession');
 @session_start();
-$_SESSION['URLSession']['Base Path'] = $_SERVER['DOCUMENT_ROOT'] . "/";
+$_SESSION['URLSession']['Base Path'] = $_SERVER['DOCUMENT_ROOT'] . "/Dream Skin Nepal/";
 $base_url = $_SESSION['URLSession']['Base Path'];
 include_once $base_url . 'Assets/PHP/Admin/Edit Product Config.php';
 ?>
@@ -60,8 +60,7 @@ include_once $base_url . 'Assets/PHP/Admin/Edit Product Config.php';
 
 
                 <div class="product-category">
-                    <input type="hidden" class="SelectedProductTypeID" value="<?php
-                                                                                echo $ProductTypeId; ?>">
+                    <input type="hidden" class="SelectedProductTypeID" value="<?php echo $ProductTypeId; ?>">
                     <div class="select-skin-care-category">
                         <div class="option-tag" id="SkinCare">
                             <p class="body-heading">Select Skin Care</p>
@@ -129,7 +128,6 @@ include_once $base_url . 'Assets/PHP/Admin/Edit Product Config.php';
                             <div class="select-btn">
                                 <input type="hidden" class="ProductTypeID" value="<?php echo  $BrandId; ?>">
                                 <span class="SelectedText">
-
                                     <?php
                                     if ($BrandName != '') {
                                         echo $BrandName;
@@ -142,6 +140,26 @@ include_once $base_url . 'Assets/PHP/Admin/Edit Product Config.php';
                             </div>
                             <ul class="options" id="BrandItems"></ul>
                         </div>
+                    </div>
+
+                </div>
+                <div class="select-skin-type">
+                    <div class="option-tag">
+                        <p class="body-heading">Select Skin Type</p>
+                        <div class="select-btn">
+                            <input type="hidden" class="ProductTypeID" value="<?php echo  $BrandId; ?>">
+                            <span class="SelectedText">
+                            <?php
+                                if ($values != '') {
+                                    print_r($values);
+                                } else {
+                                    echo "Select Skin Type";
+                                }
+                                ?>    
+                            </span>
+                            <i class='bx bx-chevron-down'></i>
+                        </div>
+                        <ul class="options skintypeselect" id="Skintype"></ul>
                     </div>
                 </div>
 

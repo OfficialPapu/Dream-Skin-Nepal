@@ -93,7 +93,7 @@ include 'Assets/PHP/URL/Base Path.php';
         ?>
     </div>
 
-     <div class="products">
+    <div class="products">
         <div class="view-more-box">
             <div class="heading-box">
                 <h2 class="product-heading">New Arrivals</h2>
@@ -106,7 +106,7 @@ include 'Assets/PHP/URL/Base Path.php';
         $Sql = "WHERE p.ID>=331 OR p.ID=36 OR p.ID=294 OR p.ID=47 OR p.ID=276 OR p.ID=94 ORDER BY Rand() LIMIT 0,10";
         include('Assets/Slider/Product Slider.php');
         ?>
-    </div> 
+    </div>
 
     <div class="products">
         <div class="view-more-box">
@@ -122,14 +122,23 @@ include 'Assets/PHP/URL/Base Path.php';
         include('Assets/Slider/Product Slider.php');
         ?>
     </div>
-
     <?php
-    $CategorySql = "SELECT * FROM `product_category` WHERE `Product Category Name`='Skin Care'";
+    $CategorySql = "SELECT * FROM `product_category` WHERE `Product Category Name` = 'Skin Care' ORDER BY 
+    CASE `Product Category Attribute`
+    WHEN 'Cleanser' THEN 1
+    WHEN 'Toner/ Toner Pad' THEN 2
+    WHEN 'Essence' THEN 3
+    WHEN 'Serum' THEN 4
+    WHEN 'Moisturizer' THEN 5
+    WHEN 'Sunscreen/ Sun Stick' THEN 6
+    ELSE 7
+    END, `Product Category Attribute` ASC";
     $CategorySqlRun = mysqli_query($conn, $CategorySql);
     while ($Row = $CategorySqlRun->fetch_assoc()) {
         $CategoryAttribute = $Row['Product Category Attribute'];
         $CategoryID = $Row['Product Category ID'];
         $SlugUrl = $Row['Slug Url'];
+        $ImageUrl = $Row['Image Url'];
         $Sql = "WHERE pm3.`Product Meta Value`='$CategoryID'";
         echo "<div class='products'>
         <div class='view-more-box'>
@@ -140,6 +149,11 @@ include 'Assets/PHP/URL/Base Path.php';
                 <a href='Category/SkinCare.php/$SlugUrl'>SHOP MORE<i class='bx bx-chevron-right'></i></a>
             </div>
         </div>";
+        if($ImageUrl != ""){
+            echo "<div class='banner'>
+            <img src='Assets/Product/Media/Images/Banners/$ImageUrl' alt='$CategoryAttribute' loading='lazy'>
+            </div>";
+        }
         include('Assets/Slider/Product Slider.php');
         echo "</div>";
     }
