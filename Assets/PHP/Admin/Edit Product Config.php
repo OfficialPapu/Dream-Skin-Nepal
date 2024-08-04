@@ -24,21 +24,17 @@ if (isset($_GET['ProductID'])) {
     $GeneralInformationQueryRun = mysqli_query($conn, $GeneralInformationQuery);
     $Row = $GeneralInformationQueryRun->fetch_assoc();
 
-    $CheckSkinTypeQuery = "SELECT * FROM `postsmeta` WHERE `Product ID` = '$ProductID' AND `Product Meta Key`='Skin Type'";
+    $CheckSkinTypeQuery = "SELECT pm.`Product Meta Value` AS SkinTypeID, pc.`Product Category Attribute`
+    FROM `postsmeta` pm
+    JOIN `product_category` pc ON pm.`Product Meta Value` = pc.`Product Category ID`
+    WHERE pm.`Product ID` = '$ProductID' AND pm.`Product Meta Key` = 'Skin Type'";
     $CheckResult = $conn->query($CheckSkinTypeQuery);
-    $ExistingSkinTypes = [];
-    while ($row = $CheckResult->fetch_assoc()) {
-        $ExistingSkinTypes[] = $row['Product Meta Value'];
-    }
+
     $values = [];
-    foreach ($ExistingSkinTypes as $id) {
-        $SelectCategoryQuery="SELECT * FROM `product_category` WHERE `Product Category ID`='$id'";
-        $SelectCategory=$conn->query($SelectCategoryQuery);
-        $RowData=$SelectCategory->fetch_assoc();
-        $SkinTypeName=$RowData['Product Category Attribute'];
-        $values[] = $SkinTypeName;  
+    while ($row = $CheckResult->fetch_assoc()) {
+        $values[] = $row['Product Category Attribute'];
     }
-    $values=implode(", ", $values);
+    $values = implode(", ", $values);
     $Productid = $Row['ID'];
     $CustomProductID = $Row['CustomID'];
     $ProductTitle = $Row['Title'];

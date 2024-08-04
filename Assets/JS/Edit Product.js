@@ -475,7 +475,7 @@ $(document).ready(function () {
             },
         });
     });
-    
+
     $(document).on('change', '.custom-checkbox', function () {
         let SkintypeValue = [];
         SkintypeID = [];
@@ -483,7 +483,11 @@ $(document).ready(function () {
             SkintypeValue.push($(this).val());
             SkintypeID.push($(this).data("categoryid"));
         });
-        $(this).closest('.select-skin-type').find('.SelectedText').text(SkintypeValue.join(', '));
+        if(SkintypeID.length>0){
+            $(this).closest('.select-skin-type').find('.SelectedText').text(SkintypeValue.join(', '));
+        }else{
+            $(this).closest('.select-skin-type').find('.SelectedText').text('Select Skin Type');
+        }
     });
     $(window).click(function (event) {
         if (!$(event.target).closest('.select-skin-type').length) {

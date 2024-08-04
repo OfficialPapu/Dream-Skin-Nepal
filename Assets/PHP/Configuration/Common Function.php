@@ -355,7 +355,7 @@ if (isset($_POST['Edit'])) {
     $ProductDescription = addslashes($_POST['ProductDescription']);
     $ProductTypeID = $_POST['ProductTypeID'];
     $BrandID = $_POST['BrandID'];
-    $SkintypeID = $_POST['SkintypeID'];
+    $SkintypeID = isset($_POST['SkintypeID']) ? $_POST['SkintypeID'] : [];
     $Query = "UPDATE `posts` p 
 JOIN `postsmeta` pm1 ON p.ID = pm1.`Product ID` AND pm1.`Product Meta Key`='Brand ID'
 JOIN `postsmeta` pm3 ON p.ID = pm3.`Product ID` AND pm3.`Product Meta Key`='Product Type ID'
@@ -368,9 +368,9 @@ WHERE p.ID = '$ProductID'";
         $DeleteQuery = "DELETE FROM `postsmeta` WHERE `Product ID` = '$ProductID' AND `Product Meta Key`='Skin Type'";
         $DeleteResult = $conn->query($DeleteQuery);
         $values = [];
-        foreach ($SkintypeID as $id) {
-            $values[] = "('$ProductID', 'Skin Type', '$id')";
-        }
+            foreach ($SkintypeID as $id) {
+                $values[] = "('$ProductID', 'Skin Type', '$id')";
+            }
         if (!empty($values)) {
             $InsertQuery = "INSERT INTO `postsmeta` (`Product ID`, `Product Meta Key`, `Product Meta Value`) VALUES " . implode(", ", $values);
             $conn->query($InsertQuery);
