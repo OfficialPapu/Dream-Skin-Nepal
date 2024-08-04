@@ -15,6 +15,7 @@ if (isset($_POST['AddNewProduct'])) {
     $Quantity=$_POST['ProductQuantity'];
     $ProductTypeID = $_POST["ProductTypeID"];
     $BrandID = $_POST["BrandID"];
+    $skinTypeid = isset($_POST['SkinTypes']) ? json_decode($_POST['SkinTypes'], true) : []; 
 
     $sql = "INSERT INTO posts (`Custom Product ID`, `Product Title`,`Slug Url`,`Product Content`, `Product Price`, `Discount Price`, `Discount Percentage`, `Product Quantity`, `Post Date`) VALUES ('$CustomProductID','$productTitle','$SlugTitle','$productContent', '$productPrice', '$discountPrice','$DiscountPercentage', '$Quantity', CONVERT_TZ(NOW(), '+00:00', '+05:45'))";
     if ($conn->query($sql) === TRUE) {
@@ -26,6 +27,13 @@ if (isset($_POST['AddNewProduct'])) {
             $metaValue = $metaValues[$key];
             $sqlMeta = "INSERT INTO postsmeta (`Product ID`, `Product Meta Key`, `Product Meta Value`) VALUES ('$productId', '$metaKey', '$metaValue')";
             $conn->query($sqlMeta);
+        }
+
+        if (!empty($skinTypeid)) {
+            foreach ($skinTypeid as $skinType) {
+                $sqlSkinType = "INSERT INTO postsmeta (`Product ID`, `Product Meta Key`, `Product Meta Value`) VALUES ('$productId', 'Skin Type', '$skinType')";
+                $conn->query($sqlSkinType);
+            }
         }
 
         // Create folder structure for images

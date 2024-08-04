@@ -20,7 +20,13 @@ $(document).ready(function () {
     CusTomID();
     $('#formdata').submit(function (e) {
         e.preventDefault();
+        $(this).css("pointer-events", "none");
         let formData = new FormData($(this)[0]);
+        let skinTypes = [];
+        $('.skintypeselect .custom-checkbox:checked').each(function () {
+            skinTypes.push($(this).data("categoryid"));
+        });
+        formData.append('SkinTypes', JSON.stringify(skinTypes));
         let BrandID = $('#BrandList .ProductTypeID').val();
         let SkinCareID = $('#SkinCare .ProductTypeID').val();
         let MakeupID = $('#makeup .ProductTypeID').val();
@@ -36,7 +42,6 @@ $(document).ready(function () {
         formData.append('AddNewProduct', true);
         formData.append('BrandID', BrandID);
         formData.append('ProductTypeID', ProductTypeID);
-
         $.ajax({
             type: "POST",
             url: "Assets/PHP/Admin/New Product Config.php",
@@ -44,8 +49,10 @@ $(document).ready(function () {
             processData: false,
             contentType: false,
             success: function (response) {
+                $("#formdata").css("pointer-events", "all");
                 if (response == "Product added") {
                     $('#formdata')[0].reset();
+                    $('.custom-checkbox').closest('.select-skin-type').find('.SelectedText').text('Select Skin Type');
                     CusTomID();
                     butterup.options.maxToasts = 2;
                     butterup.toast({
@@ -158,6 +165,24 @@ $(document).ready(function () {
                 let selectedOption = matchedOptions.eq(nextIndex);
                 handleOptionSelection(activeOptionTag, selectedOption, currentIndex);
             }
+        }
+    });
+
+    $(document).on('change', '.custom-checkbox', function () {
+        let SkintypeValue = [];
+        $(this).closest('.select-skin-type').find(".custom-checkbox:checked").each(function () {
+            SkintypeValue.push($(this).val());
+        });
+        if (SkintypeValue.length > 0) {
+            $(this).closest('.select-skin-type').find('.SelectedText').text(SkintypeValue.join(', '));
+        } else {
+            $(this).closest('.select-skin-type').find('.SelectedText').text('Select Skin Type');
+        }
+    });
+
+    $(window).click(function (event) {
+        if (!$(event.target).closest('.select-skin-type').length) {
+            $('.select-skin-type .option-tag').removeClass('active');
         }
     });
 

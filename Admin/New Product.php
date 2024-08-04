@@ -1,7 +1,7 @@
 <?php
 @session_name('URLSession');
 @session_start();
-$_SESSION['URLSession']['Base Path'] = $_SERVER['DOCUMENT_ROOT'] . "/";
+$_SESSION['URLSession']['Base Path'] = $_SERVER['DOCUMENT_ROOT'] . "/Dream Skin Nepal/";
 $base_url = $_SESSION['URLSession']['Base Path'];
 include_once $base_url . "Assets/Components/Admin Navbar.php";
 include_once $base_url . 'Assets/PHP/Admin/Edit Product Config.php';
@@ -17,7 +17,7 @@ include_once $base_url . 'Assets/PHP/Admin/Edit Product Config.php';
     <link rel="stylesheet" href="Assets/CSS/Butterup/butterup.css">
     <link rel="stylesheet" href="Assets/CSS/Butterup/butterup.min.css">
     <link rel="stylesheet" href="Assets/CSS/New Product.css">
-    
+
 </head>
 
 <body>
@@ -149,6 +149,39 @@ include_once $base_url . 'Assets/PHP/Admin/Edit Product Config.php';
                         </div>
                     </div>
                 </div>
+
+                <div class="select-skin-type">
+                    <div class="option-tag">
+                        <p class="body-heading">Select Skin Type</p>
+                        <div class="select-btn">
+                            <input type="hidden" class="ProductTypeID" value="<?php echo  $BrandId; ?>">
+                            <span class="SelectedText">
+                                <?php
+
+                                echo "Select Skin Type";
+                                ?>
+                            </span>
+                            <i class='bx bx-chevron-down'></i>
+                        </div>
+                        <ul class="options skintypeselect" id="Skintype">
+                            <?php
+                            $isChecked = true;
+                            $SelectQuery = "SELECT DISTINCT `Product Category ID`,`Product Category Attribute`,pm1.`Product Meta Value` AS CategoryID FROM `product_category` LEFT JOIN postsmeta pm1 ON pm1.`Product Meta Value` = product_category.`Product Category ID` AND pm1.`Product Meta Key` = 'Skin Type' WHERE `Product Category Name` = 'Skin Type' ORDER BY `Product Category Attribute` ASC";
+                            $Select = mysqli_query($conn, $SelectQuery);
+                            while ($Row = $Select->fetch_assoc()) {
+                                echo '<label class="checkbox-container">
+                            <input class="custom-checkbox" type="checkbox" value="' . $Row['Product Category Attribute'] .'" data-categoryid="' . $Row['Product Category ID'] .'">
+                            <span class="checkmark"></span>
+                            <p>' . $Row['Product Category Attribute'] . '</p>
+                        </label>';
+                            }
+
+                            ?>
+
+                        </ul>
+                    </div>
+                </div>
+
                 <div class="price-plaining">
                     <div class="initial-price">
                         <p class="body-heading">Price</p>
@@ -174,7 +207,7 @@ include_once $base_url . 'Assets/PHP/Admin/Edit Product Config.php';
 
                 </div>
                 <div class="submit">
-                    <input type="submit" id="Submit" class="save-changes">
+                <button type="submit" id="Submit" class="save-changes">Submit</button>
                 </div>
             </form>
         </div>
