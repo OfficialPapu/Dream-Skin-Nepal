@@ -43,6 +43,39 @@ include 'Assets/PHP/URL/Base Path.php';
     <link rel="shortcut icon" href="Assets/Product/Media/Images/Logo/Dream skin nepal.png" type="image/x-icon">
     <link rel="stylesheet" href="Assets/CSS/Style.css">
     <title>Dream Skin Nepal - Best Korean Skincare Cosmetics Products in Nepal</title>
+    <style>
+        .banner-combination {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+}
+.banner-combination img {
+  width: 100%;
+  height: 100%;
+}
+
+@media (max-width: 900px) {
+  .banner-combination {
+    grid-template-columns: 1fr 1fr;
+    gap: 0;
+  }
+  .Retinol {
+    grid-column: 1 / 2;
+  }
+  .Ampoule {
+    grid-column: 1 / -1;
+  }
+  .Eyecream {
+    grid-column: 2 / 3;
+  }
+  .Eyecream {
+    margin-left: 6px;
+  }
+}
+
+    </style>
 </head>
 
 <body>
@@ -93,7 +126,7 @@ include 'Assets/PHP/URL/Base Path.php';
         ?>
     </div>
 
-    <div class="products">
+     <div class="products">
         <div class="view-more-box">
             <div class="heading-box">
                 <h2 class="product-heading">New Arrivals</h2>
@@ -103,10 +136,10 @@ include 'Assets/PHP/URL/Base Path.php';
             </div>
         </div>
         <?php
-        $Sql = "WHERE p.ID>=331 OR p.ID=36 OR p.ID=294 OR p.ID=47 OR p.ID=276 OR p.ID=94 ORDER BY Rand() LIMIT 0,10";
+        $Sql = "WHERE (p.ID >= 331 OR p.ID IN (36, 294, 47, 276, 94)) ORDER BY Rand() LIMIT 0,10";
         include('Assets/Slider/Product Slider.php');
         ?>
-    </div>
+    </div> 
 
     <div class="products">
         <div class="view-more-box">
@@ -118,28 +151,31 @@ include 'Assets/PHP/URL/Base Path.php';
             </div>
         </div>
         <?php
-        $Sql = "ORDER BY Rand() LIMIT 0,10";
+        $Sql = "WHERE p.`Product Quantity`>0 ORDER BY Rand() LIMIT 0,10";
         include('Assets/Slider/Product Slider.php');
         ?>
     </div>
-    <?php
-    $CategorySql = "SELECT * FROM `product_category` WHERE `Product Category Name` = 'Skin Care' ORDER BY 
-    CASE `Product Category Attribute`
-    WHEN 'Cleanser' THEN 1
-    WHEN 'Toner/ Toner Pad' THEN 2
-    WHEN 'Essence' THEN 3
-    WHEN 'Serum' THEN 4
-    WHEN 'Moisturizer' THEN 5
-    WHEN 'Sunscreen/ Sun Stick' THEN 6
-    ELSE 7
-    END, `Product Category Attribute` ASC";
+
+ <?php
+    $CategorySql = "SELECT * FROM `product_category`
+    WHERE `Product Category Attribute` IN('Cleanser','Toner/ Toner Pad','Essence','Serum','Moisturizer','Sunscreen/ Sun Stick','Sheet Mask','Hair Care','Cushion Foundation','Lip Stick (Lip Tint/Lip Balm)' ) ORDER BY CASE `Product Category Attribute` 
+    WHEN 'Cleanser' THEN 1 
+    WHEN 'Toner/ Toner Pad' THEN 2 
+    WHEN 'Essence' THEN 3 
+    WHEN 'Serum' THEN 4 WHEN 'Moisturizer' THEN 5 
+    WHEN 'Sunscreen/ Sun Stick' THEN 6 
+    WHEN 'Sheet Mask' THEN 7 
+    WHEN 'Lip Stick (Lip Tint/Lip Balm)' THEN 8 
+    WHEN 'Cushion Foundation' THEN 9 
+    WHEN 'Hair Care' THEN 10
+    ELSE 11 END, `Product Category Attribute` ASC LIMIT 1";
     $CategorySqlRun = mysqli_query($conn, $CategorySql);
     while ($Row = $CategorySqlRun->fetch_assoc()) {
         $CategoryAttribute = $Row['Product Category Attribute'];
         $CategoryID = $Row['Product Category ID'];
         $SlugUrl = $Row['Slug Url'];
         $ImageUrl = $Row['Image Url'];
-        $Sql = "WHERE pm3.`Product Meta Value`='$CategoryID'";
+        $Sql = "WHERE pm3.`Product Meta Value`='$CategoryID' AND p.`Product Quantity`>0";
         echo "<div class='products'>
         <div class='view-more-box'>
             <div class='heading-box'>
@@ -149,7 +185,7 @@ include 'Assets/PHP/URL/Base Path.php';
                 <a href='Category/SkinCare.php/$SlugUrl'>SHOP MORE<i class='bx bx-chevron-right'></i></a>
             </div>
         </div>";
-        if($ImageUrl != ""){
+        if ($ImageUrl != "") {
             echo "<div class='banner'>
             <img src='Assets/Product/Media/Images/Banners/$ImageUrl' alt='$CategoryAttribute' loading='lazy'>
             </div>";
@@ -158,7 +194,36 @@ include 'Assets/PHP/URL/Base Path.php';
         echo "</div>";
     }
     ?>
+  <div class="products">
+        <?php
+        echo "<div class='banner-combination'>
+            <a href='Category/SkinCare.php/ampoule' class='Ampoule'><img src='Assets/Product/Media/Images/Banners/Ampoule.jpg' alt='Ampoule' loading='lazy'></a>
+            <a href='Category/SkinCare.php/retinol' class='Retinol'><img src='Assets/Product/Media/Images/Banners/Retinol.jpg' alt='Retinol' loading='lazy'></a>
+            <a href='Category/SkinCare.php/eye-cream' class='Eyecream'><img src='Assets/Product/Media/Images/Banners/Eyecream.jpg' alt='Eyecream' loading='lazy'></a>
+            </div>";
+        $Sql = "WHERE (pm3.`Product Meta Value`='23' OR pm3.`Product Meta Value`='55' OR pm3.`Product Meta Value`='82') AND p.`Product Quantity`>0 ORDER BY Rand() LIMIT 0,10";
+        include('Assets/Slider/Product Slider.php');
+        ?>
+    </div>
 
+    <div class="products">
+        <?php
+        echo "<div class='banner'>
+             <img src='Assets/Product/Media/Images/Banners/skincare mix.jpg' alt='skincare mix' loading='lazy'>
+         </div>";
+        $Sql = "WHERE pm3.`Product Meta Value` IN (23, 24, 25, 26, 27, 29, 30, 31, 32, 37, 55, 80, 81, 82, 83, 84) AND p.`Product Quantity`>0 ORDER BY Rand() LIMIT 0,10";
+        include('Assets/Slider/Product Slider.php');
+        ?>
+    </div>
+    <div class="products">
+        <?php
+        echo "<div class='banner'>
+             <img src='Assets/Product/Media/Images/Banners/makeup mix.jpg' alt='makeup mix' loading='lazy'>
+         </div>";
+        $Sql = "WHERE pm3.`Product Meta Value` IN (33, 34, 35, 36, 54, 56, 57, 59, 74, 75, 85) AND p.`Product Quantity`>0 ORDER BY Rand() LIMIT 0,10";
+        include('Assets/Slider/Product Slider.php');
+        ?>
+    </div>
     <div class="products review">
         <h2 class="product-heading">Customer Reviews</h2>
         <?php include('Assets/Slider/Customer Review.php'); ?>
