@@ -1,0 +1,189 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito+Sans:opsz,wght@6..12,500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Nunito+Sans:opsz,wght@6..12,500;6..12,700&family=Poppins&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    font-family: 'Nunito Sans', sans-serif;
+    box-sizing: border-box;
+    outline: none;
+    text-decoration: none;
+}
+
+.color-design-acc,
+.color-design-acc i {
+    background-color: #FF007F;
+    color: white !important;
+}
+
+.account-container-data {
+    display: flex;
+    overflow: hidden;
+}
+
+.my-account-data {
+    width: calc(100vw - 300px);
+    display: flex;
+    justify-content: center;
+    padding: 10px;
+    margin-bottom: 5.3rem;
+}
+
+.account-data {
+    width: 500px;
+    box-shadow:0 0 10px rgba(255, 0, 128, 0.1);
+    height: 630px;
+    border-radius: 8px;
+}
+
+.user-image-data img {
+    height: 100px;
+    width: 100px;
+    object-fit: cover;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+#file-input {
+    display: none;
+}
+
+.user-image-data,
+.user-details {
+    display: flex;
+    justify-content: center;
+}
+
+.account-holder-name {
+    text-transform: capitalize;
+    text-align: center;
+    font-size: 1.5rem;
+    font-weight: bold;
+    color:#FF007F;
+}
+
+.user-details input {
+    height: 45px;
+    width: 25rem;
+    outline: none;
+    border: none;
+    box-shadow:0 0 10px rgba(255, 0, 128, 0.1);
+    border-radius: 8px;
+    padding: 10px;
+    font-size: 1rem;
+}
+
+.user-details input[type=date] {
+    text-transform: uppercase;
+}
+
+.user-details input[type=submit] {
+    width: 150px;
+    background-color: #FF007F;
+    cursor: pointer;
+    color: white;
+}
+
+.select-list {
+    width: 400px;
+    height: 40px;
+    font-size: 1rem;
+    border: none;
+    border-radius: 8px;
+  box-shadow:0 0 10px rgba(255, 0, 128, 0.1);
+    padding: 0 10px;
+    background:transparent;
+}
+#DOB{
+     background:transparent;
+}
+
+.data {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.user-data-title {
+    color: #686868;
+    font-size: 10px;
+}
+.profile-title{
+    margin: 5px 0;
+}
+
+@media (max-width:860px) {
+  
+    .hide-item-small-screen {
+        display: none;
+    }
+
+    .my-account-data {
+        width: 100vw;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+}
+
+@media screen and (min-width: 320px) and (max-width: 768px) {
+    .account-data {
+        width: 450px;
+        height: 600px;
+    }
+}
+
+@media screen and (min-width: 320px) and (max-width: 360px) {
+    .account-data {
+        width: 355px !important;
+        height: 600px;
+        margin-top: 0;
+    }
+
+    .user-details input {
+        width: 18rem;
+    }
+
+    .select-list {
+        width: 18rem;
+    }
+}
+
+@media screen and (min-width: 361px) and (max-width: 480px) {
+    .account-data {
+        width: 400px;
+        height: 650px;
+        margin-top: 40px;
+    }
+
+    .user-details input {
+        width: 20rem;
+    }
+
+    .select-list {
+        width: 20rem;
+    }
+    .full-name input {
+        width: 9.5rem !important;
+    }
+    
+}
+
+.full-name-box {
+    display: flex;
+    gap: 5%;
+}
+
+.full-name input {
+    width: 45%;
+}
+
+.acc-mobile {
+    cursor: no-drop;
+}
+@media (max-width:360px) {
+    .full-name input {
+        width: 9rem !important;
+    }   
+}

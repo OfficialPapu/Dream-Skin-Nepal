@@ -1,0 +1,266 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    font-family: "Inter", sans-serif;
+    text-decoration: none;
+    list-style: none;
+    outline: none;
+}
+.custom-product-id{
+    width:10px;
+}
+.product-container-and-heading-wrapper {
+    margin-top: 6rem;
+}
+
+html,
+body {
+    overflow-x: hidden;
+}
+
+.product-not-found {
+    padding: 16px;
+}
+
+body {
+    background-color: #e5f0f9;
+}
+
+.product-container-and-heading-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.product-container-box {
+    width: 95vw;
+    background-color: #ffffff;
+    display: flex;
+    flex-direction: column;
+    border-radius: 20px;
+}
+
+.product-management-heading {
+    font-size: 14px;
+    padding: 16px 50px;
+    color: #575864;
+}
+
+.product-management-heading i {
+    color: #2277fc;
+}
+
+.upper-part {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 50px;
+}
+
+.search {
+    border-radius: 8px;
+    border: 1px solid #95989d;
+    height: 45px;
+    width: 350px;
+    padding: 0 10px;
+    outline: none;
+}
+
+.search:focus {
+    outline: none;
+}
+
+.addnewbtn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 15px 40px;
+    border-radius: 8px;
+    border: none;
+    color: #2277fc;
+    background-color: white;
+    border: 1px solid #2277fc;
+    cursor: pointer;
+    transition: .3s;
+    font-size: .9rem;
+    font-weight: bold;
+}
+
+.addnewbtn i {
+    padding: 0 7px;
+    font-weight: bold;
+}
+
+.addnewbtn:hover {
+    background-color: #2277fc;
+    color: white;
+}
+
+.product-container-and-heading-wrapper table {
+    border-collapse: collapse;
+    margin-top: 10px;
+    width: 100%;
+}
+
+.table-title {
+    text-align: start;
+    background-color: rgb(210, 221, 253);
+}
+
+.table-title th {
+    text-align: start;
+    font-weight: 650;
+    margin-top: 10px;
+    padding: 15px 20px;
+}
+
+.product-box {
+    background-color: #f8f9fc;
+    transition: .3s;
+}
+
+.product-box:hover {
+    background-color: #edf1f5;
+}
+
+.product-box td {
+    padding: 0 20px;
+}
+
+.product-image-title {
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    gap: 10px;
+}
+
+.product-image-title p {
+    transition: .2s;
+    font-size: 14px;
+}
+
+.product-image-title p:hover {
+    color: #2277fc;
+    cursor: default;
+}
+
+.product-image-title img {
+    width: 70px;
+    height: 100%;
+    border-radius: 20px;
+    padding: 10px;
+    object-fit: cover;
+}
+
+
+.action-data {
+    display: flex;
+    justify-content: start;
+    gap: 25%;
+    font-size: 1.2rem;
+}
+
+.action-data .edit-box i {
+    color: #44c761;
+    cursor: pointer;
+}
+
+.action-data .delete-box i {
+    color: #ff693f;
+    cursor: pointer;
+}
+
+@media (max-width:1008px) {
+    .table-title th {
+        padding: 15px 10px;
+    }
+
+    .product-box td {
+        padding: 10px;
+    }
+}
+
+@media (max-width:740px) {
+    .product-image-title p {
+        font-size: 14px;
+    }
+}
+@media (min-width:700px) {
+    .product-title-and-img{
+        width:35%;
+    }
+}
+
+@media (max-width:700px) {
+    .search {
+        width: 250px;
+        height: 35px;
+    }
+
+    .addnewbtn {
+        height: 35px;
+        width: 150px;
+        padding: 0;
+    }
+
+    .product-container-box {
+        width: 99vw;
+    }
+
+    .product-image-title img {
+        width: 50px;
+    }
+
+    .table-title th {
+        font-size: 10px;
+        padding: 10px 2px;
+    }
+
+    .product-box td {
+        font-size: 10px;
+        padding: 0 2px;
+    }
+
+    .product-image-title p {
+        display: none;
+    }
+
+    .addnewproduct-text {
+        font-size: .8rem;
+    }
+
+    .product-management-heading {
+        font-size: 9px;
+        padding: 20px 10px;
+    }
+
+}
+
+@media (max-width:510px) {
+    .search {
+        width: 40vw;
+    }
+
+    .addnewbtn {
+        width: 100px;
+    }
+
+    .upper-part {
+        justify-content: space-between;
+        padding: 0 10px;
+    }
+}
+
+@media (max-width:380px) {
+
+    .product-box td {
+        padding: 0;
+    }
+
+    .table-title th {
+        padding: 15px 5px;
+    }
+}

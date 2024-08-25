@@ -1,0 +1,6 @@
+[24-Aug-2024 15:05:44 UTC] PHP Warning:  Attempt to read property "num_rows" on int in /home/dreamsk1/public_html/Account/UserAccount/My Account.php on line 24
+[24-Aug-2024 15:06:25 UTC] PHP Warning:  Undefined variable $OrderSummaryRun in /home/dreamsk1/public_html/Account/UserAccount/eSewa.php on line 27
+[24-Aug-2024 15:06:25 UTC] PHP Fatal error:  Uncaught Error: Call to a member function fetch_assoc() on null in /home/dreamsk1/public_html/Account/UserAccount/eSewa.php:27
+Stack trace:
+#0 {main}
+  thrown in /home/dreamsk1/public_html/Account/UserAccount/eSewa.php on line 27
