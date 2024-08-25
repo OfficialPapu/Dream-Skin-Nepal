@@ -14,6 +14,27 @@ $FeatchTotalPrice = "SELECT pc.`Product_ID`, pc.`Product_Quantity`, p.`ID`, p.`P
     JOIN `postsmeta` pm1 ON pc.`Product_ID` = pm1.`Product ID`
     WHERE  pc.`User ID`='$user_id'";
 $RunQuery = mysqli_query($conn, $FeatchTotalPrice);
+
+$CheckPurchase="SELECT COUNT(*) AS PurchaseCount FROM `orders`
+JOIN order_items ON `order_items`.`Order ID`=`orders`.`Order ID`
+WHERE order_items.`Order Status` != 'Cancelled' AND order_items.`Order Status` != 'Rejected' AND `orders`.`User ID`='$user_id'";
+$CheckPurchaseRun=mysqli_query($conn,$CheckPurchase);
+$Row=$CheckPurchaseRun->fetch_assoc();
+$PurchaseCount = $Row['PurchaseCount'];
+
+$CartCount="SELECT * FROM `product_cart` WHERE `User ID`='$user_id'";
+$CartCountRun=mysqli_query($conn,$CartCount);
+
+$ReducePriceFromEachProduct = 0;
+if ($PurchaseCount == 0) {
+    $CartItemCount = mysqli_num_rows($CartCountRun);
+    if ($CartItemCount > 0) {
+        $ReducePriceFromEachProduct = floor(100 / $CartItemCount);
+    } else {
+        $ReducePriceFromEachProduct = 0;
+    }
+}
+
 while ($row = $RunQuery->fetch_assoc()) {
     $SavedPrice = $row["Product Price"];
     $price = $row["Product Price"];
@@ -26,7 +47,7 @@ while ($row = $RunQuery->fetch_assoc()) {
         $DiscountValue = $price - $DiscountValueCalculate;
         $price = $DiscountValue;
     }
-    $subtotal = $row["Product_Quantity"] * $price;
+    $subtotal = ($row["Product_Quantity"] * $price) - $ReducePriceFromEachProduct;
     $SubTotalSavedPrice = $row["Product_Quantity"] * $SavedPrice;
     $totalPrice = $subtotal;
     $productID = $row['Product_ID'];

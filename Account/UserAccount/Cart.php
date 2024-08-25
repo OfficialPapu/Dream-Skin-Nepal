@@ -114,7 +114,7 @@ include_once $base_url . 'Assets/PHP/Account Configuration/Cart Configuration.ph
                 <div class="p-3 grid gap-4" data-id="4">
                     <div class="flex items-center justify-between" data-id="5">
                         <span>Subtotal</span>
-                        <span id="SubTotal">Rs. <?php echo $TotalPrice; ?>.00</span>
+                        <span id="SubTotal">Rs. <?php echo $TotalSaved; ?>.00</span>
                     </div>
 
                     <div class="grid gap-2">
@@ -179,8 +179,12 @@ include_once $base_url . 'Assets/PHP/Account Configuration/Cart Configuration.ph
                             <span id="GrandTotal" class="text-[#FF5200] font-bold">Rs. <?php echo $TotalPrice; ?>.00</span>
                         </div>
                         <div class="flex flex-col items-center justify-between text-green-500 FreeShippingBox hidden">
-                            <span>Congrats, you got free shipping!</span>
-                            <span>Purchase over 3500.</span>
+                        <?php
+                        if ($PurchaseCount == 0) {
+                        echo "<span>💸 Rs. 100 off on your first purchase! 🎁</span>";
+                        }
+                        ?>
+                        <span>🎉 Free shipping on orders over Rs. 3500! 🚚✨</span>
                         </div>
                     </div>
 
@@ -190,7 +194,7 @@ include_once $base_url . 'Assets/PHP/Account Configuration/Cart Configuration.ph
                     </div>
                 </div>
                 <div class="flex justify-center my-7">
-                    <button class='checkout-btn bg-[#FF007F] py-3 w-[70%] rounded-md text-white'>PROCEED TO CHECKOUT</button>
+                        <button class='checkout-btn bg-[#FF007F] py-3 w-[70%] rounded-md text-white'>PROCEED TO CHECKOUT</button>
                 </div>
             </div>
         </div>
