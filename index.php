@@ -42,12 +42,12 @@ include 'Assets/PHP/URL/Base Path.php';
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <link rel="shortcut icon" href="Assets/Product/Media/Images/Logo/Dream skin nepal.png" type="image/x-icon">
     <link rel="stylesheet" href="Assets/CSS/Style.css">
-     <link rel="stylesheet" href="Assets/CSS/Spinners.css">
+     <link rel="stylesheet" href="Assets/CSS/Spinner.css">
     <title>Dream Skin Nepal - Best Korean Skincare Cosmetics Products in Nepal</title>
 </head>
 
 <body>
-    <!-- <div class="preloader">
+    <div class="preloader">
       <div class="load">
         <div class="load__wrap">
           <div class="load__out">
@@ -59,7 +59,7 @@ include 'Assets/PHP/URL/Base Path.php';
           <span class="load__text"> Loading... </span>
         </div>
       </div>
-    </div> -->
+    </div>
     <!-- Google Tag Manager (noscript) -->
     <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PD3FG3HH" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <nav class="main-nav">
@@ -112,7 +112,7 @@ include 'Assets/PHP/URL/Base Path.php';
      <div class="products">
         <div class="view-more-box">
             <div class="heading-box">
-                <h2 class="product-heading">Coming Soon..</h2>
+                <h2 class="product-heading">New Arrivals</h2>
             </div>
             <div class="view-more">
                 <a href="Category/ViewMoreProduct.php?Condition=NewArrivals">Shop More<i class="bx bx-chevron-right"></i></a>
@@ -338,4 +338,4 @@ include 'Assets/PHP/URL/Base Path.php';
     fbq('init', '1300972564192880');
     fbq('track', 'PageView');
 </script>
-<noscript><img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=1300972564192880&ev=PageView&noscript=1" / alt='meta pixel'></noscript>
+<noscript><img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=1300972564192880&ev=PageView&noscript=1" / alt='meta pixel'></noscript>    
