@@ -47,19 +47,6 @@ include 'Assets/PHP/URL/Base Path.php';
 </head>
 
 <body>
-    <div class="preloader">
-      <div class="load">
-        <div class="load__wrap">
-          <div class="load__out">
-            <div class="load__in">
-              <img src="Assets/Product/Media/Images/Logo/Dream skin nepal.png" alt="">
-            </div>
-          </div>
-
-          <span class="load__text"> Loading... </span>
-        </div>
-      </div>
-    </div>
     <!-- Google Tag Manager (noscript) -->
     <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PD3FG3HH" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <nav class="main-nav">
@@ -138,7 +125,7 @@ include 'Assets/PHP/URL/Base Path.php';
         include('Assets/Slider/Product Slider.php');
         ?>
     </div>
-
+<div id='FirstCategory'>
  <?php
     $CategorySql = "SELECT * FROM `product_category`
     WHERE `Product Category Attribute` IN('Cleanser','Toner/ Toner Pad','Essence','Serum','Moisturizer','Sunscreen/ Sun Stick','Sheet Mask','Hair Care','Cushion Foundation','Lip Stick (Lip Tint/Lip Balm)' ) ORDER BY CASE `Product Category Attribute` 
@@ -151,7 +138,7 @@ include 'Assets/PHP/URL/Base Path.php';
     WHEN 'Lip Stick (Lip Tint/Lip Balm)' THEN 8 
     WHEN 'Cushion Foundation' THEN 9 
     WHEN 'Hair Care' THEN 10
-    ELSE 11 END, `Product Category Attribute` ASC";
+    ELSE 11 END, `Product Category Attribute` ASC LIMIT 0,2";
     $CategorySqlRun = mysqli_query($conn, $CategorySql);
     while ($Row = $CategorySqlRun->fetch_assoc()) {
         $CategoryAttribute = $Row['Product Category Attribute'];
@@ -177,6 +164,7 @@ include 'Assets/PHP/URL/Base Path.php';
         echo "</div>";
     }
     ?>
+    </div>
   <div class="products">
         <?php
         echo "<div class='banner-combination'>
@@ -221,7 +209,35 @@ include 'Assets/PHP/URL/Base Path.php';
     </footer>
 
 </body>
+<script src="Assets/JS/Slider Config.js"></script>
 <script src="Assets/JS/Script.js"></script>
+<script>
+    let loadedCategories = 2; 
+$(window).scroll(function() {
+    const triggerPoint = $(window).height() * 1.5;
+    if ($(window).scrollTop() >= triggerPoint) {
+        loadMoreCategories(); 
+    }
+});
+
+function loadMoreCategories() {
+    $.ajax({
+        url: 'Assets/PHP/Configuration/Home Page Config.php',
+        type: 'POST',
+        data: { 
+            FirstCategory:true,
+            loadedCategories: loadedCategories 
+        },
+        success: function(response) {
+            $('#FirstCategory').append(response);
+        }
+    });
+    loadedCategories += 2; 
+}
+
+</script>
+
+
 <script>
   setTimeout(() => {
     $('.preloader').css("display", "none");
