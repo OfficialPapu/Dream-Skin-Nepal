@@ -1,4 +1,6 @@
 <?php
+@session_name('Cart');
+@session_start();
 if (isset($_SESSION['Logged In'])) {
     $user_id = $_SESSION['LoginSession']['user_id'];
 } else {
@@ -6,10 +8,10 @@ if (isset($_SESSION['Logged In'])) {
 }
 include_once $base_url . 'Assets/Components/Navbar.php';
 $GetValue = $_GET['Condition'];
-if ($GetValue == 'NewArrivals') {
-    $PageTitle = "New Arrivals";
-    $Condition = 'p.ID >=362';
-    $featuredproduct=322;
+if ($GetValue == 'Pre-Order') {
+    $PageTitle = "Pre-Order";
+    $Condition = '(p.ID >= 410) OR p.ID IN (281,294)';
+    $featuredproduct=410;
 } else if ($GetValue == 'BestSellers') {
     $PageTitle = "Best Sellers";
     $featuredproduct=0;

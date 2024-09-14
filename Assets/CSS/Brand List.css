@@ -9,7 +9,9 @@
         outline: none;
            scrollbar-width: none;
     }
-
+        .brand-heading{
+            font-family: Soin-Sans-Pro-Rodddddman;
+        }
 *::-webkit-scrollbar {
     display: none;
 }

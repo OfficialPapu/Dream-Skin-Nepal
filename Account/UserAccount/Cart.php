@@ -1,6 +1,7 @@
 <?php
 @session_name('URLSession');
 @session_start();
+$_SESSION['URLSession']['Base Path'] = $_SERVER['DOCUMENT_ROOT'] . "/";
 $base_url = $_SESSION['URLSession']['Base Path'];
 include_once $base_url . 'Assets/PHP/Account Configuration/Cart Configuration.php';
 ?>
@@ -136,9 +137,9 @@ include_once $base_url . 'Assets/PHP/Account Configuration/Cart Configuration.ph
                                 </div>
                                 <span>Rs. 100</span>
                             </label>
-                            <label class="text-sm font-medium flex items-center justify-between rounded-md border border-muted px-4 py-3 cursor-pointer" for="Collect-From-Store">
+                            <label class="text-sm font-medium flex items-center justify-between rounded-md border border-muted px-4 py-3 cursor-pointer" for="Collect-From-Mid-Baneshwor">
                                 <div class="flex items-center justify-center gap-2">
-                                    <input type="checkbox" class="mt-[-2px]" id="Collect-From-Store" name='Shipping-rate'></input>
+                                    <input type="checkbox" class="mt-[-2px]" id="Collect-From-Mid-Baneshwor" name='Shipping-rate'></input>
                                     Collect From Baneshwor
                                 </div>
                                 <span>Rs. 0</span>
@@ -181,7 +182,7 @@ include_once $base_url . 'Assets/PHP/Account Configuration/Cart Configuration.ph
                         <div class="flex flex-col items-center justify-between text-green-500 FreeShippingBox hidden">
                         <?php
                         if ($PurchaseCount == 0) {
-                        echo "<span>💸 Rs. 100 off on your first purchase! 🎁</span>";
+                        // echo "<span>💸 Rs. 100 off on your first purchase! 🎁</span>";
                         }
                         ?>
                         <span>🎉 Free shipping on orders over Rs. 3500! 🚚✨</span>
@@ -215,6 +216,6 @@ include_once $base_url . 'Assets/PHP/Account Configuration/Cart Configuration.ph
 <script src="Assets/JS/Butterup/butterup.js"></script>
 <script src="Assets/JS/Butterup/butterup.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-<script src="Assets/JS/Cart.js"></script>
+<script src="Assets/JS/Cart Items.js"></script>
 
 </html>

@@ -3,12 +3,14 @@
 @session_name('URLSession');
 @session_start();
 @session_start();
+$_SESSION['URLSession']['Base Path'] = $_SERVER['DOCUMENT_ROOT'] . "/";
 $base_url = $_SESSION['URLSession']['Base Path'];
 include_once $base_url . 'Assets/Components/Navbar.php';
 ?>
 <?php
 @session_name('LoginSession');
 if (!isset($_SESSION['Logged In'])) {
+    $_SESSION['RedirectUrl'] = $_SERVER['REQUEST_URI'];
     echo "<script>window.open('Account/Authentication/LoginInterface.php','_self');</script>";
 }
 if (isset($_SESSION['Logged In'])) {

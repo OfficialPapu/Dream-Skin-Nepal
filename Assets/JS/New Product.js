@@ -20,7 +20,9 @@ $(document).ready(function () {
     CusTomID();
     $('#formdata').submit(function (e) {
         e.preventDefault();
-        $(this).css("pointer-events", "none");
+         $(this).css("pointer-events", "none");
+        $('#Submit').css("padding", "4px");
+        $('#Submit').html(`<svg viewBox="25 25 50 50"><circle r="20" cy="50" cx="50"></circle></svg>`);
         let formData = new FormData($(this)[0]);
         let skinTypes = [];
         $('.skintypeselect .custom-checkbox:checked').each(function () {
@@ -50,6 +52,8 @@ $(document).ready(function () {
             contentType: false,
             success: function (response) {
                 $("#formdata").css("pointer-events", "all");
+                $('#Submit').css("padding", "10px");
+                $('#Submit').html(`Submit`);
                 if (response == "Product added") {
                     $('#formdata')[0].reset();
                     $('.custom-checkbox').closest('.select-skin-type').find('.SelectedText').text('Select Skin Type');

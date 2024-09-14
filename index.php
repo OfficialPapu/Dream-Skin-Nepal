@@ -37,12 +37,11 @@ include 'Assets/PHP/URL/Base Path.php';
     <meta property="og:title" content="Dream Skin Nepal - Best Korean Skincare Cosmetics Products in Nepal">
     <meta property="og:url" content="https://www.dreamskinnepal.com/">
     <meta property="og:image" content="https://dreamskinnepal.com/Assets/Product/Media/Images/Logo/Dream skin nepal.png">
-    <meta property="og:description" content="Dream Skin Nepal - Trusted for Korean Beauty products. Leading skincare, cosmetics, cruelty-free & vegan options. Free shipping over Rs. 5000. Shop online for Korean products in Nepal.">
+    <meta property="og:description" content="Dream Skin Nepal - Trusted for Korean Beauty products. Leading skincare, cosmetics, cruelty-free & vegan options. Free shipping over Rs. 3500. Shop online for Korean products in Nepal.">
     <link rel="canonical" href="https://www.dreamskinnepal.com/">
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <link rel="shortcut icon" href="Assets/Product/Media/Images/Logo/Dream skin nepal.png" type="image/x-icon">
     <link rel="stylesheet" href="Assets/CSS/Style.css">
-     <link rel="stylesheet" href="Assets/CSS/Spinner.css">
     <title>Dream Skin Nepal - Best Korean Skincare Cosmetics Products in Nepal</title>
 </head>
 
@@ -99,14 +98,14 @@ include 'Assets/PHP/URL/Base Path.php';
      <div class="products">
         <div class="view-more-box">
             <div class="heading-box">
-                <h2 class="product-heading">New Arrivals</h2>
+                <h2 class="product-heading">Pre-Order</h2>
             </div>
             <div class="view-more">
-                <a href="Category/ViewMoreProduct.php?Condition=NewArrivals">Shop More<i class="bx bx-chevron-right"></i></a>
+                <a href="Category/ViewMoreProduct.php?Condition=Pre-Order">Shop More<i class="bx bx-chevron-right"></i></a>
             </div>
         </div>
         <?php
-        $Sql = "WHERE (p.ID >= 362) ORDER BY Rand() LIMIT 0,10";
+        $Sql = "WHERE (p.ID >= 410) OR p.ID IN (281,294) ORDER BY Rand() LIMIT 0,10";
         include('Assets/Slider/Product Slider.php');
         ?>
     </div> 
@@ -209,35 +208,7 @@ include 'Assets/PHP/URL/Base Path.php';
     </footer>
 
 </body>
-<script src="Assets/JS/Slider Config.js"></script>
-<script src="Assets/JS/Script.js"></script>
-<script>
-    let loadedCategories = 2; 
-$(window).scroll(function() {
-    const triggerPoint = $(window).height() * 1.5;
-    if ($(window).scrollTop() >= triggerPoint) {
-        loadMoreCategories(); 
-    }
-});
-
-function loadMoreCategories() {
-    $.ajax({
-        url: 'Assets/PHP/Configuration/Home Page Config.php',
-        type: 'POST',
-        data: { 
-            FirstCategory:true,
-            loadedCategories: loadedCategories 
-        },
-        success: function(response) {
-            $('#FirstCategory').append(response);
-        }
-    });
-    loadedCategories += 2; 
-}
-
-</script>
-
-
+<script src="Assets/JS/Main Scripts.js"></script>
 <script>
   setTimeout(() => {
     $('.preloader').css("display", "none");
@@ -354,4 +325,4 @@ function loadMoreCategories() {
     fbq('init', '1300972564192880');
     fbq('track', 'PageView');
 </script>
-<noscript><img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=1300972564192880&ev=PageView&noscript=1" / alt='meta pixel'></noscript>    
+<noscript><img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=1300972564192880&ev=PageView&noscript=1" / alt='meta pixel'></noscript>

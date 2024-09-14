@@ -1,6 +1,7 @@
 <?php
 @session_name('URLSession');
 @session_start();
+$_SESSION['URLSession']['Base Path'] = $_SERVER['DOCUMENT_ROOT'] . "/Dream Skin Nepal/";
 $base_url = $_SESSION['URLSession']['Base Path'];
 include_once $base_url . 'Assets/PHP/Configuration/Navbar Configuration.php';
  if (!isset($_SESSION['Logged In'])) {
@@ -80,13 +81,13 @@ include_once $base_url . 'Assets/PHP/Configuration/Navbar Configuration.php';
                         <!--        </span>-->
                         <!--    </div>-->
                         <!--    <ul class="sub-category-dorpdown-menu">-->
-                               <?php
-                            //     while ($row = $Query3->fetch_assoc()) {
-                            //         $SkinType = $row['Product Category Attribute'];
-                            //         $SlugUrl = $row['Slug Url'];
-                            //        echo "<li><a href='$SkinTypeUrl/$SlugUrl' class='sub-category-dorpdown-link'>$SkinType</a></li>";
-                            //    }
-                               ?>
+                        <!--        <?php-->
+                        <!--        while ($row = $Query3->fetch_assoc()) {-->
+                        <!--            $SkinType = $row['Product Category Attribute'];-->
+                        <!--            $SlugUrl = $row['Slug Url'];-->
+                        <!--            echo "<li><a href='$SkinTypeUrl/$SlugUrl' class='sub-category-dorpdown-link'>$SkinType</a></li>";-->
+                        <!--        }-->
+                        <!--        ?>-->
                         <!--    </ul>-->
                         <!--</li>-->
                         
@@ -146,14 +147,14 @@ include_once $base_url . 'Assets/PHP/Configuration/Navbar Configuration.php';
                     <div class="card-container hide-item">
                     <div class="card">
                         <div class="card-content">
-                            <a class="card-item" href="https://maps.app.goo.gl/kLGH6gtYM62ZSFCbA">
+                            <a class="card-item" href="https://maps.app.goo.gl/6oVrZMEfwMDrGTTC6">
                                 <div class="card-icon">
                                 <i class='bx bx-map'></i>
                                 </div>
                                 <h3 class="card-title">Dream Skin Baneshwor</h3>
                                 <p class="card-description">View location</p>
                             </a>
-                            <a class="card-item" href="#">
+                            <a class="card-item" href="https://maps.app.goo.gl/kLGH6gtYM62ZSFCbA">
                                 <div class="card-icon">
                                 <i class='bx bx-map'></i>
                                 </div>
@@ -175,7 +176,7 @@ include_once $base_url . 'Assets/PHP/Configuration/Navbar Configuration.php';
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a href="Assets/PHP/Database/SearchProduct.php" class="nav-link">
+                        <a href="Search" class="nav-link">
                             <i class='bx bx-search-alt-2 nav-icon'></i>
                             <span class="nav-name hide-item">Search</span>
                         </a>
@@ -199,7 +200,7 @@ include_once $base_url . 'Assets/PHP/Configuration/Navbar Configuration.php';
                             <span class="nav-name display-none hide-item">Account</span>
                         </a>
                         <?php
-                        if (isset($_SESSION['Logged In'])) {
+                        if (isset($_SESSION['Logged In'])==true) {
                             echo "<div class='account-container-nav-bar hide-item-in-mobile'>
                                 <div class='account-title'>
                                     My Account

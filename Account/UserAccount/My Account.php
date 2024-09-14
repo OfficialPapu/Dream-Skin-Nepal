@@ -21,6 +21,9 @@ include_once $base_url . 'Assets/PHP/Account Configuration/My Account Config.php
             ?>
         </div>
         <?php
+        if (!isset($_SESSION['Logged In'])) {
+            exit();
+        }
         if($RunQuery->num_rows > 0){
         ?>
         <div class="right-account-data">

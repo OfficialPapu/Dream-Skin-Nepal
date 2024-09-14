@@ -1,7 +1,7 @@
 <?php
 @session_name('URLSession');
 @session_start();
-$_SESSION['URLSession']['Base Path'] = $_SERVER['DOCUMENT_ROOT'] . "/Dream Skin Nepal/";
+$_SESSION['URLSession']['Base Path'] = $_SERVER['DOCUMENT_ROOT'] . "/";
 $base_url = $_SESSION['URLSession']['Base Path'];
 include $base_url . 'Assets/Components/Admin Navbar.php';
 include $base_url . 'Assets/PHP/Admin/Order Detail Page Config.php';
@@ -83,11 +83,16 @@ include $base_url . 'Assets/PHP/Admin/Order Detail Page Config.php';
                     <div class="cart-body">
                         <?php
                         if ($OrderDetail->num_rows > 0) {
+                            $Pickup =  $OrderInfo['Pickup'] ;
                             $SubTotal =  $OrderInfo['SubTotal'] ;
                             $TotalDue = "Rs. " . $OrderInfo['TotalDue'] . ".00";
                             $ShippingFee = "Rs. " . $OrderInfo['ShippingFee'] . ".00";
                         ?>
                             <ul>
+                            <li class="cart-totals-item">
+                                    <span class="body-text">Pickup:</span>
+                                    <span class="body-title-2 pickup"><?php echo $Pickup ?></span>
+                            </li>
                                 <li class="cart-totals-item">
                                     <input type="hidden" value="<?php echo $SubTotal; ?>" id="subtotal">
                                     <span class="body-text">Subtotal:</span>
@@ -227,10 +232,10 @@ include $base_url . 'Assets/PHP/Admin/Order Detail Page Config.php';
             $formattedTime = $dateTime->format('g:i A');
         ?>
             <div class="body-title">Summary</div>
-            <div class="summary-item">
+                <a href="Admin/Transaction Record.php?UserID=<?php echo $UserID; ?>" class="summary-item" target="_blank">
                 <div class="body-text">User ID</div>
                 <div class="body-title-3"><?php echo $UserID; ?></div>
-             </div>
+                </a>
             <div class="summary-item">
                 <div class="body-text">Date</div>
                 <div class="body-title-3"><?php echo  $formattedDate; ?></div>

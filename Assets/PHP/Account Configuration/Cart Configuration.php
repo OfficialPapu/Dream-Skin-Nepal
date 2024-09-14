@@ -29,7 +29,7 @@ $ReducePriceFromEachProduct = 0;
 if ($PurchaseCount == 0) {
     $CartItemCount = mysqli_num_rows($CartCountRun);
     if ($CartItemCount > 0) {
-        $ReducePriceFromEachProduct = floor(100 / $CartItemCount);
+        // $ReducePriceFromEachProduct = floor(100 / $CartItemCount);
     } else {
         $ReducePriceFromEachProduct = 0;
     }

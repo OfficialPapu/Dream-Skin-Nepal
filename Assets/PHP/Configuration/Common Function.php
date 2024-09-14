@@ -285,12 +285,12 @@ if (isset($_POST['UpdateOrderStatus'])) { {
             NotifyStatusComplete($UserEmail, $UserName, $ProductTitle);
             echo "Completed";
         } else if ($OrderStatus == 'Cancelled') {
-            $UpdateDsnQuery="UPDATE `user_table` SET `DSN Point`=`DSN Point` - '$DsnPoint' WHERE `ID`='$user_id'";
+            $UpdateDsnQuery="UPDATE `user_table` SET `DSN Point`=`DSN Point` - '$DsnPoint' WHERE `ID`='$UserID' AND `DSN Point`>0";
             $UpdateDsnQueryRun=$conn->query($UpdateDsnQuery);    
             NotifyStatusCanceled($UserEmail, $UserName, $ProductTitle);
             echo "Cancelled";
         } else if ($OrderStatus == 'Rejected') {
-            $UpdateDsnQuery="UPDATE `user_table` SET `DSN Point`=`DSN Point` - '$DsnPoint' WHERE `ID`='$user_id'";
+            $UpdateDsnQuery="UPDATE `user_table` SET `DSN Point`=`DSN Point` - '$DsnPoint' WHERE `ID`='$UserID' AND `DSN Point`>0";
             $UpdateDsnQueryRun=$conn->query($UpdateDsnQuery); 
             echo "Rejected";
         } else {
@@ -541,8 +541,8 @@ if (isset($_POST['ShortItem'])) {
 
     if ($ProductTypeID == 0 && $BrandID == 0) {
         //  $FeaturedProduct
-        if ($FeaturedProduct == 322) {
-            $Where = "WHERE p.ID>=362 $Condition";
+        if ($FeaturedProduct == 410) {
+            $Where = "WHERE (p.ID >= 410) OR p.ID IN (281,294) $Condition";
         } else {
             $Where = "$Condition  LIMIT 0,100 ";
         }
@@ -1055,6 +1055,7 @@ WHERE
     OR user.`Email` LIKE '%$searchTerm%'
     OR OrderList.`Tracking Number` LIKE '%$searchTerm%' 
     OR OrderList.`Order Status` LIKE '%$searchTerm%' 
+    OR OrderItem.`Payment Method` LIKE '%$searchTerm%' 
     GROUP BY 
     OrderItem.`Order ID` 
     ORDER BY OrderID DESC";
@@ -1163,6 +1164,7 @@ WHERE
     OR user.`Email` LIKE '%$searchTerm%'
     OR OrderList.`Tracking Number` LIKE '%$searchTerm%' 
     OR OrderList.`Order Status` LIKE '%$searchTerm%' 
+    OR OrderItem.`Payment Method` LIKE '%$searchTerm%' 
     GROUP BY 
     OrderItem.`Order ID` 
     ORDER BY OrderID DESC";
@@ -1420,4 +1422,8 @@ if (isset($_POST['TestResult'])) {
     include_once $base_url . 'Assets/PHP/Configuration/Mobile Check.php';
     $result = $conn->query($query);
     ShowNormalProducts($result, $base_url, $is_mobile, $conn);
+}
+
+if (isset($_POST['StorePickup'])) {
+   $_SESSION['Pickup']=$_POST['Pickup'];
 }

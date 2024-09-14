@@ -20,12 +20,19 @@ WHERE user_table.`ID` = '$UserID'";
 $UserInfoQueryRun = mysqli_query($conn, $UserInfoQuery);
 
 if ($UserInfoQueryRun->num_rows > 0) {
-  $PurchaseHistoryQuery = "SELECT * FROM `order_items` 
-                             JOIN posts p ON p.`ID`= order_items.`Product ID` 
-                             JOIN postsmeta pm1 ON p.`ID`= pm1.`Product ID` 
-                             AND pm1.`Product Meta Key` = 'Image 1' 
-                             JOIN orders ON orders.`Order ID` = order_items.`Order ID`
-                             WHERE `User ID` = '$UserID'";
+  $PurchaseHistoryQuery = "SELECT
+     p.`Product Title`,
+    order_items.`Total Due`,
+    `pm1`.`Product Meta Value`,
+    `order_items`.`Order Status`,
+    `orders`.`Payment Method`,
+    `orders`.`Payment Screenshot`,
+    `orders`.`Order Date`
+FROM `order_items`
+JOIN posts p ON p.`ID` = order_items.`Product ID`
+JOIN postsmeta pm1 ON p.`ID` = pm1.`Product ID` AND pm1.`Product Meta Key` = 'Image 1'
+JOIN orders ON orders.`Order ID` = order_items.`Order ID`
+WHERE `User ID` = '$UserID'";
 
   $PurchaseHistoryQueryRun = mysqli_query($conn, $PurchaseHistoryQuery);
   $Row = $UserInfoQueryRun->fetch_assoc();

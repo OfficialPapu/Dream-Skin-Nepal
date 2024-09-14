@@ -1,4 +1,9 @@
 @import url("https://fonts.googleapis.com/css2?family=Nunito+Sans:opsz,wght@6..12,500&display=swap");
+@font-face {
+  font-family: Soin-Sans-Pro-Roman;
+  src: url(../../Assets/Font/SoinSansProRoman.ttf);
+}
+
 
 * {
   margin: 0;
@@ -402,6 +407,7 @@ sup {
     font-size: 10px;
     color: black;
     font-weight: 400;
+    font-family: Soin-Sans-Pro-Roman;
   }
 
   .align {

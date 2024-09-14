@@ -4,6 +4,7 @@ include_once $base_url . 'Assets/Components/Navbar.php';
 if (isset($_SESSION['Logged In'])) {
     $user_id = $_SESSION['LoginSession']['user_id'];
 } else {
+    $_SESSION['RedirectUrl'] = $_SERVER['REQUEST_URI'];
     echo "<script>window.open('Account/Authentication/LoginInterface.php','_self');</script>";
     $user_id = $_SESSION['Cart']['user_id'];
 }

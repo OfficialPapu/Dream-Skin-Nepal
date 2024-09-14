@@ -34,7 +34,7 @@ $canonical_url = 'https://' . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
     <link rel="canonical" href="<?php echo $canonical_url; ?>">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.3.0/flowbite.min.css" rel="stylesheet"/>
     <title>Top Korean Beauty Brands | Best Skincare & Makeup Brands - Dream Skin Nepal</title>
-    <link rel="stylesheet" href="Assets/CSS/Brand List.css">
+    <link rel="stylesheet" href="Assets/CSS/Korean Brands List.css">
 </head>
 
 <body>

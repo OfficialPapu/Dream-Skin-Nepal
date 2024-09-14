@@ -1,5 +1,9 @@
 <?php
 @session_name('LoginSession');
+@session_name('Cart');
+@session_name('URLSession');
+@session_start();
+@session_start();
 @session_start();
 $user_id = $_SESSION['LoginSession']['user_id'];
 include_once $base_url . 'Assets/Components/Navbar.php';
@@ -7,6 +11,7 @@ include_once $base_url . 'Assets/PHP/Configuration/User IP.php';
 include $base_url . 'Assets/PHP/Email Management/Orders Email/Admin Notify Email.php';
 include $base_url . 'Assets/PHP/Email Management/Orders Email/User Notify Email.php';
 $Date="CONVERT_TZ(NOW(), '+00:00', '+05:45')"; 
+$Pickup = $_SESSION['Pickup'];
 
 function generateTrackingNumber()
 {
@@ -44,7 +49,7 @@ if (isset($_GET['PaymentInfo'])) {
     $runquery = $conn->query($Cart);
     $PaymentMethod = "Cash On Delivery";
     if ($runquery->num_rows > 0) {
-        $InsertOrder = "INSERT INTO `orders`(`User ID`, `Total Due`, `Shipping Fee`, `Payment Method`, `Payment Screenshot`,`Notes`,`Order Date`) VALUES ('$user_id','$TotalPrice','$TotalShippingFee','$PaymentMethod','','',$Date)";
+       $InsertOrder = "INSERT INTO `orders`(`User ID`, `Total Due`, `Shipping Fee`, `Payment Method`, `Payment Screenshot`,`Pickup`,`Notes`,`Order Date`) VALUES ('$user_id','$TotalPrice','$TotalShippingFee','$PaymentMethod','','$Pickup','',$Date)";
         $send = mysqli_query($conn, $InsertOrder);
         if ($send) {
             $_SESSION['order_id'] = mysqli_insert_id($conn);
@@ -134,7 +139,7 @@ if (isset($_GET['PaymentInfo'])) {
                         $Price[] = $Row['Product Price'];
                     }
                 }
-                // NotifyAdmin($UserName, $MobileNumber, $ProductTitle, $Price, $TrackingNum, $PaymentMethod, '');
+                NotifyAdmin($UserName, $MobileNumber, $ProductTitle, $Price, $TrackingNum, $PaymentMethod, '');
                 NotifyUser($UserEmail, $UserName, $ProductTitle, $Price, $TotalShippingCharge, $TrackingNum);
             }
         }

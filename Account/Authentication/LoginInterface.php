@@ -60,6 +60,6 @@ include $base_url . 'Assets/Components/Navbar.php';
 <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
 <script src="Assets/JS/Butterup/butterup.js"></script>
 <script src="Assets/JS/Butterup/butterup.min.js"></script>
-<script src="Assets/JS/Login Interface.js"></script>
+<script src="Assets/JS/Login Interface Codes.js"></script>
 
 </html>

@@ -360,3 +360,7 @@ body {
         width: calc(75vw + 40px);
     }
 }
+
+.pickup{
+    width: 120px;
+}

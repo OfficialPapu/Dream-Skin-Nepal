@@ -16,14 +16,14 @@
         <div class="footer__addr">
             <h2 class="nav__title">Locate Us</h2>
             <div class="card-content footer-map-content">
-                <a class="card-item" href="https://maps.app.goo.gl/kLGH6gtYM62ZSFCbA">
+                <a class="card-item" href="https://maps.app.goo.gl/UFcmNCeu9iBK3bxE9">
                     <div class="card-icon">
                         <i class='bx bx-map'></i>
                     </div>
                     <h3 class="card-title">Dream Skin Baneshwor</h3>
                     <p class="card-description">View location</p>
                 </a>
-                <a class="card-item" href="#">
+                <a class="card-item" href="https://maps.app.goo.gl/kLGH6gtYM62ZSFCbA">
                     <div class="card-icon">
                         <i class='bx bx-map'></i>
                     </div>

@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-    <base href="/Dream Skin Nepal/">
+    <base href="/">
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Admin Panel Login</title>
@@ -57,6 +57,6 @@
 <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
 <script src="Assets/JS/Butterup/butterup.js"></script>
 <script src="Assets/JS/Butterup/butterup.min.js"></script>
-<script src="Assets/JS/Admin Login Interface.js"></script>
+<script src="Assets/JS/Admin Login.js"></script>
 
 </html>

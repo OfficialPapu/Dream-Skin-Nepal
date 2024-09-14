@@ -8,13 +8,19 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/11.0.5/swiper-bundle.min.css"/>
-    <link rel="stylesheet" href="Assets/CSS/Image Cresol.css">
+    <link rel="stylesheet" href="Assets/CSS/Images Cresol.css">
 </head>
 
 <body>
     <div class="slider-main-container">
         <div class="swiper myswiper img-slider">
             <div class="swiper-wrapper Image-Cresol">
+                <div class="swiper-slide">
+                    <picture class="slider">
+                        <source media="(max-width:600px)" srcset="<?php echo $ImageCresol; ?>Mother's Day Offer 2.jpg">
+                      <img src="<?php echo $ImageCresol; ?>Mother's Day Offer 2.jpg" alt="Mother's Day Offer" loading="lazy">
+                    </picture>
+                </div>
                 <!--<div class="swiper-slide">-->
                 <!--    <div class="slider"><img src="<?php echo $ImageCresol; ?>Moisturizer.jpg" alt="Moisturizer" loading="lazy"></div>-->
                 <!--</div>-->
@@ -39,14 +45,14 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/11.0.5/swiper-bundle.min.js"></script>
 <script src="Assets/JS/Image Cresol.js"></script>
 <script>
-    $(document).ready(function(){
-    let width = $(window).width();
-    if (width >= 600) {
-        $('.remove-in-pc').remove();
-        $('.Image-Cresol').prepend('<div class="swiper-slide remove-in-pc"><div class="slider"><img src="<?php echo $ImageCresol; ?>Mother\'s Day Offer.jpg" alt="Mother\'s Day Offer" loading="lazy"></div></div>');
-    } else {
-        $('.remove-in-pc').remove();
-        $('.Image-Cresol').prepend('<div class="swiper-slide remove-in-mobile"><div class="slider"><img src="<?php echo $ImageCresol; ?>Mother\'s Day Offer 2.jpg" alt="Mother\'s Day Offer" loading="lazy"></div></div>');
-    }
-});
+//     $(document).ready(function(){
+//     let width = $(window).width();
+//     if (width >= 600) {
+//         $('.remove-in-pc').remove();
+//         $('.Image-Cresol').prepend('<div class="swiper-slide remove-in-pc"><div class="slider"><img src="<?php echo $ImageCresol; ?>Mother\'s Day Offer.jpg" alt="Mother\'s Day Offer" loading="lazy"></div></div>');
+//     } else {
+//         $('.remove-in-pc').remove();
+//         $('.Image-Cresol').prepend('<div class="swiper-slide remove-in-mobile"><div class="slider"><img src="" alt="Mother\'s Day Offer" loading="lazy"></div></div>');
+//     }
+// });
 </script>

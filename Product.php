@@ -25,7 +25,7 @@ $_SESSION["StockStatus"] = "InStock";
   <link rel="canonical" href="<?php echo $canonical_url; ?>">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/11.0.5/swiper-bundle.min.css">
   <link href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.3.0/flowbite.min.css" rel="stylesheet">
-  <link rel="stylesheet" href="Assets/CSS/Product Detail Page.css">
+  <link rel="stylesheet" href="Assets/CSS/Product Detail.css">
   <link rel="stylesheet" href="Assets/CSS/Butterup/butterup.min.css">
   <script src="https://cdn.tailwindcss.com"></script>
   <title><?php echo htmlentities($ProductTitle); ?> - Dream Skin Nepal</title>
@@ -549,6 +549,6 @@ if ($_SESSION["ReslutCount"] > 0) {
 <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.3.0/flowbite.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.10/clipboard.min.js"></script>
 <script src="Assets/JS/Butterup/butterup.min.js"></script>
-<script src="Assets/JS/Product Detail Page.js"></script>
+<script src="Assets/JS/Product.js"></script>
 
 </html>

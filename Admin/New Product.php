@@ -154,7 +154,7 @@ include_once $base_url . 'Assets/PHP/Admin/Edit Product Config.php';
                     <div class="option-tag">
                         <p class="body-heading">Select Skin Type</p>
                         <div class="select-btn">
-                            <input type="hidden" class="ProductTypeID" value="<?php echo  $BrandId; ?>">
+                            <input type="hidden" class="ProductTypeID" value="<?php echo  $BrandID; ?>">
                             <span class="SelectedText">
                                 <?php
 
@@ -193,7 +193,7 @@ include_once $base_url . 'Assets/PHP/Admin/Edit Product Config.php';
                     </div>
                     <div class="discount-percentage">
                         <p class="body-heading">Discount Percentage</p>
-                        <input type="text" id="DiscountPercentage" name="DiscountPercentage" placeholder="Discount percentage" value='10'>
+                        <input type="text" id="DiscountPercentage" name="DiscountPercentage" placeholder="Discount percentage" value='5'>
                     </div>
                 </div>
 
@@ -203,7 +203,7 @@ include_once $base_url . 'Assets/PHP/Admin/Edit Product Config.php';
                 </div>
                 <div>
                     <label class="Upload-Images" for="multiple_files">Upload Images</label>
-                    <input id="multiple_files" name="Images[]" type="file" multiple>
+                    <input id="multiple_files" name="Images[]" type="file" multiple required>
 
                 </div>
                 <div class="submit">

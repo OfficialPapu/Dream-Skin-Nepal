@@ -1,4 +1,6 @@
 <?php
+@session_name('Cart');
+@session_start();
     if (isset($_SESSION['Logged In'])) {
         $user_id = $_SESSION['LoginSession']['user_id'];
     }else{

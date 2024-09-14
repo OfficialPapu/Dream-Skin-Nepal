@@ -3,7 +3,9 @@ $RowOrderID = $_GET['OrderID'];
 $FindUserId="SELECT * FROM `orders` WHERE `Order ID`='$RowOrderID'";
 $FindUserIdRun=mysqli_query($conn,$FindUserId);
 $Data=$FindUserIdRun->fetch_assoc();
-$DBUserID=$Data['User ID'];
+if($Data){
+    $DBUserID=$Data['User ID'];
+}
 
 $OrderDetailQuery = "SELECT
 orders.`Order ID` AS OrderID,
@@ -12,6 +14,7 @@ orders.`Total Due` AS SubTotal,
 orders.`Shipping Fee` AS ShippingFee,
 orders.`Payment Screenshot` AS 	PaymentScreenshot,
 orders.`Payment Method` AS PaymentMethod,
+orders.`Pickup` AS Pickup,
 orders.`Order Date` OrderDate,
 delivery.`Full Name` AS BillingFullName,
 delivery.`Phone` AS BillingNumber,
