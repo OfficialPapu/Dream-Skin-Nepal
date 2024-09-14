@@ -64,60 +64,67 @@ function CheckFreeShipping() {
 }
 CheckFreeShipping();
 let ShippingFeeAdd = 0;
+
 $('#shippingOptions input[type="checkbox"]').change(function () {
     if (FreeShippingConditionPrice >= 3500) {
         $('#shippingOptions input[type="checkbox"]').not(this).prop('checked', false);
-        $.ajax({
-            type: "POST",
-            url: "Assets/PHP/Configuration/Common Function.php",
-            data: {
-                ShippingFeeChange: true,
-                ShippingFeeChangeing: 0,
-            },
-        });
+        handleShippingOption($(this).attr('id'), 0); 
     } else {
         if ($(this).is(':checked')) {
             $('#shippingOptions input[type="checkbox"]').not(this).prop('checked', false);
-            let shippingFee = 0;
-            switch ($(this).attr('id')) {
-                case 'Outside-Valley':
-                    shippingFee = 200;
-                    StorePickup("Outside Valley");
-                    break;
-                case 'Inside-Valley':
-                    shippingFee = 100;
-                    StorePickup("Inside Valley");
-                    break;
-                case 'Collect-From-Mid-Baneshwor':
-                    shippingFee = 0;
-                    StorePickup("Mid Baneshwor");
-                    break;
-                case 'Collect-From-Lazimpat':
-                    shippingFee = 0;
-                    StorePickup("Lazimpat");
-                    break;
-            }
-            $.ajax({
-                type: "POST",
-                url: "Assets/PHP/Configuration/Common Function.php",
-                data: {
-                    ShippingFeeChange: true,
-                    ShippingFeeChangeing: shippingFee,
-                },
-                success: function (response) {
-                    response = response.trim();
-                    let GrandTotal = $('#GrandTotal').html();
-                    let TotalPrice = parseInt(GrandTotal.replace(/Rs. |\.\d{2}/g, ''));
-                    TotalPrice += shippingFee - ShippingFeeAdd;
-                    ShippingFeeAdd = shippingFee;
-                    $('#GrandTotal').html('Rs. ' + TotalPrice + '.00');
-                },
-            });
+            let shippingFee = getShippingFee($(this).attr('id')); 
+            handleShippingOption($(this).attr('id'), shippingFee);
         }
     }
-})
+});
 
+function getShippingFee(optionId) {
+    switch (optionId) {
+        case 'Outside-Valley':
+            return 200;
+        case 'Inside-Valley':
+            return 100;
+        case 'Collect-From-Mid-Baneshwor':
+        case 'Collect-From-Lazimpat':
+            return 0;
+        default:
+            return 0;
+    }
+}
 
+function handleShippingOption(optionId, shippingFee) {
+    switch (optionId) {
+        case 'Outside-Valley':
+            StorePickup("Outside Valley");
+            break;
+        case 'Inside-Valley':
+            StorePickup("Inside Valley");
+            break;
+        case 'Collect-From-Mid-Baneshwor':
+            StorePickup("Mid Baneshwor");
+            break;
+        case 'Collect-From-Lazimpat':
+            StorePickup("Lazimpat");
+            break;
+    }
+
+$.ajax({
+    type: "POST",
+    url: "Assets/PHP/Configuration/Common Function.php",
+    data: {
+        ShippingFeeChange: true,
+        ShippingFeeChangeing: shippingFee,
+    },
+    success: function (response) {
+        response = response.trim();
+        let GrandTotal = $('#GrandTotal').html();
+        let TotalPrice = parseInt(GrandTotal.replace(/Rs. |\.\d{2}/g, ''));
+        TotalPrice += shippingFee - ShippingFeeAdd;
+        ShippingFeeAdd = shippingFee;
+        $('#GrandTotal').html('Rs. ' + TotalPrice + '.00');
+    },
+});
+}
 
 $(document).ready(function () {
     $('.cart-delete-item').click(function (e) {
