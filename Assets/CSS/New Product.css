@@ -528,47 +528,47 @@ input[type="file"]::file-selector-button:hover {
 .skintypeselect {
   height: 200px;
 }
-.select-skin-type{
+.select-skin-type {
   width: 100%;
 }
-.select-skin-type .select-btn{
+.select-skin-type .select-btn {
   width: 100%;
 }
 
- .product-box svg {
-            width: 2em;
-            transform-origin: center;
-            animation: rotate4 2s linear infinite;
+.product-box svg {
+  width: 2em;
+  transform-origin: center;
+  animation: rotate4 2s linear infinite;
 }
 
 .product-box circle {
-            fill: none;
-            stroke: #155724;
-            stroke-width: 2;
-            stroke-dasharray: 1, 200;
-            stroke-dashoffset: 0;
-            stroke-linecap: round;
-            animation: dash4 1.5s ease-in-out infinite;
+  fill: none;
+  stroke: #155724;
+  stroke-width: 2;
+  stroke-dasharray: 1, 200;
+  stroke-dashoffset: 0;
+  stroke-linecap: round;
+  animation: dash4 1.5s ease-in-out infinite;
 }
 
 @keyframes rotate4 {
-            100% {
-                transform: rotate(360deg);
-            }
-        }
+  100% {
+    transform: rotate(360deg);
+  }
+}
 
-        @keyframes dash4 {
-            0% {
-                stroke-dasharray: 1, 200;
-                stroke-dashoffset: 0;
-            }
+@keyframes dash4 {
+  0% {
+    stroke-dasharray: 1, 200;
+    stroke-dashoffset: 0;
+  }
 
-            50% {
-                stroke-dasharray: 90, 200;
-                stroke-dashoffset: -35px;
-            }
+  50% {
+    stroke-dasharray: 90, 200;
+    stroke-dashoffset: -35px;
+  }
 
-            100% {
-                stroke-dashoffset: -125px;
-            }
+  100% {
+    stroke-dashoffset: -125px;
+  }
 }

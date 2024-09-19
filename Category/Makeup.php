@@ -1,7 +1,7 @@
 <?php
 @session_name('URLSession');
 @session_start();
-$_SESSION['URLSession']['Base Path'] = $_SERVER['DOCUMENT_ROOT'] . "/";
+$_SESSION['URLSession']['Base Path'] = $_SERVER['DOCUMENT_ROOT'] . "/Dream Skin Nepal/";
 $base_url = $_SESSION['URLSession']['Base Path'];
 include_once $base_url . "Assets/PHP/Configuration/Product Type Config.php";
 ?>
@@ -115,7 +115,7 @@ include_once $base_url . "Assets/PHP/Configuration/Product Type Config.php";
     <div class='product-box'>";
             if ($StockStatus == 'Out of Stock') {
                 echo "<div class='price-and-stock-info out-of-stock'>
-<i class='bx bxs-purchase-tag'></i> Out of Stock
+ Out of Stock
 </div>";
 
             } elseif ($DiscountPercentage != '') {
