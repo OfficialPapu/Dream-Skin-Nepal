@@ -166,7 +166,7 @@ body {
     font-size: 1.2rem;
 }
 
-.discountvalue{
+.discountvalue {
     text-decoration: line-through;
     text-decoration-color: #FF007F;
     -webkit-text-decoration-color: #FF007F;
@@ -503,11 +503,13 @@ body {
 }
 
 @media (max-width:500px) {
+
     .cart-btn,
     .buy-now-btn {
         width: 40vw;
     }
-    .share-link-box.active{
+
+    .share-link-box.active {
         top: 100%;
         right: 50%;
         transform: translateY(0%);
