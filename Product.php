@@ -1,7 +1,7 @@
 <?php
 @session_name('URLSession');
 @session_start();
-$_SESSION['URLSession']['Base Path'] = $_SERVER['DOCUMENT_ROOT'] . "/";
+$_SESSION['URLSession']['Base Path'] = $_SERVER['DOCUMENT_ROOT'] . "/Dream Skin Nepal/";
 $base_url = $_SESSION['URLSession']['Base Path'];
 include_once $base_url . 'Assets/PHP/Configuration/Product Detail Config.php';
 $canonical_url = 'https://' . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
