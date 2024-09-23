@@ -115,7 +115,7 @@ include_once $base_url . "Assets/PHP/Configuration/Product Type Config.php";
     <div class='product-box'>";
             if ($StockStatus == 'Out of Stock') {
                 echo "<div class='price-and-stock-info out-of-stock'>
-<i class='bx bxs-purchase-tag'></i> Out of Stock
+ Out of Stock
 </div>";
 
             } elseif ($DiscountPercentage != '') {

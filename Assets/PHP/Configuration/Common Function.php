@@ -542,7 +542,7 @@ if (isset($_POST['ShortItem'])) {
     if ($ProductTypeID == 0 && $BrandID == 0) {
         //  $FeaturedProduct
         if ($FeaturedProduct == 410) {
-            $Where = "WHERE (p.ID >= 410) OR p.ID IN (281,294) $Condition";
+            $Where = "WHERE (p.ID >= 410) OR p.ID IN (281,294,30,267,329) $Condition";
         } else {
             $Where = "$Condition  LIMIT 0,100 ";
         }
@@ -616,7 +616,7 @@ JOIN postsmeta pm3 ON p.ID = pm3.`Product ID` AND pm3.`Product Meta Key` = '$Pro
         <div class='product-box'>";
         if ($StockStatus == 'Out of Stock') {
             $Output .= "<div class='price-and-stock-info out-of-stock'>
-        <i class='bx bxs-purchase-tag'></i> Out of Stock
+         Out of Stock
         </div>";
         } elseif ($DiscountPercentage != '') {
             $Output .= "<div class='price-and-stock-info discount'>
@@ -768,7 +768,7 @@ WHERE
             <div class='product-box'>";
         if ($StockStatus == 'Out of Stock') {
             $Output .= "<div class='price-and-stock-info out-of-stock'>
-            <i class='bx bxs-purchase-tag'></i> Out of Stock
+             Out of Stock
             </div>";
         } elseif ($DiscountPercentage != '') {
             $Output .= "<div class='price-and-stock-info discount'>

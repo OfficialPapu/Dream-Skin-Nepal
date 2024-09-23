@@ -1,7 +1,7 @@
 <?php
 @session_name('URLSession');
 @session_start();
-$_SESSION['URLSession']['Base Path'] = $_SERVER['DOCUMENT_ROOT'] . "/Dream Skin Nepal/";
+$_SESSION['URLSession']['Base Path'] = $_SERVER['DOCUMENT_ROOT'] . "/";
 $base_url = $_SESSION['URLSession']['Base Path'];
 include_once $base_url . 'Assets/PHP/Admin/Admin Navbar Config.php';
 ?>
@@ -57,6 +57,11 @@ include_once $base_url . 'Assets/PHP/Admin/Admin Navbar Config.php';
                                     <li>
                                         <a href="Admin/Product List.php">
                                             <div class="list-product">Product List</div>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="Admin/Update Quantity.php">
+                                            <div class="list-product">Update Stock</div>
                                         </a>
                                     </li>
                                 </div>

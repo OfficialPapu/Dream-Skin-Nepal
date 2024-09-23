@@ -1,6 +1,7 @@
 <?php
 @session_name('URLSession');
 @session_start();
+$_SESSION['URLSession']['Base Path'] = $_SERVER['DOCUMENT_ROOT'] . "/";
 $base_url = $_SESSION['URLSession']['Base Path'];
 include_once $base_url . 'Assets/PHP/Account Configuration/Cart Configuration.php';
 ?>
@@ -114,7 +115,8 @@ include_once $base_url . 'Assets/PHP/Account Configuration/Cart Configuration.ph
                 <div class="p-3 grid gap-4" data-id="4">
                     <div class="flex items-center justify-between" data-id="5">
                         <span>Subtotal</span>
-                        <span id="SubTotal">Rs. <?php echo $TotalSaved; ?>.00</span>
+                <span id="SubTotal" data-cart-shipping-price="<?php echo $CartShippeingPrice ?>">Rs. <?php echo $TotalSaved; ?>.00</span>
+
                     </div>
 
                     <div class="grid gap-2">

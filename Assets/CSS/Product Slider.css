@@ -333,7 +333,7 @@
   position: absolute;
   left: 10px;
   top: 20px;
-  font-family: "Inter", sans-serif;
+  font-family: Soin-Sans-Pro-Roman;
   padding: 5px 10px;
   border-radius: 8px;
   font-weight: bold;
@@ -341,12 +341,15 @@
 }
 
 .out-of-stock {
-  background-color: #f8d7da;
-  color: #721c24;
-}
-
-.out-of-stock i {
-  line-height: 22px;
+  font-family: Arial, Helvetica, sans-serif;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -225%);
+  border-radius: 20px;
+  background-color: rgba(255, 255, 255, 0.8);
+  color: rgb(242, 92, 168);
+  letter-spacing: 0.4px;
+  border: 1.6px solid rgb(242, 92, 168);
 }
 
 .discount {

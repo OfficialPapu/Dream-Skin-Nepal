@@ -126,7 +126,7 @@ $canonical_url = 'https://' . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
     <div class='product-box'>";
             if ($StockStatus == 'Out of Stock') {
                 echo "<div class='price-and-stock-info out-of-stock'>
-        <i class='bx bxs-purchase-tag'></i> Out of Stock
+         Out of Stock
         </div>";
             } elseif ($DiscountPercentage != '') {
                 echo "<div class='price-and-stock-info discount'>

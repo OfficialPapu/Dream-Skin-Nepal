@@ -1,0 +1,19 @@
+[14-Sep-2024 09:42:03 UTC] PHP Fatal error:  Uncaught mysqli_sql_exception: You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'adhishreeguitar@gmail.com'' at line 1 in /home/dreamsk1/public_html/Assets/PHP/Account Configuration/Login.php:16
+Stack trace:
+#0 /home/dreamsk1/public_html/Assets/PHP/Account Configuration/Login.php(16): mysqli_query()
+#1 {main}
+  thrown in /home/dreamsk1/public_html/Assets/PHP/Account Configuration/Login.php on line 16
+[16-Sep-2024 04:14:26 UTC] PHP Warning:  Undefined array key "URLSession" in /home/dreamsk1/public_html/Assets/PHP/Account Configuration/Login.php on line 10
+[16-Sep-2024 04:14:26 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/dreamsk1/public_html/Assets/PHP/Account Configuration/Login.php on line 10
+[16-Sep-2024 04:14:26 UTC] PHP Warning:  require_once(Assets/PHP/Database/Database Connection.php): Failed to open stream: No such file or directory in /home/dreamsk1/public_html/Assets/PHP/Account Configuration/Login.php on line 11
+[16-Sep-2024 04:14:26 UTC] PHP Fatal error:  Uncaught Error: Failed opening required 'Assets/PHP/Database/Database Connection.php' (include_path='.:/opt/alt/php81/usr/share/pear:/opt/alt/php81/usr/share/php:/usr/share/pear:/usr/share/php') in /home/dreamsk1/public_html/Assets/PHP/Account Configuration/Login.php:11
+Stack trace:
+#0 {main}
+  thrown in /home/dreamsk1/public_html/Assets/PHP/Account Configuration/Login.php on line 11
+[21-Sep-2024 08:13:27 UTC] PHP Warning:  Undefined array key "URLSession" in /home/dreamsk1/public_html/Assets/PHP/Account Configuration/Login.php on line 10
+[21-Sep-2024 08:13:27 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/dreamsk1/public_html/Assets/PHP/Account Configuration/Login.php on line 10
+[21-Sep-2024 08:13:27 UTC] PHP Warning:  require_once(Assets/PHP/Database/Database Connection.php): Failed to open stream: No such file or directory in /home/dreamsk1/public_html/Assets/PHP/Account Configuration/Login.php on line 11
+[21-Sep-2024 08:13:27 UTC] PHP Fatal error:  Uncaught Error: Failed opening required 'Assets/PHP/Database/Database Connection.php' (include_path='.:/opt/alt/php81/usr/share/pear:/opt/alt/php81/usr/share/php:/usr/share/pear:/usr/share/php') in /home/dreamsk1/public_html/Assets/PHP/Account Configuration/Login.php:11
+Stack trace:
+#0 {main}
+  thrown in /home/dreamsk1/public_html/Assets/PHP/Account Configuration/Login.php on line 11

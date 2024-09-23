@@ -1,4 +1,5 @@
 $(document).ready(function () {
+    
     function StoreSelectedProduct(Category, ProductID) {
         let selectedProducts = JSON.parse(localStorage.getItem("selectedProducts")) || {};
 

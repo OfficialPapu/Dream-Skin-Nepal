@@ -8,9 +8,9 @@ if (isset($_SESSION['Logged In'])) {
 }
 include_once $base_url . 'Assets/Components/Navbar.php';
 $GetValue = $_GET['Condition'];
-if ($GetValue == 'Pre-Order') {
-    $PageTitle = "Pre-Order";
-    $Condition = '(p.ID >= 410) OR p.ID IN (281,294)';
+if ($GetValue == 'NewArrivals') {
+    $PageTitle = "New Arrivals";
+    $Condition = '(p.ID >= 410) OR p.ID IN (281,294,30,267,329)';
     $featuredproduct=410;
 } else if ($GetValue == 'BestSellers') {
     $PageTitle = "Best Sellers";

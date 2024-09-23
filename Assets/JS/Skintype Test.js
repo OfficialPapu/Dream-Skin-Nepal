@@ -1,3 +1,20 @@
+  $("#Finishlater").click(function (e) { 
+        e.preventDefault();
+        Swal.fire({
+            title: "Are you sure?",
+            text: "You won't be able to revert this!",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+            confirmButtonText: "Yes, Finish later!"
+          }).then((result) => {
+            if (result.isConfirmed) {
+          window.location.href="/";
+            }
+          });
+    });
+    
     let QuestionOptions = [{
             QuestionNo: 1,
             Question: "How does your skin feel a few hours after washing it?",

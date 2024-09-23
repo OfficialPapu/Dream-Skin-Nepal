@@ -31,7 +31,7 @@ function ShowNormalProducts($result, $base_url, $is_mobile, $conn)
 <div class='product-box'>";
         if ($StockStatus == 'Out of Stock') {
             echo "<div class='price-and-stock-info out-of-stock'>
-<i class='bx bxs-purchase-tag'></i> Out of Stock
+ Out of Stock
 </div>";
         } elseif ($DiscountPercentage != '') {
             echo "<div class='price-and-stock-info discount'>
@@ -50,7 +50,7 @@ function ShowNormalProducts($result, $base_url, $is_mobile, $conn)
         echo "<a href='Product/$SlugUrl'>
           <div class='DSN-point-container'>
              <div class='DSN-point'>
-                $DSNPoint DSN Point
+                $DSNPoint DS Point
             </div>
             <img src='$thumbnail_url' alt='$product_title' loading='lazy'>
             </div>

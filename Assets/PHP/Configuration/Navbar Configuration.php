@@ -22,7 +22,7 @@ $BrandUrl = 'Category/ProductBrand.php';
 $MakeupUrl='Category/Makeup.php';
 $BodyAndHairCareUrl='Category/BodyandHairCare.php';
 $BabyCareUrl='Category/BabyCare.php';
-$SkinTypeUrl='Category/SkinType.php';
+$SkincareSetUrl='Category/Skincare-Set.php';
 $SkintypeTestUrl='Category/skin-type-test.php';
 if (isset($_SESSION['Logged In'])) {
     $userID = $_SESSION['LoginSession']['user_id'];

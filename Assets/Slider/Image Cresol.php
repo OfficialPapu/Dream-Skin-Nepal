@@ -17,8 +17,8 @@
             <div class="swiper-wrapper Image-Cresol">
                 <div class="swiper-slide">
                     <picture class="slider">
-                        <source media="(max-width:600px)" srcset="<?php echo $ImageCresol; ?>Mother's Day Offer 2.jpg">
-                      <img src="<?php echo $ImageCresol; ?>Mother's Day Offer 2.jpg" alt="Mother's Day Offer" loading="lazy">
+                        <source media="(max-width:600px)" srcset="<?php echo $ImageCresol; ?>dsahian offer website.jpg">
+                      <img src="<?php echo $ImageCresol; ?>dsahian offer website.jpg" alt="Dsahian Offer Website" loading="lazy">
                     </picture>
                 </div>
                 <!--<div class="swiper-slide">-->

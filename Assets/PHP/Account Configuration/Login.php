@@ -10,8 +10,8 @@ session_set_cookie_params($session_lifetime);
 $base_url = $_SESSION['URLSession']['Base Path'];
 require_once $base_url . 'Assets/PHP/Database/Database Connection.php';
 if (isset($_POST['DataSend'])) {
-    $login_email = $_POST['Email'];
-    $login_pass = $_POST['Password'];
+    $login_email = mysqli_real_escape_string($conn, $_POST['Email']);
+    $login_pass = mysqli_real_escape_string($conn, $_POST['Password']);
     $check_user = "SELECT * FROM user_table WHERE BINARY Password='$login_pass' AND Email='$login_email'";
     $execute_login = mysqli_query($conn, $check_user);
     if ($execute_login->num_rows > 0) {

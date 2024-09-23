@@ -31,7 +31,7 @@ function ShowSelectableProducts($result, $base_url, $is_mobile, $conn)
 <div class='product-box !rounded-[4px]' data-product-id='$product_id' data-selected='0' style='border:1px solid white'>";
         if ($StockStatus == 'Out of Stock') {
             echo "<div class='price-and-stock-info out-of-stock'>
-<i class='bx bxs-purchase-tag'></i> Out of Stock
+ Out of Stock
 </div>";
         } elseif ($DiscountPercentage != '') {
             echo "<div class='price-and-stock-info discount'>

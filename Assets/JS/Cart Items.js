@@ -1,5 +1,5 @@
-let FreeShippingConditionPrice = $('#SubTotal').html();
-FreeShippingConditionPrice = parseInt(FreeShippingConditionPrice.replace(/Rs. |\.\d{2}/g, ''));
+let FreeShippingConditionPrice = $('#SubTotal').data('cart-shipping-price');
+FreeShippingConditionPrice = parseInt(FreeShippingConditionPrice);
 let plusButtons = document.getElementsByClassName('plusButtons');
 let minusButtons = document.getElementsByClassName('minusButtons');
 let productQuantities = document.querySelectorAll('.product-quantity');

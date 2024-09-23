@@ -70,9 +70,12 @@ $result = $conn->query($query);
 $TotalDue = "SELECT `Total Due`, `Product Price` FROM `product_cart` WHERE `User ID`='$user_id'";
 $TotalPrice = 0;
 $TotalSaved=0;
+$CartShippeingPrice=0;
 $runquery = mysqli_query($conn, $TotalDue);
 while ($rowcart = $runquery->fetch_assoc()) {
     $TotalPrice += $rowcart['Total Due'];
     $TotalSaved += $rowcart['Product Price'];
+    $CartShippeingPrice = $rowcart['Total Due'];
+
 }
 $SavedAmount = $TotalSaved - $TotalPrice;

@@ -1,7 +1,7 @@
 <?php
 @session_name('URLSession');
 @session_start();
-$_SESSION['URLSession']['Base Path'] = $_SERVER['DOCUMENT_ROOT'] . "/Dream Skin Nepal/";
+$_SESSION['URLSession']['Base Path'] = $_SERVER['DOCUMENT_ROOT'] . "/";
 $base_url = $_SESSION['URLSession']['Base Path'];
 include $base_url . 'Assets/Components/Admin Navbar.php';
 ?>
@@ -27,7 +27,7 @@ include $base_url . 'Assets/Components/Admin Navbar.php';
                     </p>
                 </div>
                 <form enctype="multipart/form-data">
-                    <label class="text-xs text-gray-500">Select an Excel file (.xlsx, .csv)</label>
+                    <label class="text-xs text-gray-500 mb-1 block">Select an Excel file (.xlsx, .csv, .ods)</label>
 
                     <div class="grid grid-cols-[1fr_auto] gap-4">
                         <input

@@ -52,9 +52,9 @@ include 'Assets/PHP/URL/Base Path.php';
         <?php include('Assets/Components/Navbar.php'); ?>
     </nav>
     <h1 style="display:none">Dream Skin Nepal - Best Korean Skincare Cosmetics Products in Nepal</h1>
-     <div class="Notice-box">
-    <p class="text-sm font-medium">Free Delivery for order of Rs. 3500 &amp; more</p>
-    </div>  
+    <!-- <div class="Notice-box">-->
+    <!--<p class="text-sm font-medium">Free Delivery for order of Rs. 3500 &amp; more</p>-->
+    <!--</div>  -->
     <div class="image_cresol">
         <?php include('Assets/Slider/Image Cresol.php'); ?>
     </div>
@@ -98,14 +98,14 @@ include 'Assets/PHP/URL/Base Path.php';
      <div class="products">
         <div class="view-more-box">
             <div class="heading-box">
-                <h2 class="product-heading">Pre-Order</h2>
+                <h2 class="product-heading">New Arrivals</h2>
             </div>
             <div class="view-more">
-                <a href="Category/ViewMoreProduct.php?Condition=Pre-Order">Shop More<i class="bx bx-chevron-right"></i></a>
+                <a href="Category/ViewMoreProduct.php?Condition=NewArrivals">Shop More<i class="bx bx-chevron-right"></i></a>
             </div>
         </div>
         <?php
-        $Sql = "WHERE (p.ID >= 410) OR p.ID IN (281,294) ORDER BY Rand() LIMIT 0,10";
+        $Sql = "WHERE (p.ID >= 410) OR p.ID IN (281,294,30,267,329) ORDER BY Rand() LIMIT 0,10";
         include('Assets/Slider/Product Slider.php');
         ?>
     </div> 
@@ -155,8 +155,8 @@ include 'Assets/PHP/URL/Base Path.php';
             </div>
         </div>";
         if ($ImageUrl != "") {
-            echo "<div class='banner'>
-            <img src='Assets/Product/Media/Images/Banners/$ImageUrl' alt='$CategoryAttribute' loading='lazy'>
+            echo "<div class='banner'><a href='Category/SkinCare.php/$SlugUrl'>
+            <img src='Assets/Product/Media/Images/Banners/$ImageUrl' alt='$CategoryAttribute' loading='lazy'></a>
             </div>";
         }
         include('Assets/Slider/Product Slider.php');

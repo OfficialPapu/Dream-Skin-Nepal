@@ -34,6 +34,9 @@ if (isset($_POST['UpdateQuantity'])) {
             $productId = $row[0];
             $Title = $row[1];
             $newQuantity = $row[2];
+            if($newQuantity < 0){
+                $newQuantity=0;
+            }
 
             $SQL = "SELECT * FROM `posts` WHERE `Custom Product ID` = '$productId'";
             $SqlRun = mysqli_query($conn, $SQL);

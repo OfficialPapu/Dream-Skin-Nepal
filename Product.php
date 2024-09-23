@@ -129,7 +129,7 @@ $_SESSION["StockStatus"] = "InStock";
         </div>
       </div>
       <div class='product-details'>
-        <a href='Category/ProductBrand.php/<?php echo $SlugUrl; ?>'>
+        <a href='Category/Brands.php/<?php echo $SlugUrl; ?>'>
           <h2 class='product-brand'>
             <?php echo $ProductBrand; ?>
             <div class='brand-underline'></div>

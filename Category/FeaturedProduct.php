@@ -71,7 +71,7 @@ JOIN postsmeta pm3 ON p.ID = pm3.`Product ID` AND pm3.`Product Meta Key` = 'Prod
     <div class='product-box'>";
           if ($StockStatus == 'Out of Stock') {
             echo "<div class='price-and-stock-info out-of-stock'>
-<i class='bx bxs-purchase-tag'></i> Out of Stock
+ Out of Stock
 </div>";
           } elseif ($DiscountPercentage != '') {
             echo "<div class='price-and-stock-info discount'>

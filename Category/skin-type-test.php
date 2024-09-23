@@ -68,7 +68,7 @@ include_once $base_url . 'Assets/Components/Navbar.php';
                     Question <span id="QuestionNo">0</span> / 10
                 </div>
                 <div class="flex justify-center items-center cursor-pointer hover:text-[#00adef]">
-                    <button class="text-sm font-medium text-muted-foreground hover:text-muted transition-colors">
+                    <button class="text-sm font-medium text-muted-foreground hover:text-muted transition-colors" id="Finishlater">
                         Finish later
                     </button>
                     <i class="bx bx-x text-3xl"></i>

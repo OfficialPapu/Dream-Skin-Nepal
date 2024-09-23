@@ -1,7 +1,7 @@
 <?php
 @session_name('URLSession');
 @session_start();
-$_SESSION['URLSession']['Base Path'] = $_SERVER['DOCUMENT_ROOT'] . "/Dream Skin Nepal/";
+$_SESSION['URLSession']['Base Path'] = $_SERVER['DOCUMENT_ROOT'] . "/";
 $base_url = $_SESSION['URLSession']['Base Path'];
 include_once $base_url . 'Assets/Components/Navbar.php';
 if (isset($_SESSION['Logged In'])) {
@@ -156,7 +156,7 @@ ChangeUrl();
 </body>
 <script src="Assets/JS/Butterup/butterup.min.js"></script>
 <script src="Assets/JS/Product Script.js"></script>
-<script src="Assets/JS/SkinType.js"></script>
+<script src="Assets/JS/Skincare Set.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script async src="https://www.googletagmanager.com/gtag/js?id=AW-10828634041"></script>
 <script>

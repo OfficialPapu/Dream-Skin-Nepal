@@ -1,7 +1,7 @@
 <?php
 @session_name('URLSession');
 @session_start();
-$_SESSION['URLSession']['Base Path'] = $_SERVER['DOCUMENT_ROOT'] . "/Dream Skin Nepal/";
+$_SESSION['URLSession']['Base Path'] = $_SERVER['DOCUMENT_ROOT'] . "/";
 $base_url = $_SESSION['URLSession']['Base Path'];
 include_once $base_url . 'Assets/PHP/Configuration/Navbar Configuration.php';
  if (!isset($_SESSION['Logged In'])) {
@@ -92,7 +92,7 @@ include_once $base_url . 'Assets/PHP/Configuration/Navbar Configuration.php';
                         <!--</li>-->
                         
                         <li class="dropdown-align">
-                            <div class="toggle-name"><a href="<?php echo $SkinTypeUrl; ?>" class="color"><span class="bold-style">Skincare Set</span></a></div>
+                            <div class="toggle-name"><a href="<?php echo $SkincareSetUrl; ?>" class="color"><span class="bold-style">Skincare Set</span></a></div>
                         </li>
                         <li class="dropdown-align">
                             <div class="toggle-name"><a href="<?php echo $SkintypeTestUrl; ?>" class="color"><span class="bold-style">Skin Type test</span></a></div>
@@ -139,7 +139,7 @@ include_once $base_url . 'Assets/PHP/Configuration/Navbar Configuration.php';
 
   
                         <li class="dropdown-align">
-                            <a href='Category/BrandList.php' class="toggle-name">
+                            <a href='Category/Brands.php' class="toggle-name">
                                 <div><span class="color">Brands</span></div>
                             </a>
                         </li>

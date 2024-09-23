@@ -41,7 +41,9 @@ while ($Row = $CategorySqlRun->fetch_assoc()) {
         </div>";
     if ($ImageUrl != "") {
         echo "<div class='banner'>
+        <a href='Category/SkinCare.php/$SlugUrl'>
             <img src='Assets/Product/Media/Images/Banners/$ImageUrl' alt='$CategoryAttribute' loading='lazy'>
+            </a>
             </div>";
     }
 

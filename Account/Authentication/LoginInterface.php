@@ -2,7 +2,6 @@
 @session_name('URLSession');
 @session_start();
 $base_url = $_SESSION['URLSession']['Base Path'];
-// include $base_url . 'Assets/PHP/Account Configuration/Continue With Google.php';
 include $base_url . 'Assets/Components/Navbar.php';
 ?>
 <!DOCTYPE html>
