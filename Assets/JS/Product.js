@@ -6,6 +6,7 @@ var swiper = new Swiper(".mySwiper", {
 });
 var swiper2 = new Swiper(".mySwiper2", {
     spaceBetween: 10,
+    direction: "vertical",
     navigation: {
         nextEl: ".swiper-button-next",
         prevEl: ".swiper-button-prev",

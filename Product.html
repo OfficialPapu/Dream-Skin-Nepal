@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <title>Swiper demo</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1" />
+    <!-- Link Swiper's CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+
+    <!-- Demo styles -->
+    <style>
+        html,
+        body {
+            position: relative;
+            height: 100%;
+        }
+
+        body {
+            background: #eee;
+            font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
+            font-size: 14px;
+            color: #000;
+            margin: 0;
+            padding: 0;
+        }
+
+        .swiper {
+            width: 100%;
+            height: 100%;
+        }
+
+        .mySwiper {
+            position: absolute;
+            height: 100vh;
+            width: 100px;
+            top: 0;
+        }
+
+        .swiper-slide {
+            text-align: center;
+            font-size: 18px;
+            background: #fff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .mySwiper2 .swiper-slide img {
+            display: block;
+            width: 90%;
+            height: 90%;
+            object-fit: cover;
+        }
+        .mySwiper .swiper-slide img{
+            height: 100px;
+            width: 100px;
+            padding: 2px;
+            border: 2px solid red;
+        }
+        /* body{
+            width: 400px;
+            height: 400px;
+        } */
+    </style>
+</head>
+
+<body>
+    <div class="swiper mySwiper2">
+        <div class="swiper-wrapper">
+            <div class="swiper-slide"><img src="https://picsum.photos/800/610" alt=""></div>
+            <div class="swiper-slide"><img src="https://picsum.photos/800/640" alt=""></div>
+            <div class="swiper-slide"><img src="https://picsum.photos/800/601" alt=""></div>
+            <div class="swiper-slide"><img src="https://picsum.photos/800/602" alt=""></div>
+            <div class="swiper-slide"><img src="https://picsum.photos/800/603" alt=""></div>
+        </div>
+        <div class="swiper-pagination"></div>
+    </div>
+    <!-- Swiper -->
+    <div thumbsSlider="" class="swiper mySwiper">
+        <div class="swiper-wrapper">
+            <div class="swiper-slide"><img src="https://picsum.photos/800/610" alt=""></div>
+            <div class="swiper-slide"><img src="https://picsum.photos/800/640" alt=""></div>
+            <div class="swiper-slide"><img src="https://picsum.photos/800/601" alt=""></div>
+            <div class="swiper-slide"><img src="https://picsum.photos/800/602" alt=""></div>
+            <div class="swiper-slide"><img src="https://picsum.photos/800/603" alt=""></div>
+        </div>
+        <div class="swiper-pagination"></div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+
+    <script>
+        var swiper = new Swiper(".mySwiper", {
+            direction: "vertical",
+            loop: true,
+            slidesPerView: 4,
+            freeMode: true,
+            watchSlidesProgress: true,
+        });
+        var swiper2 = new Swiper(".mySwiper2", {
+            spaceBetween: 10,
+            navigation: {
+                nextEl: ".swiper-button-next",
+                prevEl: ".swiper-button-prev",
+            },
+            thumbs: {
+                swiper: swiper,
+            },
+        });
+    </script>
+</body>
+
+</html>
