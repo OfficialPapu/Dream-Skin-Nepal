@@ -3,12 +3,12 @@ setTimeout(function () {
     document.querySelector('.whatsapp').classList.add('show-whatsapp');
 }, 2000);
 
-    $('.bottom-top-navbar').prepend(` <div class="search-box-navbar">
-                <input type="text" placeholder="Search..." id="Search" />
-                <div class="icon-box">
-                    <i class='bx bx-search-alt-2'></i>
-                </div>
-            </div>`);
+    // $('.bottom-top-navbar').prepend(` <div class="search-box-navbar">
+    //             <input type="text" placeholder="Search..." id="Search" />
+    //             <div class="icon-box">
+    //                 <i class='bx bx-search-alt-2'></i>
+    //             </div>
+    //         </div>`);
 
             $('#Search').on('keydown', function(event) {
                 if (event.which === 13) { 

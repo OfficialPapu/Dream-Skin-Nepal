@@ -61,8 +61,8 @@ include 'Assets/PHP/URL/Base Path.php';
 
     <div class="Companyinfo">
         <?php
-        include('Assets/Slider/Company Info PC.php');
-        include('Assets/Slider/Company Info Mobile.php');
+        // include('Assets/Slider/Company Info PC.php');
+        // include('Assets/Slider/Company Info Mobile.php');
         ?>
     </div>
 
@@ -159,7 +159,7 @@ include 'Assets/PHP/URL/Base Path.php';
             <img src='Assets/Product/Media/Images/Banners/$ImageUrl' alt='$CategoryAttribute' loading='lazy'></a>
             </div>";
         }
-        include('Assets/Slider/Product Slider.php');
+        // include('Assets/Slider/Product Slider.php');
         echo "</div>";
     }
     ?>
@@ -172,7 +172,7 @@ include 'Assets/PHP/URL/Base Path.php';
             <a href='Category/SkinCare.php/eye-cream' class='Eyecream'><img src='Assets/Product/Media/Images/Banners/Eyecream.jpg' alt='Eyecream' loading='lazy'></a>
             </div>";
         $Sql = "WHERE (pm3.`Product Meta Value`='23' OR pm3.`Product Meta Value`='55' OR pm3.`Product Meta Value`='82') AND p.`Product Quantity`>0 ORDER BY Rand() LIMIT 0,10";
-        include('Assets/Slider/Product Slider.php');
+        // include('Assets/Slider/Product Slider.php');
         ?>
     </div>
 
@@ -182,7 +182,7 @@ include 'Assets/PHP/URL/Base Path.php';
              <img src='Assets/Product/Media/Images/Banners/skincare mix.jpg' alt='skincare mix' loading='lazy'>
          </div>";
         $Sql = "WHERE pm3.`Product Meta Value` IN (23, 24, 25, 26, 27, 29, 30, 31, 32, 37, 55, 80, 81, 82, 83, 84) AND p.`Product Quantity`>0 ORDER BY Rand() LIMIT 0,10";
-        include('Assets/Slider/Product Slider.php');
+        // include('Assets/Slider/Product Slider.php');
         ?>
     </div>
     <div class="products">
@@ -191,12 +191,12 @@ include 'Assets/PHP/URL/Base Path.php';
              <img src='Assets/Product/Media/Images/Banners/makeup mix.jpg' alt='makeup mix' loading='lazy'>
          </div>";
         $Sql = "WHERE pm3.`Product Meta Value` IN (33, 34, 35, 36, 54, 56, 57, 59, 74, 75, 85) AND p.`Product Quantity`>0 ORDER BY Rand() LIMIT 0,10";
-        include('Assets/Slider/Product Slider.php');
+        // include('Assets/Slider/Product Slider.php');
         ?>
     </div>
     <div class="products review">
         <h2 class="product-heading">Customer Reviews</h2>
-        <?php include('Assets/Slider/Customer Review.php'); ?>
+        <!-- <?php include('Assets/Slider/Customer Review.php'); ?> -->
     </div>
 
     <div class="whatsapp">
@@ -204,7 +204,7 @@ include 'Assets/PHP/URL/Base Path.php';
     </div>
 
     <footer>
-        <?php include('Assets/Components/Footer.php'); ?>
+        <!-- <?php include('Assets/Components/Footer.php'); ?> -->
     </footer>
 
 </body>
