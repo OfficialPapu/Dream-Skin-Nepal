@@ -44,71 +44,6 @@ body {
     object-fit: contain !important;
 }
 
-.swiper {
-    position: relative;
-    z-index: 0;
-    height: 80vh;
-    width: 100%;
-}
-
-.swiper-slide {
-    display: block !important;
-    text-align: center;
-    font-size: 18px;
-    background: #fff;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.swiper-slide img {
-    width: 100%;
-    height: 100%;
-    object-fit: contain;
-}
-
-
-.swiper {
-    width: 100%;
-    margin-left: auto;
-    margin-right: auto;
-}
-
-.swiper-slide {
-    background-size: contain;
-    background-position: center;
-}
-
-.mySwiper2 {
-    height: 80%;
-    width: 100%;
-}
-
-.mySwiper {
-    padding-top: 10px;
-    height: 20%;
-    box-sizing: border-box;
-}
-
-.mySwiper .swiper-slide {
-    width: 25%;
-    height: 100%;
-    opacity: 0.4;
-    object-fit: cover;
-}
-
-.mySwiper .swiper-slide-thumb-active {
-    opacity: 1;
-}
-
-.swiper-slide img {
-    width: 100%;
-    height: 100%;
-    object-fit: contain;
-    cursor: pointer;
-}
-
-
 
 .product-container {
     display: flex;
@@ -182,44 +117,7 @@ body {
     gap: 20px;
 }
 
-.share-wishlist {
-    display: flex;
-    align-items: center;
-    gap: 20px;
-    position: relative;
-}
 
-.share-wishlist .WishlistBtn {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 2rem;
-    height: 40px;
-    width: 40px;
-    line-height: 22px;
-    border-radius: 50%;
-    padding: 3px;
-    background-color: white;
-    color: #FF007F;
-    transition: .3s;
-    cursor: pointer
-}
-
-.ShareBtn {
-    color: #FF007F;
-    font-size: 2rem;
-    cursor: pointer;
-    transition: .8s;
-    transform-origin: center;
-}
-
-#npm-install-copy-button {
-    padding-right: 40px;
-}
-
-.ShareBtn.active {
-    transform: rotate(180deg);
-}
 
 .share-link-box {
     display: flex;
@@ -246,10 +144,10 @@ body {
     justify-content: space-evenly;
 }
 
-.share-link-box i {
+/* .share-link-box i {
     font-size: 2rem;
     cursor: pointer;
-}
+} */
 
 .quantity-details-box {
     display: flex;
@@ -452,7 +350,7 @@ body {
 .vertical-line {
     width: 1px;
     height: 50px;
-    background-color: rgba(204, 204, 204, 0.5);
+    background-color: #cccccc80;
 }
 
 

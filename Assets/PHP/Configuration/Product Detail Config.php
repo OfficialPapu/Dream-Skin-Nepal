@@ -3,7 +3,7 @@ include_once $base_url . 'Assets/Components/Navbar.php';
 ChangeUrl();
 $SlugUrl = $_SERVER['PATH_INFO'];
 if ($SlugUrl == '/' || $SlugUrl=='' || $SlugUrl=='/Product/') {
-    echo "<script>window.location.href='/'</script>";
+    // echo "<script>window.location.href='/'</script>";
 }
 $SlugUrl = str_replace("/", "", $SlugUrl);
 $query = "SELECT p.ID, p.`Product Title`, p.`Product Price`, p.`Product Quantity`,p.`Discount Price`, p.`Discount Percentage`, p.`Product Content`, pm1.`Product Meta Value` AS ProductBrand, pm2.`Product Meta Value` AS Thumbnail, p.`Product Content`, p.`Discount Price`,
