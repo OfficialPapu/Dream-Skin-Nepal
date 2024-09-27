@@ -1,4 +1,5 @@
 @import url("https://fonts.googleapis.com/css2?family=Nunito+Sans:opsz,wght@6..12,500&display=swap");
+
 @font-face {
   font-family: Soin-Sans-Pro-Roman;
   src: url(../../Assets/Font/SoinSansProRoman.ttf);
@@ -23,6 +24,7 @@
 .centerng-item a {
   color: #ff007f;
 }
+
 .social-links-nav-bar a {
   display: inline-block;
   height: 40px;
@@ -46,6 +48,7 @@
   color: white !important;
   border: 1px solid #ff007f;
 }
+
 .toggle-name {
   position: relative;
 }
@@ -170,14 +173,17 @@ sup {
   .sub-category-dorpdown-menu.low-height {
     height: 140px;
   }
+
   .search-box-navbar {
     display: none;
   }
 }
+
 @media (max-width: 1030px) {
   .bottom-top-navbar {
-    margin-top: 90px;
+    margin-top: 80px;
   }
+
   .search-box-navbar {
     display: grid;
     place-items: center;
@@ -219,6 +225,7 @@ sup {
     justify-content: space-between;
     margin-bottom: 50px;
   }
+
   .nav {
     display: initial;
   }
@@ -424,6 +431,7 @@ sup {
     width: 80px;
   }
 }
+
 @media (max-width: 660px) {
   .dropdown-menu-container {
     top: 47px;
@@ -681,7 +689,7 @@ body.active {
 
 @media (max-width: 660px) {
   .bottom-top-navbar {
-    margin-top: 60px;
+      margin-top: 45px;
   }
 }
 
@@ -747,6 +755,7 @@ body.active {
   background-color: var(--primary);
   color: var(--primary-foreground);
 }
+
 .card-icon i {
   font-size: 1.5rem;
 }
@@ -761,6 +770,7 @@ body.active {
   font-size: 0.875rem;
   color: var(--muted-foreground);
 }
+
 .icon-box-insta {
   display: flex;
   align-items: center;
@@ -772,13 +782,16 @@ body.active {
   transition: background-color 0.15s ease-in-out, color 0.15s ease-in-out;
   background-color: var(--card-background);
 }
+
 .icon-box-insta a {
   color: var(--secondary);
 }
+
 .icon-box-insta i {
   color: var(--primary);
   font-size: 1.5rem;
 }
+
 .icon-box-insta:hover {
   background-color: var(--accent);
   color: var(--accent-foreground);
@@ -788,6 +801,7 @@ body.active {
   .card-item {
     width: 140px;
   }
+
   .icon-box-insta {
     width: 96%;
   }
@@ -798,9 +812,9 @@ body.active {
     width: 130px;
   }
 }
+
 @media (max-width: 365px) {
   .card-item {
     width: 120px;
   }
 }
-

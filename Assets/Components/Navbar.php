@@ -29,19 +29,6 @@ include_once $base_url . 'Assets/PHP/Configuration/Navbar Configuration.php';
     <link rel="shortcut icon" href="Assets/Product/Media/Images/Logo/Dream skin nepal.png" type="image/x-icon">
     <link href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css' rel='stylesheet'>
     <link rel="stylesheet" href="Assets/CSS/Navbars.css">
-    <style>
-      .nav .authentic-text-content{
-            position: absolute !important;
-            top: 50%;
-            left: 5%;
-            transform: translateY(-50%);
-        }
-
-        .authentic-text-box{
-            width: 70%;
-            position: relative;
-        }
-    </style>
 </head>
 
 <div class="overlay-box"></div>
@@ -51,16 +38,8 @@ include_once $base_url . 'Assets/PHP/Configuration/Navbar Configuration.php';
                 <div class="menu-and-close-icon hide-item">
                     <i class='bx bx-menu-alt-right menu-icon menu'></i>
                 </div>
-                <div class="authentic-text-box hide-item">
-                    
-                <div class="search-box-navbar">
-                <input type="text" placeholder='' id="Search" />
-                <div class="icon-box">
-                    <i class='bx bx-search-alt-2'></i>
-                </div>
-            </div>
+                <div class="authentic-text-box hide-item" id="SearchInputBox">
             <p class="authentic-text-content" id="authenticText">#<span class="pink-color">Genuinely</span><span class="blue-color bold-style-text">Authentic</span></p>
-                    
                 </div>
                 <div class="logo">
                     <a href="/"> <img src="Assets/Product/Media/Images/Logo/dream skin main logo.jpg" alt="Logo" class="Dreamskin-logo"></a>
@@ -269,14 +248,3 @@ include_once $base_url . 'Assets/PHP/Configuration/Navbar Configuration.php';
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
 <script src="Assets/JS/Navbar.js"></script>
-<script>
-       $('#Search').focus(function(){
-        $('#authenticText').css('opacity', '0');
-    });
-
-    $('#Search').blur(function(){
-        if ($(this).val() === '') {
-            $('#authenticText').css('opacity', '1');
-        }
-    });
-</script>
