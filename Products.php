@@ -6,7 +6,7 @@ $base_url = $_SESSION['URLSession']['Base Path'];
 include_once $base_url . 'Assets/PHP/Configuration/Product Detail Config.php';
 $canonical_url = 'https://' . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
 $_SESSION["StockStatus"] = "InStock";
-$limited_title="Abib Collagen Eye Creme Jericho Rose Tube for Dark Circles and Puffiness";
+$limited_title = "Abib Collagen Eye Creme Jericho Rose Tube for Dark Circles and Puffiness";
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -48,7 +48,53 @@ $limited_title="Abib Collagen Eye Creme Jericho Rose Tube for Dark Circles and P
 
         .wrapper {
             display: grid;
-            grid-template-columns: 38vw 62vw;
+            grid-template-columns: 33vw 62vw;
+            margin-left: 15px;
+            align-items: start;
+        }
+
+        .image-box {
+            display: grid;
+            grid-template-columns: 50px auto;
+        }
+
+        @media (max-width:1450px) {
+            .wrapper {
+                grid-template-columns: 38vw 62vw;
+            }
+        }
+
+        @media (max-width:1250px) {
+            .wrapper {
+                grid-template-columns: 45vw 55vw;
+            }
+        }
+
+        @media (max-width:1080px) {
+            .wrapper {
+                grid-template-columns: 50vw 50vw;
+            }
+        }
+
+        @media (max-width:970px) {
+            .wrapper {
+                grid-template-columns: 55vw 45vw;
+            }
+        }
+
+        @media (max-width:865px) {
+            .mySwiper {
+                display: none;
+            }
+
+            .wrapper {
+                flex-direction: column;
+                grid-template-columns: 100vw;
+            }
+
+            .image-box {
+                grid-template-columns: 100vw;
+            }
         }
 
         .mySwiper .swiper-slide-thumb-active img {
@@ -59,6 +105,12 @@ $limited_title="Abib Collagen Eye Creme Jericho Rose Tube for Dark Circles and P
             border: 2px solid #FF007F;
             padding: 2px;
             transition: 0.05s;
+        }
+
+        .mySwiper {
+            z-index: 10;
+            background-color: white;
+            padding-right: 5px;
         }
 
         .discountvalue {
@@ -165,69 +217,45 @@ $limited_title="Abib Collagen Eye Creme Jericho Rose Tube for Dark Circles and P
             </li>
         </ol>
     </nav>
-    <div class="wrapper">
-        <div class="image-box relative h-[400px]">
-            <div class="swiper mySwiper2">
+    <div class="wrapper relative h-[400px]">
+        <div class="image-box h-[400px]">
+            <div thumbsSlider="" class="swiper mySwiper relative h-[100%] w-[60px]">
                 <div class="swiper-wrapper">
-                    <div class="swiper-slide grid place-items-center"><img src="https://picsum.photos/800/610"
-                            class="h-[400px] w-[400px] rounded-[8px] object-cover"></div>
-                    <div class="swiper-slide grid place-items-center"><img src="https://picsum.photos/800/640"
-                            class="h-[400px] w-[400px] rounded-[8px] object-cover"></div>
-                    <div class="swiper-slide grid place-items-center"><img src="https://picsum.photos/800/601"
-                            class="h-[400px] w-[400px] rounded-[8px] object-cover"></div>
-                    <div class="swiper-slide grid place-items-center"><img src="https://picsum.photos/800/602"
-                            class="h-[400px] w-[400px] rounded-[8px] object-cover"></div>
-                    <div class="swiper-slide grid place-items-center"><img src="https://picsum.photos/800/603"
-                            class="h-[400px] w-[400px] rounded-[8px] object-cover"></div>
-                    <div class="swiper-slide grid place-items-center"><img src="https://picsum.photos/800/610"
-                            class="h-[400px] w-[400px] rounded-[8px] object-cover"></div>
-                    <div class="swiper-slide grid place-items-center"><img src="https://picsum.photos/800/640"
-                            class="h-[400px] w-[400px] rounded-[8px] object-cover"></div>
-                    <div class="swiper-slide grid place-items-center"><img src="https://picsum.photos/800/601"
-                            class="h-[400px] w-[400px] rounded-[8px] object-cover"></div>
-                    <div class="swiper-slide grid place-items-center"><img src="https://picsum.photos/800/602"
-                            class="h-[400px] w-[400px] rounded-[8px] object-cover"></div>
-                    <div class="swiper-slide grid place-items-center"><img src="https://picsum.photos/800/603"
-                            class="h-[400px] w-[400px] rounded-[8px] object-cover"></div>
+                    <div class="swiper-slide overflow-hidden rounded-[4px] h-[60px] w-[60px] grid place-items-center">
+                        <img src="https://picsum.photos/800/610" class="relative object-cover w-[100%] h-[100%]">
+                    </div>
+                    <div class="swiper-slide overflow-hidden rounded-[4px] h-[60px] w-[60px] grid place-items-center">
+                        <img src="https://picsum.photos/800/640" class="relative object-cover w-[100%] h-[100%]">
+                    </div>
+                    <div class="swiper-slide overflow-hidden rounded-[4px] h-[60px] w-[60px] grid place-items-center">
+                        <img src="https://picsum.photos/800/601" class="relative object-cover w-[100%] h-[100%]">
+                    </div>
+                    <div class="swiper-slide overflow-hidden rounded-[4px] h-[60px] w-[60px] grid place-items-center">
+                    <i class='bx bx-play-circle text-4xl absolute z-[1] text-white'></i>
+                        <video class="relative object-cover w-[100%] h-[100%]">
+                            <source src="VD.mp4" type="video/mp4">  
+                        </video>
+                    </div>
                 </div>
-                <div class="swiper-pagination"></div>
             </div>
-            <div thumbsSlider="" class="swiper mySwiper absolute h-[100%] w-[60px] top-0 left-[20px]">
+
+            <div class="swiper mySwiper2 w-[100%]">
                 <div class="swiper-wrapper">
-                    <div class="swiper-slide overflow-hidden rounded-[4px] h-[60px] w-[60px] grid place-items-center">
-                        <img src="https://picsum.photos/800/610" class="relative object-cover w-[100%] h-[100%]">
-                    </div>
-                    <div class="swiper-slide overflow-hidden rounded-[4px] h-[60px] w-[60px] grid place-items-center">
-                        <img src="https://picsum.photos/800/640" class="relative object-cover w-[100%] h-[100%]">
-                    </div>
-                    <div class="swiper-slide overflow-hidden rounded-[4px] h-[60px] w-[60px] grid place-items-center">
-                        <img src="https://picsum.photos/800/601" class="relative object-cover w-[100%] h-[100%]">
-                    </div>
-                    <div class="swiper-slide overflow-hidden rounded-[4px] h-[60px] w-[60px] grid place-items-center">
-                        <img src="https://picsum.photos/800/602" class="relative object-cover w-[100%] h-[100%]">
-                    </div>
-                    <div class="swiper-slide overflow-hidden rounded-[4px] h-[60px] w-[60px] grid place-items-center">
-                        <img src="https://picsum.photos/800/603" class="relative object-cover w-[100%] h-[100%]">
-                    </div>
-                    <div class="swiper-slide overflow-hidden rounded-[4px] h-[60px] w-[60px] grid place-items-center">
-                        <img src="https://picsum.photos/800/610" class="relative object-cover w-[100%] h-[100%]">
-                    </div>
-                    <div class="swiper-slide overflow-hidden rounded-[4px] h-[60px] w-[60px] grid place-items-center">
-                        <img src="https://picsum.photos/800/640" class="relative object-cover w-[100%] h-[100%]">
-                    </div>
-                    <div class="swiper-slide overflow-hidden rounded-[4px] h-[60px] w-[60px] grid place-items-center">
-                        <img src="https://picsum.photos/800/601" class="relative object-cover w-[100%] h-[100%]">
-                    </div>
-                    <div class="swiper-slide overflow-hidden rounded-[4px] h-[60px] w-[60px] grid place-items-center">
-                        <img src="https://picsum.photos/800/602" class="relative object-cover w-[100%] h-[100%]">
-                    </div>
-                    <div class="swiper-slide overflow-hidden rounded-[4px] h-[60px] w-[60px] grid place-items-center">
-                        <img src="https://picsum.photos/800/603" class="relative object-cover w-[100%] h-[100%]">
+                    <div class="swiper-slide grid justify-center"><img src="https://picsum.photos/800/610"
+                            class="h-[400px] w-[400px] rounded-[8px] object-cover"></div>
+                    <div class="swiper-slide grid justify-center"><img src="https://picsum.photos/800/640"
+                            class="h-[400px] w-[400px] rounded-[8px] object-cover"></div>
+                    <div class="swiper-slide grid justify-center"><img src="https://picsum.photos/800/601"
+                            class="h-[400px] w-[400px] rounded-[8px] object-cover"></div>
+                    <div class="swiper-slide grid justify-center">
+                        <video class="h-[400px] w-[400px] rounded-[8px] object-cover" controls muted>
+                            <source src="VD.mp4" type="video/mp4">
+                        </video>
                     </div>
                 </div>
-                <div class="swiper-pagination"></div>
             </div>
         </div>
+
         <div class="content-box">
             <h1 class='product-title text-3xl'>Abib Collagen Eye Creme Jericho Rose Tube for Dark Circles and Puffiness
             </h1>
@@ -356,6 +384,8 @@ $limited_title="Abib Collagen Eye Creme Jericho Rose Tube for Dark Circles and P
 
         </div>
     </div>
+
+
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.3.0/flowbite.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.10/clipboard.min.js"></script>
