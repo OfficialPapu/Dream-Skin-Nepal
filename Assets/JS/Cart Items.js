@@ -205,7 +205,7 @@ function SetNavigationPath(){
         }
     });
 }
-function ShowDataFunction(){
+function ShowDataFunction(CouponCode){
  $("#TotalSavedInitial").addClass("hidden");
 ShowBox(".CouponCodeBox");
 ShowBox(".CouponCodeBox");
@@ -229,17 +229,19 @@ $(document).ready(function () {
             },
             dataType: "json",
             success: function (CouponResponse) {
+                console.log(CouponResponse);
+                
                 if (couponbtncount >= 2) {
                     window.location.reload();
                 }
                 if (CouponResponse['Message'] === 'Fixed Amount') {
-                    ShowDataFunction();
+                    ShowDataFunction(CouponCode);
                     SucessNotify("Coupon Applied Successfully!", "Your discount has been applied.", "success");
                     OverWriteData(".CouponValue", "- Rs. " + CouponResponse['Discount Amount'] + ".00");
                     OverWriteData(".TotalSavedData", "- Rs. " + CouponResponse['Total Saved'] + ".00");
                     OverWriteData("#GrandTotal", "Rs. " + CouponResponse['Amount'] + ".00");
                 } else if (CouponResponse['Message'] === 'Percentage') {
-                     ShowDataFunction();
+                     ShowDataFunction(CouponCode);
                     SucessNotify("Coupon Applied Successfully!", "Your discount has been applied.", "success");
                     OverWriteData(".CouponValue", CouponResponse['Discount Amount'] + "% OFF");
                     OverWriteData("#GrandTotal", "Rs. " + CouponResponse['Amount'] + ".00");

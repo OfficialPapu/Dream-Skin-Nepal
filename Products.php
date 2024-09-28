@@ -48,9 +48,9 @@ $limited_title = "Abib Collagen Eye Creme Jericho Rose Tube for Dark Circles and
 
         .wrapper {
             display: grid;
-            grid-template-columns: 33vw 62vw;
+            grid-template-columns: 33vw 55vw;
             margin-left: 15px;
-            align-items: start;
+            justify-content: center;
         }
 
         .image-box {
@@ -217,7 +217,7 @@ $limited_title = "Abib Collagen Eye Creme Jericho Rose Tube for Dark Circles and
             </li>
         </ol>
     </nav>
-    <div class="wrapper relative h-[400px]">
+    <div class="wrapper relative">
         <div class="image-box h-[400px]">
             <div thumbsSlider="" class="swiper mySwiper relative h-[100%] w-[60px]">
                 <div class="swiper-wrapper">
@@ -231,9 +231,9 @@ $limited_title = "Abib Collagen Eye Creme Jericho Rose Tube for Dark Circles and
                         <img src="https://picsum.photos/800/601" class="relative object-cover w-[100%] h-[100%]">
                     </div>
                     <div class="swiper-slide overflow-hidden rounded-[4px] h-[60px] w-[60px] grid place-items-center">
-                    <i class='bx bx-play-circle text-4xl absolute z-[1] text-white'></i>
+                        <i class='bx bx-play-circle text-4xl absolute z-[1] text-white'></i>
                         <video class="relative object-cover w-[100%] h-[100%]">
-                            <source src="VD.mp4" type="video/mp4">  
+                            <source src="VD.mp4" type="video/mp4">
                         </video>
                     </div>
                 </div>
@@ -264,15 +264,15 @@ $limited_title = "Abib Collagen Eye Creme Jericho Rose Tube for Dark Circles and
                 <table>
                     <tbody>
                         <tr>
-                            <td class="p-1 font-[600] w-[120px]"> <span>Brand</span> </td>
+                            <td class="p-1 w-[120px]"> <span>Brand</span> </td>
                             <td class="p-1"> <span>NEEDLY</span> </td>
                         </tr>
                         <tr>
-                            <td class="p-1 font-[600] w-[120px]"> <span>Category</span> </td>
+                            <td class="p-1 w-[120px]"> <span>Category</span> </td>
                             <td class="p-1"> <span>SkinCare : Ampoule</span> </td>
                         </tr>
                         <tr>
-                            <td class="p-1 font-[600] w-[120px]"> <span>Skin Type</span> </td>
+                            <td class="p-1 w-[120px]"> <span>Skin Type</span> </td>
                             <td class="p-1"> <span>Acne, Sebum, Sensitive</span> </td>
                         </tr>
                     </tbody>
@@ -381,10 +381,14 @@ $limited_title = "Abib Collagen Eye Creme Jericho Rose Tube for Dark Circles and
                 </div>
             </div>
 
-
         </div>
+ 
     </div>
-
+    <div class='product-description w-[100vw] px-4'>
+            <h2 class='text-2xl mt-10 mb-1 text-[#00ADEF] font-bold'>About this item</h2>
+            <p class='leading-[30px]'><?php echo nl2br('
+ [🧹GENTLE YET POTENT CLEANSING OIL🧹] Effective in eliminating makeup residue, blackheads and sebum, whilst preventing pore congestion. Essential step for double cleansing, with glowy glass skin results.[👀 GENTLE ON THE EYES👀] No eye stinging experiences when used around eyes, Eye Irritation Test (Cruelty Free HET-CAM Test) completed [🌚DEEP PORE CLEANSING FOR ALL SKIN TYPES🌚]: Creates a delicate light foam infused with Heartleaf Extract, [😀GENTLE EXFOLIATION😀]: Contains 3,000ppm Heartleaf powder which helps to gently clear deep within the pores, exfoliate dead skin cells and effectively clear any impurities.'); ?></p>
+        </div>  
 
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.3.0/flowbite.min.js"></script>
@@ -450,3 +454,4 @@ $limited_title = "Abib Collagen Eye Creme Jericho Rose Tube for Dark Circles and
 </body>
 
 </html>
+

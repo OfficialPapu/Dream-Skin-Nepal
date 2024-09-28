@@ -10,7 +10,7 @@ include_once $base_url . 'Assets/Components/Navbar.php';
 include_once $base_url . 'Assets/PHP/Configuration/User IP.php';
 include $base_url . 'Assets/PHP/Email Management/Orders Email/Admin Notify Email.php';
 include $base_url . 'Assets/PHP/Email Management/Orders Email/User Notify Email.php';
-$Date="CONVERT_TZ(NOW(), '+00:00', '+05:45')"; 
+$Date = "CONVERT_TZ(NOW(), '+00:00', '+05:45')";
 $Pickup = $_SESSION['Pickup'];
 
 function generateTrackingNumber()
@@ -43,13 +43,16 @@ if (!isset($_SESSION['order_id'])) {
 if (isset($_GET['PaymentInfo'])) {
     if ($_SESSION['NavigationPath'] == "BundlePath") {
         $Cart = "SELECT * FROM `bundle_cart` bc JOIN product_bundles pb ON pb.`Bundle ID` = bc.`Bundle ID` WHERE `User ID`='$user_id'";
+        $Note ='';
     } else if ($_SESSION['NavigationPath'] == "CartPath") {
         $Cart = "SELECT * FROM `product_cart` WHERE `User ID`='$user_id'";
+        $PromoCart = $conn->query("SELECT `Applied Promo Code` FROM `product_cart` WHERE `User ID`='$user_id'");
+        $Note = "Coupon Code Applied: " . $PromoCart->fetch_assoc()['Applied Promo Code'];
     }
     $runquery = $conn->query($Cart);
     $PaymentMethod = "Cash On Delivery";
     if ($runquery->num_rows > 0) {
-       $InsertOrder = "INSERT INTO `orders`(`User ID`, `Total Due`, `Shipping Fee`, `Payment Method`, `Payment Screenshot`,`Pickup`,`Notes`,`Order Date`) VALUES ('$user_id','$TotalPrice','$TotalShippingFee','$PaymentMethod','','$Pickup','',$Date)";
+        $InsertOrder = "INSERT INTO `orders`(`User ID`, `Total Due`, `Shipping Fee`, `Payment Method`, `Payment Screenshot`,`Pickup`,`Notes`,`Order Date`) VALUES ('$user_id','$TotalPrice','$TotalShippingFee','$PaymentMethod','','$Pickup','$Note',$Date)";
         $send = mysqli_query($conn, $InsertOrder);
         if ($send) {
             $_SESSION['order_id'] = mysqli_insert_id($conn);
@@ -139,12 +142,12 @@ if (isset($_GET['PaymentInfo'])) {
                         $Price[] = $Row['Product Price'];
                     }
                 }
-                NotifyAdmin($UserName, $MobileNumber, $ProductTitle, $Price, $TrackingNum, $PaymentMethod, '');
-                NotifyUser($UserEmail, $UserName, $ProductTitle, $Price, $TotalShippingCharge, $TrackingNum);
+                // NotifyAdmin($UserName, $MobileNumber, $ProductTitle, $Price, $TrackingNum, $PaymentMethod, '');
+                // NotifyUser($UserEmail, $UserName, $ProductTitle, $Price, $TotalShippingCharge, $TrackingNum);
             }
         }
     }
-    
+
     $OrderSummary = "SELECT oi.`Tracking Number`, oi.`Total Due`, p.`Product Title` AS Title, pm1.`Product Meta Value` AS thumbnail, o.`Total Due` AS GrandTotal, o.`Shipping Fee` AS ShippingFee
     FROM `order_items` oi 
     JOIN posts p ON p.ID = oi.`Product ID`
