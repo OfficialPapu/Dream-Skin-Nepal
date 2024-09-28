@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Advanced Text Input Field</title>
+  <style>
+    /* styles.css */
+    .input-container {
+      width: 80%;
+      margin: 20px auto;
+      border: 1px solid #ccc;
+      padding: 10px;
+      min-height: 200px;
+    }
+
+    #editable {
+      min-height: 100%;
+      outline: none;
+      overflow-y: auto;
+      font-size: 16px;
+      line-height: 1.5;
+      white-space: pre-wrap;
+    }
+  </style>
+</head>
+<body>
+  <div class="input-container">
+    <div id="editable" contenteditable="true"></div>
+  </div>
+
+  <script>
+    // script.js
+    document.addEventListener('DOMContentLoaded', function() {
+      const editable = document.getElementById('editable');
+
+      editable.addEventListener('paste', function(e) {
+        e.preventDefault();
+        const text = (e.originalEvent || e).clipboardData.getData('text/html');
+        document.execCommand('insertHTML', false, text);
+      });
+
+      editable.addEventListener('keydown', function(e) {
+        // Prevents the Enter key from creating new paragraphs
+        if (e.keyCode === 13) {
+          e.preventDefault();
+          document.execCommand('insertHTML', false, '<br><br>');
+        }
+      });
+    });
+  </script>
+</body>
+</html>
