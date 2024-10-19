@@ -6,7 +6,7 @@ $base_url = $_SESSION['URLSession']['Base Path'];
 include_once $base_url . 'Assets/PHP/Configuration/Product Detail Config.php';
 $canonical_url = 'https://' . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
 $_SESSION["StockStatus"] = "InStock";
-$limited_title = "Abib Collagen Eye Creme Jericho Rose Tube for Dark Circles and Puffiness";
+$limited_title = "Abib Collagen Eye Creme...";
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -20,7 +20,6 @@ $limited_title = "Abib Collagen Eye Creme Jericho Rose Tube for Dark Circles and
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <script src="https://cdn.tailwindcss.com"></script>
-    <!-- <link rel="stylesheet" href="Assets/CSS/Product Detail.css"> -->
 
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Nunito+Sans:opsz,wght@6..12,500&display=swap');
@@ -48,52 +47,88 @@ $limited_title = "Abib Collagen Eye Creme Jericho Rose Tube for Dark Circles and
 
         .wrapper {
             display: grid;
-            grid-template-columns: 33vw 55vw;
-            margin-left: 15px;
+            grid-template-columns: 30vw 50vw;
             justify-content: center;
         }
 
         .image-box {
             display: grid;
-            grid-template-columns: 50px auto;
+            grid-template-columns: 65px auto;
         }
 
-        @media (max-width:1450px) {
+        @media (max-width:1400px) {
             .wrapper {
-                grid-template-columns: 38vw 62vw;
+                grid-template-columns: 35vw 55vw;
+            }
+
+            .information-box,
+            .Description-Box {
+                width: 90vw;
             }
         }
 
-        @media (max-width:1250px) {
+        @media (max-width:1200px) {
+
+            .information-box,
+            .Description-Box {
+                width: 95vw;
+            }
+
             .wrapper {
-                grid-template-columns: 45vw 55vw;
+                grid-template-columns: 37.5vw 57.5vw;
             }
         }
 
-        @media (max-width:1080px) {
+
+        @media (max-width:1030px) {
+
+            .Action-Box-Parent {
+                width: 95%;
+            }
+
+            .Action-Box {
+                width: 100%;
+            }
+
+            .Action-Box button {
+                width: 50%;
+            }
+
             .wrapper {
                 grid-template-columns: 50vw 50vw;
             }
         }
 
-        @media (max-width:970px) {
-            .wrapper {
-                grid-template-columns: 55vw 45vw;
-            }
-        }
-
-        @media (max-width:865px) {
+        @media (max-width:780px) {
             .mySwiper {
                 display: none;
             }
 
             .wrapper {
-                flex-direction: column;
-                grid-template-columns: 100vw;
+                grid-template-columns: 95vw;
             }
 
             .image-box {
-                grid-template-columns: 100vw;
+                grid-template-columns: 100%;
+                height: 300px;
+            }
+
+            .image-box img,
+            .image-box video {
+                width: 100%;
+                height: 300px;
+            }
+
+            .Action-Box-Parent {
+                width: 100%;
+            }
+
+            .Action-Box {
+                justify-content: center;
+            }
+
+            .Action-Box button {
+                width: 180px;
             }
         }
 
@@ -110,7 +145,7 @@ $limited_title = "Abib Collagen Eye Creme Jericho Rose Tube for Dark Circles and
         .mySwiper {
             z-index: 10;
             background-color: white;
-            padding-right: 5px;
+            padding: 0 5px;
         }
 
         .discountvalue {
@@ -189,206 +224,230 @@ $limited_title = "Abib Collagen Eye Creme Jericho Rose Tube for Dark Circles and
 </head>
 
 <body>
-    <nav aria-label="Breadcrumb" class="flex px-5 py-3 text-gray-700 rounded-lg bg-gray-50 dark:bg-gray-800 dark:border-gray-700 mt-[10px] mb-[20px] w-1[100vw]">
-        <ol class="inline-flex items-center space-x-1 md:space-x-2 rtl:space-x-reverse">
-            <li class="inline-flex items-center">
-                <a href="/" class="inline-flex items-center text-sm font-medium text-gray-700 hover:text-blue-600 dark:text-gray-400 dark:hover:text-white">
-                    <svg class="w-3 h-3 me-2.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
-                        <path d="m19.707 9.293-2-2-7-7a1 1 0 0 0-1.414 0l-7 7-2 2a1 1 0 0 0 1.414 1.414L2 10.414V18a2 2 0 0 0 2 2h3a1 1 0 0 0 1-1v-4a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v4a1 1 0 0 0 1 1h3a2 2 0 0 0 2-2v-7.586l.293.293a1 1 0 0 0 1.414-1.414Z" />
-                    </svg>
-                    Home
-                </a>
-            </li>
-            <li>
-                <div class="flex items-center">
-                    <svg class="rtl:rotate-180 block w-3 h-3 mx-1 text-gray-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 6 10">
-                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 9 4-4-4-4" />
-                    </svg>
-                    <a href="/" class="ms-1 text-sm font-medium text-gray-700 hover:text-blue-600 md:ms-2 dark:text-gray-400 dark:hover:text-white">Product</a>
-                </div>
-            </li>
-            <li aria-current="page">
-                <div class="flex items-center">
-                    <svg class="rtl:rotate-180 w-3 h-3 mx-1 text-gray-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 6 10">
-                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 9 4-4-4-4" />
-                    </svg>
-                    <span class="ms-1 text-sm font-medium text-gray-500 md:ms-2 dark:text-gray-400"><?php echo $limited_title; ?></span>
-                </div>
-            </li>
-        </ol>
-    </nav>
-    <div class="wrapper relative">
-        <div class="image-box h-[400px]">
-            <div thumbsSlider="" class="swiper mySwiper relative h-[100%] w-[60px]">
-                <div class="swiper-wrapper">
-                    <div class="swiper-slide overflow-hidden rounded-[4px] h-[60px] w-[60px] grid place-items-center">
-                        <img src="https://picsum.photos/800/610" class="relative object-cover w-[100%] h-[100%]">
-                    </div>
-                    <div class="swiper-slide overflow-hidden rounded-[4px] h-[60px] w-[60px] grid place-items-center">
-                        <img src="https://picsum.photos/800/640" class="relative object-cover w-[100%] h-[100%]">
-                    </div>
-                    <div class="swiper-slide overflow-hidden rounded-[4px] h-[60px] w-[60px] grid place-items-center">
-                        <img src="https://picsum.photos/800/601" class="relative object-cover w-[100%] h-[100%]">
-                    </div>
-                    <div class="swiper-slide overflow-hidden rounded-[4px] h-[60px] w-[60px] grid place-items-center">
-                        <i class='bx bx-play-circle text-4xl absolute z-[1] text-white'></i>
-                        <video class="relative object-cover w-[100%] h-[100%]">
-                            <source src="VD.mp4" type="video/mp4">
-                        </video>
-                    </div>
-                </div>
+    <div class="main-container bg-[whitesmoke] flex flex-col items-center">
+        <div class="bg-black w-[80vw] mt-[10px] bg-white information-box rounded-2xl">
+            <div class="flex px-5 py-3 text-gray-700 bg-gray-50 dark:bg-gray-800 dark:border-gray-700 w-[100%]">
+                <ol class="inline-flex items-center space-x-1 md:space-x-2 rtl:space-x-reverse">
+                    <li class="inline-flex items-center">
+                        <a href="/" class="inline-flex items-center text-sm font-medium text-[#1a9cb7] hover:text-blue-600 dark:text-gray-400 dark:hover:text-white">
+                            <svg class="w-3 h-3 me-2.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
+                                <path d="m19.707 9.293-2-2-7-7a1 1 0 0 0-1.414 0l-7 7-2 2a1 1 0 0 0 1.414 1.414L2 10.414V18a2 2 0 0 0 2 2h3a1 1 0 0 0 1-1v-4a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v4a1 1 0 0 0 1 1h3a2 2 0 0 0 2-2v-7.586l.293.293a1 1 0 0 0 1.414-1.414Z" />
+                            </svg>
+                            Home
+                        </a>
+                    </li>
+                    <li>
+                        <div class="flex items-center">
+                            <svg class="rtl:rotate-180 block w-3 h-3 mx-1 text-gray-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 6 10">
+                                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 9 4-4-4-4" />
+                            </svg>
+                            <a href="/" class="ms-1 text-sm font-medium text-[#1a9cb7] hover:text-blue-600 md:ms-2 dark:text-gray-400 dark:hover:text-white">Product</a>
+                        </div>
+                    </li>
+                    <li aria-current="page">
+                        <div class="flex items-center">
+                            <svg class="rtl:rotate-180 w-3 h-3 mx-1 text-gray-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 6 10">
+                                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 9 4-4-4-4" />
+                            </svg>
+                            <span class="ms-1 text-sm font-medium text-gray-500 md:ms-2 dark:text-[#1a9cb7]"><?php echo $limited_title; ?></span>
+                        </div>
+                    </li>
+                </ol>
             </div>
 
-            <div class="swiper mySwiper2 w-[100%]">
-                <div class="swiper-wrapper">
-                    <div class="swiper-slide grid justify-center"><img src="https://picsum.photos/800/610"
-                            class="h-[400px] w-[400px] rounded-[8px] object-cover"></div>
-                    <div class="swiper-slide grid justify-center"><img src="https://picsum.photos/800/640"
-                            class="h-[400px] w-[400px] rounded-[8px] object-cover"></div>
-                    <div class="swiper-slide grid justify-center"><img src="https://picsum.photos/800/601"
-                            class="h-[400px] w-[400px] rounded-[8px] object-cover"></div>
-                    <div class="swiper-slide grid justify-center">
-                        <video class="h-[400px] w-[400px] rounded-[8px] object-cover" controls muted>
-                            <source src="VD.mp4" type="video/mp4">
-                        </video>
+            <div class="wrapper relative w-[100%]">
+                <div class="image-box h-[400px] p-4">
+                    <div thumbsSlider="" class="swiper mySwiper relative h-[100%] w-[65px]">
+                        <div class="swiper-wrapper">
+                            <div class="swiper-slide overflow-hidden rounded-[4px] h-[60px] w-[60px] grid place-items-center">
+                                <img src="https://picsum.photos/800/610" class="relative object-cover w-[100%] h-[100%]">
+                            </div>
+                            <div class="swiper-slide overflow-hidden rounded-[4px] h-[60px] w-[60px] grid place-items-center">
+                                <img src="https://picsum.photos/800/640" class="relative object-cover w-[100%] h-[100%]">
+                            </div>
+                            <div class="swiper-slide overflow-hidden rounded-[4px] h-[60px] w-[60px] grid place-items-center">
+                                <img src="https://picsum.photos/800/601" class="relative object-cover w-[100%] h-[100%]">
+                            </div>
+                            <div class="swiper-slide overflow-hidden rounded-[4px] h-[60px] w-[60px] grid place-items-center">
+                                <i class='bx bx-play-circle text-4xl absolute z-[1] text-white'></i>
+                                <video class="relative object-cover w-[100%] h-[100%]">
+                                    <source src="VD.mp4" type="video/mp4">
+                                </video>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="swiper mySwiper2 w-[100%]">
+                        <div class="swiper-wrapper">
+                            <div class="swiper-slide grid justify-center overflow-hidden rounded-[0_0_10px_10px]"><img src="https://picsum.photos/800/610"
+                                    class="h-[400px] w-[400px] rounded-[8px] object-cover"></div>
+                            <div class="swiper-slide grid justify-center overflow-hidden rounded-[0_0_10px_10px]"><img src="https://picsum.photos/800/640"
+                                    class="h-[400px] w-[400px] rounded-[8px] object-cover"></div>
+                            <div class="swiper-slide grid justify-center overflow-hidden rounded-[0_0_10px_10px]"><img src="https://picsum.photos/800/601"
+                                    class="h-[400px] w-[400px] rounded-[8px] object-cover"></div>
+                            <div class="swiper-slide grid justify-center overflow-hidden rounded-[0_0_10px_10px]">
+                                <video class="h-[400px] w-[400px] rounded-[8px] object-cover" controls muted>
+                                    <source src="VD.mp4" type="video/mp4">
+                                </video>
+                            </div>
+                        </div>
                     </div>
                 </div>
-            </div>
-        </div>
 
-        <div class="content-box">
-            <h1 class='product-title text-3xl'>Abib Collagen Eye Creme Jericho Rose Tube for Dark Circles and Puffiness
-            </h1>
-            <hr class="my-2">
-            <div class="mb-4">
-                <table>
-                    <tbody>
-                        <tr>
-                            <td class="p-1 w-[120px]"> <span>Brand</span> </td>
-                            <td class="p-1"> <span>NEEDLY</span> </td>
-                        </tr>
-                        <tr>
-                            <td class="p-1 w-[120px]"> <span>Category</span> </td>
-                            <td class="p-1"> <span>SkinCare : Ampoule</span> </td>
-                        </tr>
-                        <tr>
-                            <td class="p-1 w-[120px]"> <span>Skin Type</span> </td>
-                            <td class="p-1"> <span>Acne, Sebum, Sensitive</span> </td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
+                <div class="content-box p-4">
+                    <h1 class='product-title text-3xl'>Abib Collagen Eye Creme Jericho Rose Tube for Dark Circles and Puffiness
+                    </h1>
+                    <hr class="my-2">
+                    <div class="mb-4">
+                        <table>
+                            <tbody>
+                                <tr>
+                                    <td class="p-1 w-[120px]"> <span>Brand</span> </td>
+                                    <td class="p-1"> <span>NEEDLY</span> </td>
+                                </tr>
+                                <tr>
+                                    <td class="p-1 w-[120px]"> <span>Category</span> </td>
+                                    <td class="p-1"> <span>SkinCare : Ampoule</span> </td>
+                                </tr>
+                                <tr>
+                                    <td class="p-1 w-[120px]"> <span>Skin Type</span> </td>
+                                    <td class="p-1"> <span>Acne, Sebum, Sensitive</span> </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
 
-            <div class="flex items-center justify-between w-[80%]">
+                    <div class="flex items-center justify-between w-[80%]">
 
-                <div class="price-box">
+                        <div class="price-box">
 
-                    <!-- DiscountPrice -->
-                    <!-- <div>
+                            <!-- DiscountPrice -->
+                            <!-- <div>
                     <p class='text-[1.8rem] text-[#FF007F] font-bold'>Rs 1209.00</p>
                     <p class='text-[#00ADEF] font-bold text-[1.2rem]'><span class='discountvalue'>Rs 100.00</span> - Rs.
                         50.00</p>
                 </div> -->
 
-                    <!-- DiscountPercentage -->
-                    <div>
-                        <p class='text-[1.8rem] text-[#FF007F] font-bold'>Rs 1289.00</p>
-                        <p class='text-[#00ADEF] font-bold text-[1.2rem]'><span class='discountvalue'>Rs 1289.00</span>
-                            -10%</p>
-                    </div>
+                            <!-- DiscountPercentage -->
+                            <div>
+                                <p class='text-[1.8rem] text-[#FF007F] font-bold'>Rs 1289.00</p>
+                                <p class='text-[#00ADEF] font-bold text-[1.2rem]'><span class='discountvalue'>Rs 1289.00</span>
+                                    -10%</p>
+                            </div>
 
-                    <!-- NORMAL -->
-                    <!-- <p class='text-[1.8rem] text-[#FF007F] font-bold'>Rs 1285.00</p> -->
-
-                </div>
-
-                <div class="share-wishlist">
-                    <i class='bx bx-share-alt ShareBtn'></i>
-                    <div class="share-link-box z-[100]">
-                        <div class="flex w-[100%] justify-evenly">
-                            <a href="https://www.facebook.com/sharer/sharer.php?u=<?php echo $canonical_url; ?>"><i
-                                    class="fa-brands fa-facebook pointer text-[2rem]" style="color: #4268b3;"></i></a>
-                            <a href="fb-messenger://share?link=<?php echo urlencode($canonical_url); ?>"><i
-                                    class="fa-brands fa-facebook-messenger pointer text-[2rem]"
-                                    style="color: #183153;"></i></a>
-                            <a href="https://api.whatsapp.com/send?text=<?php echo $canonical_url; ?>"><i
-                                    class="fa-brands fa-whatsapp pointer text-[2rem]" style="color: #25d366;"></i></a>
-                            <a href="https://twitter.com/intent/tweet?url=<?php echo $canonical_url; ?>"><i
-                                    class="fa-brands fa-twitter pointer text-[2rem]" style="color: #1da1f2;"></i></a>
-                            <a href="https://www.instagram.com/?url=<?php echo $canonical_url; ?>"><i
-                                    class="fa-brands fa-instagram pointer text-[2rem]"></i></a>
+                            <!-- NORMAL -->
+                            <!-- <p class='text-[1.8rem] text-[#FF007F] font-bold'>Rs 1285.00</p> -->
 
                         </div>
-                        <div class="clipboard">
-                            <div class="w-full max-w-100">
-                                <div class="relative">
-                                    <input id="npm-install-copy-button" type="text"
-                                        class="col-span-6 bg-gray-50 border border-gray-300 text-gray-500 text-sm rounded-lg  block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400"
-                                        value="<?php echo $canonical_url; ?>" readonly>
-                                    <button
-                                        class="absolute end-2 top-1/2 -translate-y-1/2 text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 rounded-lg p-2 inline-flex items-center justify-center"
-                                        data-clipboard-target="#npm-install-copy-button" id="copy-button">
-                                        <span id="default-icon">
-                                            <svg class="w-3.5 h-3.5" aria-hidden="true"
-                                                xmlns="http://www.w3.org/2000/svg" fill="currentColor"
-                                                viewBox="0 0 18 20">
-                                                <path
-                                                    d="M16 1h-3.278A1.992 1.992 0 0 0 11 0H7a1.993 1.993 0 0 0-1.722 1H2a2 2 0 0 0-2 2v15a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V3a2 2 0 0 0-2-2Zm-3 14H5a1 1 0 0 1 0-2h8a1 1 0 0 1 0 2Zm0-4H5a1 1 0 0 1 0-2h8a1 1 0 1 1 0 2Zm0-5H5a1 1 0 0 1 0-2h2V2h4v2h2a1 1 0 1 1 0 2Z" />
-                                            </svg>
-                                        </span>
-                                        <span id="success-icon" class="hidden inline-flex items-center">
-                                            <svg class="w-3.5 h-3.5 text-blue-700 dark:text-blue-500" aria-hidden="true"
-                                                xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 16 12">
-                                                <path stroke="currentColor" stroke-linecap="round"
-                                                    stroke-linejoin="round" stroke-width="2"
-                                                    d="M1 5.917 5.724 10.5 15 1.5" />
-                                            </svg>
-                                        </span>
-                                    </button>
+
+                        <div class="share-wishlist">
+                            <i class='bx bx-share-alt ShareBtn'></i>
+                            <div class="share-link-box z-[100]">
+                                <div class="flex w-[100%] justify-evenly">
+                                    <a href="https://www.facebook.com/sharer/sharer.php?u=<?php echo $canonical_url; ?>"><i
+                                            class="fa-brands fa-facebook pointer text-[2rem]" style="color: #4268b3;"></i></a>
+                                    <a href="fb-messenger://share?link=<?php echo urlencode($canonical_url); ?>"><i
+                                            class="fa-brands fa-facebook-messenger pointer text-[2rem]"
+                                            style="color: #183153;"></i></a>
+                                    <a href="https://api.whatsapp.com/send?text=<?php echo $canonical_url; ?>"><i
+                                            class="fa-brands fa-whatsapp pointer text-[2rem]" style="color: #25d366;"></i></a>
+                                    <a href="https://twitter.com/intent/tweet?url=<?php echo $canonical_url; ?>"><i
+                                            class="fa-brands fa-twitter pointer text-[2rem]" style="color: #1da1f2;"></i></a>
+                                    <a href="https://www.instagram.com/?url=<?php echo $canonical_url; ?>"><i
+                                            class="fa-brands fa-instagram pointer text-[2rem]"></i></a>
+
+                                </div>
+                                <div class="clipboard">
+                                    <div class="w-full max-w-100">
+                                        <div class="relative">
+                                            <input id="npm-install-copy-button" type="text"
+                                                class="col-span-6 bg-gray-50 border border-gray-300 text-gray-500 text-sm rounded-lg  block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400"
+                                                value="<?php echo $canonical_url; ?>" readonly>
+                                            <button
+                                                class="absolute end-2 top-1/2 -translate-y-1/2 text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 rounded-lg p-2 inline-flex items-center justify-center"
+                                                data-clipboard-target="#npm-install-copy-button" id="copy-button">
+                                                <span id="default-icon">
+                                                    <svg class="w-3.5 h-3.5" aria-hidden="true"
+                                                        xmlns="http://www.w3.org/2000/svg" fill="currentColor"
+                                                        viewBox="0 0 18 20">
+                                                        <path
+                                                            d="M16 1h-3.278A1.992 1.992 0 0 0 11 0H7a1.993 1.993 0 0 0-1.722 1H2a2 2 0 0 0-2 2v15a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V3a2 2 0 0 0-2-2Zm-3 14H5a1 1 0 0 1 0-2h8a1 1 0 0 1 0 2Zm0-4H5a1 1 0 0 1 0-2h8a1 1 0 1 1 0 2Zm0-5H5a1 1 0 0 1 0-2h2V2h4v2h2a1 1 0 1 1 0 2Z" />
+                                                    </svg>
+                                                </span>
+                                                <span id="success-icon" class="hidden inline-flex items-center">
+                                                    <svg class="w-3.5 h-3.5 text-blue-700 dark:text-blue-500" aria-hidden="true"
+                                                        xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 16 12">
+                                                        <path stroke="currentColor" stroke-linecap="round"
+                                                            stroke-linejoin="round" stroke-width="2"
+                                                            d="M1 5.917 5.724 10.5 15 1.5" />
+                                                    </svg>
+                                                </span>
+                                            </button>
+                                        </div>
+                                    </div>
+
                                 </div>
                             </div>
 
+                            <i class='bx bx-heart WishlistBtn AddToWishlistProductDetail'></i>
+                            <!-- <i class='bx bxs-heart WishlistBtn AddToWishlistProductDetail'></i> -->
                         </div>
                     </div>
 
-                    <i class='bx bx-heart WishlistBtn AddToWishlistProductDetail'></i>
-                    <!-- <i class='bx bxs-heart WishlistBtn AddToWishlistProductDetail'></i> -->
-                </div>
-            </div>
-
-            <div class='flex flex-col mt-[20px] justify-center items-start w-[250px] gap-[20px]'>
-                <div class="flex justify-start items-center w-[500px] gap-[20px]">
-                    <div
-                        class="flex items-center rounded-[10px] overflow-hidden bg-[#fff] shadow-[0_0_10px_rgba(255,0,128,0.1)]">
-                        <button id="decrease"
-                            class="bg-white w-[50px] h-[40px] pointer text-[20px] grid place-items-center"><i
-                                class='bx bx-minus'></i></button>
-                        <div class="bg-[#cccccc80] h-[50px] w-[1px]"></div>
-                        <input type="text" id="quantity" value="1"
-                            class='w-[59px] h-[40px] border-none text-center text-[18px] shadow-none' readonly>
-                        <div class="bg-[#cccccc80] h-[50px] w-[1px]"></div>
-                        <button id="increase"
-                            class="bg-white w-[50px] h-[40px] pointer text-[20px] grid place-items-center"><i
-                                class='bx bx-plus'></i></button>
+                    <div class='flex flex-col mt-[20px] justify-center items-start w-[250px] gap-[20px] Action-Box-Parent'>
+                        <div class="flex justify-start items-center w-[500px] gap-[20px]">
+                            <div
+                                class="flex items-center rounded-[10px] overflow-hidden bg-[#fff] shadow-[0_0_10px_rgba(255,0,128,0.1)]">
+                                <button id="decrease"
+                                    class="bg-white w-[50px] h-[40px] pointer text-[20px] grid place-items-center"><i
+                                        class='bx bx-minus'></i></button>
+                                <div class="bg-[#cccccc80] h-[50px] w-[1px]"></div>
+                                <input type="text" id="quantity" value="1"
+                                    class='w-[59px] h-[40px] border-none text-center text-[18px] shadow-none' readonly>
+                                <div class="bg-[#cccccc80] h-[50px] w-[1px]"></div>
+                                <button id="increase"
+                                    class="bg-white w-[50px] h-[40px] pointer text-[20px] grid place-items-center"><i
+                                        class='bx bx-plus'></i></button>
+                            </div>
+                            <!-- <p>In stock</p> -->
+                            <!-- <p>Only 5 unit left</p> -->
+                            <p class='text-[red]'>Out of Stock</p>
+                        </div>
+                        <div class='flex items-center justify-center gap-[20px] Action-Box'>
+                            <button class='w-[225px] h-[44px] border-none outline-none rounded-md bg-[#00ADEF] text-white cursor-pointer transition duration-300 text-base BuyNow'>Buy Now</button>
+                            <button class='w-[225px] h-[44px] border-none outline-none rounded-md bg-[#FF007F] text-white cursor-pointer transition duration-300 text-base AddToCart'>Add to Cart</button>
+                        </div>
                     </div>
-                    <!-- <p>In stock</p> -->
-                    <!-- <p>Only 5 unit left</p> -->
-                    <p class='text-[red]'>Out of Stock</p>
+
                 </div>
-                <div class='flex items-center justify-center gap-[20px]'>
-                    <button class='w-[225px] h-[44px] border-none outline-none rounded-md bg-[#00ADEF] text-white cursor-pointer transition duration-300 text-base BuyNow'>Buy Now</button>
-                    <button class='w-[225px] h-[44px] border-none outline-none rounded-md bg-[#FF007F] text-white cursor-pointer transition duration-300 text-base AddToCart'>Add to Cart</button>
+
+            </div>
+        </div>
+    </div>
+
+    <div class="flex justify-center bg-[whitesmoke] md:p-4 p-2">
+        <div class="w-[80vw] bg-[white] px-8 rounded-2xl Description-Box">
+            <h2 class='text-2xl mt-6 mb-1 text-[#00ADEF] font-bold'>Product Description</h2>
+            <div class="description-image">
+                <ul>
+                    <li class="list-disc mt-4">QUARE PADS FOR DAY & NIGHT CARE: Mediheal soothing cotton face pads are ideal day and night daily toner pads that offer a quick skin fix. These pads are made with vegan fibers with rounded corners to ensure a perfect fit and come with a pair of long, skinny tweezers, keeping the face pads dirt-free.</li>
+                    <li class="list-disc mt-4">ENRICHED WITH NATURAL INGREDIENTS: Mediheal Madecassoside Blemish Pad contains Centella Asiatica extracted 2 times with micro-particle Madecassoside to calms and help reduce blemishes and dark spots on uneven, post-acne skin. It helps keep your skin soft, hydrated, and nourished.</li>
+                    <li class="list-disc mt-4">ENRICHED WITH PURE PLANT EXTRACTS: Our pore-minimizing face pads contain natural papaya enzyme and LHA, which provide a range of benefits for the skin. These skin-peeling pad helps exfoliate the skin and removes dirt, oil, and impurities, while other plant extracts help to soothe and nourish the skin.</li>
+                    <li class="list-disc mt-4">REMOVES DEAD SKIN AND BLACKHEADS: These exfoliating face pads with LHA gently exfoliate the skin, removing dead skin cells and reducing the visibility of blackheads. Our hydrating peel helps to improve overall health and appearance of your skin, leaving it looking smoother, more radiant, and more youthful.</li>
+                    <li class="list-disc mt-4">HYPOALLERGENIC PADS FOR ALL SKIN TYPES: Mediheal square cotton pads for face are made with 100% plant-derived ingredients and vegan fibers with no artificial colors or fragrances. These cotton pads are developed by professionals and suit all skin types, including sensitive and acne-prone skin.</li>
+                </ul>
+                <div class="flex justify-center flex-col gap-4">
+                    <img src="https://m.media-amazon.com/images/S/aplus-media-library-service-media/29c7b73a-fd53-4658-92b6-c05cf3c8f5d7.__CR0,0,600,180_PT0_SX600_V1___.png">
+                    <img src="https://m.media-amazon.com/images/S/aplus-media-library-service-media/870c0a0f-334f-455f-b322-532da7ff3d60.__CR0,0,1464,600_PT0_SX1464_V1___.jpg">
+                    <img src="https://m.media-amazon.com/images/S/aplus-media-library-service-media/ece64e18-9152-44c3-bced-4f07097d5d51.__CR0,0,1464,600_PT0_SX1464_V1___.jpg">
+                    <img src="https://m.media-amazon.com/images/S/aplus-media-library-service-media/5c941127-e7e6-451d-ad05-74305283a38f.__CR0,0,1464,600_PT0_SX1464_V1___.jpg">
+                </div>
+                <div>
+
                 </div>
             </div>
-
         </div>
- 
     </div>
-    <div class='product-description w-[100vw] px-4'>
-            <h2 class='text-2xl mt-10 mb-1 text-[#00ADEF] font-bold'>About this item</h2>
-            <p class='leading-[30px]'><?php echo nl2br('
- [🧹GENTLE YET POTENT CLEANSING OIL🧹] Effective in eliminating makeup residue, blackheads and sebum, whilst preventing pore congestion. Essential step for double cleansing, with glowy glass skin results.[👀 GENTLE ON THE EYES👀] No eye stinging experiences when used around eyes, Eye Irritation Test (Cruelty Free HET-CAM Test) completed [🌚DEEP PORE CLEANSING FOR ALL SKIN TYPES🌚]: Creates a delicate light foam infused with Heartleaf Extract, [😀GENTLE EXFOLIATION😀]: Contains 3,000ppm Heartleaf powder which helps to gently clear deep within the pores, exfoliate dead skin cells and effectively clear any impurities.'); ?></p>
-        </div>  
 
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.3.0/flowbite.min.js"></script>
@@ -412,6 +471,12 @@ $limited_title = "Abib Collagen Eye Creme Jericho Rose Tube for Dark Circles and
             thumbs: {
                 swiper: swiper,
             },
+            breakpoints: {
+                780: {
+                    slidesPerView: 1,
+                    spaceBetween: 0,
+                },
+            }
         });
 
         const clipboard = new ClipboardJS('#copy-button');
@@ -454,4 +519,3 @@ $limited_title = "Abib Collagen Eye Creme Jericho Rose Tube for Dark Circles and
 </body>
 
 </html>
-
